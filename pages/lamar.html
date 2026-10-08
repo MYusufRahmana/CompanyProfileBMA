@@ -35,6 +35,8 @@
       crossorigin
     />
     <link rel="stylesheet" href="../css/brand-heroes.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/pages.css" />
   </head>
 
   <body class="inner-page application-page">
@@ -81,7 +83,7 @@
     <a class="skip-link" href="#mainContent">Langsung ke konten</a>
     <header class="site-header" id="siteHeader">
       <nav class="navbar container" aria-label="Navigasi utama">
-        <a class="brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — beranda">
+        <a class="brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
           <img class="brand-image" src="../assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" /><img class="brand-wordmark-light" src="../assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" />
         </a>
 
@@ -92,85 +94,75 @@
         </button>
 
         <div class="nav-menu" id="navMenu">
-          <a href="../index.html" class="nav-link">Home</a>
-          <div class="nav-item has-dropdown">
-            <a href="about.html" class="nav-link active" aria-current="page">About Us</a>
-            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="dropdownAbout" aria-label="Submenu About Us"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-            <div class="nav-dropdown" id="dropdownAbout">
-              <a href="about.html"><span>Company Profile<small>Profil, visi &amp; nilai perusahaan</small></span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-              <a href="karir.html" aria-current="page"><span>Careers<small>Lowongan dan proses rekrutmen</small></span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-            </div>
-          </div>
-          <a href="services.html" class="nav-link">Our Services</a>
-          <a href="operations.html" class="nav-link">Operations</a>
-          <a href="news.html" class="nav-link">News</a>
-          <a href="companies.html" class="nav-link">Our Companies</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-          <a href="contact.html" class="nav-cta">Get in Touch</a>
+          <a href="../index.html" class="nav-link">Beranda</a>
+          <a href="about.html" class="nav-link">Tentang Kami</a>
+          <a href="services.html" class="nav-link">Layanan</a>
+          <a href="sosial.html" class="nav-link">Sosial</a>
+          <a href="news.html" class="nav-link">Berita</a>
+          <a href="companies.html" class="nav-link">Perusahaan Kami</a>
+          <a href="karir.html" class="nav-link active" aria-current="page">Karir</a>
+          <a href="contact.html" class="nav-link">Kontak</a>
           <div class="menu-contact">
-            PT Berkat Maritim Abadi · Coal Mining Services<br /><a href="contact.html">Informasi kontak &amp; kerja sama ↗</a>
+            PT Berkat Maritim Abadi · Jasa Pertambangan Batu Bara<br /><a href="contact.html">Informasi kontak &amp; kerja sama ↗</a>
           </div>
         </div>
       </nav>
     </header>
-    <main id="mainContent" tabindex="-1"><section class="brand-hero brand-hero-compact" aria-labelledby="pageTitle"><img class="brand-hero-photo" src="../assets/images/photo-1504917595217-d4dc5ebe6122-800.webp" alt="Ilustrasi aktivitas industri dan maritim" width="1600" height="1067" fetchpriority="high" decoding="async"><div class="container brand-hero-content"><nav class="breadcrumb" aria-label="Jejak navigasi"><a href="karir.html">Karir</a><span>/</span><span aria-current="page">Formulir lamaran</span></nav><div class="brand-hero-copy"><p class="section-kicker" data-career-enter>Karir bersama BMA</p><h1 id="pageTitle" data-career-enter>Langkah baru.<br>Mulai dari Anda.</h1><p class="brand-hero-description" data-career-enter>Ceritakan pengalaman Anda dan lengkapi profil untuk posisi pilihan Anda.</p><a class="btn btn-primary" href="#applicationForm">Lengkapi profil Anda <span aria-hidden="true">↓</span></a></div><div class="brand-hero-footer"><span>PT. Berkat Maritim Abadi</span><span>Foto ilustrasi</span></div></div></section><div class="container application-layout"><aside class="application-sidebar"><div class="application-position"><span class="section-kicker">Posisi pilihan</span><h2 id="applicationJob">Pilih posisi Anda</h2><p id="applicationLocation">Pilih salah satu lowongan pada formulir.</p><span class="vacancy-tag">Full time · On-site</span><hr><h3>Sebelum memulai</h3><ul><li>Siapkan email dan nomor telepon aktif.</li><li>Gunakan CV terbaru dalam format PDF.</li><li>Ukuran berkas maksimal 5 MB.</li></ul><a href="karir.html#opportunities" class="text-link">← Kembali ke lowongan</a></div><p class="application-demo">Pratinjau formulir. Data pribadi dan CV hanya diproses di browser, tidak dikirim atau disimpan.</p></aside><div><form id="applicationForm" class="application-form"><fieldset><legend><span>01</span> Data diri</legend><p class="fieldset-note">Kolom bertanda * wajib diisi.</p><div class="application-fields"><label class="field-wide">Posisi yang dilamar *<select id="applicationPosition" name="position" required><option value="">Pilih posisi</option><option value="hse-officer">HSE Officer</option><option value="marine-supervisor">Marine Operations Supervisor</option><option value="logistics-coordinator">Logistics Coordinator</option></select></label><label class="field-wide">Nama lengkap *<input name="fullName" autocomplete="name" required maxlength="100" placeholder="Nama sesuai identitas Anda"></label><label>Email *<input type="email" name="email" autocomplete="email" required maxlength="150" placeholder="nama@email.com"></label><label>Nomor telepon / WhatsApp *<input type="tel" name="phone" autocomplete="tel" required pattern="[+0-9() .-]{8,20}" maxlength="20" placeholder="08xx xxxx xxxx" title="Masukkan 8–20 karakter berupa nomor telepon."></label><label class="field-wide">Kota domisili *<input name="city" autocomplete="address-level2" required maxlength="100" placeholder="Contoh: Balikpapan"></label></div></fieldset><fieldset><legend><span>02</span> Latar belakang</legend><div class="application-fields"><label>Pendidikan terakhir *<select name="education" required><option value="">Pilih pendidikan</option><option>SMA / SMK</option><option>Diploma</option><option>S1 / D4</option><option>S2</option><option>S3</option></select></label><label>Pengalaman kerja *<select name="experience" required><option value="">Pilih pengalaman</option><option>Belum berpengalaman</option><option>Kurang dari 1 tahun</option><option>1–2 tahun</option><option>3–5 tahun</option><option>Lebih dari 5 tahun</option></select></label><label class="field-wide">Ceritakan tentang diri Anda <span class="optional">(opsional)</span><textarea name="introduction" rows="4" maxlength="1500" placeholder="Keahlian, pengalaman relevan, atau alasan Anda tertarik bergabung."></textarea></label></div></fieldset><fieldset><legend><span>03</span> Curriculum vitae</legend><p class="fieldset-note" id="cvHelp">Unggah CV dalam format PDF, maksimal 5 MB. *</p><div class="cv-dropzone" id="cvDropzone"><span class="cv-upload-icon" aria-hidden="true">↑</span><label for="cvFile">Pilih CV dari perangkat</label><p>atau tarik dan letakkan berkas di sini</p><input id="cvFile" type="file" accept=".pdf,application/pdf" aria-describedby="cvHelp cvError" required></div><p id="cvError" class="cv-error" role="alert"></p><div class="cv-selected" id="cvSelected" hidden><span class="cv-file-icon">PDF</span><div><strong id="cvName"></strong><small id="cvSize"></small></div><button type="button" id="cvRemove" aria-label="Hapus CV">Hapus</button></div></fieldset><div class="application-submit"><label class="application-consent"><input type="checkbox" required><span>Saya telah memeriksa informasi yang diisi dan memahami bahwa ini adalah simulasi lamaran, bukan pengiriman ke tim rekrutmen.</span></label><button type="submit" class="btn btn-primary">Selesaikan simulasi lamaran <span aria-hidden="true">↗</span></button><p>Data dan CV tidak disimpan setelah halaman ditutup.</p></div></form><section class="application-success" id="applicationSuccess" hidden tabindex="-1" aria-labelledby="successTitle"><span class="success-icon" aria-hidden="true">✓</span><p class="section-kicker">Simulasi selesai</p><h2 id="successTitle">Profil Anda sudah lengkap.</h2><p id="applicationSummary"></p><p>Ini adalah konfirmasi simulasi. Data dan CV Anda belum dikirim ke BMA.</p><a class="btn btn-primary" href="karir.html#opportunities">Kembali ke halaman Karir</a><button type="button" id="editApplication" class="text-link">Tinjau kembali formulir</button></section><noscript><p class="demo-note">Aktifkan JavaScript untuk mencoba simulasi formulir ini. Tidak ada data yang dikirim.</p></noscript></div></div></main>
+    <main id="mainContent" tabindex="-1"><section class="page-banner page-banner--compact" aria-labelledby="pageTitle">
+        <img class="page-banner-photo" src="../assets/images/mining/hse-inspection-1200.webp" srcset="../assets/images/mining/hse-inspection-640.webp 640w, ../assets/images/mining/hse-inspection-1200.webp 1200w" sizes="100vw" alt="" width="1200" height="800" fetchpriority="high" decoding="async" />
+        <div class="container page-banner-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Beranda</a><span aria-hidden="true">/</span><a href="karir.html">Karir</a><span aria-hidden="true">/</span><span aria-current="page">Formulir Lamaran</span></nav>
+          <p class="section-kicker">Karir</p>
+          <h1 id="pageTitle">Formulir Lamaran</h1>
+          <p class="page-banner-lead">Lengkapi data diri, latar belakang, dan CV Anda untuk posisi yang dipilih. Formulir ini masih prototipe dan belum mengirim data.</p>
+        </div>
+      </section><div class="container application-layout"><aside class="application-sidebar"><div class="application-position"><span class="section-kicker">Posisi pilihan</span><h2 id="applicationJob">Pilih posisi Anda</h2><p id="applicationLocation">Pilih salah satu lowongan pada formulir.</p><span class="vacancy-tag" id="applicationType">Penempatan di site</span><hr><h3>Sebelum memulai</h3><ul><li>Siapkan email dan nomor telepon aktif.</li><li>Gunakan CV terbaru dalam format PDF.</li><li>Ukuran berkas maksimal 5 MB.</li></ul><a href="karir.html#lowongan" class="text-link">← Kembali ke lowongan</a></div><p class="application-demo">Pratinjau formulir. Data pribadi dan CV hanya diproses di browser, tidak dikirim atau disimpan.</p></aside><div><form id="applicationForm" class="application-form"><fieldset><legend><span>01</span> Data diri</legend><p class="fieldset-note">Kolom bertanda * wajib diisi.</p><div class="application-fields"><label class="field-wide">Posisi yang dilamar *<select id="applicationPosition" name="position" required><option value="">Pilih posisi</option><option value="operator-excavator">Operator Excavator</option><option value="hse-officer">HSE Officer</option><option value="logistics-coordinator">Koordinator Logistik</option><option value="foreman-produksi">Foreman Produksi Coal Getting</option><option value="mekanik-alat-berat">Mekanik Alat Berat</option></select></label><label class="field-wide">Nama lengkap *<input name="fullName" autocomplete="name" required maxlength="100" placeholder="Nama sesuai identitas Anda"></label><label>Email *<input type="email" name="email" autocomplete="email" required maxlength="150" placeholder="nama@email.com"></label><label>Nomor telepon / WhatsApp *<input type="tel" name="phone" autocomplete="tel" required pattern="[+0-9() .-]{8,20}" maxlength="20" placeholder="08xx xxxx xxxx" title="Masukkan 8–20 karakter berupa nomor telepon."></label><label class="field-wide">Kota domisili *<input name="city" autocomplete="address-level2" required maxlength="100" placeholder="Contoh: Samarinda"></label></div></fieldset><fieldset><legend><span>02</span> Latar belakang</legend><div class="application-fields"><label>Pendidikan terakhir *<select name="education" required><option value="">Pilih pendidikan</option><option>SMA / SMK</option><option>Diploma</option><option>S1 / D4</option><option>S2</option><option>S3</option></select></label><label>Pengalaman kerja *<select name="experience" required><option value="">Pilih pengalaman</option><option>Belum berpengalaman</option><option>Kurang dari 1 tahun</option><option>1–2 tahun</option><option>3–5 tahun</option><option>Lebih dari 5 tahun</option></select></label><label class="field-wide">Ceritakan tentang diri Anda <span class="optional">(opsional)</span><textarea name="introduction" rows="4" maxlength="1500" placeholder="Keahlian, pengalaman relevan, atau alasan Anda tertarik bergabung."></textarea></label></div></fieldset><fieldset><legend><span>03</span> Curriculum vitae</legend><p class="fieldset-note" id="cvHelp">Unggah CV dalam format PDF, maksimal 5 MB. *</p><div class="cv-dropzone" id="cvDropzone"><span class="cv-upload-icon" aria-hidden="true">↑</span><label for="cvFile">Pilih CV dari perangkat</label><p>atau tarik dan letakkan berkas di sini</p><input id="cvFile" type="file" accept=".pdf,application/pdf" aria-describedby="cvHelp cvError" required></div><p id="cvError" class="cv-error" role="alert"></p><div class="cv-selected" id="cvSelected" hidden><span class="cv-file-icon">PDF</span><div><strong id="cvName"></strong><small id="cvSize"></small></div><button type="button" id="cvRemove" aria-label="Hapus CV">Hapus</button></div></fieldset><div class="application-submit"><label class="application-consent"><input type="checkbox" required><span>Saya telah memeriksa informasi yang diisi dan memahami bahwa ini adalah simulasi lamaran, bukan pengiriman ke tim rekrutmen.</span></label><button type="submit" class="btn btn-primary">Selesaikan simulasi lamaran <span aria-hidden="true">↗</span></button><p>Data dan CV tidak disimpan setelah halaman ditutup.</p></div></form><section class="application-success" id="applicationSuccess" hidden tabindex="-1" aria-labelledby="successTitle"><span class="success-icon" aria-hidden="true">✓</span><p class="section-kicker">Simulasi selesai</p><h2 id="successTitle">Profil Anda sudah lengkap.</h2><p id="applicationSummary"></p><p>Ini adalah konfirmasi simulasi. Data dan CV Anda belum dikirim ke BMA.</p><a class="btn btn-primary" href="karir.html#lowongan">Kembali ke halaman Karir</a><button type="button" id="editApplication" class="text-link">Tinjau kembali formulir</button></section><noscript><p class="demo-note">Aktifkan JavaScript untuk mencoba simulasi formulir ini. Tidak ada data yang dikirim.</p></noscript></div></div></main>
     <footer class="footer">
       <div class="container footer-top">
         <div class="footer-about">
-          <a class="brand footer-brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — beranda">
+          <a class="brand footer-brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
             <img class="brand-image" src="../assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" loading="lazy" /><img class="brand-wordmark-light" src="../assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" loading="lazy" />
           </a>
-          <p class="footer-desc">
-            Mitra operasional pertambangan batu bara yang mengutamakan
-            keselamatan, produktivitas, dan praktik penambangan yang
-            bertanggung jawab.
-          </p>
-          <ul class="social-links" aria-label="Media sosial (tautan placeholder)">
-            <li><a href="#" aria-label="LinkedIn (placeholder)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
-            <li><a href="#" aria-label="Instagram (placeholder)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
-            <li><a href="#" aria-label="YouTube (placeholder)"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg></a></li>
-            <li><a href="#" aria-label="Facebook (placeholder)"><svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg></a></li>
+          <p class="footer-desc">Mitra operasional pertambangan batu bara dengan fokus pada coal getting yang aman dan efisien.</p>
+          <ul class="social-links" aria-label="Media sosial (tautan contoh)">
+            <li><a href="#" aria-label="LinkedIn (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+            <li><a href="#" aria-label="Instagram (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+            <li><a href="#" aria-label="YouTube (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg></a></li>
           </ul>
         </div>
 
-        <nav class="footer-col" aria-labelledby="footerQuickLinks">
-          <h2 id="footerQuickLinks">Quick Links</h2>
+        <nav class="footer-col" aria-labelledby="footerLinks">
+          <h2 id="footerLinks">Perusahaan</h2>
           <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="operations.html">Operations</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="companies.html">Our Companies</a></li>
-            <li><a href="karir.html">Careers</a></li>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="companies.html">Perusahaan Kami</a></li>
+            <li><a href="sosial.html">Sosial</a></li>
+            <li><a href="news.html">Berita</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-col" aria-labelledby="footerPages">
+          <h2 id="footerPages">Layanan &amp; Karir</h2>
+          <ul>
+            <li><a href="services.html">Layanan</a></li>
+            <li><a href="operations.html">Operasional Tambang</a></li>
+            <li><a href="karir.html">Karir</a></li>
           </ul>
         </nav>
 
         <div class="footer-col">
-          <h2>Our Services</h2>
-          <ul>
-            <li><a href="services.html#coal-getting">Coal Getting</a></li>
-            <li><a href="services.html#overburden-removal">Overburden Removal</a></li>
-            <li><a href="services.html#coal-hauling">Coal Hauling</a></li>
-            <li><a href="services.html#equipment-support">Mining Equipment Support</a></li>
-            <li><a href="services.html#site-operations">Mining Site Operations</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h2>Contact</h2>
+          <h2>Kontak</h2>
           <ul class="footer-contact">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Jakarta Utara, DKI Jakarta, Indonesia</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Jakarta Utara, DKI Jakarta</span></li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:info@bma.example">info@bma.example</a></li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+62215550188">+62 21 555 0188</a></li>
           </ul>
-          <small>Data kontak masih placeholder.</small>
         </div>
       </div>
 
       <div class="container footer-bottom">
-        <span>© <span id="year"></span> PT Berkat Maritim Abadi. All rights reserved.</span>
-        <span>Pratinjau konsep · menggunakan data dummy</span>
-        <button class="footer-top-link" type="button" data-back-to-top>Back to top <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
+        <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
+        <span>Pratinjau desain · data kontak dan konten masih contoh</span>
       </div>
     </footer>
     <script src="../js/script.js" defer></script>

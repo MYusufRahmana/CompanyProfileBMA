@@ -3,42 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Jelajahi posisi dan bidang kerja di BMA. Temukan kesempatan yang sesuai dengan keahlian Anda."
-    />
     <title>Karir | PT Berkat Maritim Abadi</title>
-
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/careers.css" />
+    <meta name="description" content="Lowongan kerja PT Berkat Maritim Abadi di bidang operasional pertambangan batu bara. Lihat posisi yang dibuka dan lamar secara daring." />
     <meta name="theme-color" content="#171C20" />
+    <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="PT Berkat Maritim Abadi" />
     <meta property="og:title" content="Karir | PT Berkat Maritim Abadi" />
-    <meta
-      property="og:description"
-      content="Jelajahi contoh posisi dan bidang kerja di BMA. Temukan informasi yang sesuai dengan keahlian Anda."
-    />
-    <meta property="og:image" content="../assets/images/Logo_Berkat_Maritim_Abadi.png" />
-
+    <meta property="og:description" content="Lowongan kerja PT Berkat Maritim Abadi di bidang operasional pertambangan batu bara. Lihat posisi yang dibuka dan lamar secara daring." />
+    <meta property="og:image" content="../assets/images/mining/hse-inspection-1200.webp" />
     <link rel="icon" type="image/webp" href="../assets/bma-logo.webp" />
-    <link
-      rel="preload"
-      href="../assets/fonts/inter-latin.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="../assets/fonts/manrope-latin.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/brand-heroes.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/pages.css" />
   </head>
 
-  <body class="inner-page career-page">
+  <body class="page-careers">
     <!-- icons:start -->
     <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
       <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
@@ -80,9 +64,11 @@
     </svg>
     <!-- icons:end -->
     <a class="skip-link" href="#mainContent">Langsung ke konten</a>
+
+    <!-- Header: dibuat oleh tools/layout.mjs -->
     <header class="site-header" id="siteHeader">
       <nav class="navbar container" aria-label="Navigasi utama">
-        <a class="brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — beranda">
+        <a class="brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
           <img class="brand-image" src="../assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" /><img class="brand-wordmark-light" src="../assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" />
         </a>
 
@@ -93,131 +79,249 @@
         </button>
 
         <div class="nav-menu" id="navMenu">
-          <a href="../index.html" class="nav-link">Home</a>
-          <div class="nav-item has-dropdown">
-            <a href="about.html" class="nav-link active" aria-current="page">About Us</a>
-            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="dropdownAbout" aria-label="Submenu About Us"><svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-            <div class="nav-dropdown" id="dropdownAbout">
-              <a href="about.html"><span>Company Profile<small>Profil, visi &amp; nilai perusahaan</small></span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-              <a href="karir.html" aria-current="page"><span>Careers<small>Lowongan dan proses rekrutmen</small></span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-            </div>
-          </div>
-          <a href="services.html" class="nav-link">Our Services</a>
-          <a href="operations.html" class="nav-link">Operations</a>
-          <a href="news.html" class="nav-link">News</a>
-          <a href="companies.html" class="nav-link">Our Companies</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-          <a href="contact.html" class="nav-cta">Get in Touch</a>
+          <a href="../index.html" class="nav-link">Beranda</a>
+          <a href="about.html" class="nav-link">Tentang Kami</a>
+          <a href="services.html" class="nav-link">Layanan</a>
+          <a href="sosial.html" class="nav-link">Sosial</a>
+          <a href="news.html" class="nav-link">Berita</a>
+          <a href="companies.html" class="nav-link">Perusahaan Kami</a>
+          <a href="karir.html" class="nav-link active" aria-current="page">Karir</a>
+          <a href="contact.html" class="nav-link">Kontak</a>
           <div class="menu-contact">
-            PT Berkat Maritim Abadi · Coal Mining Services<br /><a href="contact.html">Informasi kontak &amp; kerja sama ↗</a>
+            PT Berkat Maritim Abadi · Jasa Pertambangan Batu Bara<br /><a href="contact.html">Informasi kontak &amp; kerja sama ↗</a>
           </div>
         </div>
       </nav>
     </header>
+
     <main id="mainContent" tabindex="-1">
- <section class="brand-hero" aria-labelledby="pageTitle"><img class="brand-hero-photo" src="../assets/images/photo-1504917595217-d4dc5ebe6122-800.webp" alt="Ilustrasi aktivitas industri dan maritim" width="1600" height="1067" fetchpriority="high" decoding="async"><div class="container brand-hero-content"><nav class="breadcrumb" aria-label="Jejak navigasi"><a href="../index.html">Beranda</a><span aria-hidden="true">/</span><span aria-current="page">Karir</span></nav><div class="brand-hero-copy"><p class="section-kicker" data-career-enter>Karir di BMA</p><h1 id="pageTitle" data-career-enter>Keahlian Anda.<br>Perjalanan<br>yang berarti.</h1><p class="brand-hero-description" data-career-enter>Bersama tim yang saling mendukung, bangun pengalaman dan ambil bagian dalam operasi yang menggerakkan industri Indonesia.</p><a class="btn btn-primary" href="#opportunities">Temukan posisi Anda <span aria-hidden="true">↗</span></a></div><div class="brand-hero-footer"><span>PT. Berkat Maritim Abadi</span><span>Foto ilustrasi</span></div></div></section>
- <section class="career-culture"><div class="container"><div class="career-heading" data-career-reveal><div><p class="section-kicker">Bekerja bersama BMA</p><h2>Bukan sekadar pekerjaan.<br>Ruang untuk berkembang.</h2></div><p>Pengalaman yang berarti tumbuh dari kepercayaan, tantangan, dan rekan kerja yang saling menjaga.</p></div><div class="career-benefits" data-career-reveal><article><span aria-hidden="true">↗</span><h3>Belajar dari pengalaman</h3><p>Kembangkan keahlian melalui keterlibatan langsung dalam proyek dan kerja sama lintas fungsi.</p></article><article><span aria-hidden="true">＋</span><h3>Saling menjaga</h3><p>Bangun kebiasaan kerja yang aman bersama tim yang menempatkan keselamatan sebagai prioritas.</p></article><article><span aria-hidden="true">◎</span><h3>Bertumbuh bersama</h3><p>Temukan ruang untuk berkontribusi, berbagi gagasan, dan mengambil tanggung jawab baru.</p></article></div></div></section>
- <section class="career-openings" id="opportunities" aria-labelledby="opportunityTitle"><div class="container"><div class="career-heading"><div><p class="section-kicker">Kesempatan berkarir</p><h2 id="opportunityTitle">Langkah berikutnya<br>dimulai di sini.</h2></div><p>Pilih posisi yang sesuai dengan pengalaman Anda. Kenali tanggung jawab dan kualifikasinya sebelum melamar.</p></div><div class="career-filters">
-            <label class="search-field"
-              ><span>Cari posisi</span
-              ><input
-                type="search"
-                id="jobSearch"
-                placeholder="Posisi atau kata kunci…"
-                autocomplete="off" /></label
-            ><label class="select-field"
-              ><span>Bidang kerja</span
-              ><select id="jobDepartment">
-                <option value="all">Semua bidang</option>
-                <option>Operasional</option>
-                <option>Maritim</option>
-                <option>Logistik</option>
-              </select></label
-            ><label class="select-field"
-              ><span>Lokasi</span
-              ><select id="jobLocation">
-                <option value="all">Semua lokasi</option>
-                <option>Balikpapan</option>
-                <option>Jakarta</option>
-                <option>Morowali</option>
-              </select></label
-            >
+      <section class="page-banner" aria-labelledby="pageTitle">
+        <img class="page-banner-photo" src="../assets/images/mining/hse-inspection-1200.webp" srcset="../assets/images/mining/hse-inspection-640.webp 640w, ../assets/images/mining/hse-inspection-1200.webp 1200w" sizes="100vw" alt="" width="1200" height="800" fetchpriority="high" decoding="async" />
+        <div class="container page-banner-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Beranda</a><span aria-hidden="true">/</span><span aria-current="page">Karir</span></nav>
+          <p class="section-kicker">Karir</p>
+          <h1 id="pageTitle">Karir</h1>
+          <p class="page-banner-lead">Bergabunglah bersama tim yang bekerja dengan aman, disiplin, dan saling menjaga di lingkungan tambang batu bara.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="whyTitle" style="padding-bottom: 0">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Bekerja Bersama Kami</p>
+              <h2 id="whyTitle">Lingkungan Kerja yang Aman dan Berkembang</h2>
+            </div>
+            <p>Kami mencari rekan yang menjunjung keselamatan, mau belajar, dan siap bekerja dalam tim.</p>
           </div>
-          <p class="result-count" id="jobCount" role="status">
-            3 posisi contoh
-          </p><div class="career-job-grid" id="jobList"><article class="career-job" data-department="Operasional" data-location="Balikpapan"><div class="career-job-top"><span class="career-chip">Operasional</span><span class="career-code">BMA-HSE-01</span></div><h3><a href="lowongan-hse-officer.html">HSE Officer</a></h3><p class="career-job-description">Anda akan mendampingi tim operasional untuk mengidentifikasi risiko, menjalankan inspeksi, dan membangun kebiasaan kerja yang aman di SITE.</p><ul class="career-job-meta"><li>Balikpapan</li><li>Full time</li><li>On-site</li></ul><div class="career-job-bottom"><span>2–3 tahun pengalaman</span><a href="lowongan-hse-officer.html" aria-label="Lihat detail HSE Officer">Lihat detail <span aria-hidden="true">↗</span></a></div></article>
-<article class="career-job" data-department="Maritim" data-location="Jakarta"><div class="career-job-top"><span class="career-chip">Maritim</span><span class="career-code">BMA-MAR-02</span></div><h3><a href="lowongan-marine-supervisor.html">Marine Operations Supervisor</a></h3><p class="career-job-description">Anda akan mengoordinasikan jadwal armada, kesiapan operasional, dan komunikasi dengan tim pelabuhan untuk mendukung kebutuhan proyek.</p><ul class="career-job-meta"><li>Jakarta</li><li>Full time</li><li>On-site</li></ul><div class="career-job-bottom"><span>3–5 tahun pengalaman</span><a href="lowongan-marine-supervisor.html" aria-label="Lihat detail Marine Operations Supervisor">Lihat detail <span aria-hidden="true">↗</span></a></div></article>
-<article class="career-job" data-department="Logistik" data-location="Morowali"><div class="career-job-top"><span class="career-chip">Logistik</span><span class="career-code">BMA-LOG-03</span></div><h3><a href="lowongan-logistics-coordinator.html">Logistics Coordinator</a></h3><p class="career-job-description">Anda akan menghubungkan kebutuhan proyek dengan alur pengadaan, pergudangan, dan distribusi agar aktivitas di lapangan berjalan terkoordinasi.</p><ul class="career-job-meta"><li>Morowali</li><li>Full time</li><li>On-site</li></ul><div class="career-job-bottom"><span>2–3 tahun pengalaman</span><a href="lowongan-logistics-coordinator.html" aria-label="Lihat detail Logistics Coordinator">Lihat detail <span aria-hidden="true">↗</span></a></div></article></div><div class="empty-results" id="jobEmpty" hidden>
-            <h3>Posisi belum ditemukan.</h3>
-            <p>Ubah kata kunci atau pilihan bidang dan lokasi.</p>
-            <button class="btn btn-outline-dark" type="button" data-reset-jobs>
-              Hapus filter
-            </button>
-          </div><p class="career-demo">Lowongan dan kualifikasi merupakan data contoh untuk pratinjau website. Lamaran masih berupa simulasi.</p></div></section>
- <section class="career-process"><div class="container"><div class="career-heading" data-career-reveal><div><p class="section-kicker">Alur lamaran</p><h2>Kenali perannya.<br>Siapkan langkah Anda.</h2></div><a class="text-link" href="#opportunities">Jelajahi lowongan <span aria-hidden="true">↗</span></a></div><ol class="career-steps" data-career-reveal><li><span>01</span><h3>Temukan posisi</h3><p>Pelajari tugas, lokasi, dan kualifikasi pada halaman detail lowongan.</p></li><li><span>02</span><h3>Siapkan profil</h3><p>Lengkapi data diri, pendidikan, pengalaman, dan CV terbaru dalam format PDF.</p></li><li><span>03</span><h3>Tinjau lamaran</h3><p>Pastikan informasi sudah sesuai sebelum menyelesaikan formulir simulasi.</p></li></ol></div></section>
- <section class="career-faq"><div class="container career-faq-grid"><div><p class="section-kicker">Sebelum melamar</p><h2>Hal yang mungkin<br>ingin Anda ketahui.</h2></div><div><details><summary>Apa yang perlu disiapkan?</summary><p>Siapkan informasi diri, pendidikan, pengalaman kerja, serta CV dalam format PDF dengan ukuran maksimal 5 MB.</p></details><details><summary>Bagaimana memilih posisi yang sesuai?</summary><p>Gunakan pencarian dan filter bidang atau lokasi, kemudian baca tanggung jawab dan kualifikasi pada halaman detail posisi.</p></details><details><summary>Apakah lamaran ini dikirim ke tim rekrutmen?</summary><p>Website ini masih berupa demonstrasi. Formulir tidak mengirim atau menyimpan data maupun CV Anda.</p></details></div></div></section>
- <section class="career-closing"><div class="container"><div><p class="section-kicker">Kenali tempat Anda bertumbuh</p><h2>Kenali BMA lebih dekat.</h2><p>Temukan cerita, nilai, dan bidang kerja yang menyatukan tim kami.</p></div><a class="btn btn-ghost" href="about.html">Tentang BMA <span aria-hidden="true">↗</span></a></div></section>
- </main>
+          <div class="career-benefits-row">
+            <article class="value-card" data-reveal="up"><span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-hardhat" /></svg></span><h3>Keselamatan diutamakan</h3><p>Prosedur kerja aman dan budaya saling mengingatkan di setiap shift.</p></article>
+            <article class="value-card" data-reveal="up"><span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-chart" /></svg></span><h3>Pengembangan keterampilan</h3><p>Pelatihan dan pendampingan langsung di lapangan.</p></article>
+            <article class="value-card" data-reveal="up"><span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-users" /></svg></span><h3>Tim yang solid</h3><p>Koordinasi yang terbuka antara operator, pengawas, dan staf.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="lowongan" aria-labelledby="jobsTitle">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Lowongan Tersedia</p>
+              <h2 id="jobsTitle">Daftar Lowongan</h2>
+            </div>
+            <p>Gunakan kata kunci atau filter untuk menemukan posisi yang sesuai.</p>
+          </div>
+          <form class="jobs-filter" id="jobFilters" role="search" aria-label="Filter lowongan" onsubmit="return false">
+            <label>Kata kunci<input type="search" id="jobSearch" placeholder="Posisi atau kode lowongan…" autocomplete="off" /></label>
+            <label>Departemen<select id="jobDepartment"><option value="all">Semua departemen</option>
+              <option value="Produksi">Produksi</option>
+              <option value="K3 &amp; Lingkungan">K3 &amp; Lingkungan</option>
+              <option value="Logistik">Logistik</option>
+              <option value="Plant &amp; Maintenance">Plant &amp; Maintenance</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Administrasi">Administrasi</option>
+            </select></label>
+            <label>Lokasi<select id="jobLocation"><option value="all">Semua lokasi</option>
+              <option value="Kutai Kartanegara, Kaltim">Kutai Kartanegara, Kaltim</option>
+              <option value="Tanah Bumbu, Kalsel">Tanah Bumbu, Kalsel</option>
+              <option value="Muara Enim, Sumsel">Muara Enim, Sumsel</option>
+            </select></label>
+            <label>Status<select id="jobStatus"><option value="all">Semua status</option><option value="Dibuka">Dibuka</option><option value="Ditutup">Ditutup</option></select></label>
+          </form>
+          <div class="jobs-meta">
+            <p id="jobCount" role="status">8 lowongan</p>
+            <span class="sample-label">Data contoh, bukan lowongan resmi</span>
+          </div>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Tabel lowongan, dapat digeser ke samping">
+            <table class="jobs-table" id="jobTable">
+              <caption>Daftar lowongan kerja (data contoh)</caption>
+              <thead>
+                <tr><th scope="col">No.</th><th scope="col">Posisi</th><th scope="col">Departemen</th><th scope="col">Lokasi Penempatan</th><th scope="col">Tipe Pekerjaan</th><th scope="col">Batas Lamaran</th><th scope="col">Status</th><th scope="col">Aksi</th></tr>
+              </thead>
+              <tbody>
+                <tr data-department="Produksi" data-location="Kutai Kartanegara, Kaltim" data-status="Dibuka">
+                  <td data-no>1</td>
+                  <td><a class="job-title" href="lowongan-operator-excavator.html">Operator Excavator</a><span class="job-code">BMA-PRD-01</span></td>
+                  <td>Produksi</td>
+                  <td>Kutai Kartanegara, Kaltim</td>
+                  <td>Kontrak</td>
+                  <td><time datetime="2026-11-30">30 Nov 2026</time></td>
+                  <td><span class="status-badge status-open">Dibuka</span></td>
+                  <td><a class="btn-apply" href="lamar.html?posisi=operator-excavator" aria-label="Lamar posisi Operator Excavator">Lamar</a></td>
+                </tr>
+                <tr data-department="K3 &amp; Lingkungan" data-location="Kutai Kartanegara, Kaltim" data-status="Dibuka">
+                  <td data-no>2</td>
+                  <td><a class="job-title" href="lowongan-hse-officer.html">HSE Officer</a><span class="job-code">BMA-HSE-02</span></td>
+                  <td>K3 &amp; Lingkungan</td>
+                  <td>Kutai Kartanegara, Kaltim</td>
+                  <td>Penuh waktu</td>
+                  <td><time datetime="2026-11-15">15 Nov 2026</time></td>
+                  <td><span class="status-badge status-open">Dibuka</span></td>
+                  <td><a class="btn-apply" href="lamar.html?posisi=hse-officer" aria-label="Lamar posisi HSE Officer">Lamar</a></td>
+                </tr>
+                <tr data-department="Logistik" data-location="Tanah Bumbu, Kalsel" data-status="Dibuka">
+                  <td data-no>3</td>
+                  <td><a class="job-title" href="lowongan-logistics-coordinator.html">Koordinator Logistik</a><span class="job-code">BMA-LOG-03</span></td>
+                  <td>Logistik</td>
+                  <td>Tanah Bumbu, Kalsel</td>
+                  <td>Penuh waktu</td>
+                  <td><time datetime="2026-11-20">20 Nov 2026</time></td>
+                  <td><span class="status-badge status-open">Dibuka</span></td>
+                  <td><a class="btn-apply" href="lamar.html?posisi=logistics-coordinator" aria-label="Lamar posisi Koordinator Logistik">Lamar</a></td>
+                </tr>
+                <tr data-department="Produksi" data-location="Kutai Kartanegara, Kaltim" data-status="Dibuka">
+                  <td data-no>4</td>
+                  <td><span class="job-title">Foreman Produksi Coal Getting</span><span class="job-code">BMA-PRD-04</span></td>
+                  <td>Produksi</td>
+                  <td>Kutai Kartanegara, Kaltim</td>
+                  <td>Penuh waktu</td>
+                  <td><time datetime="2026-12-10">10 Des 2026</time></td>
+                  <td><span class="status-badge status-open">Dibuka</span></td>
+                  <td><a class="btn-apply" href="lamar.html?posisi=foreman-produksi" aria-label="Lamar posisi Foreman Produksi Coal Getting">Lamar</a></td>
+                </tr>
+                <tr data-department="Plant &amp; Maintenance" data-location="Tanah Bumbu, Kalsel" data-status="Dibuka">
+                  <td data-no>5</td>
+                  <td><span class="job-title">Mekanik Alat Berat</span><span class="job-code">BMA-PLT-05</span></td>
+                  <td>Plant &amp; Maintenance</td>
+                  <td>Tanah Bumbu, Kalsel</td>
+                  <td>Kontrak</td>
+                  <td><time datetime="2026-12-05">5 Des 2026</time></td>
+                  <td><span class="status-badge status-open">Dibuka</span></td>
+                  <td><a class="btn-apply" href="lamar.html?posisi=mekanik-alat-berat" aria-label="Lamar posisi Mekanik Alat Berat">Lamar</a></td>
+                </tr>
+                <tr data-department="Engineering" data-location="Muara Enim, Sumsel" data-status="Ditutup" class="is-closed">
+                  <td data-no>6</td>
+                  <td><span class="job-title">Surveyor Tambang</span><span class="job-code">BMA-ENG-06</span></td>
+                  <td>Engineering</td>
+                  <td>Muara Enim, Sumsel</td>
+                  <td>Penuh waktu</td>
+                  <td><time datetime="2026-09-30">30 Sep 2026</time></td>
+                  <td><span class="status-badge status-closed">Ditutup</span></td>
+                  <td><button class="btn-apply" type="button" disabled aria-label="Lamaran Surveyor Tambang sudah ditutup">Lamar</button></td>
+                </tr>
+                <tr data-department="Administrasi" data-location="Muara Enim, Sumsel" data-status="Ditutup" class="is-closed">
+                  <td data-no>7</td>
+                  <td><span class="job-title">Staf Administrasi Site</span><span class="job-code">BMA-ADM-07</span></td>
+                  <td>Administrasi</td>
+                  <td>Muara Enim, Sumsel</td>
+                  <td>Kontrak</td>
+                  <td><time datetime="2026-09-15">15 Sep 2026</time></td>
+                  <td><span class="status-badge status-closed">Ditutup</span></td>
+                  <td><button class="btn-apply" type="button" disabled aria-label="Lamaran Staf Administrasi Site sudah ditutup">Lamar</button></td>
+                </tr>
+                <tr data-department="Produksi" data-location="Tanah Bumbu, Kalsel" data-status="Ditutup" class="is-closed">
+                  <td data-no>8</td>
+                  <td><span class="job-title">Pengemudi Dump Truck</span><span class="job-code">BMA-PRD-08</span></td>
+                  <td>Produksi</td>
+                  <td>Tanah Bumbu, Kalsel</td>
+                  <td>Kontrak</td>
+                  <td><time datetime="2026-08-31">31 Agu 2026</time></td>
+                  <td><span class="status-badge status-closed">Ditutup</span></td>
+                  <td><button class="btn-apply" type="button" disabled aria-label="Lamaran Pengemudi Dump Truck sudah ditutup">Lamar</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-hint">Geser tabel ke samping untuk melihat semua kolom.</p>
+          <div class="empty-results" id="jobEmpty" hidden>
+            <h3>Lowongan tidak ditemukan.</h3>
+            <p>Ubah kata kunci atau pilihan filter.</p>
+            <button class="btn btn-outline-dark" type="button" data-reset-jobs>Hapus filter</button>
+          </div>
+          <nav class="pagination" id="jobPagination" aria-label="Halaman lowongan" hidden></nav>
+        </div>
+      </section>
+
+      <section class="section bg-light" aria-labelledby="stepsTitle">
+        <div class="container two-col" style="align-items: start">
+          <div>
+            <p class="section-kicker">Alur Lamaran</p>
+            <h2 id="stepsTitle">Tiga Langkah Melamar</h2>
+            <ol class="mission-list">
+              <li><div><strong>Pilih posisi</strong><span>Baca tugas, lokasi, dan kualifikasi pada tabel atau halaman detail.</span></div></li>
+              <li><div><strong>Isi formulir</strong><span>Lengkapi data diri, pendidikan, pengalaman, dan unggah CV (PDF, maks. 5 MB).</span></div></li>
+              <li><div><strong>Tunggu kabar</strong><span>Tim rekrutmen akan menghubungi kandidat yang sesuai setelah sistem lamaran aktif.</span></div></li>
+            </ol>
+          </div>
+          <div class="career-faq">
+            <p class="section-kicker">Pertanyaan Umum</p>
+            <details><summary>Apakah lamaran langsung terkirim?</summary><p>Belum. Formulir lamaran saat ini masih prototipe dan belum terhubung ke sistem rekrutmen, sehingga data dan CV tidak dikirim atau disimpan.</p></details>
+            <details><summary>Apa yang perlu disiapkan?</summary><p>Data diri, riwayat pendidikan dan pengalaman kerja, serta CV dalam format PDF dengan ukuran maksimal 5 MB.</p></details>
+            <details><summary>Mengapa tombol Lamar tidak aktif?</summary><p>Tombol Lamar dinonaktifkan untuk lowongan yang sudah melewati batas lamaran atau berstatus Ditutup.</p></details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer: dibuat oleh tools/layout.mjs -->
     <footer class="footer">
       <div class="container footer-top">
         <div class="footer-about">
-          <a class="brand footer-brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — beranda">
+          <a class="brand footer-brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
             <img class="brand-image" src="../assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" loading="lazy" /><img class="brand-wordmark-light" src="../assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" loading="lazy" />
           </a>
-          <p class="footer-desc">
-            Mitra operasional pertambangan batu bara yang mengutamakan
-            keselamatan, produktivitas, dan praktik penambangan yang
-            bertanggung jawab.
-          </p>
-          <ul class="social-links" aria-label="Media sosial (tautan placeholder)">
-            <li><a href="#" aria-label="LinkedIn (placeholder)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
-            <li><a href="#" aria-label="Instagram (placeholder)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
-            <li><a href="#" aria-label="YouTube (placeholder)"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg></a></li>
-            <li><a href="#" aria-label="Facebook (placeholder)"><svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg></a></li>
+          <p class="footer-desc">Mitra operasional pertambangan batu bara dengan fokus pada coal getting yang aman dan efisien.</p>
+          <ul class="social-links" aria-label="Media sosial (tautan contoh)">
+            <li><a href="#" aria-label="LinkedIn (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+            <li><a href="#" aria-label="Instagram (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+            <li><a href="#" aria-label="YouTube (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg></a></li>
           </ul>
         </div>
 
-        <nav class="footer-col" aria-labelledby="footerQuickLinks">
-          <h2 id="footerQuickLinks">Quick Links</h2>
+        <nav class="footer-col" aria-labelledby="footerLinks">
+          <h2 id="footerLinks">Perusahaan</h2>
           <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="operations.html">Operations</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="companies.html">Our Companies</a></li>
-            <li><a href="karir.html">Careers</a></li>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="companies.html">Perusahaan Kami</a></li>
+            <li><a href="sosial.html">Sosial</a></li>
+            <li><a href="news.html">Berita</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-col" aria-labelledby="footerPages">
+          <h2 id="footerPages">Layanan &amp; Karir</h2>
+          <ul>
+            <li><a href="services.html">Layanan</a></li>
+            <li><a href="operations.html">Operasional Tambang</a></li>
+            <li><a href="karir.html">Karir</a></li>
           </ul>
         </nav>
 
         <div class="footer-col">
-          <h2>Our Services</h2>
-          <ul>
-            <li><a href="services.html#coal-getting">Coal Getting</a></li>
-            <li><a href="services.html#overburden-removal">Overburden Removal</a></li>
-            <li><a href="services.html#coal-hauling">Coal Hauling</a></li>
-            <li><a href="services.html#equipment-support">Mining Equipment Support</a></li>
-            <li><a href="services.html#site-operations">Mining Site Operations</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h2>Contact</h2>
+          <h2>Kontak</h2>
           <ul class="footer-contact">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Jakarta Utara, DKI Jakarta, Indonesia</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Jakarta Utara, DKI Jakarta</span></li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:info@bma.example">info@bma.example</a></li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+62215550188">+62 21 555 0188</a></li>
           </ul>
-          <small>Data kontak masih placeholder.</small>
         </div>
       </div>
 
       <div class="container footer-bottom">
-        <span>© <span id="year"></span> PT Berkat Maritim Abadi. All rights reserved.</span>
-        <span>Pratinjau konsep · menggunakan data dummy</span>
-        <button class="footer-top-link" type="button" data-back-to-top>Back to top <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
+        <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
+        <span>Pratinjau desain · data kontak dan konten masih contoh</span>
       </div>
     </footer>
     <script src="../js/script.js" defer></script>
-    <script src="../js/careers.js" defer></script>
   </body>
 </html>

@@ -79,6 +79,7 @@ const links = (page, base) => {
     about: p("about.html"),
     services: p("services.html"),
     operations: p("operations.html"),
+    social: p("sosial.html"),
     news: p("news.html"),
     companies: p("companies.html"),
     careers: p("karir.html"),
@@ -86,28 +87,43 @@ const links = (page, base) => {
   };
 };
 
-const careerPage = (page) => /^(karir|lamar|lowongan-)/.test(page);
+// Main menu items in display order. Karir is a top-level item (not a submenu).
+const menu = [
+  ["home", "Beranda"],
+  ["about", "Tentang Kami"],
+  ["services", "Layanan"],
+  ["social", "Sosial"],
+  ["news", "Berita"],
+  ["companies", "Perusahaan Kami"],
+  ["careers", "Karir"],
+  ["contact", "Kontak"],
+];
+
+// Pages that are not menu items highlight their closest parent menu.
 const activeKey = (page) =>
   ({
     index: "home",
     about: "about",
     services: "services",
-    operations: "operations",
+    operations: "services",
+    sosial: "social",
     news: "news",
     companies: "companies",
     contact: "contact",
-  })[page] ?? (careerPage(page) ? "about" : "");
+  })[page] ?? (/^(karir|lamar|lowongan-)/.test(page) ? "careers" : "");
 
 export function header(page, base) {
   const l = links(page, base);
   const active = activeKey(page);
-  const careers = careerPage(page);
-  const cur = (key) => (active === key ? ' active" aria-current="page' : "");
-  const item = (key, label) =>
-    `<a href="${l[key]}" class="nav-link${cur(key)}">${label}</a>`;
+  const items = menu
+    .map(([key, label]) => {
+      const current = active === key ? ' active" aria-current="page' : "";
+      return `<a href="${l[key]}" class="nav-link${current}">${label}</a>`;
+    })
+    .join("\n          ");
   return `<header class="site-header" id="siteHeader">
       <nav class="navbar container" aria-label="Navigasi utama">
-        <a class="brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — beranda">
+        <a class="brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
           <img class="brand-image" src="${base}assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" /><img class="brand-wordmark-light" src="${base}assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" />
         </a>
 
@@ -118,23 +134,9 @@ export function header(page, base) {
         </button>
 
         <div class="nav-menu" id="navMenu">
-          ${item("home", "Home")}
-          <div class="nav-item has-dropdown">
-            ${item("about", "About Us")}
-            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="dropdownAbout" aria-label="Submenu About Us">${icon("chevron-down")}</button>
-            <div class="nav-dropdown" id="dropdownAbout">
-              <a href="${l.about}"${page === "about" ? ' aria-current="page"' : ""}><span>Company Profile<small>Profil, visi &amp; nilai perusahaan</small></span>${icon("arrow-right")}</a>
-              <a href="${l.careers}"${careers ? ' aria-current="page"' : ""}><span>Careers<small>Lowongan dan proses rekrutmen</small></span>${icon("arrow-right")}</a>
-            </div>
-          </div>
-          ${item("services", "Our Services")}
-          ${item("operations", "Operations")}
-          ${item("news", "News")}
-          ${item("companies", "Our Companies")}
-          ${item("contact", "Contact")}
-          <a href="${l.contact}" class="nav-cta">Get in Touch</a>
+          ${items}
           <div class="menu-contact">
-            PT Berkat Maritim Abadi · Coal Mining Services<br /><a href="${l.contact}">Informasi kontak &amp; kerja sama ↗</a>
+            PT Berkat Maritim Abadi · Jasa Pertambangan Batu Bara<br /><a href="${l.contact}">Informasi kontak &amp; kerja sama ↗</a>
           </div>
         </div>
       </nav>
@@ -147,60 +149,49 @@ export function footer(page, base) {
   return `<footer class="footer">
       <div class="container footer-top">
         <div class="footer-about">
-          <a class="brand footer-brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — beranda">
+          <a class="brand footer-brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
             <img class="brand-image" src="${base}assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" loading="lazy" /><img class="brand-wordmark-light" src="${base}assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" loading="lazy" />
           </a>
-          <p class="footer-desc">
-            Mitra operasional pertambangan batu bara yang mengutamakan
-            keselamatan, produktivitas, dan praktik penambangan yang
-            bertanggung jawab.
-          </p>
-          <ul class="social-links" aria-label="Media sosial (tautan placeholder)">
-            <li><a href="#" aria-label="LinkedIn (placeholder)">${icon("linkedin")}</a></li>
-            <li><a href="#" aria-label="Instagram (placeholder)">${icon("instagram")}</a></li>
-            <li><a href="#" aria-label="YouTube (placeholder)">${icon("youtube")}</a></li>
-            <li><a href="#" aria-label="Facebook (placeholder)">${icon("facebook")}</a></li>
+          <p class="footer-desc">Mitra operasional pertambangan batu bara dengan fokus pada coal getting yang aman dan efisien.</p>
+          <ul class="social-links" aria-label="Media sosial (tautan contoh)">
+            <li><a href="#" aria-label="LinkedIn (tautan contoh)">${icon("linkedin")}</a></li>
+            <li><a href="#" aria-label="Instagram (tautan contoh)">${icon("instagram")}</a></li>
+            <li><a href="#" aria-label="YouTube (tautan contoh)">${icon("youtube")}</a></li>
           </ul>
         </div>
 
-        <nav class="footer-col" aria-labelledby="footerQuickLinks">
-          <h2 id="footerQuickLinks">Quick Links</h2>
+        <nav class="footer-col" aria-labelledby="footerLinks">
+          <h2 id="footerLinks">Perusahaan</h2>
           <ul>
-            ${li(l.home, "Home")}
-            ${li(l.about, "About Us")}
-            ${li(l.operations, "Operations")}
-            ${li(l.news, "News")}
-            ${li(l.companies, "Our Companies")}
-            ${li(l.careers, "Careers")}
+            ${li(l.about, "Tentang Kami")}
+            ${li(l.companies, "Perusahaan Kami")}
+            ${li(l.social, "Sosial")}
+            ${li(l.news, "Berita")}
+          </ul>
+        </nav>
+
+        <nav class="footer-col" aria-labelledby="footerPages">
+          <h2 id="footerPages">Layanan &amp; Karir</h2>
+          <ul>
+            ${li(l.services, "Layanan")}
+            ${li(l.operations, "Operasional Tambang")}
+            ${li(l.careers, "Karir")}
           </ul>
         </nav>
 
         <div class="footer-col">
-          <h2>Our Services</h2>
-          <ul>
-            ${li(l.services + "#coal-getting", "Coal Getting")}
-            ${li(l.services + "#overburden-removal", "Overburden Removal")}
-            ${li(l.services + "#coal-hauling", "Coal Hauling")}
-            ${li(l.services + "#equipment-support", "Mining Equipment Support")}
-            ${li(l.services + "#site-operations", "Mining Site Operations")}
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h2>Contact</h2>
+          <h2>Kontak</h2>
           <ul class="footer-contact">
-            <li>${icon("pin")}<span>Jakarta Utara, DKI Jakarta, Indonesia</span></li>
+            <li>${icon("pin")}<span>Jakarta Utara, DKI Jakarta</span></li>
             <li>${icon("mail")}<a href="mailto:info@bma.example">info@bma.example</a></li>
             <li>${icon("phone")}<a href="tel:+62215550188">+62 21 555 0188</a></li>
           </ul>
-          <small>Data kontak masih placeholder.</small>
         </div>
       </div>
 
       <div class="container footer-bottom">
-        <span>© <span id="year"></span> PT Berkat Maritim Abadi. All rights reserved.</span>
-        <span>Pratinjau konsep · menggunakan data dummy</span>
-        <button class="footer-top-link" type="button" data-back-to-top>Back to top ${icon("arrow-up")}</button>
+        <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
+        <span>Pratinjau desain · data kontak dan konten masih contoh</span>
       </div>
     </footer>`;
 }

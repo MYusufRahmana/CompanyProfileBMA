@@ -12,9 +12,8 @@ window.BMA.navigation = ({ motion, listen }) => {
   const links = [...menu.querySelectorAll("a")];
   // Top-level rows animate together; dropdown links follow their parent row.
   const rows = [
-    ...menu.querySelectorAll(":scope > a, :scope > .nav-item, :scope > .menu-contact"),
+    ...menu.querySelectorAll(":scope > a, :scope > .menu-contact"),
   ];
-  const dropdowns = [...menu.querySelectorAll(".has-dropdown")];
   const focusables = () =>
     [toggle, ...menu.querySelectorAll("a, button")].filter(
       (el) => el.getClientRects().length,
@@ -74,48 +73,9 @@ window.BMA.navigation = ({ motion, listen }) => {
       requestAnimationFrame(() => links[0].focus({ preventScroll: true }));
     } else {
       window.gsap?.set([menu, ...rows], { clearProps: "transform,opacity" });
-      closeDropdowns();
       if (restoreFocus && mobile.matches) toggle.focus({ preventScroll: true });
     }
   };
-  // Dropdowns: hover opens on desktop (CSS); the chevron button toggles
-  // everywhere and is the keyboard/touch path.
-  const setDropdown = (item, value) => {
-    item.classList.toggle("open", value);
-    item
-      .querySelector(".dropdown-toggle")
-      ?.setAttribute("aria-expanded", String(value));
-  };
-  function closeDropdowns(except) {
-    dropdowns.forEach((item) => item !== except && setDropdown(item, false));
-  }
-  dropdowns.forEach((item) => {
-    const button = item.querySelector(".dropdown-toggle");
-    listen(button, "click", () => {
-      const value = !item.classList.contains("open");
-      closeDropdowns(item);
-      setDropdown(item, value);
-      // Focus after the next frame, once the panel is no longer visibility:hidden.
-      if (value && !mobile.matches)
-        requestAnimationFrame(() =>
-          item.querySelector(".nav-dropdown a")?.focus({ preventScroll: true }),
-        );
-    });
-    listen(item, "keydown", (event) => {
-      if (event.key !== "Escape" || !item.classList.contains("open")) return;
-      event.stopPropagation();
-      setDropdown(item, false);
-      button.focus();
-    });
-    listen(item, "focusout", (event) => {
-      if (!mobile.matches && !item.contains(event.relatedTarget))
-        setDropdown(item, false);
-    });
-  });
-  listen(document, "click", (event) => {
-    if (!mobile.matches && !event.target.closest(".has-dropdown"))
-      closeDropdowns();
-  });
   listen(toggle, "click", () => setOpen(!opened));
   links.forEach((link) => listen(link, "click", () => setOpen(false, false)));
   listen(document, "keydown", (event) => {
@@ -133,10 +93,7 @@ window.BMA.navigation = ({ motion, listen }) => {
       }
     }
   });
-  listen(mobile, "change", () => {
-    closeDropdowns();
-    setOpen(false, false);
-  });
+  listen(mobile, "change", () => setOpen(false, false));
   listen(motion, "change", () => {
     if (opened) setOpen(true, false);
   });
@@ -539,12 +496,12 @@ window.BMA.marquee = ({ motion, listen }) => {
     const staticMode = manuallyPaused || keyboard || !tween;
     toggle.setAttribute("aria-pressed", String(manuallyPaused));
     toggle.disabled = motion.matches;
-    toggle.textContent = manuallyPaused ? "Lanjutkan showcase" : "Jeda showcase";
+    toggle.textContent = manuallyPaused ? "Lanjutkan animasi" : "Jeda animasi";
     status.textContent = selected
-      ? "Showcase dijeda sementara. Tutup detail untuk melanjutkan."
+      ? "Animasi dijeda sementara. Tutup detail untuk melanjutkan."
       : staticMode
-        ? "Showcase dijeda. Geser atau gunakan Tab untuk melihat perusahaan lainnya."
-        : "Arahkan kursor atau pilih logo untuk menjeda showcase.";
+        ? "Animasi dijeda. Geser atau gunakan Tab untuk melihat perusahaan lainnya."
+        : "Arahkan kursor ke logo untuk menjeda animasi.";
     if (staticMode) {
       if (!frozen) freeze();
       return;
@@ -897,6 +854,41 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Interaksi halaman berita, karir, dan kontak.
+// Pagination bersama untuk daftar berita dan tabel lowongan: menampilkan
+// `items` yang cocok per halaman dan membuat tombol halaman di `pager`.
+window.BMA.paginate = ({ all, matches, pager, perPage, page, onChange }) => {
+  const pages = Math.max(1, Math.ceil(matches.length / perPage));
+  const current = Math.min(page, pages);
+  const visible = new Set(matches.slice((current - 1) * perPage, current * perPage));
+  all.forEach((item) => (item.hidden = !visible.has(item)));
+  if (pager) {
+    pager.hidden = pages < 2;
+    pager.replaceChildren();
+    const button = (label, target, attrs = {}) => {
+      const el = document.createElement("button");
+      el.type = "button";
+      el.innerHTML = label;
+      el.disabled = target < 1 || target > pages;
+      Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+      el.addEventListener("click", () => onChange(target));
+      return el;
+    };
+    const icon = (name) => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
+    if (pages > 1)
+      pager.append(
+        button(icon("arrow-left"), current - 1, { "aria-label": "Halaman sebelumnya" }),
+        ...Array.from({ length: pages }, (_, i) =>
+          button(String(i + 1), i + 1, {
+            "aria-label": "Halaman " + (i + 1),
+            ...(i + 1 === current ? { "aria-current": "page" } : {}),
+          }),
+        ),
+        button(icon("arrow-right"), current + 1, { "aria-label": "Halaman berikutnya" }),
+      );
+  }
+  return { page: current, pages };
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   const normalize = (value) => value.toLocaleLowerCase("id").trim();
   const news = document.querySelector("#newsList");
@@ -905,39 +897,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const search = document.querySelector("#newsSearch");
     const tabs = [...document.querySelectorAll("[data-news-category]")];
     const cards = [...news.children];
-    const pager = document.querySelector("#newsPagination");
-    const perPage = 6;
     let page = 1;
-    const renderPager = (pages) => {
-      if (!pager) return;
-      pager.hidden = pages < 2;
-      pager.replaceChildren();
-      if (pages < 2) return;
-      const button = (label, target, attrs = {}) => {
-        const el = document.createElement("button");
-        el.type = "button";
-        el.innerHTML = label;
-        el.disabled = target < 1 || target > pages;
-        Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
-        el.addEventListener("click", () => {
-          page = target;
-          filter(false);
-          news.scrollIntoView({ block: "start" });
-        });
-        return el;
-      };
-      pager.append(
-        button('<svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>', page - 1, { "aria-label": "Halaman sebelumnya" }),
-        ...Array.from({ length: pages }, (_, i) =>
-          button(String(i + 1), i + 1, {
-            "aria-label": "Halaman " + (i + 1),
-            ...(i + 1 === page ? { "aria-current": "page" } : {}),
-          }),
-        ),
-        button('<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>', page + 1, { "aria-label": "Halaman berikutnya" }),
-      );
-    };
-    // Filters and search pick the matches; pagination shows them in pages of six.
+    // Kategori dan pencarian memilih berita; pagination menampilkan enam per halaman.
     const filter = (resetPage = true) => {
       if (resetPage) page = 1;
       const matches = cards.filter(
@@ -945,15 +906,23 @@ document.addEventListener("DOMContentLoaded", () => {
           (category === "all" || card.dataset.category === category) &&
           normalize(card.textContent).includes(normalize(search.value)),
       );
-      const pages = Math.max(1, Math.ceil(matches.length / perPage));
-      page = Math.min(page, pages);
-      const visible = new Set(matches.slice((page - 1) * perPage, page * perPage));
-      cards.forEach((card) => (card.hidden = !visible.has(card)));
+      const result = window.BMA.paginate({
+        all: cards,
+        matches,
+        pager: document.querySelector("#newsPagination"),
+        perPage: 6,
+        page,
+        onChange: (target) => {
+          page = target;
+          filter(false);
+          news.scrollIntoView({ block: "start" });
+        },
+      });
+      page = result.page;
       const count = matches.length;
       document.querySelector("#newsCount").textContent =
-        count + " artikel contoh" + (pages > 1 ? " · halaman " + page + " dari " + pages : "");
+        count + " artikel contoh" + (result.pages > 1 ? " · halaman " + page + " dari " + result.pages : "");
       document.querySelector("#newsEmpty").hidden = count !== 0;
-      renderPager(pages);
       tabs.forEach((tab) =>
         tab.setAttribute(
           "aria-pressed",
@@ -995,38 +964,56 @@ document.addEventListener("DOMContentLoaded", () => {
     openArticle();
     filter();
   }
-  const jobs = document.querySelector("#jobList");
-  if (jobs) {
-    const search = document.querySelector("#jobSearch"),
-      department = document.querySelector("#jobDepartment"),
-      location = document.querySelector("#jobLocation");
-    const filter = () => {
-      let count = 0;
-      [...jobs.children].forEach((card) => {
-        card.hidden = !(
-          (department.value === "all" ||
-            card.dataset.department === department.value) &&
-          (location.value === "all" ||
-            card.dataset.location === location.value) &&
-          normalize(card.textContent).includes(normalize(search.value))
-        );
-        if (!card.hidden) count++;
-      });
-      document.querySelector("#jobCount").textContent =
-        count + " posisi contoh";
-      document.querySelector("#jobEmpty").hidden = count !== 0;
+  // Tabel lowongan: filter kata kunci, departemen, lokasi, status + pagination.
+  const jobTable = document.querySelector("#jobTable");
+  if (jobTable) {
+    const rows = [...jobTable.tBodies[0].rows];
+    const search = document.querySelector("#jobSearch");
+    const selects = {
+      department: document.querySelector("#jobDepartment"),
+      location: document.querySelector("#jobLocation"),
+      status: document.querySelector("#jobStatus"),
     };
-    search.addEventListener("input", filter);
-    department.addEventListener("change", filter);
-    location.addEventListener("change", filter);
-    document
-      .querySelector("[data-reset-jobs]")
-      .addEventListener("click", () => {
-        search.value = "";
-        department.value = location.value = "all";
-        filter();
-        search.focus();
+    const wrapper = jobTable.closest(".table-scroll");
+    let page = 1;
+    const filter = (resetPage = true) => {
+      if (resetPage) page = 1;
+      const matches = rows.filter(
+        (row) =>
+          Object.entries(selects).every(
+            ([key, select]) => select.value === "all" || row.dataset[key] === select.value,
+          ) && normalize(row.textContent).includes(normalize(search.value)),
+      );
+      // Penomoran mengikuti hasil yang tampil.
+      matches.forEach((row, i) => (row.querySelector("[data-no]").textContent = i + 1));
+      const result = window.BMA.paginate({
+        all: rows,
+        matches,
+        pager: document.querySelector("#jobPagination"),
+        perPage: 6,
+        page,
+        onChange: (target) => {
+          page = target;
+          filter(false);
+          wrapper.scrollIntoView({ block: "nearest" });
+        },
       });
+      page = result.page;
+      const open = matches.filter((row) => row.dataset.status === "Dibuka").length;
+      document.querySelector("#jobCount").textContent =
+        matches.length + " lowongan · " + open + " dibuka" +
+        (result.pages > 1 ? " · halaman " + page + " dari " + result.pages : "");
+      document.querySelector("#jobEmpty").hidden = matches.length !== 0;
+      wrapper.hidden = matches.length === 0;
+    };
+    search.addEventListener("input", () => filter());
+    Object.values(selects).forEach((select) => select.addEventListener("change", () => filter()));
+    document.querySelector("[data-reset-jobs]").addEventListener("click", () => {
+      search.value = "";
+      Object.values(selects).forEach((select) => (select.value = "all"));
+      filter();
+      search.focus();
+    });
     filter();
   }
   const form = document.querySelector("#demoContactForm");
@@ -1092,12 +1079,14 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#applicationForm');
   if (!form) return;
-  const jobs = [["hse-officer","HSE Officer","Operasional","Balikpapan","Menjaga keselamatan kerja melalui inspeksi lapangan, identifikasi risiko, dan pelaporan HSE."],["marine-supervisor","Marine Operations Supervisor","Maritim","Jakarta","Mengatur koordinasi armada, kegiatan pelabuhan, dan penjadwalan operasional maritim."],["logistics-coordinator","Logistics Coordinator","Logistik","Morowali","Mengelola distribusi material, administrasi gudang, dan koordinasi dengan pemasok."]];
+  const jobs = [["operator-excavator","Operator Excavator","Produksi","Kutai Kartanegara, Kaltim","Kontrak"],["hse-officer","HSE Officer","K3 & Lingkungan","Kutai Kartanegara, Kaltim","Penuh waktu"],["logistics-coordinator","Koordinator Logistik","Logistik","Tanah Bumbu, Kalsel","Penuh waktu"],["foreman-produksi","Foreman Produksi Coal Getting","Produksi","Kutai Kartanegara, Kaltim","Penuh waktu"],["mekanik-alat-berat","Mekanik Alat Berat","Plant & Maintenance","Tanah Bumbu, Kalsel","Kontrak"]];
   const position = form.elements.position;
   const syncPosition = () => {
     const job = jobs.find(job => job[0] === position.value);
     document.querySelector('#applicationJob').textContent = job ? job[1] : 'Pilih posisi Anda';
     document.querySelector('#applicationLocation').textContent = job ? job[3] + ' · ' + job[2] : 'Pilih salah satu lowongan pada formulir.';
+    const type = document.querySelector('#applicationType');
+    if (type) type.textContent = job ? job[4] + ' · Penempatan di site' : 'Penempatan di site';
   };
   const requested = new URLSearchParams(location.search).get('posisi');
   if (jobs.some(job => job[0] === requested)) position.value = requested;
@@ -1146,7 +1135,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!grid || !dialog?.showModal) return;
   const items = [...grid.querySelectorAll(".gallery-item")];
   const image = dialog.querySelector("img");
-  const caption = dialog.querySelector("[data-caption]");
+  const caption = dialog.querySelector("[data-lightbox-caption]");
   const counter = dialog.querySelector("[data-counter]");
   let index = 0;
   let opener;
