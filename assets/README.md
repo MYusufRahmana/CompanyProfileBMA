@@ -52,3 +52,7 @@ Illustrations for the Sosial page (Unsplash License). They do not depict BMA pro
 | social-seedling-* | https://unsplash.com/photos/x8ZStukS2PM |
 | social-village-* | https://unsplash.com/photos/4fyti0OWJk0 |
 | social-kids-* | https://unsplash.com/photos/n6HGyd5ERWo |
+
+## Peta provinsi (`images/KalimantanTengah.svg`, `images/KalimantanSelatan.svg`)
+
+SVG maps created with paintmaps.com. The only edit is an added `viewBox="0 0 800 533"` so the maps scale responsively; the "Created with paintmaps.com" credit inside each map is kept.

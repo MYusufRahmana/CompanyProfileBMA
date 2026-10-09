@@ -589,6 +589,80 @@
       </section>
 
       <!-- =========================
+         SITE OPERASIONAL (setelah Berita)
+         Data site, posisi marker, dan galeri: js/script.js → window.BMA_SITES
+      ========================== -->
+      <section class="section home-sites" id="site-operasional" aria-labelledby="sitesTitle">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Site Operasional</p>
+              <h2 id="sitesTitle">Lokasi Operasional Kami</h2>
+            </div>
+            <p>
+              Kalimantan Tengah dan Kalimantan Selatan dalam satu peta. Pilih
+              penanda untuk melihat informasi setiap site.
+            </p>
+          </div>
+
+          <div class="home-sites__container">
+            <div class="site-map-column" data-reveal="up">
+              <div class="site-map" id="siteMap">
+                <img
+                  class="site-map__image"
+                  src="assets/images/Kalimantan-Site-Gabungan.svg"
+                  alt="Peta gabungan Kalimantan Tengah dan Kalimantan Selatan dengan penanda site operasional"
+                  width="800"
+                  height="533"
+                  decoding="async"
+                  />
+                <!-- Penanda dibuat dari data site oleh JavaScript. -->
+              </div>
+              <div class="site-list" id="siteList" role="group" aria-label="Pilih site operasional"></div>
+              <p class="site-map__note">
+                Posisi penanda bersifat ilustratif · Kedua peta: Created with paintmaps.com
+              </p>
+            </div>
+
+            <div class="site-content" data-reveal="up">
+              <div class="site-content__body" id="siteContent" aria-live="polite">
+                <p class="site-content__eyebrow">Site aktif · <span id="siteProvince">Kalimantan Tengah</span></p>
+                <h3 class="site-content__title" id="siteTitle">Kelanis</h3>
+                <p class="site-content__description" id="siteDescription">
+                  Informasi mengenai Site Kelanis akan ditampilkan berdasarkan
+                  data resmi perusahaan.
+                </p>
+                <a class="btn btn-primary site-content__button" id="siteLink" href="pages/operations.html"
+                  >Lebih Lanjut
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg
+                ></a>
+              </div>
+
+              <div class="site-gallery">
+                <div class="site-gallery__header">
+                  <h4 id="siteGalleryTitle">Galeri <small>Foto ilustrasi</small></h4>
+                  <div class="site-gallery__navigation">
+                    <button type="button" id="siteGalleryPrev" aria-label="Geser galeri ke kiri">
+                      <svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg>
+                    </button>
+                    <button type="button" id="siteGalleryNext" aria-label="Geser galeri ke kanan">
+                      <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                    </button>
+                  </div>
+                </div>
+                <ul class="site-gallery__track" id="siteGallery" aria-labelledby="siteGalleryTitle" tabindex="0">
+                  <li class="site-gallery__item"><img src="assets/images/mining/coal-extraction-640.webp" alt="Foto ilustrasi kegiatan tambang, bukan dokumentasi Site Kelanis" width="640" height="427" loading="lazy" decoding="async" /></li>
+                  <li class="site-gallery__item"><img src="assets/images/mining/hauling-fleet-640.webp" alt="Foto ilustrasi armada angkut, bukan dokumentasi Site Kelanis" width="640" height="480" loading="lazy" decoding="async" /></li>
+                  <li class="site-gallery__item"><img src="assets/images/mining/pit-benches-640.webp" alt="Foto ilustrasi jenjang tambang, bukan dokumentasi Site Kelanis" width="640" height="427" loading="lazy" decoding="async" /></li>
+                </ul>
+                <p class="site-gallery__empty" id="siteGalleryEmpty" hidden>Galeri belum tersedia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
          OUR COMPANIES (logo marquee)
       ========================== -->
       <section class="section companies-home" id="companies" aria-labelledby="companiesTitle">

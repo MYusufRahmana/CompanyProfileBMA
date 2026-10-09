@@ -7,7 +7,8 @@ STRUKTUR (multi-page, seluruh teks publik berbahasa Indonesia)
 Navbar utama (urutan tetap): Beranda · Tentang Kami · Layanan · Sosial · Berita · Perusahaan Kami · Kontak.
 Karir bukan menu/submenu: diakses dari footer (kolom "Layanan & Karir") dan dari menu mobile.
 
-- index.html                 Beranda: hero 3 slide, profil singkat, 3 layanan, 3 berita, slider logo perusahaan, footer.
+- index.html                 Beranda: hero 3 slide, profil singkat, 3 layanan, 3 berita, Site Operasional (#site-operasional),
+                             slider logo perusahaan, footer.
 - pages/about.html           Tentang Kami: profil, sejarah ([Tahun] placeholder), visi & misi, nilai, keunggulan.
 - pages/services.html        Layanan: 5 layanan contoh (#coal-getting, #overburden-removal, #coal-hauling, #equipment-support, #site-operations).
 - pages/operations.html      Operasional Tambang (bagian dari Layanan; menu aktif = Layanan): proses, pemuatan, pengangkutan, galeri.
@@ -28,6 +29,21 @@ Karir bukan menu/submenu: diakses dari footer (kolom "Layanan & Karir") dan dari
                              filter berita, tabel lowongan, form kontak, lightbox galeri, navigasi layanan, formulir lamaran. GSAP lokal.
 - tools/layout.mjs           Sumber tunggal navbar, footer, dan ikon untuk SEMUA halaman.
 - tools/audit-paths.mjs      Pemeriksa path lokal.
+
+SITE OPERASIONAL (Beranda, setelah Berita)
+Satu peta gabungan menampilkan Kalimantan Tengah (Kelanis, Benao) dan Kalimantan Selatan (Banjarmasin) sekaligus.
+Peta yang ditampilkan: assets/images/Kalimantan-Site-Gabungan.svg (800 × 533).
+Dua SVG sumber dari paintmaps.com tetap ada di assets/images/KalimantanTengah.svg dan KalimantanSelatan.svg.
+Kredit "Created with paintmaps.com" tetap terlihat pada peta gabungan dan di bawahnya.
+Posisi marker (%) dihitung terhadap peta gabungan; posisi tersebut ilustratif.
+Data di js/script.js:
+- window.BMA_SITE_MAPS : nama provinsi untuk pengelompokan site.
+- window.BMA_SITES     : tiap site punya map (kalteng/kalsel), deskripsi, link, posisi marker (% terhadap peta gabungan), galeri.
+- window.BMA_SITE_DEFAULT : site aktif awal ("kelanis").
+Menambah site pada provinsi yang ada cukup dengan menambah entri data; penanda dan tombol dibuat otomatis.
+Menambah provinsi memerlukan pembaruan peta gabungan dan data provinsi.
+Posisi Banjarmasin mengikuti wilayah kota pada peta; posisi Kelanis dan Benao masih perkiraan.
+Galeri memakai foto ilustrasi; tombol "Lebih Lanjut" sementara menuju pages/operations.html.
 
 MENAMBAH LOWONGAN
 1) Tambah baris <tr> di pages/karir.html (data-department, data-location, data-status = Dibuka/Ditutup).

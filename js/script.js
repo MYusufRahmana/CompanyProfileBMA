@@ -414,6 +414,224 @@ window.BMA.hero = ({ motion, listen }) => {
   };
 };
 
+/* ===== data/sites.js ===== */
+// Data Site Operasional (Beranda). Ganti deskripsi, link, posisi, dan foto
+// dengan data resmi. Posisi marker dalam persen terhadap satu peta gabungan
+// dan bersifat ilustratif, bukan koordinat geografis.
+// Menambah site: tambahkan satu entri di BMA_SITES; marker & tab dibuat otomatis.
+window.BMA_SITE_DEFAULT = "kelanis";
+window.BMA_SITE_MAPS = {
+  // Sumber SVG paintmaps.com dipertahankan di assets/images/.
+  kalteng: { name: "Kalimantan Tengah" },
+  kalsel: { name: "Kalimantan Selatan" },
+};
+window.BMA_SITES = {
+  banjarmasin: {
+    name: "Banjarmasin",
+    map: "kalsel",
+    description:
+      "Informasi mengenai Site Banjarmasin akan ditampilkan berdasarkan data resmi perusahaan.",
+    link: "pages/operations.html", // nanti: pages/site-banjarmasin.html
+    position: { x: 64.1, y: 62.5 },
+    images: [
+      { src: "assets/images/mining/haul-truck-640.webp", caption: "armada angkut" },
+      { src: "assets/images/mining/mine-site-aerial-640.webp", caption: "area kerja tambang" },
+      { src: "assets/images/mining/hero-hauling-800.webp", caption: "jalan angkut" },
+    ],
+  },
+  kelanis: {
+    name: "Kelanis",
+    map: "kalteng",
+    description:
+      "Informasi mengenai Site Kelanis akan ditampilkan berdasarkan data resmi perusahaan.",
+    link: "pages/operations.html", // nanti: pages/site-kelanis.html
+    position: { x: 53.7, y: 71.5 },
+    images: [
+      { src: "assets/images/mining/coal-extraction-640.webp", caption: "kegiatan tambang" },
+      { src: "assets/images/mining/hauling-fleet-640.webp", caption: "armada angkut" },
+      { src: "assets/images/mining/pit-benches-640.webp", caption: "jenjang tambang" },
+      { src: "assets/images/mining/coal-loading-640.webp", caption: "pemuatan batu bara" },
+    ],
+  },
+  benao: {
+    name: "Benao",
+    map: "kalteng",
+    description:
+      "Informasi mengenai Site Benao akan ditampilkan berdasarkan data resmi perusahaan.",
+    link: "pages/operations.html", // nanti: pages/site-benao.html
+    position: { x: 56.4, y: 46.2 },
+    images: [
+      { src: "assets/images/mining/overburden-removal-640.webp", caption: "pengupasan overburden" },
+      { src: "assets/images/mining/equipment-support-640.webp", caption: "alat berat" },
+      { src: "assets/images/mining/hero-coal-getting-800.webp", caption: "coal getting" },
+      { src: "assets/images/mining/hse-inspection-640.webp", caption: "inspeksi unit" },
+    ],
+  },
+};
+
+/* ===== sections/site-map.js ===== */
+window.BMA = window.BMA || {};
+
+window.BMA.sites = ({ motion, listen }) => {
+  const map = document.getElementById("siteMap");
+  const sites = window.BMA_SITES || {};
+  const maps = window.BMA_SITE_MAPS || {};
+  const keys = Object.keys(sites);
+  if (!map || !keys.length) return () => {};
+  const list = document.getElementById("siteList");
+  const body = document.getElementById("siteContent");
+  const province = document.getElementById("siteProvince");
+  const title = document.getElementById("siteTitle");
+  const description = document.getElementById("siteDescription");
+  const link = document.getElementById("siteLink");
+  const track = document.getElementById("siteGallery");
+  const empty = document.getElementById("siteGalleryEmpty");
+  const prev = document.getElementById("siteGalleryPrev");
+  const next = document.getElementById("siteGalleryNext");
+  let activeSite = null;
+  let timer;
+
+  const sitesOn = (mapKey) => keys.filter((k) => sites[k].map === mapKey);
+  const mapKeys = Object.keys(maps).filter((m) => sitesOn(m).length);
+
+  // Daftar site dikelompokkan per provinsi; semua marker tetap terlihat
+  // pada satu peta gabungan saat site aktif berubah.
+  const listButtons = {};
+  const groups = {};
+  mapKeys.forEach((mapKey) => {
+    const group = document.createElement("div");
+    group.className = "site-list__group";
+    const heading = document.createElement("p");
+    heading.className = "site-list__province";
+    heading.textContent = maps[mapKey].name;
+    const options = document.createElement("div");
+    options.className = "site-list__options";
+    sitesOn(mapKey).forEach((key) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = sites[key].name;
+      button.setAttribute("aria-label", `${sites[key].name}, ${maps[mapKey].name}`);
+      listen(button, "click", () => setActiveSite(key));
+      options.append(button);
+      listButtons[key] = button;
+    });
+    group.append(heading, options);
+    list?.append(group);
+    groups[mapKey] = group;
+  });
+
+  // Marker di peta dibuat dari data yang sama.
+  const markers = {};
+  keys.forEach((key) => {
+    const site = sites[key];
+    const marker = document.createElement("button");
+    marker.type = "button";
+    marker.className = "site-marker";
+    marker.dataset.site = key;
+    marker.style.setProperty("--x", site.position.x + "%");
+    marker.style.setProperty("--y", site.position.y + "%");
+    marker.setAttribute("aria-label", "Tampilkan Site " + site.name);
+    const label = document.createElement("span");
+    label.className = "site-marker__label";
+    label.setAttribute("aria-hidden", "true");
+    label.textContent = site.label || site.name;
+    marker.append(label);
+    listen(marker, "click", () => setActiveSite(key));
+    map.append(marker);
+    markers[key] = marker;
+  });
+
+  const updateGalleryNav = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= max - 2;
+  };
+  const showEmptyIfNeeded = () => {
+    const none = !track.children.length;
+    track.hidden = none;
+    empty.hidden = !none;
+    updateGalleryNav();
+  };
+
+  const updateMarkers = (key) => {
+    keys.forEach((k) => {
+      const active = k === key;
+      markers[k].classList.toggle("site-marker--active", active);
+      markers[k].setAttribute("aria-pressed", String(active));
+      listButtons[k]?.setAttribute("aria-pressed", String(active));
+    });
+    Object.entries(groups).forEach(([provinceKey, group]) => {
+      group.classList.toggle("is-active", provinceKey === sites[key].map);
+    });
+  };
+  const updateContent = (site) => {
+    if (province) province.textContent = maps[site.map]?.name || "";
+    title.textContent = site.name;
+    description.textContent = site.description;
+    link.href = site.link || "pages/operations.html";
+    link.setAttribute("aria-label", "Lebih lanjut tentang Site " + site.name);
+  };
+  const updateGallery = (site) => {
+    track.replaceChildren(
+      ...(site.images || []).map((image) => {
+        const item = document.createElement("li");
+        item.className = "site-gallery__item";
+        const img = document.createElement("img");
+        img.src = image.src;
+        img.alt = "Foto ilustrasi " + image.caption + ", bukan dokumentasi Site " + site.name;
+        img.width = 640;
+        img.height = 427;
+        img.loading = "lazy";
+        img.decoding = "async";
+        // Gambar gagal dimuat: sembunyikan item, jangan tampilkan ikon rusak.
+        img.addEventListener("error", () => {
+          item.remove();
+          showEmptyIfNeeded();
+        });
+        item.append(img);
+        return item;
+      }),
+    );
+    track.scrollLeft = 0;
+    showEmptyIfNeeded();
+  };
+
+  function setActiveSite(siteKey) {
+    const site = sites[siteKey];
+    if (!site || siteKey === activeSite) return;
+    const first = activeSite === null;
+    const animate = !first && !motion.matches;
+    activeSite = siteKey;
+    updateMarkers(siteKey);
+    clearTimeout(timer);
+    if (!animate) {
+      updateContent(site);
+      updateGallery(site);
+      return;
+    }
+    // Transisi halus: keluar → ganti isi → masuk.
+    body.classList.add("is-changing");
+    track.classList.add("is-changing");
+    timer = setTimeout(() => {
+      updateContent(site);
+      updateGallery(site);
+      body.classList.remove("is-changing");
+      track.classList.remove("is-changing");
+    }, 180);
+  }
+  window.BMA.setActiveSite = setActiveSite;
+
+  listen(prev, "click", () => track.scrollBy({ left: -track.clientWidth * 0.8, behavior: motion.matches ? "auto" : "smooth" }));
+  listen(next, "click", () => track.scrollBy({ left: track.clientWidth * 0.8, behavior: motion.matches ? "auto" : "smooth" }));
+  listen(track, "scroll", updateGalleryNav, { passive: true });
+  listen(window, "resize", updateGalleryNav, { passive: true });
+
+  setActiveSite(sites[window.BMA_SITE_DEFAULT] ? window.BMA_SITE_DEFAULT : keys[0]);
+  return () => {
+    clearTimeout(timer);
+  };
+};
+
 /* ===== animations/marquee.js ===== */
 window.BMA = window.BMA || {};
 
@@ -800,7 +1018,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cleanups.push(() => target.removeEventListener(event, callback, options));
   };
   const runtime = { motion, listen };
-  ["navigation", "hero", "marquee", "scrollReveal", "directory"].forEach(
+  ["navigation", "hero", "sites", "marquee", "scrollReveal", "directory"].forEach(
     (name) => {
       if (window.BMA?.[name]) cleanups.push(window.BMA[name](runtime));
     },
