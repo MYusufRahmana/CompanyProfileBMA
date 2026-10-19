@@ -60,3 +60,19 @@ body.company-page #mainContent {
     color: #8a6a1f;
   }
 }
+
+/* Navbar: simbol BMA (oranye, latar transparan). Logo footer tetap bma-logo.webp. */
+.navbar .brand-mark {
+  display: block;
+  width: auto;
+  height: 52px;
+  transition: height 0.35s ease;
+}
+.site-header.scrolled .navbar .brand-mark {
+  height: 44px;
+}
+@media (max-width: 680px) {
+  .navbar .brand-mark {
+    height: 42px;
+  }
+}

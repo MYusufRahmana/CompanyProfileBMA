@@ -34,6 +34,8 @@ Karir bukan menu/submenu: diakses dari footer (kolom "Layanan & Karir") dan dari
 HERO BERANDA
 Foto layar penuh, judul besar "BERKAT MARITIM ABADI" di atas (satu baris selebar layar di desktop,
 putih tembus pandang), CTA + deskripsi + kartu pratinjau slide berikutnya di bawah. Navbar tidak diubah.
+Foto hero: assets/images/FotoBMA/hero-{1,2,3}-*.webp (WebP 800px & ±1480px dari FotoHero1–3.png).
+Slide pertama juga dirujuk di index.html (preload, og:image, <picture> statis) — ganti bersamaan.
 Semua diatur dari js/script.js → window.BMA_HERO (tanpa mengubah HTML/CSS):
 - title            : judul utama; ukuran otomatis menyesuaikan lebar layar.
 - overlayOpacity   : kegelapan overlay 0 (terang) – 0.8 (gelap). Bisa juga per slide (slides[i].overlayOpacity).
@@ -61,7 +63,9 @@ Data di js/script.js:
 Menambah site pada provinsi yang ada cukup dengan menambah entri data; penanda dan tombol dibuat otomatis.
 Menambah provinsi memerlukan pembaruan peta gabungan dan data provinsi.
 Posisi Banjarmasin mengikuti wilayah kota pada peta; posisi Kelanis dan Benao masih perkiraan.
-Galeri memakai foto ilustrasi; tombol "Lebih Lanjut" sementara menuju pages/services.html.
+Galeri Kelanis memakai foto asli (assets/images/FotoBMA/site-kelanis-{1,2,3}-*.webp); Banjarmasin & Benao masih foto ilustrasi.
+Foto asli diberi properti alt di BMA_SITES; label galeri otomatis berubah menjadi "Dokumentasi site".
+Tombol "Lebih Lanjut" sementara menuju pages/services.html.
 
 MENAMBAH LOWONGAN
 1) Tambah baris <tr> di pages/karir.html (data-department, data-location, data-status = Dibuka/Ditutup).

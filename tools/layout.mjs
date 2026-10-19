@@ -122,8 +122,8 @@ export function header(page, base) {
     .join("\n          ");
   return `<header class="site-header" id="siteHeader">
       <nav class="navbar container" aria-label="Navigasi utama">
-        <a class="brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
-          <img class="brand-image" src="${base}assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" /><img class="brand-wordmark-light" src="${base}assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" />
+        <a class="brand brand--mark" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
+          <img class="brand-mark" src="${base}assets/bma-mark.webp" alt="PT Berkat Maritim Abadi" width="121" height="128" />
         </a>
 
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">

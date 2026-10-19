@@ -165,19 +165,19 @@ window.BMA_HERO = {
   interval: 6500,
   slides: [
     {
-      desktopImage: "assets/images/mining/hero-open-pit-1600.webp",
-      mobileImage: "assets/images/mining/hero-open-pit-800.webp",
-      position: "center center",
-      mobilePosition: "62% center",
+      desktopImage: "assets/images/FotoBMA/hero-1-1480.webp",
+      mobileImage: "assets/images/FotoBMA/hero-1-800.webp",
+      position: "center 55%",
+      mobilePosition: "55% center",
       foregroundImage: "",
       eyebrow: "Partner Strategis Pertambangan dan Logistik",
       description:
         "Dengan fokus pada efisiensi operasional dan pelayanan prima, kami berkomitmen untuk menjadi mitra terpercaya dalam mendukung kelancaran aktivitas pertambangan dan pelabuhan di Indonesia.",
     },
     {
-      desktopImage: "assets/images/mining/hero-coal-getting-1600.webp",
-      mobileImage: "assets/images/mining/hero-coal-getting-800.webp",
-      position: "center 60%",
+      desktopImage: "assets/images/FotoBMA/hero-2-1480.webp",
+      mobileImage: "assets/images/FotoBMA/hero-2-800.webp",
+      position: "center 45%",
       mobilePosition: "45% center",
       foregroundImage: "",
       eyebrow: "Jasa Pertambangan",
@@ -185,10 +185,10 @@ window.BMA_HERO = {
         "Overburden removal, coal getting, land clearing, crushing & stockpiling, hingga reklamasi lahan bekas tambang.",
     },
     {
-      desktopImage: "assets/images/mining/hero-hauling-1600.webp",
-      mobileImage: "assets/images/mining/hero-hauling-800.webp",
-      position: "center 55%",
-      mobilePosition: "58% center",
+      desktopImage: "assets/images/FotoBMA/hero-3-1460.webp",
+      mobileImage: "assets/images/FotoBMA/hero-3-800.webp",
+      position: "center 50%",
+      mobilePosition: "62% center",
       foregroundImage: "",
       eyebrow: "Jasa Hauling & Bongkar Muat",
       description:
@@ -501,10 +501,18 @@ window.BMA_SITES = {
     link: "pages/services.html", // nanti: pages/site-kelanis.html
     position: { x: 53.7, y: 71.5 },
     images: [
-      { src: "assets/images/mining/coal-extraction-640.webp", caption: "kegiatan tambang" },
-      { src: "assets/images/mining/hauling-fleet-640.webp", caption: "armada angkut" },
-      { src: "assets/images/mining/pit-benches-640.webp", caption: "jenjang tambang" },
-      { src: "assets/images/mining/coal-loading-640.webp", caption: "pemuatan batu bara" },
+      {
+        src: "assets/images/FotoBMA/site-kelanis-1-640.webp",
+        alt: "Foto udara stockpile batu bara dan tongkang di tepi sungai, Site Kelanis",
+      },
+      {
+        src: "assets/images/FotoBMA/site-kelanis-2-640.webp",
+        alt: "Tim lapangan dan excavator saat pembukaan lahan, Site Kelanis",
+      },
+      {
+        src: "assets/images/FotoBMA/site-kelanis-3-640.webp",
+        alt: "Dua excavator bekerja di front batu bara, Site Kelanis",
+      },
     ],
   },
   benao: {
@@ -542,6 +550,7 @@ window.BMA.sites = ({ motion, listen }) => {
   const empty = document.getElementById("siteGalleryEmpty");
   const prev = document.getElementById("siteGalleryPrev");
   const next = document.getElementById("siteGalleryNext");
+  const galleryNote = document.querySelector("#siteGalleryTitle small");
   let activeSite = null;
   let timer;
 
@@ -632,7 +641,7 @@ window.BMA.sites = ({ motion, listen }) => {
         item.className = "site-gallery__item";
         const img = document.createElement("img");
         img.src = image.src;
-        img.alt = "Foto ilustrasi " + image.caption + ", bukan dokumentasi Site " + site.name;
+        img.alt = image.alt || "Foto ilustrasi " + image.caption + ", bukan dokumentasi Site " + site.name;
         img.width = 640;
         img.height = 427;
         img.loading = "lazy";
@@ -647,6 +656,11 @@ window.BMA.sites = ({ motion, listen }) => {
       }),
     );
     track.scrollLeft = 0;
+    // Label "Foto ilustrasi" hanya jika ada foto contoh (tanpa alt khusus).
+    if (galleryNote) {
+      const illustrative = (site.images || []).some((image) => !image.alt);
+      galleryNote.textContent = illustrative ? "Foto ilustrasi" : "Dokumentasi site";
+    }
     showEmptyIfNeeded();
   };
 
