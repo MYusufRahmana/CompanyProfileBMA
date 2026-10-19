@@ -10,8 +10,9 @@ Karir bukan menu/submenu: diakses dari footer (kolom "Layanan & Karir") dan dari
 - index.html                 Beranda: hero 3 slide, profil singkat, 3 layanan, 3 berita, Site Operasional (#site-operasional),
                              slider logo perusahaan, footer.
 - pages/about.html           Tentang Kami: profil, sejarah ([Tahun] placeholder), visi & misi, nilai, keunggulan.
-- pages/services.html        Layanan: 5 layanan contoh (#coal-getting, #overburden-removal, #coal-hauling, #equipment-support, #site-operations).
-- pages/operations.html      Operasional Tambang (bagian dari Layanan; menu aktif = Layanan): proses, pemuatan, pengangkutan, galeri.
+- pages/services.html        Layanan: 6 layanan sesuai company profile 2026 (#coal-getting, #overburden-removal, #coal-hauling,
+                             #equipment-support, #site-operations, #bongkar-muat) + Armada Alat Berat (#alat-berat):
+                             ringkasan jumlah per jenis + tabel rincian 47 tipe / 86 unit (dalam <details>, tertutup default).
 - pages/sosial.html          Sosial: komitmen, 4 bidang program (contoh), dokumentasi + lightbox, cerita terbaru (ke Berita kategori Sosial).
 - pages/news.html            Berita: filter kategori (Korporat, Operasional, K3, Sosial), pencarian, pagination 6/halaman, artikel lengkap (#id).
 - pages/companies.html       Perusahaan Kami: direktori 6 perusahaan contoh, filter sektor, pencarian, detail.
@@ -60,7 +61,7 @@ Data di js/script.js:
 Menambah site pada provinsi yang ada cukup dengan menambah entri data; penanda dan tombol dibuat otomatis.
 Menambah provinsi memerlukan pembaruan peta gabungan dan data provinsi.
 Posisi Banjarmasin mengikuti wilayah kota pada peta; posisi Kelanis dan Benao masih perkiraan.
-Galeri memakai foto ilustrasi; tombol "Lebih Lanjut" sementara menuju pages/operations.html.
+Galeri memakai foto ilustrasi; tombol "Lebih Lanjut" sementara menuju pages/services.html.
 
 MENAMBAH LOWONGAN
 1) Tambah baris <tr> di pages/karir.html (data-department, data-location, data-status = Dibuka/Ditutup).

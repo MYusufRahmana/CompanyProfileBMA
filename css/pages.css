@@ -1709,10 +1709,10 @@ a.job-title:hover {
   background: var(--gold);
 }
 
-/* Daftar alat berat (Operasional) */
+/* Armada alat berat (Layanan) */
 .fleet-summary {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 1px;
   margin: 0 0 24px;
   padding: 0;
@@ -1739,6 +1739,58 @@ a.job-title:hover {
   color: var(--text-soft);
   font-size: 13px;
 }
+.fleet-summary__total.fleet-summary__total {
+  background: var(--charcoal);
+}
+.fleet-summary__total strong {
+  color: var(--gold);
+}
+.fleet-summary__total span {
+  color: #ffffffb3;
+}
+.fleet-details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+.fleet-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+}
+.fleet-details summary::-webkit-details-marker {
+  display: none;
+}
+.fleet-details summary small {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-soft);
+  font-size: 13px;
+  font-weight: 400;
+}
+.fleet-details summary .icon {
+  flex-shrink: 0;
+  color: var(--gold-dark);
+  transition: transform 0.25s var(--ease-out);
+}
+.fleet-details[open] summary .icon {
+  transform: rotate(90deg);
+}
+.fleet-details summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.fleet-details .table-scroll {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
 .fleet-table {
   min-width: 720px;
 }
@@ -1760,6 +1812,9 @@ a.job-title:hover {
 @media (max-width: 960px) {
   .fleet-summary {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .fleet-summary__total {
+    grid-column: 1 / -1;
   }
 }
 @media (max-width: 680px) {

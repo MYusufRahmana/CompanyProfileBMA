@@ -78,7 +78,7 @@ const links = (page, base) => {
     home: `${base}index.html`,
     about: p("about.html"),
     services: p("services.html"),
-    operations: p("operations.html"),
+    fleet: p("services.html#alat-berat"),
     social: p("sosial.html"),
     news: p("news.html"),
     companies: p("companies.html"),
@@ -105,7 +105,6 @@ const activeKey = (page) =>
     index: "home",
     about: "about",
     services: "services",
-    operations: "services",
     sosial: "social",
     news: "news",
     companies: "companies",
@@ -174,7 +173,7 @@ export function footer(page, base) {
           <h2 id="footerPages">Layanan &amp; Karir</h2>
           <ul>
             ${li(l.services, "Layanan")}
-            ${li(l.operations, "Operasional Tambang")}
+            ${li(l.fleet, "Armada Alat Berat")}
             ${li(l.careers, "Karir")}
           </ul>
         </nav>

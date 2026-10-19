@@ -485,7 +485,7 @@ window.BMA_SITES = {
     map: "kalsel",
     description:
       "Kantor pusat PT Berkat Maritim Abadi berada di Banjarmasin, Kalimantan Selatan. Dari sini kami mendukung proyek jasa pertambangan dan bongkar muat di wilayah Kalimantan.",
-    link: "pages/operations.html", // nanti: pages/site-banjarmasin.html
+    link: "pages/services.html", // nanti: pages/site-banjarmasin.html
     position: { x: 64.1, y: 62.5 },
     images: [
       { src: "assets/images/mining/haul-truck-640.webp", caption: "armada angkut" },
@@ -498,7 +498,7 @@ window.BMA_SITES = {
     map: "kalteng",
     description:
       "Informasi mengenai Site Kelanis akan ditampilkan berdasarkan data resmi perusahaan.",
-    link: "pages/operations.html", // nanti: pages/site-kelanis.html
+    link: "pages/services.html", // nanti: pages/site-kelanis.html
     position: { x: 53.7, y: 71.5 },
     images: [
       { src: "assets/images/mining/coal-extraction-640.webp", caption: "kegiatan tambang" },
@@ -512,7 +512,7 @@ window.BMA_SITES = {
     map: "kalteng",
     description:
       "Informasi mengenai Site Benao akan ditampilkan berdasarkan data resmi perusahaan.",
-    link: "pages/operations.html", // nanti: pages/site-benao.html
+    link: "pages/services.html", // nanti: pages/site-benao.html
     position: { x: 56.4, y: 46.2 },
     images: [
       { src: "assets/images/mining/overburden-removal-640.webp", caption: "pengupasan overburden" },
@@ -622,7 +622,7 @@ window.BMA.sites = ({ motion, listen }) => {
     if (province) province.textContent = maps[site.map]?.name || "";
     title.textContent = site.name;
     description.textContent = site.description;
-    link.href = site.link || "pages/operations.html";
+    link.href = site.link || "pages/services.html";
     link.setAttribute("aria-label", "Lebih lanjut tentang Site " + site.name);
   };
   const updateGallery = (site) => {
