@@ -488,9 +488,9 @@ window.BMA_SITES = {
     link: "pages/services.html", // nanti: pages/site-banjarmasin.html
     position: { x: 64.1, y: 62.5 },
     images: [
-      { src: "assets/images/mining/haul-truck-640.webp", caption: "armada angkut" },
-      { src: "assets/images/mining/mine-site-aerial-640.webp", caption: "area kerja tambang" },
-      { src: "assets/images/mining/hero-hauling-800.webp", caption: "jalan angkut" },
+      { src: "assets/images/mining/haul-truck-640.webp", full: "assets/images/mining/haul-truck-1200.webp", caption: "armada angkut" },
+      { src: "assets/images/mining/mine-site-aerial-640.webp", full: "assets/images/mining/mine-site-aerial-1200.webp", caption: "area kerja tambang" },
+      { src: "assets/images/mining/hero-hauling-800.webp", full: "assets/images/mining/hero-hauling-1600.webp", caption: "jalan angkut" },
     ],
   },
   kelanis: {
@@ -503,14 +503,17 @@ window.BMA_SITES = {
     images: [
       {
         src: "assets/images/FotoBMA/site-kelanis-1-640.webp",
+        full: "assets/images/FotoBMA/site-kelanis-1-1200.webp",
         alt: "Foto udara stockpile batu bara dan tongkang di tepi sungai, Site Kelanis",
       },
       {
         src: "assets/images/FotoBMA/site-kelanis-2-640.webp",
+        full: "assets/images/FotoBMA/site-kelanis-2-1200.webp",
         alt: "Tim lapangan dan excavator saat pembukaan lahan, Site Kelanis",
       },
       {
         src: "assets/images/FotoBMA/site-kelanis-3-640.webp",
+        full: "assets/images/FotoBMA/site-kelanis-3-1200.webp",
         alt: "Dua excavator bekerja di front batu bara, Site Kelanis",
       },
     ],
@@ -523,10 +526,10 @@ window.BMA_SITES = {
     link: "pages/services.html", // nanti: pages/site-benao.html
     position: { x: 56.4, y: 46.2 },
     images: [
-      { src: "assets/images/mining/overburden-removal-640.webp", caption: "pengupasan overburden" },
-      { src: "assets/images/mining/equipment-support-640.webp", caption: "alat berat" },
-      { src: "assets/images/mining/hero-coal-getting-800.webp", caption: "coal getting" },
-      { src: "assets/images/mining/hse-inspection-640.webp", caption: "inspeksi unit" },
+      { src: "assets/images/mining/overburden-removal-640.webp", full: "assets/images/mining/overburden-removal-1200.webp", caption: "pengupasan overburden" },
+      { src: "assets/images/mining/equipment-support-640.webp", full: "assets/images/mining/equipment-support-1200.webp", caption: "alat berat" },
+      { src: "assets/images/mining/hero-coal-getting-800.webp", full: "assets/images/mining/hero-coal-getting-1600.webp", caption: "coal getting" },
+      { src: "assets/images/mining/hse-inspection-640.webp", full: "assets/images/mining/hse-inspection-1200.webp", caption: "inspeksi unit" },
     ],
   },
 };
@@ -551,6 +554,10 @@ window.BMA.sites = ({ motion, listen }) => {
   const prev = document.getElementById("siteGalleryPrev");
   const next = document.getElementById("siteGalleryNext");
   const galleryNote = document.querySelector("#siteGalleryTitle small");
+  const lightbox = document.getElementById("siteLightbox");
+  let photos = [];
+  let photoIndex = 0;
+  let photoOpener = null;
   let activeSite = null;
   let timer;
 
@@ -634,14 +641,57 @@ window.BMA.sites = ({ motion, listen }) => {
     link.href = site.link || "pages/services.html";
     link.setAttribute("aria-label", "Lebih lanjut tentang Site " + site.name);
   };
+  // Pop-up foto: <dialog> dengan navigasi panah, Esc, dan klik latar untuk menutup.
+  const showPhoto = (i) => {
+    if (!lightbox || !photos.length) return;
+    photoIndex = (i + photos.length) % photos.length;
+    const photo = photos[photoIndex];
+    const image = lightbox.querySelector("img");
+    image.src = photo.full || photo.src;
+    image.alt = photo.alt;
+    lightbox.querySelector("[data-lightbox-caption]").textContent = photo.alt;
+    lightbox.querySelector("[data-counter]").textContent = photoIndex + 1 + " / " + photos.length;
+    lightbox.querySelectorAll("[data-prev], [data-next]").forEach((button) => {
+      button.hidden = photos.length < 2;
+    });
+  };
+  const openPhoto = (i, opener) => {
+    if (!lightbox?.showModal) return;
+    photoOpener = opener;
+    showPhoto(i);
+    lightbox.showModal();
+  };
+  if (lightbox) {
+    listen(lightbox.querySelector("[data-prev]"), "click", () => showPhoto(photoIndex - 1));
+    listen(lightbox.querySelector("[data-next]"), "click", () => showPhoto(photoIndex + 1));
+    listen(lightbox.querySelector("[data-close]"), "click", () => lightbox.close());
+    listen(lightbox, "click", (event) => {
+      if (event.target === lightbox) lightbox.close();
+    });
+    listen(lightbox, "keydown", (event) => {
+      if (event.key === "ArrowRight") showPhoto(photoIndex + 1);
+      if (event.key === "ArrowLeft") showPhoto(photoIndex - 1);
+    });
+    listen(lightbox, "close", () => photoOpener?.focus());
+  }
+
   const updateGallery = (site) => {
+    photos = (site.images || []).map((image) => ({
+      ...image,
+      alt: image.alt || "Foto ilustrasi " + image.caption + ", bukan dokumentasi Site " + site.name,
+    }));
     track.replaceChildren(
-      ...(site.images || []).map((image) => {
+      ...photos.map((image, i) => {
         const item = document.createElement("li");
         item.className = "site-gallery__item";
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "site-gallery__open";
+        button.setAttribute("aria-label", "Perbesar foto: " + image.alt);
+        button.addEventListener("click", () => openPhoto(photos.indexOf(image), button));
         const img = document.createElement("img");
         img.src = image.src;
-        img.alt = image.alt || "Foto ilustrasi " + image.caption + ", bukan dokumentasi Site " + site.name;
+        img.alt = "";
         img.width = 640;
         img.height = 427;
         img.loading = "lazy";
@@ -649,9 +699,11 @@ window.BMA.sites = ({ motion, listen }) => {
         // Gambar gagal dimuat: sembunyikan item, jangan tampilkan ikon rusak.
         img.addEventListener("error", () => {
           item.remove();
+          photos = photos.filter((photo) => photo !== image);
           showEmptyIfNeeded();
         });
-        item.append(img);
+        button.append(img);
+        item.append(button);
         return item;
       }),
     );

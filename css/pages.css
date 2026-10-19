@@ -579,63 +579,6 @@
 .gallery-item:focus-visible {
   outline-offset: 3px;
 }
-.lightbox {
-  width: min(1100px, calc(100% - 32px));
-  max-height: calc(100% - 32px);
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-md);
-  background: var(--charcoal);
-  color: #fff;
-  overflow: hidden;
-}
-.lightbox::backdrop {
-  background: #0b0e10e6;
-}
-.lightbox[open] {
-  animation: detail-in 0.35s var(--ease-out);
-}
-.lightbox img {
-  width: 100%;
-  max-height: calc(100vh - 140px);
-  object-fit: contain;
-  background: #000;
-}
-.lightbox-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 18px;
-}
-.lightbox-bar p {
-  font-size: 15px;
-}
-.lightbox-bar small {
-  color: #9aa3aa;
-  margin-left: 8px;
-}
-.lightbox-controls {
-  display: flex;
-  gap: 8px;
-}
-.lightbox-controls button {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid #ffffff40;
-  border-radius: 50%;
-  background: transparent;
-  color: #fff;
-  font-size: 18px;
-}
-.lightbox-controls button:hover {
-  border-color: var(--gold);
-  background: var(--gold);
-  color: var(--charcoal);
-}
-
 /* ---------- News listing ---------- */
 .news-toolbar {
   margin-bottom: 32px;
