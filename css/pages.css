@@ -1768,3 +1768,31 @@ a.job-title:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Formulir lamaran: rincian posisi terpilih di kartu kiri */
+/* Kartu kiri tampil penuh tanpa scroll; tidak sticky karena isinya lebih tinggi dari layar. */
+.application-sidebar {
+  position: static;
+}
+.application-detail {
+  margin-top: 22px;
+}
+.application-detail section + section {
+  margin-top: 18px;
+}
+.application-position .application-detail ul {
+  margin: 8px 0 0;
+}
+.application-detail-empty {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.application-detail .text-link {
+  display: inline-block;
+  margin-top: 18px;
+}

@@ -1418,6 +1418,59 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#applicationForm');
   if (!form) return;
   const jobs = [["operator-excavator","Operator Excavator","Produksi","Kutai Kartanegara, Kaltim","Kontrak"],["hse-officer","HSE Officer","K3 & Lingkungan","Kutai Kartanegara, Kaltim","Penuh waktu"],["logistics-coordinator","Koordinator Logistik","Logistik","Tanah Bumbu, Kalsel","Penuh waktu"],["foreman-produksi","Foreman Produksi Coal Getting","Produksi","Kutai Kartanegara, Kaltim","Penuh waktu"],["mekanik-alat-berat","Mekanik Alat Berat","Plant & Maintenance","Tanah Bumbu, Kalsel","Kontrak"]];
+  // Rincian posisi untuk panel kiri formulir (teks sama dengan halaman lowongan;
+  // posisi tanpa halaman detail menampilkan catatan bahwa rincian belum tersedia).
+  const jobDetails = {
+    "operator-excavator": {
+      "tasks": [
+        "Mengoperasikan excavator untuk penggalian dan pemuatan batu bara.",
+        "Melakukan pemeriksaan unit sebelum dan sesudah shift (P2H).",
+        "Menjaga kualitas pemuatan dan meminimalkan pencampuran material.",
+        "Berkomunikasi dengan pengemudi dump truck dan pengawas melalui radio.",
+        "Melaporkan kondisi unit dan kejadian di area kerja."
+      ],
+      "requirements": [
+        "Pendidikan minimal SMA/SMK sederajat.",
+        "Memiliki SIO/SIMPER excavator yang masih berlaku.",
+        "Pengalaman minimal 2 tahun sebagai operator excavator di tambang.",
+        "Memahami prosedur keselamatan kerja di area tambang.",
+        "Bersedia bekerja dengan sistem shift dan ditempatkan di site."
+      ],
+      "page": "lowongan-operator-excavator.html"
+    },
+    "hse-officer": {
+      "tasks": [
+        "Melaksanakan inspeksi area kerja dan memantau kepatuhan prosedur keselamatan.",
+        "Menyusun identifikasi bahaya dan penilaian risiko bersama tim lapangan.",
+        "Mendukung briefing keselamatan, induksi keselamatan, dan simulasi tanggap darurat.",
+        "Mencatat temuan, menyusun laporan K3, serta memantau tindakan perbaikan."
+      ],
+      "requirements": [
+        "Pendidikan D3/S1 bidang K3, teknik, atau bidang terkait.",
+        "Pengalaman 2–3 tahun dalam fungsi K3 di lingkungan tambang atau industri.",
+        "Memahami identifikasi risiko, pelaporan insiden, dan prosedur tanggap darurat.",
+        "Mampu berkomunikasi dengan tim lintas fungsi dan bersedia ditempatkan di site."
+      ],
+      "page": "lowongan-hse-officer.html"
+    },
+    "logistics-coordinator": {
+      "tasks": [
+        "Mengoordinasikan permintaan material dan suku cadang dari tim site.",
+        "Mengelola administrasi gudang dan pencatatan stok.",
+        "Berkoordinasi dengan pemasok dan tim pengadaan.",
+        "Memantau pengiriman kebutuhan ke site sesuai jadwal."
+      ],
+      "requirements": [
+        "Pendidikan D3/S1 bidang logistik, manajemen, atau terkait.",
+        "Pengalaman 2–3 tahun di bidang logistik atau pergudangan.",
+        "Terbiasa menggunakan aplikasi pengolah data (spreadsheet).",
+        "Teliti, komunikatif, dan bersedia ditempatkan di site."
+      ],
+      "page": "lowongan-logistics-coordinator.html"
+    },
+    "foreman-produksi": {},
+    "mekanik-alat-berat": {}
+  };
   const position = form.elements.position;
   const syncPosition = () => {
     const job = jobs.find(job => job[0] === position.value);
@@ -1425,6 +1478,28 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#applicationLocation').textContent = job ? job[3] + ' · ' + job[2] : 'Pilih salah satu lowongan pada formulir.';
     const type = document.querySelector('#applicationType');
     if (type) type.textContent = job ? job[4] + ' · Penempatan di site' : 'Penempatan di site';
+    renderJobDetail(job ? jobDetails[job[0]] : null);
+  };
+  const renderJobDetail = (detail) => {
+    const panel = document.querySelector('#applicationDetail');
+    if (!panel) return;
+    panel.hidden = !detail;
+    if (!detail) return;
+    const list = (selector, items) => {
+      const ul = document.querySelector(selector);
+      ul.replaceChildren(...(items || []).map(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        return li;
+      }));
+      ul.closest('section').hidden = !items?.length;
+    };
+    list('#applicationTasks', detail.tasks);
+    list('#applicationRequirements', detail.requirements);
+    document.querySelector('#applicationDetailEmpty').hidden = Boolean(detail.tasks?.length);
+    const link = document.querySelector('#applicationJobLink');
+    link.hidden = !detail.page;
+    if (detail.page) link.href = detail.page;
   };
   const requested = new URLSearchParams(location.search).get('posisi');
   if (jobs.some(job => job[0] === requested)) position.value = requested;
