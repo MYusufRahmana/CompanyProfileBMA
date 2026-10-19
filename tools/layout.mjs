@@ -136,7 +136,7 @@ export function header(page, base) {
         <div class="nav-menu" id="navMenu">
           ${items}
           <div class="menu-contact">
-            PT Berkat Maritim Abadi · Jasa Pertambangan Batu Bara<br /><a href="${l.contact}">Informasi kontak &amp; kerja sama ↗</a>
+            PT Berkat Maritim Abadi · Jasa Pertambangan &amp; Bongkar Muat<br /><a href="${l.contact}">Informasi kontak &amp; kerja sama ↗</a>
           </div>
         </div>
       </nav>
@@ -152,7 +152,7 @@ export function footer(page, base) {
           <a class="brand footer-brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
             <img class="brand-image" src="${base}assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" loading="lazy" /><img class="brand-wordmark-light" src="${base}assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" loading="lazy" />
           </a>
-          <p class="footer-desc">Mitra operasional pertambangan batu bara dengan fokus pada coal getting yang aman dan efisien.</p>
+          <p class="footer-desc">Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara sejak 2013.</p>
           <ul class="social-links" aria-label="Media sosial (tautan contoh)">
             <li><a href="#" aria-label="LinkedIn (tautan contoh)">${icon("linkedin")}</a></li>
             <li><a href="#" aria-label="Instagram (tautan contoh)">${icon("instagram")}</a></li>
@@ -182,16 +182,16 @@ export function footer(page, base) {
         <div class="footer-col">
           <h2>Kontak</h2>
           <ul class="footer-contact">
-            <li>${icon("pin")}<span>Jakarta Utara, DKI Jakarta</span></li>
-            <li>${icon("mail")}<a href="mailto:info@bma.example">info@bma.example</a></li>
-            <li>${icon("phone")}<a href="tel:+62215550188">+62 21 555 0188</a></li>
+            <li>${icon("pin")}<span>Jl. Lodan Raya No. 01, Ancol, Pademangan, Jakarta Utara 14430</span></li>
+            <li>${icon("mail")}<a href="mailto:vincent@growingroup.id">vincent@growingroup.id</a></li>
+            <li>${icon("phone")}<a href="tel:+628128222858">+62 812-8222-858</a></li>
           </ul>
         </div>
       </div>
 
       <div class="container footer-bottom">
         <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
-        <span>Pratinjau desain · data kontak dan konten masih contoh</span>
+        <span>Pratinjau desain · berita, sosial, dan karir masih contoh</span>
       </div>
     </footer>`;
 }

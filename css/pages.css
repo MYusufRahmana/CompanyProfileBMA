@@ -1681,3 +1681,92 @@ a.job-title:hover {
     gap: 4px;
   }
 }
+
+/* Proyek & klien (Tentang Kami) */
+.client-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.client-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+  font:
+    600 15px/1.4 Manrope,
+    sans-serif;
+}
+.client-list li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+}
+
+/* Daftar alat berat (Operasional) */
+.fleet-summary {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 24px;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--line);
+}
+.fleet-summary li {
+  padding: 18px 16px;
+  background: #fff;
+}
+.fleet-summary strong {
+  display: block;
+  color: var(--text);
+  font:
+    800 clamp(1.6rem, 1.2rem + 1vw, 2.2rem) / 1 Manrope,
+    sans-serif;
+}
+.fleet-summary span {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-soft);
+  font-size: 13px;
+}
+.fleet-table {
+  min-width: 720px;
+}
+.fleet-table td:last-child,
+.fleet-table th:last-child {
+  text-align: center;
+}
+.fleet-table tfoot th,
+.fleet-table tfoot td {
+  padding: 14px 16px;
+  border-top: 2px solid var(--charcoal);
+  background: var(--bg-light);
+  font-weight: 800;
+  text-align: right;
+}
+.fleet-table tfoot td {
+  text-align: center;
+}
+@media (max-width: 960px) {
+  .fleet-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 680px) {
+  .client-list {
+    grid-template-columns: 1fr;
+  }
+  .fleet-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

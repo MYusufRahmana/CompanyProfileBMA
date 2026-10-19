@@ -148,269 +148,323 @@ window.BMA.navigation = ({ motion, listen }) => {
   };
 };
 
-/* ===== animations/hero.js ===== */
+/* ===== data/hero.js ===== */
+// Konfigurasi hero Beranda. Ubah nilai di sini untuk mengganti tampilan,
+// tanpa menyentuh HTML/CSS.
+// - desktopImage / mobileImage : path foto (mobile opsional, layar ≤ 680px)
+// - position / mobilePosition  : titik fokus foto (nilai CSS object-position)
+// - foregroundImage            : OPSIONAL — PNG/WebP objek yang sudah dipotong (latar transparan),
+//                                dibuat dari foto yang SAMA dan berukuran SAMA. Objek ini tampil
+//                                di depan judul (efek "tulisan di belakang objek").
+//   foregroundMobileImage      : versi mobile dari foreground (opsional)
+// - overlayOpacity             : 0 (terang) – 0.8 (gelap); bisa juga per slide
+// - interval                   : jeda antarslide (ms). Satu slide = tanpa autoplay & kontrol.
+window.BMA_HERO = {
+  title: "Berkat Maritim Abadi",
+  overlayOpacity: 0.45,
+  interval: 6500,
+  slides: [
+    {
+      desktopImage: "assets/images/mining/hero-open-pit-1600.webp",
+      mobileImage: "assets/images/mining/hero-open-pit-800.webp",
+      position: "center center",
+      mobilePosition: "62% center",
+      foregroundImage: "",
+      eyebrow: "Partner Strategis Pertambangan dan Logistik",
+      description:
+        "Dengan fokus pada efisiensi operasional dan pelayanan prima, kami berkomitmen untuk menjadi mitra terpercaya dalam mendukung kelancaran aktivitas pertambangan dan pelabuhan di Indonesia.",
+    },
+    {
+      desktopImage: "assets/images/mining/hero-coal-getting-1600.webp",
+      mobileImage: "assets/images/mining/hero-coal-getting-800.webp",
+      position: "center 60%",
+      mobilePosition: "45% center",
+      foregroundImage: "",
+      eyebrow: "Jasa Pertambangan",
+      description:
+        "Overburden removal, coal getting, land clearing, crushing & stockpiling, hingga reklamasi lahan bekas tambang.",
+    },
+    {
+      desktopImage: "assets/images/mining/hero-hauling-1600.webp",
+      mobileImage: "assets/images/mining/hero-hauling-800.webp",
+      position: "center 55%",
+      mobilePosition: "58% center",
+      foregroundImage: "",
+      eyebrow: "Jasa Hauling & Bongkar Muat",
+      description:
+        "Pengangkutan hasil tambang serta bongkar muat di pelabuhan maupun dermaga khusus, hingga pemuatan di atas tongkang.",
+    },
+  ],
+};
+
+/* ===== sections/hero.js ===== */
 window.BMA = window.BMA || {};
 
 window.BMA.hero = ({ motion, listen }) => {
-  const slider = document.getElementById("heroSlider");
-  if (!slider) return () => {};
-  const slides = [...slider.querySelectorAll(".hero-slide")];
-  const dots = [...slider.querySelectorAll(".dot")];
-  const pause = document.getElementById("heroPause");
-  const bar = document.getElementById("heroProgress");
+  const hero = document.getElementById("home");
+  const stage = document.getElementById("heroSlider");
+  if (!hero || !stage) return () => {};
+  const config = window.BMA_HERO || {};
+  const slides = (config.slides || []).filter((slide) => slide && slide.desktopImage);
+  const media = document.getElementById("heroMedia");
+  const foreground = document.getElementById("heroForeground");
+  const title = document.getElementById("heroTitle");
+  const eyebrow = document.getElementById("heroEyebrow");
+  const description = document.getElementById("heroDescription");
+  const controls = document.getElementById("heroControls");
+  const dotsWrap = document.getElementById("heroDots");
   const number = document.getElementById("slideNumber");
+  const total = document.getElementById("slideTotal");
+  const pause = document.getElementById("heroPause");
+  const previewImage = document.getElementById("heroPreviewImage");
+  const previewLabel = document.getElementById("heroPreviewLabel");
+  const nextButton = document.getElementById("heroNext");
+  const interval = Math.max(3000, Number(config.interval) || 6500);
+  const mobile = matchMedia("(max-width: 680px)");
+  const pad = (n) => String(n).padStart(2, "0");
   const reasons = new Set();
-  let current = 0,
-    manuallyPaused = motion.matches,
-    transition,
-    timer,
-    progress,
-    scrollLine,
-    transitioning = false;
-  let pointerX, pointerY;
-  let request = 0;
-  const animated = () => Boolean(window.gsap) && !motion.matches;
-  const children = (slide) =>
-    slide.querySelectorAll(
-      ".eyebrow, .hero-line, .hero-content > p:not(.eyebrow), .hero-actions",
+  let current = 0;
+  let manuallyPaused = motion.matches;
+  let timer;
+  let textTimer;
+  let pointerX;
+  let pointerY;
+
+  // Overlay & judul dari konfigurasi.
+  const setOverlay = (value) => {
+    if (value !== undefined && value !== null && value !== "")
+      hero.style.setProperty("--hero-overlay", Math.min(0.9, Math.max(0, Number(value))));
+  };
+  setOverlay(config.overlayOpacity);
+  if (config.title) {
+    // Spasi asli di antara kata agar judul terbaca benar oleh pembaca layar & mesin pencari.
+    const words = String(config.title).trim().split(/\s+/);
+    title.replaceChildren(
+      ...words.flatMap((word, i) => {
+        const span = document.createElement("span");
+        span.className = "hero__word";
+        span.textContent = word;
+        return i ? [document.createTextNode(" "), span] : [span];
+      }),
     );
-  const updateState = () => {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("active", i === current);
-      slide.inert = i !== current;
-      slide.setAttribute("aria-hidden", String(i !== current));
-    });
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === current);
-      dot.setAttribute("aria-pressed", String(i === current));
-    });
-    number.textContent = String(current + 1).padStart(2, "0");
-    pause.setAttribute("aria-pressed", String(manuallyPaused));
-    pause.setAttribute(
-      "aria-label",
-      manuallyPaused ? "Lanjutkan slideshow" : "Jeda slideshow",
-    );
-    const pauseIcon = pause.querySelector("use");
-    if (pauseIcon)
-      pauseIcon.setAttribute("href", manuallyPaused ? "#i-play" : "#i-pause");
-    else pause.textContent = manuallyPaused ? "▶" : "Ⅱ";
-    pause.disabled = motion.matches;
-  };
-  const stop = () => {
-    clearTimeout(timer);
-    progress?.pause();
-  };
-  const canPlay = () =>
-    !manuallyPaused && !motion.matches && !reasons.size && !document.hidden;
-  const start = (reset = false) => {
-    clearTimeout(timer);
-    if (reset) {
-      progress?.kill();
-      progress = null;
-      bar.style.transform = "scaleX(0)";
-    }
-    if (!canPlay() || transitioning) {
-      progress?.pause();
-      return;
-    }
-    if (animated()) {
-      if (!progress)
-        progress = gsap.fromTo(
-          bar,
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            duration: 6.5,
-            ease: "none",
-            paused: true,
-            onComplete: () => show(current + 1),
-          },
-        );
-      progress.play();
-    } else timer = setTimeout(() => show(current + 1), 6500);
-  };
-  const show = async (index, initial = false) => {
-    const next = (index + slides.length) % slides.length;
-    if (next === current && !initial) return;
-    const activeRequest = ++request;
-    stop();
-    transition?.kill();
-    transitioning = true;
-    const outgoing = slides[current];
-    const incoming = slides[next];
-    const image = incoming.querySelector(".hero-image");
-    if (image.dataset.src) {
-      image.src = image.dataset.src;
-      if (image.dataset.srcset) image.srcset = image.dataset.srcset;
-      delete image.dataset.src;
-      delete image.dataset.srcset;
-      try {
-        await image.decode();
-      } catch {
-        /* Keep the readable charcoal fallback. */
-      }
-      if (request !== activeRequest) return;
-    }
-    current = next;
-    updateState();
-    if (animated()) {
-      transitioning = true;
-      gsap.set(slides, { clearProps: "opacity,visibility,zIndex" });
-      gsap.set(
-        slides.flatMap((s) => [...children(s)]),
-        { clearProps: "transform,opacity,visibility" },
-      );
-      transition = gsap.timeline({
-        onComplete: () => {
-          transitioning = false;
-          gsap.set(slides, { clearProps: "opacity,visibility,zIndex" });
-          start(true);
-        },
-      });
-      if (!initial && outgoing !== incoming) {
-        gsap.set(outgoing, { visibility: "visible", opacity: 1, zIndex: 3 });
-        transition
-          .to(
-            children(outgoing),
-            { y: -18, opacity: 0, duration: 0.3, ease: "power3.in" },
-            0,
-          )
-          .to(outgoing, { opacity: 0, duration: 0.8 }, 0.05);
-      }
-      transition
-        .fromTo(
-          incoming,
-          { autoAlpha: initial ? 1 : 0 },
-          { autoAlpha: 1, duration: 0.85, ease: "power2.out" },
-          0,
-        )
-        .fromTo(
-          incoming.querySelector(".hero-image"),
-          { scale: 1.08 },
-          { scale: 1, duration: 1.8, ease: "power3.out" },
-          0,
-        )
-        .fromTo(
-          children(incoming),
-          { y: 30, opacity: initial ? 1 : 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.85,
-            stagger: 0.1,
-            ease: "power3.out",
-            clearProps: "transform,opacity",
-          },
-          0.2,
-        );
+  }
+
+  // Desktop (satu baris): judul diskalakan memenuhi lebar kartu.
+  // Tablet/mobile (boleh beberapa baris): kata terpanjang tidak boleh terpotong.
+  const fitTitle = () => {
+    hero.style.removeProperty("--hero-title-size");
+    const style = getComputedStyle(title);
+    const size = parseFloat(style.fontSize);
+    const available = title.clientWidth;
+    if (style.whiteSpace === "nowrap") {
+      const width = title.scrollWidth;
+      const target = Math.min(size * (available / width) * 0.99, 260);
+      hero.style.setProperty("--hero-title-size", target + "px");
     } else {
-      transitioning = false;
-      window.gsap?.set(slides, { clearProps: "opacity,visibility,zIndex" });
-      window.gsap?.set(
-        slides.flatMap((s) => [...children(s)]),
-        { clearProps: "transform,opacity,visibility" },
-      );
-      window.gsap?.set(
-        slides.map((s) => s.querySelector(".hero-image")),
-        { clearProps: "transform" },
-      );
-      start(true);
+      const widest = Math.max(...[...title.children].map((word) => word.scrollWidth));
+      if (widest > available)
+        hero.style.setProperty("--hero-title-size", size * (available / widest) * 0.98 + "px");
     }
+  };
+
+  // Foto per slide. Foto pertama di HTML dipakai ulang bila sama (tanpa kedip).
+  const layer = (className, desktop, mobileSrc, slide, lazy) => {
+    const picture = document.createElement("picture");
+    picture.className = className;
+    const source = document.createElement("source");
+    source.media = "(max-width: 680px)";
+    const img = document.createElement("img");
+    img.alt = className === "hero__photo" ? slide.alt || "" : "";
+    img.decoding = "async";
+    img.width = 1600;
+    img.height = 1067;
+    img.style.setProperty("--pos", slide.position || "center");
+    img.style.setProperty("--pos-mobile", slide.mobilePosition || slide.position || "center");
+    picture.append(source, img);
+    picture.load = () => {
+      if (img.getAttribute("src")) return;
+      if (mobileSrc) source.srcset = mobileSrc;
+      else source.remove();
+      img.src = desktop;
+    };
+    if (!lazy) picture.load();
+    return picture;
+  };
+  const staticPhoto = media.querySelector(".hero__photo");
+  const photos = slides.map((slide, i) => {
+    const staticImg = staticPhoto?.querySelector("img");
+    if (i === 0 && staticImg?.getAttribute("src") === slide.desktopImage) {
+      staticImg.style.setProperty("--pos", slide.position || "center");
+      staticImg.style.setProperty("--pos-mobile", slide.mobilePosition || slide.position || "center");
+      if (slide.alt) staticImg.alt = slide.alt;
+      staticPhoto.load = () => {};
+      return staticPhoto;
+    }
+    const picture = layer("hero__photo", slide.desktopImage, slide.mobileImage, slide, i !== 0);
+    if (i === 0) picture.querySelector("img").fetchPriority = "high";
+    return picture;
+  });
+  if (photos.length) media.replaceChildren(...photos);
+
+  // Foreground opsional (objek di depan judul). Slide tanpa foreground dilewati.
+  const cutouts = slides.map((slide) =>
+    slide.foregroundImage
+      ? layer("hero__cutout", slide.foregroundImage, slide.foregroundMobileImage, slide, true)
+      : null,
+  );
+  foreground?.replaceChildren(...cutouts.filter(Boolean));
+
+  // Indikator, pratinjau, dan kontrol hanya untuk lebih dari satu slide.
+  const multi = photos.length > 1;
+  const dots = slides.map((slide, i) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "hero__dot";
+    dot.setAttribute("aria-label", `Slide ${i + 1}${slide.eyebrow ? ": " + slide.eyebrow : ""}`);
+    listen(dot, "click", () => show(i));
+    dotsWrap.append(dot);
+    return dot;
+  });
+  controls.hidden = !multi;
+  total.textContent = pad(Math.max(1, photos.length));
+
+  const updatePreview = () => {
+    if (!multi || !previewImage) return;
+    const next = slides[(current + 1) % slides.length];
+    previewImage.src = (mobile.matches ? next.mobileImage : next.mobileImage || next.desktopImage) || next.desktopImage;
+    previewImage.style.objectPosition = next.mobilePosition || next.position || "center";
+    previewLabel.textContent = "Berikutnya";
+    nextButton.setAttribute("aria-label", `Slide berikutnya${next.eyebrow ? ": " + next.eyebrow : ""}`);
+  };
+
+  const canPlay = () => multi && !manuallyPaused && !motion.matches && !reasons.size && !document.hidden;
+  const resetProgress = (full) => {
+    dots.forEach((dot) => {
+      dot.style.setProperty("--dur", "0s");
+      dot.style.setProperty("--progress", full && dot === dots[current] ? "1" : "0");
+    });
+  };
+  const start = () => {
+    clearTimeout(timer);
+    resetProgress(!canPlay());
+    if (!canPlay()) return;
+    const dot = dots[current];
+    void dot.offsetWidth; // mulai ulang transisi bar dari nol
+    dot.style.setProperty("--dur", interval + "ms");
+    dot.style.setProperty("--progress", "1");
+    timer = setTimeout(() => show(current + 1), interval);
+    photos[(current + 1) % photos.length].load(); // siapkan foto berikutnya
+    cutouts[(current + 1) % cutouts.length]?.load();
   };
   const hold = (reason, value) => {
-    value ? reasons.add(reason) : reasons.delete(reason);
-    if (canPlay()) start();
-    else stop();
-    if (reason === "offscreen" || reason === "hidden") {
-      if (reasons.has("offscreen") || reasons.has("hidden"))
-        scrollLine?.pause();
-      else scrollLine?.play();
-    }
+    if (value) reasons.add(reason);
+    else reasons.delete(reason);
+    start();
   };
-  listen(document.getElementById("heroNext"), "click", () => show(current + 1));
+
+  const applyText = (slide) => {
+    if (eyebrow) {
+      eyebrow.textContent = slide.eyebrow || "";
+      eyebrow.hidden = !slide.eyebrow;
+    }
+    if (description && slide.description) description.textContent = slide.description;
+    setOverlay(slide.overlayOpacity ?? config.overlayOpacity);
+  };
+
+  function show(index, initial = false) {
+    if (!photos.length) return;
+    const next = (index + photos.length) % photos.length;
+    if (next === current && !initial) return;
+    current = next;
+    photos[next].load();
+    cutouts[next]?.load();
+    photos.forEach((photo, i) => photo.classList.toggle("is-active", i === next));
+    cutouts.forEach((cutout, i) => cutout?.classList.toggle("is-active", i === next));
+    dots.forEach((dot, i) => dot.setAttribute("aria-pressed", String(i === next)));
+    number.textContent = pad(next + 1);
+    updatePreview();
+    clearTimeout(textTimer);
+    if (initial || motion.matches) applyText(slides[next]);
+    else {
+      hero.classList.add("is-changing");
+      textTimer = setTimeout(() => {
+        applyText(slides[next]);
+        hero.classList.remove("is-changing");
+      }, 300);
+    }
+    start();
+  }
+
+  const updatePause = () => {
+    pause.setAttribute("aria-pressed", String(manuallyPaused));
+    pause.setAttribute("aria-label", manuallyPaused ? "Lanjutkan slideshow" : "Jeda slideshow");
+    pause.querySelector("use")?.setAttribute("href", manuallyPaused ? "#i-play" : "#i-pause");
+    pause.disabled = motion.matches;
+  };
+  listen(nextButton, "click", () => show(current + 1));
   listen(document.getElementById("heroPrev"), "click", () => show(current - 1));
-  dots.forEach((dot, i) => listen(dot, "click", () => show(i)));
   listen(pause, "click", () => {
     manuallyPaused = !manuallyPaused;
-    updateState();
-    manuallyPaused ? stop() : start();
+    updatePause();
+    start();
   });
-  listen(slider, "pointerenter", (event) => {
-    if (event.pointerType === "mouse") hold("hover", true);
+  // Jeda saat diarahkan kursor, difokuskan, tab tersembunyi, atau hero tidak terlihat.
+  listen(stage, "pointerenter", (event) => event.pointerType === "mouse" && hold("hover", true));
+  listen(stage, "pointerleave", () => hold("hover", false));
+  listen(stage, "focusin", () => hold("focus", true));
+  listen(stage, "focusout", (event) => !stage.contains(event.relatedTarget) && hold("focus", false));
+  listen(document, "visibilitychange", () => start());
+  listen(mobile, "change", updatePreview);
+  listen(stage, "keydown", (event) => {
+    if (!multi || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+    if (event.target.closest("a, input, textarea, select")) return;
+    event.preventDefault();
+    show(current + (event.key === "ArrowRight" ? 1 : -1));
   });
-  listen(slider, "pointerleave", () => hold("hover", false));
-  listen(slider, "focusin", () => hold("focus", true));
-  listen(slider, "focusout", (event) => {
-    if (!slider.contains(event.relatedTarget)) hold("focus", false);
-  });
-  listen(document, "visibilitychange", () => hold("hidden", document.hidden));
-  listen(
-    slider,
-    "pointerdown",
-    (event) => {
-      pointerX = event.clientX;
-      pointerY = event.clientY;
-      hold("touch", true);
-    },
-    { passive: true },
-  );
-  listen(
-    window,
-    "pointerup",
-    (event) => {
-      if (pointerX !== undefined && event.pointerType !== "mouse") {
-        const dx = event.clientX - pointerX,
-          dy = event.clientY - pointerY;
-        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy))
-          show(current + (dx < 0 ? 1 : -1));
-      }
-      pointerX = undefined;
-      hold("touch", false);
-    },
-    { passive: true },
-  );
-  listen(window, "pointercancel", () => {
+  // Geser (swipe) di layar sentuh.
+  listen(stage, "pointerdown", (event) => {
+    if (event.pointerType === "mouse") return;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+  }, { passive: true });
+  listen(stage, "pointerup", (event) => {
+    if (pointerX === undefined) return;
+    const dx = event.clientX - pointerX;
+    const dy = event.clientY - pointerY;
     pointerX = undefined;
-    hold("touch", false);
-  });
-  listen(slider, "keydown", (event) => {
-    if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-      event.preventDefault();
-      show(current + (event.key === "ArrowRight" ? 1 : -1));
-    }
-  });
-  const observer = new IntersectionObserver(
-    (entries) => hold("offscreen", !entries[0].isIntersecting),
-    { threshold: 0.1 },
-  );
-  observer.observe(slider);
-  const intro = () => {
-    slider.classList.toggle("has-motion", animated());
-    show(current, true);
-    scrollLine?.kill();
-    if (animated())
-      scrollLine = gsap.to(slider.querySelector(".scroll-down span"), {
-        scaleY: 0.5,
-        opacity: 0.5,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-  };
+    if (multi && Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+  const observer = new IntersectionObserver((entries) => hold("offscreen", !entries[0].isIntersecting), { threshold: 0.1 });
+  observer.observe(stage);
   listen(motion, "change", () => {
     manuallyPaused = motion.matches;
-    intro();
+    updatePause();
+    start();
   });
-  listen(window, "bma:motion-ready", intro);
-  intro();
+
+  const resize = new ResizeObserver(fitTitle);
+  resize.observe(stage);
+  document.fonts?.ready.then(fitTitle);
+
+  // Animasi masuk: tunggu foto pertama siap, lalu foto → judul → info.
+  updatePause();
+  show(0, true);
+  fitTitle();
+  if (!motion.matches) {
+    hero.classList.add("hero--animate");
+    const first = photos[0]?.querySelector("img");
+    const reveal = () => requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add("is-ready")));
+    if (first && !first.complete) {
+      first.decode().then(reveal, reveal);
+      setTimeout(reveal, 1500); // jangan menunggu terlalu lama di koneksi lambat
+    } else reveal();
+  }
+
   return () => {
-    request++;
-    stop();
-    progress?.kill();
-    transition?.kill();
-    scrollLine?.kill();
+    clearTimeout(timer);
+    clearTimeout(textTimer);
     observer.disconnect();
+    resize.disconnect();
   };
 };
 
@@ -430,7 +484,7 @@ window.BMA_SITES = {
     name: "Banjarmasin",
     map: "kalsel",
     description:
-      "Informasi mengenai Site Banjarmasin akan ditampilkan berdasarkan data resmi perusahaan.",
+      "Kantor pusat PT Berkat Maritim Abadi berada di Banjarmasin, Kalimantan Selatan. Dari sini kami mendukung proyek jasa pertambangan dan bongkar muat di wilayah Kalimantan.",
     link: "pages/operations.html", // nanti: pages/site-banjarmasin.html
     position: { x: 64.1, y: 62.5 },
     images: [

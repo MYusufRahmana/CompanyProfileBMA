@@ -1292,3 +1292,48 @@
     transition: none;
   }
 }
+
+/* Keunggulan (profil singkat Beranda) — isi dari company profile. */
+.advantage-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 28px;
+  margin: 28px 0 32px;
+  padding: 0;
+  list-style: none;
+}
+.advantage-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.advantage-list__icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-top: 2px;
+  border-radius: 50%;
+  background: var(--charcoal);
+  color: var(--gold);
+  font-size: 14px;
+}
+.advantage-list strong {
+  display: block;
+  font:
+    700 15px/1.35 Manrope,
+    sans-serif;
+}
+.advantage-list span:not(.advantage-list__icon) {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+@media (max-width: 680px) {
+  .advantage-list {
+    grid-template-columns: 1fr;
+  }
+}

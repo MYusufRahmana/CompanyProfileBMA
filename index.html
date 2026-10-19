@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PT Berkat Maritim Abadi | Jasa Pertambangan Batu Bara</title>
+    <title>PT Berkat Maritim Abadi | Partner Strategis Pertambangan dan Logistik</title>
     <meta
       name="description"
-      content="PT Berkat Maritim Abadi — mitra operasional pertambangan batu bara untuk coal getting, overburden removal, coal hauling, dan dukungan operasional tambang yang aman dan bertanggung jawab."
+      content="PT Berkat Maritim Abadi — Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara di Kalimantan sejak 2013."
     />
     <meta name="theme-color" content="#171C20" />
     <meta name="robots" content="index, follow" />
@@ -15,11 +15,11 @@
     <meta property="og:site_name" content="PT Berkat Maritim Abadi" />
     <meta
       property="og:title"
-      content="PT Berkat Maritim Abadi | Jasa Pertambangan Batu Bara"
+      content="PT Berkat Maritim Abadi | Partner Strategis Pertambangan dan Logistik"
     />
     <meta
       property="og:description"
-      content="Mitra operasional pertambangan batu bara untuk coal getting, pengupasan overburden, dan pengangkutan batu bara dengan keselamatan sebagai prioritas."
+      content="PT Berkat Maritim Abadi — Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara di Kalimantan sejak 2013."
     />
     <meta
       property="og:image"
@@ -124,7 +124,7 @@
           <a href="pages/karir.html" class="nav-link">Karir</a>
           <a href="pages/contact.html" class="nav-link">Kontak</a>
           <div class="menu-contact">
-            PT Berkat Maritim Abadi · Jasa Pertambangan Batu Bara<br /><a href="pages/contact.html">Informasi kontak &amp; kerja sama ↗</a>
+            PT Berkat Maritim Abadi · Jasa Pertambangan &amp; Bongkar Muat<br /><a href="pages/contact.html">Informasi kontak &amp; kerja sama ↗</a>
           </div>
         </div>
       </nav>
@@ -134,205 +134,80 @@
       <!-- =========================
          HERO SLIDER
       ========================== -->
-      <section class="hero" id="home" aria-label="Sorotan operasi pertambangan">
+      <section class="hero" id="home" aria-label="PT Berkat Maritim Abadi">
+        <!-- Gambar, posisi, overlay, judul, deskripsi, dan foreground diatur di js/script.js → window.BMA_HERO.
+             Slide pertama ditulis di sini agar langsung tampil (dan tetap tampil tanpa JavaScript). -->
         <div
-          class="hero-slider"
+          class="hero__stage"
           id="heroSlider"
           role="region"
           aria-roledescription="carousel"
-          aria-label="Slideshow operasi tambang"
+          aria-label="Foto kegiatan operasional"
         >
-          <article
-            class="hero-slide active"
-            aria-hidden="false"
-            aria-roledescription="slide"
-            aria-label="1 dari 3: Operasi Penambangan Batu Bara"
-          >
-            <img
-              class="hero-image"
-              src="assets/images/mining/hero-open-pit-1600.webp"
-              srcset="
-                assets/images/mining/hero-open-pit-800.webp   800w,
-                assets/images/mining/hero-open-pit-1600.webp 1600w
-              "
-              sizes="100vw"
-              alt=""
-              width="1600"
-              height="1067"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
-              <p class="eyebrow">Operasi Penambangan Batu Bara</p>
-              <h1 class="hero-title">
-                <span class="hero-line">Menggerakkan Kemajuan</span
-                ><span class="hero-line">dengan Tambang <em>Bertanggung Jawab</em></span>
+          <div class="hero__media" id="heroMedia">
+            <picture class="hero__photo is-active">
+              <source media="(max-width: 680px)" srcset="assets/images/mining/hero-open-pit-800.webp" />
+              <img
+                src="assets/images/mining/hero-open-pit-1600.webp"
+                alt=""
+                width="1600"
+                height="1067"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <div class="hero__overlay" aria-hidden="true"></div>
+          <!-- Opsional: PNG objek terpotong (latar transparan) tampil DI DEPAN judul. -->
+          <div class="hero__foreground" id="heroForeground" aria-hidden="true"></div>
+
+          <div class="hero__inner">
+            <div class="hero__head">
+              <p class="hero__eyebrow" id="heroEyebrow">Partner Strategis Pertambangan dan Logistik</p>
+              <h1 class="hero__title" id="heroTitle">
+                <span class="hero__word">Berkat</span>
+                <span class="hero__word">Maritim</span>
+                <span class="hero__word">Abadi</span>
               </h1>
-              <p>
-                Operasi penambangan batu bara yang terencana, terukur, dan
-                profesional — dari area pit hingga stockpile, dengan
-                keselamatan kerja sebagai fondasi setiap aktivitas.
-              </p>
-              <div class="hero-actions">
-                <a href="pages/services.html" class="btn btn-primary"
-                  >Jelajahi Layanan
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-arrow-right" /></svg
-                ></a>
-                <a href="pages/about.html" class="btn btn-ghost">Tentang Kami</a>
-              </div>
             </div>
-          </article>
 
-          <article
-            class="hero-slide"
-            aria-hidden="true"
-            aria-roledescription="slide"
-            aria-label="2 dari 3: Keunggulan Coal Getting"
-            inert
-          >
-            <img
-              class="hero-image"
-              data-src="assets/images/mining/hero-coal-getting-1600.webp"
-              data-srcset="
-                assets/images/mining/hero-coal-getting-800.webp   800w,
-                assets/images/mining/hero-coal-getting-1600.webp 1600w
-              "
-              sizes="100vw"
-              alt=""
-              width="1600"
-              height="1067"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
-              <p class="eyebrow">Keunggulan Coal Getting</p>
-              <h2 class="hero-title">
-                <span class="hero-line">Unggul di Setiap</span
-                ><span class="hero-line">Kegiatan <em>Tambang</em></span>
-              </h2>
-              <p>
-                Pengambilan dan pemuatan batu bara yang presisi untuk menjaga
-                produktivitas, kualitas material, dan keselamatan di setiap
-                shift kerja.
+            <div class="hero__footer">
+              <div class="hero__actions">
+                <a href="pages/services.html" class="hero__cta">
+                  <span class="hero__cta-label">Jelajahi Layanan</span>
+                  <span class="hero__cta-icon" aria-hidden="true"
+                    ><svg class="icon"><use href="#i-arrow-up-right" /></svg
+                  ></span>
+                </a>
+                <a href="pages/about.html" class="hero__link">Tentang Kami</a>
+              </div>
+              <p class="hero__description" id="heroDescription">
+                Dengan fokus pada efisiensi operasional dan pelayanan prima, kami berkomitmen untuk menjadi mitra terpercaya dalam mendukung kelancaran aktivitas pertambangan dan pelabuhan di Indonesia.
               </p>
-              <div class="hero-actions">
-                <a href="pages/services.html" class="btn btn-primary"
-                  >Jelajahi Layanan
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-arrow-right" /></svg
-                ></a>
-                <a href="pages/about.html" class="btn btn-ghost">Tentang Kami</a>
+              <div class="hero__controls" id="heroControls" hidden>
+                <div class="hero__buttons">
+                  <button class="hero__button" id="heroPrev" type="button" aria-label="Slide sebelumnya">
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg>
+                  </button>
+                  <button class="hero__button" id="heroPause" type="button" aria-label="Jeda slideshow" aria-pressed="false">
+                    <svg class="icon" aria-hidden="true"><use href="#i-pause" /></svg>
+                  </button>
+                </div>
+                <div class="hero__preview">
+                  <button class="hero__preview-thumb" id="heroNext" type="button" aria-label="Slide berikutnya">
+                    <img id="heroPreviewImage" src="" alt="" width="160" height="100" />
+                    <span class="hero__preview-label" id="heroPreviewLabel">Berikutnya</span>
+                  </button>
+                  <div class="hero__preview-meta">
+                    <p class="hero__count" aria-hidden="true">
+                      <strong id="slideNumber">01</strong>/<span id="slideTotal">01</span>
+                    </p>
+                    <div class="hero__dots" id="heroDots" role="group" aria-label="Pilih slide"></div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </article>
-
-          <article
-            class="hero-slide"
-            aria-hidden="true"
-            aria-roledescription="slide"
-            aria-label="3 dari 3: Kemitraan Tambang Terpercaya"
-            inert
-          >
-            <img
-              class="hero-image"
-              data-src="assets/images/mining/hero-hauling-1600.webp"
-              data-srcset="
-                assets/images/mining/hero-hauling-800.webp   800w,
-                assets/images/mining/hero-hauling-1600.webp 1600w
-              "
-              sizes="100vw"
-              alt=""
-              width="1600"
-              height="1067"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
-              <p class="eyebrow">Kemitraan Tambang Terpercaya</p>
-              <h2 class="hero-title">
-                <span class="hero-line">Mitra Terpercaya untuk</span
-                ><span class="hero-line">Solusi <em>Pertambangan</em></span>
-              </h2>
-              <p>
-                Armada hauling dan dukungan operasional yang terkoordinasi
-                untuk membangun kemitraan jangka panjang yang berkelanjutan.
-              </p>
-              <div class="hero-actions">
-                <a href="pages/services.html" class="btn btn-primary"
-                  >Jelajahi Layanan
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-arrow-right" /></svg
-                ></a>
-                <a href="pages/about.html" class="btn btn-ghost">Tentang Kami</a>
-              </div>
-            </div>
-          </article>
-
-          <div class="container hero-bottom">
-            <a href="#about" class="scroll-down"
-              ><span aria-hidden="true"></span>Gulir untuk menjelajah</a
-            >
-            <div class="hero-navigation" aria-label="Kontrol slideshow">
-              <div class="slide-count" aria-hidden="true">
-                <strong id="slideNumber">01</strong> <span>/ 03</span>
-              </div>
-              <div class="hero-progress" aria-hidden="true">
-                <span id="heroProgress"></span>
-              </div>
-              <div class="hero-dots" id="heroDots" role="group" aria-label="Pilih slide">
-                <button
-                  class="dot active"
-                  type="button"
-                  aria-label="Slide 1: Operasi Penambangan Batu Bara"
-                  aria-pressed="true"
-                ></button>
-                <button
-                  class="dot"
-                  type="button"
-                  aria-label="Slide 2: Keunggulan Coal Getting"
-                  aria-pressed="false"
-                ></button>
-                <button
-                  class="dot"
-                  type="button"
-                  aria-label="Slide 3: Kemitraan Tambang Terpercaya"
-                  aria-pressed="false"
-                ></button>
-              </div>
-              <button
-                class="slider-arrow prev"
-                id="heroPrev"
-                type="button"
-                aria-label="Slide sebelumnya"
-              >
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg>
-              </button>
-              <button
-                class="slider-arrow next"
-                id="heroNext"
-                type="button"
-                aria-label="Slide berikutnya"
-              >
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
-              </button>
-              <button
-                class="hero-pause"
-                id="heroPause"
-                type="button"
-                aria-label="Jeda slideshow"
-                aria-pressed="false"
-              >
-                <svg class="icon" aria-hidden="true"><use href="#i-pause" /></svg>
-              </button>
             </div>
           </div>
-          <p class="hero-caption" aria-hidden="true">
-            COAL GETTING / OVERBURDEN / HAULING
-          </p>
         </div>
       </section>
 
@@ -378,30 +253,17 @@
 
           <div class="about-copy" data-reveal="up">
             <p class="section-kicker">Profil Perusahaan</p>
-            <h2 id="aboutTitle">Membangun Keunggulan dalam Operasi Tambang Batu Bara</h2>
-            <p class="lead">
-              PT Berkat Maritim Abadi adalah perusahaan yang bergerak di bidang
-              operasional pertambangan batu bara, khususnya coal getting. Kami
-              mendukung pemilik konsesi dan mitra tambang melalui pekerjaan
-              lapangan yang terencana, aman, dan efisien.
-            </p>
-
-            <div class="vision-box">
-              <span>Visi</span>
-              <p>
-                Menjadi mitra operasional pertambangan batu bara yang andal,
-                mengutamakan keselamatan, dan berkontribusi pada pertambangan
-                yang bertanggung jawab.
-              </p>
-            </div>
-
+            <h2 id="aboutTitle">Partner Strategis Pertambangan dan Logistik</h2>
+            <p class="lead">PT Berkat Maritim Abadi merupakan perusahaan yang bergerak di bidang jasa pertambangan dan jasa bongkar muat, didirikan dengan landasan nilai profesionalisme, integritas, serta dedikasi tinggi terhadap pembangunan industri nasional yang berkelanjutan.</p>
+            <ul class="advantage-list">
+              <li><span class="advantage-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg></span><div><strong>Profesional &amp; Berpengalaman</strong><span>Didukung oleh tenaga ahli dengan pengalaman panjang di industri pertambangan dan bongkar muat.</span></div></li>
+              <li><span class="advantage-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg></span><div><strong>Optimalisasi Kinerja &amp; Waktu</strong><span>Mengutamakan produktivitas dan ketepatan waktu tanpa mengurangi standar keselamatan kerja.</span></div></li>
+              <li><span class="advantage-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg></span><div><strong>Kepatuhan Standar &amp; Perizinan</strong><span>Seluruh kegiatan operasional kami telah sesuai dengan standar K3L serta memenuhi ketentuan perizinan pemerintah.</span></div></li>
+              <li><span class="advantage-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg></span><div><strong>Jaringan Mitra yang Luas</strong><span>Kami bekerja sama dengan mitra strategis di berbagai wilayah pertambangan dan pelabuhan di Indonesia.</span></div></li>
+            </ul>
             <a href="pages/about.html" class="btn btn-dark"
               >Tentang Kami
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg
-            ></a>
-            <p class="placeholder-note">
-              Profil dan visi di atas adalah teks contoh. Ganti dengan data resmi perusahaan.
-            </p>
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
           </div>
         </div>
       </section>
@@ -414,11 +276,11 @@
           <div class="section-heading">
             <div>
               <p class="section-kicker">Layanan</p>
-              <h2 id="servicesTitle">Layanan Utama untuk Operasi Tambang Batu Bara</h2>
+              <h2 id="servicesTitle">Jasa Pertambangan &amp; Bongkar Muat</h2>
             </div>
             <p>
-              Tiga layanan utama sebagai gambaran. Lingkup lengkap tersedia di
-              halaman layanan dan dapat disesuaikan dengan data resmi.
+              Layanan kami mendukung seluruh rangkaian kegiatan pertambangan,
+              mulai dari overburden hingga proses pemuatan di atas tongkang.
             </p>
           </div>
           <div class="service-grid">
@@ -430,7 +292,7 @@
                 <span class="service-tile-number">01</span>
                 <span class="service-tile-icon"><svg class="icon" aria-hidden="true"><use href="#i-excavator" /></svg></span>
                 <h3><a class="stretched-link" href="pages/services.html#coal-getting">Coal Getting</a></h3>
-                <p>Penggalian dan pemuatan batu bara dari front tambang dengan kontrol kualitas material.</p>
+                <p>Pengambilan batu bara beserta crushing dan stockpiling sebagai bagian dari jasa pertambangan.</p>
                 <span class="more-indicator" aria-hidden="true">Pelajari Selengkapnya <span class="icon-circle"><svg class="icon"><use href="#i-arrow-right" /></svg></span></span>
               </div>
             </article>
@@ -441,8 +303,8 @@
               <div class="service-tile-body">
                 <span class="service-tile-number">02</span>
                 <span class="service-tile-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers" /></svg></span>
-                <h3><a class="stretched-link" href="pages/services.html#overburden-removal">Pengupasan Overburden</a></h3>
-                <p>Pengupasan lapisan tanah penutup secara bertahap sesuai desain pit dan disposal.</p>
+                <h3><a class="stretched-link" href="pages/services.html#overburden-removal">Overburden Removal</a></h3>
+                <p>Overburden removal, land clearing, serta cut and fill untuk membuka akses ke lapisan batu bara.</p>
                 <span class="more-indicator" aria-hidden="true">Pelajari Selengkapnya <span class="icon-circle"><svg class="icon"><use href="#i-arrow-right" /></svg></span></span>
               </div>
             </article>
@@ -453,8 +315,8 @@
               <div class="service-tile-body">
                 <span class="service-tile-number">03</span>
                 <span class="service-tile-icon"><svg class="icon" aria-hidden="true"><use href="#i-truck" /></svg></span>
-                <h3><a class="stretched-link" href="pages/services.html#coal-hauling">Pengangkutan Batu Bara</a></h3>
-                <p>Pengangkutan batu bara dari pit ke ROM stockpile atau port dengan siklus terkontrol.</p>
+                <h3><a class="stretched-link" href="pages/services.html#coal-hauling">Pengangkutan Hasil Tambang</a></h3>
+                <p>Jasa hauling untuk pengangkutan batubara, nikel, mineral, dan hasil tambang lainnya.</p>
                 <span class="more-indicator" aria-hidden="true">Pelajari Selengkapnya <span class="icon-circle"><svg class="icon"><use href="#i-arrow-right" /></svg></span></span>
               </div>
             </article>
@@ -746,7 +608,7 @@
           <a class="brand footer-brand" href="index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
             <img class="brand-image" src="assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" loading="lazy" /><img class="brand-wordmark-light" src="assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" loading="lazy" />
           </a>
-          <p class="footer-desc">Mitra operasional pertambangan batu bara dengan fokus pada coal getting yang aman dan efisien.</p>
+          <p class="footer-desc">Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara sejak 2013.</p>
           <ul class="social-links" aria-label="Media sosial (tautan contoh)">
             <li><a href="#" aria-label="LinkedIn (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
             <li><a href="#" aria-label="Instagram (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
@@ -776,16 +638,16 @@
         <div class="footer-col">
           <h2>Kontak</h2>
           <ul class="footer-contact">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Jakarta Utara, DKI Jakarta</span></li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:info@bma.example">info@bma.example</a></li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+62215550188">+62 21 555 0188</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Jl. Lodan Raya No. 01, Ancol, Pademangan, Jakarta Utara 14430</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:vincent@growingroup.id">vincent@growingroup.id</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+628128222858">+62 812-8222-858</a></li>
           </ul>
         </div>
       </div>
 
       <div class="container footer-bottom">
         <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
-        <span>Pratinjau desain · data kontak dan konten masih contoh</span>
+        <span>Pratinjau desain · berita, sosial, dan karir masih contoh</span>
       </div>
     </footer>
     <script src="js/script.js" defer></script>
