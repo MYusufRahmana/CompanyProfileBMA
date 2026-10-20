@@ -1431,14 +1431,18 @@ a.job-title:hover {
   font-size: 15px;
 }
 
-/* Visi & misi */
-.vision-quote {
-  margin: 0;
-  padding-left: 24px;
-  border-left: 3px solid var(--gold);
+/* Visi & misi: kartu visi gelap + daftar misi bernomor. */
+.vm-head {
+  max-width: 640px;
+  margin-bottom: clamp(32px, 4vw, 48px);
 }
-.vision-quote figcaption,
-.mission-title {
+.vm-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: stretch;
+}
+.vm-label {
   color: var(--gold-dark);
   font:
     700 12px Inter,
@@ -1446,42 +1450,119 @@ a.job-title:hover {
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-.vision-quote blockquote {
-  margin: 10px 0 0;
+.vm-vision {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: clamp(28px, 3.5vw, 44px);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(120% 80% at 100% 0%, #f4831f2e, transparent 60%),
+    var(--charcoal);
+  color: #fff;
+}
+/* Tanda kutip besar sebagai aksen. */
+.vm-vision::after {
+  content: "\201C";
+  position: absolute;
+  top: -6px;
+  right: 28px;
+  color: var(--gold);
+  opacity: 0.22;
   font:
-    600 clamp(1.25rem, 1rem + 0.8vw, 1.6rem) / 1.45 Manrope,
+    800 200px/1 Manrope,
     sans-serif;
-  letter-spacing: -0.015em;
-  color: var(--text);
+  pointer-events: none;
 }
-.mission-title {
-  margin-top: 44px;
-}
-.mission-grid {
+.vm-vision__icon {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 32px;
-  margin: 8px 0 0;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  background: var(--gold);
+  color: var(--charcoal);
+  font-size: 22px;
+}
+.vm-vision .vm-label {
+  color: var(--gold-light);
+}
+.vm-vision blockquote {
+  position: relative;
+  z-index: 1;
+  margin: 12px 0 0;
+  font:
+    600 clamp(1.15rem, 0.95rem + 0.7vw, 1.45rem) / 1.55 Manrope,
+    sans-serif;
+  letter-spacing: -0.01em;
+}
+.vm-missions .vm-label {
+  margin-bottom: 14px;
+}
+.vm-mission-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
   padding: 0;
   list-style: none;
-  counter-reset: mission;
 }
-.mission-grid li {
-  padding: 18px 0;
-  border-top: 1px solid var(--line);
-  counter-increment: mission;
+.vm-mission {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
-.mission-grid li::before {
-  content: counter(mission, decimal-leading-zero);
-  display: block;
-  margin-bottom: 6px;
+.vm-mission:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-soft);
+}
+.vm-mission__num {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fdf0e4;
   color: var(--gold-dark);
   font:
-    700 13px Manrope,
+    800 15px/1 Manrope,
     sans-serif;
 }
-.mission-grid h4 {
-  font-size: 1rem;
+.vm-mission p {
+  margin: 0;
+  align-self: center;
+  color: var(--text);
+  line-height: 1.65;
+}
+@media (max-width: 960px) {
+  .vm-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 680px) {
+  .vm-mission {
+    gap: 14px;
+    padding: 16px;
+  }
+  .vm-mission__num {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+  .vm-vision::after {
+    font-size: 160px;
+    right: 20px;
+  }
 }
 
 /* Nilai: daftar bergaris dengan ikon garis */
@@ -1537,55 +1618,102 @@ a.job-title:hover {
 }
 
 /* Proyek & klien (Tentang Kami) */
-/* Proyek & Klien (Tentang Kami): kartu klien dengan inisial; kartu terakhir = jumlah klien. */
-.client-grid {
+/* Proyek & Klien (Tentang Kami): dua baris kartu klien bergerak berlawanan arah.
+   Tiap baris = dua grup identik; track bergeser -50% lalu berulang tanpa jeda. */
+.clients-intro {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  gap: 18px;
 }
-.client-card {
+.clients-stat {
   display: flex;
   align-items: center;
+  gap: 14px;
+  margin: 0;
+}
+.clients-stat strong {
+  color: var(--gold);
+  font:
+    800 44px/1 Manrope,
+    sans-serif;
+}
+.clients-stat span {
+  max-width: 180px;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.client-marquee {
+  display: grid;
   gap: 16px;
-  min-height: 104px;
-  padding: 20px;
+  margin-top: clamp(8px, 2vw, 16px);
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.client-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: client-scroll var(--duration, 45s) linear infinite;
+}
+.client-marquee__row[data-direction="right"] .client-marquee__track {
+  animation-direction: reverse;
+}
+.client-marquee:hover .client-marquee__track,
+.client-marquee:focus-within .client-marquee__track {
+  animation-play-state: paused;
+}
+.client-marquee__group {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0 16px 0 0;
+  list-style: none;
+}
+@keyframes client-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.client-chip {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 14px;
+  min-width: 270px;
+  padding: 16px 22px 16px 16px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  border-radius: 14px;
   background: #fff;
+  box-shadow: 0 1px 2px #171c200a;
   transition:
     border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s var(--ease-out);
+    box-shadow 0.25s ease;
 }
-.client-card:hover {
+.client-chip:hover {
   border-color: var(--gold);
   box-shadow: var(--shadow-soft);
-  transform: translateY(-2px);
 }
-.client-card__mark {
+.client-chip__mark {
   display: grid;
   flex-shrink: 0;
   place-items: center;
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 12px;
-  background: #fdf0e4;
-  color: var(--gold-dark);
+  background: linear-gradient(135deg, #f4831f, #d96d0f);
+  color: #fff;
   font:
-    800 17px/1 Manrope,
+    800 16px/1 Manrope,
     sans-serif;
   letter-spacing: 0.02em;
 }
-.client-card__name {
+.client-chip__name {
   color: var(--text);
   font:
     700 15px/1.35 Manrope,
     sans-serif;
+  white-space: nowrap;
 }
-.client-card__name small {
+.client-chip__name small {
   display: block;
   margin-bottom: 2px;
   color: var(--text-soft);
@@ -1593,82 +1721,46 @@ a.job-title:hover {
   font-weight: 600;
   letter-spacing: 0.12em;
 }
-.client-card--total {
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 4px;
-  border-color: var(--charcoal);
-  background: var(--charcoal);
-  color: #fff;
-}
-.client-card--total:hover {
-  border-color: var(--charcoal);
-}
-.client-card--total strong {
-  color: var(--gold);
-  font:
-    800 34px/1 Manrope,
-    sans-serif;
-}
-.client-card--total span {
-  color: #ffffffb3;
-  font-size: 13px;
-  line-height: 1.4;
-}
-@media (max-width: 1100px) {
-  .client-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-@media (max-width: 760px) {
-  .client-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@media (max-width: 680px) {
+  .client-marquee {
     gap: 12px;
   }
-  .client-card {
+  .client-marquee__group {
     gap: 12px;
-    min-height: 88px;
-    padding: 14px;
+    padding-right: 12px;
   }
-  .client-card__mark {
+  .client-chip {
+    min-width: 0;
+    gap: 12px;
+    padding: 12px 18px 12px 12px;
+  }
+  .client-chip__mark {
     width: 40px;
     height: 40px;
-    border-radius: 10px;
     font-size: 14px;
   }
-  .client-card__name {
-    font-size: 13.5px;
+  .client-chip__name {
+    font-size: 14px;
+  }
+  .clients-stat strong {
+    font-size: 36px;
   }
 }
-@media (max-width: 420px) {
-  .client-grid {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  .client-card {
-    min-height: 0;
-    padding: 10px 14px;
-  }
-  .client-card__name small {
-    display: none;
-  }
-  .client-card--total {
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    padding: 14px;
-  }
-  .client-card--total strong {
-    font-size: 28px;
-  }
-}
+/* Tanpa animasi: baris diam dan bisa digeser manual; salinan disembunyikan. */
 @media (prefers-reduced-motion: reduce) {
-  .client-card {
-    transition: none;
+  .client-marquee {
+    mask-image: none;
   }
-  .client-card:hover {
-    transform: none;
+  .client-marquee__row {
+    overflow-x: auto;
+    padding-inline: var(--gutter);
+  }
+  .client-marquee__track {
+    animation: none;
+  }
+  .client-marquee__group[aria-hidden="true"],
+  .client-chip[aria-hidden="true"] {
+    display: none;
   }
 }
 
