@@ -161,14 +161,14 @@ window.BMA.navigation = ({ motion, listen }) => {
 // - interval                   : jeda antarslide (ms). Satu slide = tanpa autoplay & kontrol.
 window.BMA_HERO = {
   title: "Berkat Maritim Abadi",
-  overlayOpacity: 0.45,
+  overlayOpacity: 0.7,
   interval: 6500,
   slides: [
     {
       desktopImage: "assets/images/FotoBMA/hero-1-1480.webp",
       mobileImage: "assets/images/FotoBMA/hero-1-800.webp",
       position: "center 55%",
-      mobilePosition: "55% center",
+      mobilePosition: "64% center",
       foregroundImage: "",
       eyebrow: "Partner Strategis Pertambangan dan Logistik",
       description:
@@ -752,241 +752,6 @@ window.BMA.sites = ({ motion, listen }) => {
   };
 };
 
-/* ===== animations/marquee.js ===== */
-window.BMA = window.BMA || {};
-
-// Company logo marquee. Selecting a logo eases the loop to a stop and shows
-// its details; switching to native scrolling keeps the visual position, so
-// pausing never makes the row jump.
-window.BMA.marquee = ({ motion, listen }) => {
-  const viewport = document.getElementById("companyCarousel");
-  if (!viewport) return () => {};
-  const track = document.getElementById("companyCarouselTrack");
-  const [group, clone] = track.querySelectorAll(".company-carousel-group");
-  const toggle = document.getElementById("companyCarouselToggle");
-  const status = document.getElementById("companyCarouselStatus");
-  const detail = document.getElementById("companyDetail");
-  const detailBody = document.getElementById("companyDetailBody");
-  const detailLogo = document.getElementById("companyDetailLogo");
-  const fields = {
-    field: detail?.querySelector(".company-detail-field"),
-    name: document.getElementById("companyDetailName"),
-    text: document.getElementById("companyDetailText"),
-    link: document.getElementById("companyDetailLink"),
-  };
-  const initial = {
-    field: fields.field?.textContent,
-    name: fields.name?.textContent,
-    text: fields.text?.textContent,
-    logo: detailLogo?.innerHTML,
-  };
-
-  // Loop copies are built from the real list, so company data lives in one place.
-  // There are always enough copies to cover the viewport plus one period, so
-  // switching to native scrolling can keep the exact visual position.
-  const fillCopy = (copy) => {
-    copy.replaceChildren(...[...group.children].map((item) => item.cloneNode(true)));
-    copy.querySelectorAll("a, button").forEach((el) => {
-      el.tabIndex = -1;
-      el.removeAttribute("aria-controls");
-    });
-  };
-  const ensureCopies = () => {
-    const period = group.getBoundingClientRect().width || 1;
-    const needed = Math.ceil(viewport.clientWidth / period) + 1;
-    let copies = track.querySelectorAll('.company-carousel-group[aria-hidden="true"]').length;
-    while (copies < needed) {
-      const copy = clone.cloneNode(false);
-      fillCopy(copy);
-      track.append(copy);
-      copies++;
-    }
-  };
-  if (clone) fillCopy(clone);
-  const logos = () => [...track.querySelectorAll(".company-logo")];
-
-  let tween,
-    distance = 0,
-    frozen = true,
-    manuallyPaused = motion.matches,
-    keyboard = false,
-    hovering = false,
-    touching = false,
-    visible = false,
-    selected = null;
-  const animated = () => Boolean(window.gsap) && !motion.matches;
-  const freeze = () => {
-    const x = tween && distance ? -gsap.getProperty(track, "x") % distance : 0;
-    tween?.pause();
-    viewport.classList.remove("is-animated");
-    window.gsap?.set(track, { x: 0 });
-    viewport.scrollLeft = x;
-    frozen = true;
-  };
-  const thaw = () => {
-    const start = viewport.scrollLeft;
-    viewport.classList.add("is-animated");
-    viewport.scrollLeft = 0;
-    if (distance) tween.progress((start % distance) / distance);
-    frozen = false;
-  };
-  const update = () => {
-    const staticMode = manuallyPaused || keyboard || !tween;
-    toggle.setAttribute("aria-pressed", String(manuallyPaused));
-    toggle.disabled = motion.matches;
-    toggle.textContent = manuallyPaused ? "Lanjutkan animasi" : "Jeda animasi";
-    status.textContent = selected
-      ? "Animasi dijeda sementara. Tutup detail untuk melanjutkan."
-      : staticMode
-        ? "Animasi dijeda. Geser atau gunakan Tab untuk melihat perusahaan lainnya."
-        : "Arahkan kursor ke logo untuk menjeda animasi.";
-    if (staticMode) {
-      if (!frozen) freeze();
-      return;
-    }
-    if (frozen) thaw();
-    tween.play();
-    gsap.to(tween, {
-      timeScale:
-        hovering || touching || selected || !visible || document.hidden ? 0 : 1,
-      duration: touching ? 0 : 0.5,
-      overwrite: true,
-    });
-  };
-  const build = () => {
-    const progress = tween?.progress() ?? 0;
-    if (!frozen && !animated()) freeze();
-    if (tween) gsap.killTweensOf(tween);
-    tween?.kill();
-    tween = null;
-    ensureCopies();
-    if (animated()) {
-      const style = getComputedStyle(track);
-      distance =
-        group.getBoundingClientRect().width +
-        (parseFloat(style.columnGap || style.gap) || 0);
-      tween = gsap.fromTo(
-        track,
-        { x: 0 },
-        { x: -distance, duration: distance / 34, ease: "none", repeat: -1, paused: true },
-      );
-      if (!frozen) tween.progress(progress);
-    }
-    update();
-  };
-
-  const showDetail = (logo) => {
-    const data = logo.dataset;
-    selected = data.company;
-    logos().forEach((item) =>
-      item.setAttribute("aria-pressed", String(item.dataset.company === selected)),
-    );
-    if (detail) {
-      detail.classList.remove("is-empty");
-      detailLogo.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-${data.icon}"/></svg>`;
-      fields.field.textContent = data.field;
-      fields.name.textContent = data.name;
-      fields.text.textContent = data.description;
-      fields.link.href = data.href;
-      fields.link.setAttribute("aria-label", `Lihat profil ${data.name}`);
-      // Replay the entrance animation for each new company.
-      detailBody.style.animation = "none";
-      void detailBody.offsetWidth;
-      detailBody.style.animation = "";
-    }
-    update();
-  };
-  const hideDetail = () => {
-    selected = null;
-    logos().forEach((item) => item.setAttribute("aria-pressed", "false"));
-    if (detail) {
-      detail.classList.add("is-empty");
-      detailLogo.innerHTML = initial.logo;
-      fields.field.textContent = initial.field;
-      fields.name.textContent = initial.name;
-      fields.text.textContent = initial.text;
-      fields.link.removeAttribute("aria-label");
-    }
-    update();
-  };
-
-  listen(track, "click", (event) => {
-    const logo = event.target.closest(".company-logo");
-    if (!logo || !detail) return;
-    if (logo.dataset.company === selected) hideDetail();
-    else showDetail(logo);
-  });
-  listen(document.getElementById("companyDetailClose"), "click", (event) => {
-    const company = selected;
-    hideDetail();
-    // Keyboard activation (detail === 0) returns focus to the chosen logo.
-    if (event.detail === 0)
-      group.querySelector(`[data-company="${company}"]`)?.focus();
-  });
-  listen(toggle, "click", () => {
-    manuallyPaused = !manuallyPaused;
-    update();
-  });
-  listen(viewport, "pointerenter", (event) => {
-    if (event.pointerType === "mouse") {
-      hovering = true;
-      update();
-    }
-  });
-  listen(viewport, "pointerleave", () => {
-    hovering = false;
-    update();
-  });
-  // Only keyboard focus switches to native scrolling; a mouse click keeps the loop.
-  listen(viewport, "focusin", (event) => {
-    keyboard = event.target.matches(":focus-visible");
-    update();
-  });
-  listen(viewport, "focusout", (event) => {
-    if (!viewport.contains(event.relatedTarget)) {
-      keyboard = false;
-      update();
-    }
-  });
-  listen(
-    viewport,
-    "pointerdown",
-    (event) => {
-      if (event.pointerType === "mouse") return;
-      touching = true;
-      update();
-    },
-    { passive: true },
-  );
-  const release = () => {
-    if (!touching) return;
-    touching = false;
-    update();
-  };
-  listen(window, "pointerup", release, { passive: true });
-  listen(window, "pointercancel", release);
-  listen(document, "visibilitychange", update);
-  listen(motion, "change", () => {
-    manuallyPaused = motion.matches;
-    build();
-  });
-  listen(window, "bma:motion-ready", build);
-  const resize = new ResizeObserver(build);
-  resize.observe(group);
-  const observer = new IntersectionObserver((entries) => {
-    visible = entries[0].isIntersecting;
-    update();
-  });
-  observer.observe(viewport);
-  build();
-  return () => {
-    if (tween) gsap.killTweensOf(tween);
-    tween?.kill();
-    resize.disconnect();
-    observer.disconnect();
-  };
-};
-
 /* ===== animations/scroll-reveal.js ===== */
 window.BMA = window.BMA || {};
 
@@ -1085,49 +850,6 @@ window.BMA.scrollReveal = ({ motion, listen }) => {
   };
 };
 
-/* ===== animations/company-directory.js ===== */
-window.BMA.directory = ({ motion, listen }) => {
-  let context;
-  const init = () => {
-    context?.revert();
-    const grid = document.querySelector(".directory-grid");
-    if (!grid || !window.gsap || !window.ScrollTrigger || motion.matches) return;
-    gsap.registerPlugin(ScrollTrigger);
-    context = gsap.context(() => {
-      const cards = gsap.utils.toArray(".directory-card");
-      // The from-state is applied on enter, so cards stay readable without JS
-      // and stay readable when the toolbar filter hides/shows them first.
-      ScrollTrigger.create({
-        trigger: grid,
-        start: "top 82%",
-        once: true,
-        onEnter: () => {
-          gsap.fromTo(
-            cards,
-            { opacity: 0, y: 34 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.75,
-              ease: "power3.out",
-              stagger: 0.11,
-              clearProps: "transform,opacity",
-            },
-          );
-        },
-      });
-    });
-  };
-  listen(window, "bma:motion-ready", init);
-  listen(motion, "change", init);
-  listen(window, "load", () => window.ScrollTrigger?.refresh());
-  document.fonts?.ready.then(() => window.ScrollTrigger?.refresh());
-  init();
-  return () => {
-    context?.revert();
-  };
-};
-
 /* ===== script.js ===== */
 document.addEventListener("DOMContentLoaded", () => {
   const cleanups = [];
@@ -1138,7 +860,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cleanups.push(() => target.removeEventListener(event, callback, options));
   };
   const runtime = { motion, listen };
-  ["navigation", "hero", "sites", "marquee", "scrollReveal", "directory"].forEach(
+  ["navigation", "hero", "sites", "scrollReveal"].forEach(
     (name) => {
       if (window.BMA?.[name]) cleanups.push(window.BMA[name](runtime));
     },
@@ -1302,7 +1024,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openArticle();
     filter();
   }
-  // Tabel lowongan: filter kata kunci, departemen, lokasi, status + pagination.
+  // Tabel lowongan (hanya lowongan dibuka): filter kata kunci, departemen, lokasi + pagination.
   const jobTable = document.querySelector("#jobTable");
   if (jobTable) {
     const rows = [...jobTable.tBodies[0].rows];
@@ -1310,7 +1032,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const selects = {
       department: document.querySelector("#jobDepartment"),
       location: document.querySelector("#jobLocation"),
-      status: document.querySelector("#jobStatus"),
     };
     const wrapper = jobTable.closest(".table-scroll");
     let page = 1;
@@ -1337,9 +1058,8 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       });
       page = result.page;
-      const open = matches.filter((row) => row.dataset.status === "Dibuka").length;
       document.querySelector("#jobCount").textContent =
-        matches.length + " lowongan · " + open + " dibuka" +
+        matches.length + " lowongan dibuka" +
         (result.pages > 1 ? " · halaman " + page + " dari " + result.pages : "");
       document.querySelector("#jobEmpty").hidden = matches.length !== 0;
       wrapper.hidden = matches.length === 0;
@@ -1374,42 +1094,6 @@ document.addEventListener("DOMContentLoaded", () => {
       update();
     }
   }
-});
-
-
-// Direktori perusahaan: filter dapat digabung dengan pencarian.
-document.addEventListener('DOMContentLoaded', () => {
-  const search = document.querySelector('#companySearch');
-  if (!search) return;
-  const cards = [...document.querySelectorAll('.directory-card')];
-  const buttons = [...document.querySelectorAll('[data-company-filter]')];
-  let category = 'all';
-  const update = () => {
-    const query = search.value.trim().toLocaleLowerCase('id');
-    let count = 0;
-    cards.forEach(card => {
-      const text = [card.querySelector('h3').textContent, card.querySelector('.directory-location').textContent, card.dataset.companyCategory].join(' ').toLocaleLowerCase('id');
-      card.hidden = !((category === 'all' || card.dataset.companyCategory === category) && text.includes(query));
-      if (!card.hidden) count++;
-    });
-    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.companyFilter === category)));
-    document.querySelector('#companyCount').textContent = 'Menampilkan ' + count + ' perusahaan';
-    document.querySelector('#companyEmpty').hidden = count !== 0;
-    window.ScrollTrigger?.refresh();
-  };
-  buttons.forEach(button => button.addEventListener('click', () => { category = button.dataset.companyFilter; update(); }));
-  search.addEventListener('input', update);
-  document.querySelector('#companyReset').addEventListener('click', () => {category = 'all'; search.value = ''; update(); search.focus();});
-  const revealHash = () => {
-    const card = cards.find(card => '#' + card.id === location.hash);
-    if (!card) return;
-    category = 'all'; search.value = ''; update();
-    card.querySelector('details').open = true;
-    requestAnimationFrame(() => card.scrollIntoView({block: 'start'}));
-  };
-  window.addEventListener('hashchange', revealHash);
-  cards.forEach(card => card.querySelector('details').addEventListener('toggle', () => window.ScrollTrigger?.refresh()));
-  update(); revealHash();
 });
 
 
@@ -1539,45 +1223,6 @@ document.addEventListener('DOMContentLoaded', () => {
     form.hidden = true; success.hidden = false; success.focus(); success.scrollIntoView({block:'start'});
   });
   document.querySelector('#editApplication').addEventListener('click', () => {success.hidden = true; form.hidden = false; form.elements.fullName.focus();});
-});
-
-// Galeri operasi: lightbox berbasis <dialog> dengan navigasi keyboard.
-document.addEventListener("DOMContentLoaded", () => {
-  const grid = document.querySelector("[data-gallery]");
-  const dialog = document.getElementById("galleryLightbox");
-  if (!grid || !dialog?.showModal) return;
-  const items = [...grid.querySelectorAll(".gallery-item")];
-  const image = dialog.querySelector("img");
-  const caption = dialog.querySelector("[data-lightbox-caption]");
-  const counter = dialog.querySelector("[data-counter]");
-  let index = 0;
-  let opener;
-  const show = (i) => {
-    index = (i + items.length) % items.length;
-    const item = items[index];
-    image.src = item.dataset.full;
-    image.alt = item.dataset.caption;
-    caption.textContent = item.dataset.caption;
-    counter.textContent = index + 1 + " / " + items.length;
-  };
-  items.forEach((item, i) =>
-    item.addEventListener("click", () => {
-      opener = item;
-      show(i);
-      dialog.showModal();
-    }),
-  );
-  dialog.querySelector("[data-prev]").addEventListener("click", () => show(index - 1));
-  dialog.querySelector("[data-next]").addEventListener("click", () => show(index + 1));
-  dialog.querySelector("[data-close]").addEventListener("click", () => dialog.close());
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) dialog.close();
-  });
-  dialog.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowRight") show(index + 1);
-    if (event.key === "ArrowLeft") show(index - 1);
-  });
-  dialog.addEventListener("close", () => opener?.focus());
 });
 
 // Navigasi layanan: tandai layanan yang sedang dibaca.

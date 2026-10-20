@@ -78,10 +78,7 @@ const links = (page, base) => {
     home: `${base}index.html`,
     about: p("about.html"),
     services: p("services.html"),
-    fleet: p("services.html#alat-berat"),
-    social: p("sosial.html"),
     news: p("news.html"),
-    companies: p("companies.html"),
     careers: p("karir.html"),
     contact: p("contact.html"),
   };
@@ -92,9 +89,7 @@ const menu = [
   ["home", "Beranda"],
   ["about", "Tentang Kami"],
   ["services", "Layanan"],
-  ["social", "Sosial"],
   ["news", "Berita"],
-  ["companies", "Perusahaan Kami"],
   ["careers", "Karir"],
   ["contact", "Kontak"],
 ];
@@ -105,9 +100,7 @@ const activeKey = (page) =>
     index: "home",
     about: "about",
     services: "services",
-    sosial: "social",
     news: "news",
-    companies: "companies",
     contact: "contact",
   })[page] ?? (/^(karir|lamar|lowongan-)/.test(page) ? "careers" : "");
 
@@ -122,8 +115,8 @@ export function header(page, base) {
     .join("\n          ");
   return `<header class="site-header" id="siteHeader">
       <nav class="navbar container" aria-label="Navigasi utama">
-        <a class="brand brand--mark" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
-          <img class="brand-mark" src="${base}assets/bma-mark.webp" alt="PT Berkat Maritim Abadi" width="121" height="128" />
+        <a class="brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
+          <img class="brand-logo brand-logo--white" src="${base}assets/logo/bma-logo-white.webp" alt="PT Berkat Maritim Abadi" width="398" height="160" /><img class="brand-logo brand-logo--color" src="${base}assets/logo/bma-logo-color.webp" alt="PT Berkat Maritim Abadi" width="398" height="160" />
         </a>
 
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
@@ -134,6 +127,12 @@ export function header(page, base) {
 
         <div class="nav-menu" id="navMenu">
           ${items}
+          <!-- Pilihan bahasa: tampilan saja, belum berfungsi. -->
+          <div class="lang-switch" role="group" aria-label="Pilihan bahasa (Bahasa Inggris segera hadir)">
+            <button class="lang-switch__btn" type="button" aria-pressed="false" aria-disabled="true" title="English — segera hadir">EN</button>
+            <span class="lang-switch__sep" aria-hidden="true">|</span>
+            <button class="lang-switch__btn is-active" type="button" aria-pressed="true" aria-disabled="true" title="Bahasa Indonesia">IND</button>
+          </div>
           <div class="menu-contact">
             PT Berkat Maritim Abadi · Jasa Pertambangan &amp; Bongkar Muat<br /><a href="${l.contact}">Informasi kontak &amp; kerja sama ↗</a>
           </div>
@@ -149,7 +148,7 @@ export function footer(page, base) {
       <div class="container footer-top">
         <div class="footer-about">
           <a class="brand footer-brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
-            <img class="brand-image" src="${base}assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" loading="lazy" /><img class="brand-wordmark-light" src="${base}assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" loading="lazy" />
+            <img class="brand-logo footer-logo" src="${base}assets/logo/bma-logo-footer.webp" alt="PT Berkat Maritim Abadi — Member of Growin Group" width="795" height="409" loading="lazy" />
           </a>
           <p class="footer-desc">Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara sejak 2013.</p>
           <ul class="social-links" aria-label="Media sosial (tautan contoh)">
@@ -163,8 +162,6 @@ export function footer(page, base) {
           <h2 id="footerLinks">Perusahaan</h2>
           <ul>
             ${li(l.about, "Tentang Kami")}
-            ${li(l.companies, "Perusahaan Kami")}
-            ${li(l.social, "Sosial")}
             ${li(l.news, "Berita")}
           </ul>
         </nav>
@@ -173,9 +170,12 @@ export function footer(page, base) {
           <h2 id="footerPages">Layanan &amp; Karir</h2>
           <ul>
             ${li(l.services, "Layanan")}
-            ${li(l.fleet, "Armada Alat Berat")}
             ${li(l.careers, "Karir")}
           </ul>
+          <p class="footer-recruit">
+            <span class="footer-recruit__label">Email rekrutmen</span>
+            <a href="mailto:karir@growingroup.id">${icon("mail")}karir@growingroup.id</a>
+          </p>
         </nav>
 
         <div class="footer-col">
@@ -190,7 +190,7 @@ export function footer(page, base) {
 
       <div class="container footer-bottom">
         <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
-        <span>Pratinjau desain · berita, sosial, dan karir masih contoh</span>
+        <span>Pratinjau desain · berita dan karir masih contoh</span>
       </div>
     </footer>`;
 }

@@ -355,13 +355,6 @@ button {
 .brand {
   flex-shrink: 0;
 }
-.navbar .brand-image {
-  width: 126px;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  height: auto;
-}
 .nav-menu {
   display: flex;
   align-items: center;
@@ -406,9 +399,6 @@ body:not(.inner-page) .site-header:not(.scrolled):not(.menu-open) {
   background: transparent;
   color: #fff;
   border-color: #ffffff1f;
-}
-body:not(.inner-page) .site-header:not(.scrolled):not(.menu-open) .brand-image {
-  filter: brightness(0) invert(1);
 }
 body:not(.inner-page)
   .site-header:not(.scrolled):not(.menu-open)
@@ -465,6 +455,45 @@ body:not(.inner-page)
   display: none;
 }
 
+/* Pilihan bahasa EN | IND (tampilan saja, belum berfungsi). Warna mengikuti
+   header: putih di atas foto, gelap setelah scroll. */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 6px;
+  padding: 3px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.lang-switch__sep {
+  opacity: 0.35;
+}
+.lang-switch__btn {
+  min-width: 36px;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  opacity: 0.7;
+  cursor: default;
+}
+.lang-switch__btn.is-active {
+  background: var(--gold);
+  color: var(--charcoal);
+  opacity: 1;
+}
+.lang-switch__btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
 /* ===== Hero: foto layar penuh + judul besar "BERKAT MARITIM ABADI" =====
    Gambar, posisi fokus, overlay, judul, dan foreground diatur dari
    window.BMA_HERO (js/script.js). Nilai di sini hanya cadangan bila JS mati.
@@ -472,7 +501,7 @@ body:not(.inner-page)
 .hero {
   --hero-accent: #f4831f; /* oranye BMA, dipakai hemat */
   --hero-ink: #111111;
-  --hero-overlay: 0.45;
+  --hero-overlay: 0.7;
   position: relative;
   color: #fff;
   background: var(--hero-ink);
@@ -526,10 +555,10 @@ body:not(.inner-page)
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgb(17 17 17 / 0.55) 0%,
-    rgb(17 17 17 / calc(var(--hero-overlay) * 0.6)) 32%,
+    rgb(17 17 17 / 0.72) 0%,
+    rgb(17 17 17 / calc(var(--hero-overlay) * 0.75)) 32%,
     rgb(17 17 17 / var(--hero-overlay)) 64%,
-    rgb(17 17 17 / 0.88) 100%
+    rgb(17 17 17 / 0.94) 100%
   );
 }
 
@@ -935,15 +964,16 @@ body:not(.inner-page)
   position: relative;
   display: inline-block;
 }
-.footer .brand-image {
-  width: 116px;
-}
-.footer .brand-wordmark-light {
+/* Logo footer: versi putih + "Member of Growin Group". */
+.footer .footer-logo {
   display: block;
+  width: 170px;
+  max-width: 100%;
+  height: auto;
 }
 .footer-desc {
   max-width: 320px;
-  margin-top: 14px;
+  margin-top: 22px;
   font-size: 14px;
   line-height: 1.65;
 }
@@ -1023,6 +1053,34 @@ body:not(.inner-page)
 }
 .footer-contact a::before {
   display: none;
+}
+/* Email rekrutmen di kolom "Layanan & Karir". */
+.footer-recruit {
+  display: grid;
+  gap: 4px;
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid #ffffff1a;
+  font-size: 14px;
+}
+.footer-recruit__label {
+  color: #8f989f;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.footer-col .footer-recruit a {
+  gap: 8px;
+  overflow-wrap: anywhere;
+}
+.footer-recruit a::before {
+  display: none;
+}
+.footer-recruit .icon {
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: 15px;
 }
 .footer small {
   display: block;
@@ -1204,6 +1262,11 @@ body:not(.inner-page)
     width: 32px;
     bottom: 8px;
   }
+  .lang-switch {
+    align-self: flex-start;
+    margin: 24px 0 0;
+    font-size: 13px;
+  }
 
   .menu-contact {
     display: block;
@@ -1252,9 +1315,6 @@ body:not(.inner-page)
   }
   .site-header.scrolled .navbar {
     min-height: 66px;
-  }
-  .navbar .brand-image {
-    width: 108px;
   }
 
   .btn {
@@ -1538,6 +1598,9 @@ button:disabled {
 
   .no-js .menu-contact {
     display: none;
+  }
+  .no-js .lang-switch {
+    margin-left: 0;
   }
 }
 /* Direktori Perusahaan Kami: foto dan identitas dalam kartu katalog. */
@@ -2286,6 +2349,9 @@ button:disabled {
     grid-template-columns: auto 1fr;
     align-items: center;
     gap: 12px 16px;
+  }
+  .footer .footer-logo {
+    width: 140px;
   }
   .footer-about .footer-desc {
     grid-column: 1 / -1;

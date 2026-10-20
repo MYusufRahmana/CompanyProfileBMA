@@ -1,6 +1,6 @@
 /* =============================================================
-   BMA — Inner page layouts (about, services, operations, news,
-   companies, contact). Builds on style.css + components.css.
+   BMA — Inner page layouts (about, services, news, careers,
+   contact). Builds on style.css + components.css.
    ============================================================= */
 
 /* ---------- Page banner with breadcrumb (all inner pages) ---------- */
@@ -654,86 +654,6 @@
   color: var(--gold-dark);
 }
 
-/* ---------- Companies ---------- */
-.company-page .directory-card {
-  border-radius: var(--radius-md);
-  transition:
-    transform 0.4s var(--ease-out),
-    box-shadow 0.4s var(--ease-out),
-    border-color 0.4s;
-}
-.company-page .directory-card:hover {
-  border-color: var(--gold);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
-}
-.directory-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
-  border-radius: var(--radius-sm);
-  background: #fff;
-  color: var(--charcoal);
-  box-shadow: 0 6px 20px #171c2014;
-  font:
-    800 20px/1 Manrope,
-    sans-serif;
-  letter-spacing: -0.03em;
-}
-.directory-logo .icon {
-  color: var(--gold-dark);
-  font-size: 28px;
-}
-.directory-logo small {
-  display: block;
-  margin-top: 2px;
-  color: var(--text-soft);
-  font:
-    700 10px Inter,
-    sans-serif;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.company-page .directory-category {
-  background: var(--gold);
-  color: var(--charcoal);
-}
-.company-page .directory-filters button {
-  font-size: 14px;
-}
-.company-page .directory-filters button[aria-pressed="true"] {
-  border-color: var(--charcoal);
-  background: var(--charcoal);
-  color: #fff;
-}
-.company-page .directory-description {
-  font-size: 15px;
-}
-.company-page .directory-location,
-.company-page .directory-meta {
-  font-size: 13px;
-}
-.company-page .directory-details summary {
-  font-size: 14px;
-}
-.company-page .directory-details > div {
-  font-size: 14px;
-}
-.company-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 22px;
-  margin-top: 12px;
-}
-.company-links a {
-  margin: 0;
-}
-.company-links .muted {
-  color: var(--text-soft);
-  font-size: 13px;
-}
-
 /* ---------- Contact ---------- */
 .contact-page-grid {
   display: grid;
@@ -946,21 +866,12 @@
     transform: none;
   }
 }
-/* Override the legacy `.directory-brand > span` caption style for the logo tile. */
-.directory-brand > .directory-logo {
-  padding: 14px 16px;
-  color: var(--charcoal);
-  font-size: 20px;
-  letter-spacing: -0.03em;
-  text-transform: none;
-}
-
 /* =============================================================
    Karir — tabel lowongan (tetap tabel di semua ukuran layar)
    ============================================================= */
 .jobs-filter {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr));
   gap: 16px;
   padding: 20px;
   border: 1px solid var(--line);
@@ -1022,7 +933,7 @@
 }
 .jobs-table {
   width: 100%;
-  min-width: 920px;
+  min-width: 820px;
   border-collapse: collapse;
   font-size: 15px;
 }
@@ -1626,146 +1537,138 @@ a.job-title:hover {
 }
 
 /* Proyek & klien (Tentang Kami) */
-.client-list {
+/* Proyek & Klien (Tentang Kami): kartu klien dengan inisial; kartu terakhir = jumlah klien. */
+.client-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 32px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.client-list li {
+.client-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 0;
-  border-top: 1px solid var(--line);
-  font:
-    600 15px/1.4 Manrope,
-    sans-serif;
-}
-.client-list li::before {
-  content: "";
-  flex-shrink: 0;
-  width: 8px;
-  height: 8px;
-  background: var(--gold);
-}
-
-/* Armada alat berat (Layanan) */
-.fleet-summary {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 1px;
-  margin: 0 0 24px;
-  padding: 0;
-  overflow: hidden;
-  list-style: none;
+  gap: 16px;
+  min-height: 104px;
+  padding: 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: var(--line);
-}
-.fleet-summary li {
-  padding: 18px 16px;
   background: #fff;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s var(--ease-out);
 }
-.fleet-summary strong {
-  display: block;
+.client-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
+}
+.client-card__mark {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #fdf0e4;
+  color: var(--gold-dark);
+  font:
+    800 17px/1 Manrope,
+    sans-serif;
+  letter-spacing: 0.02em;
+}
+.client-card__name {
   color: var(--text);
   font:
-    800 clamp(1.6rem, 1.2rem + 1vw, 2.2rem) / 1 Manrope,
+    700 15px/1.35 Manrope,
     sans-serif;
 }
-.fleet-summary span {
+.client-card__name small {
   display: block;
-  margin-top: 6px;
+  margin-bottom: 2px;
   color: var(--text-soft);
-  font-size: 13px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
 }
-.fleet-summary__total.fleet-summary__total {
+.client-card--total {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  border-color: var(--charcoal);
   background: var(--charcoal);
+  color: #fff;
 }
-.fleet-summary__total strong {
+.client-card--total:hover {
+  border-color: var(--charcoal);
+}
+.client-card--total strong {
   color: var(--gold);
+  font:
+    800 34px/1 Manrope,
+    sans-serif;
 }
-.fleet-summary__total span {
+.client-card--total span {
   color: #ffffffb3;
-}
-.fleet-details {
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: #fff;
-}
-.fleet-details summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px 20px;
-  cursor: pointer;
-  font-weight: 700;
-  list-style: none;
-}
-.fleet-details summary::-webkit-details-marker {
-  display: none;
-}
-.fleet-details summary small {
-  display: block;
-  margin-top: 2px;
-  color: var(--text-soft);
   font-size: 13px;
-  font-weight: 400;
+  line-height: 1.4;
 }
-.fleet-details summary .icon {
-  flex-shrink: 0;
-  color: var(--gold-dark);
-  transition: transform 0.25s var(--ease-out);
-}
-.fleet-details[open] summary .icon {
-  transform: rotate(90deg);
-}
-.fleet-details summary:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-.fleet-details .table-scroll {
-  margin: 0;
-  border: 0;
-  border-top: 1px solid var(--line);
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
-}
-.fleet-table {
-  min-width: 720px;
-}
-.fleet-table td:last-child,
-.fleet-table th:last-child {
-  text-align: center;
-}
-.fleet-table tfoot th,
-.fleet-table tfoot td {
-  padding: 14px 16px;
-  border-top: 2px solid var(--charcoal);
-  background: var(--bg-light);
-  font-weight: 800;
-  text-align: right;
-}
-.fleet-table tfoot td {
-  text-align: center;
-}
-@media (max-width: 960px) {
-  .fleet-summary {
+@media (max-width: 1100px) {
+  .client-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .fleet-summary__total {
-    grid-column: 1 / -1;
+}
+@media (max-width: 760px) {
+  .client-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .client-card {
+    gap: 12px;
+    min-height: 88px;
+    padding: 14px;
+  }
+  .client-card__mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .client-card__name {
+    font-size: 13.5px;
   }
 }
-@media (max-width: 680px) {
-  .client-list {
+@media (max-width: 420px) {
+  .client-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
-  .fleet-summary {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .client-card {
+    min-height: 0;
+    padding: 10px 14px;
+  }
+  .client-card__name small {
+    display: none;
+  }
+  .client-card--total {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+  }
+  .client-card--total strong {
+    font-size: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .client-card {
+    transition: none;
+  }
+  .client-card:hover {
+    transform: none;
   }
 }
 
@@ -1797,8 +1700,8 @@ a.job-title:hover {
   margin-top: 18px;
 }
 
-/* ---------- Banner sederhana (Tentang Kami, Layanan, Sosial, Berita,
-   Perusahaan Kami, Karir, Kontak): foto penuh, judul besar, breadcrumb ---------- */
+/* ---------- Banner sederhana (Tentang Kami, Layanan, Berita, Karir,
+   Kontak): foto penuh, judul besar, breadcrumb ---------- */
 .page-banner--simple {
   min-height: clamp(380px, 52svh, 520px);
 }

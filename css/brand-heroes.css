@@ -1,4 +1,4 @@
-/* Shared photographic mastheads and two-tone navbar logo presentation. */
+/* Header transparan di atas foto + logo navbar (versi putih / berwarna). */
 body .site-header:not(.scrolled):not(.menu-open) {
   background: transparent;
   color: #fff;
@@ -9,33 +9,26 @@ body .site-header:not(.scrolled):not(.menu-open) {
 body .site-header:not(.scrolled):not(.menu-open) .nav-link:is(:hover, .active) {
   color: #ffa95c;
 }
+/* Logo navbar: versi putih saat header transparan di atas foto,
+   versi berwarna saat header putih (scroll / menu terbuka). */
 body .site-header .navbar .brand {
-  position: relative;
   display: block;
 }
-body .site-header .navbar .brand-image {
-  filter: none;
-  background: transparent;
-  padding: 0;
+.navbar .brand-logo {
+  display: block;
+  width: auto;
+  height: 52px;
+  transition: height 0.35s ease;
 }
-body .site-header:not(.scrolled):not(.menu-open) .navbar .brand-image {
-  filter: none;
-}
-/* The original symbol remains orange; a clipped white copy covers only its text.
-   Both copies retain the original alpha and geometry. No raster is regenerated. */
-.brand-wordmark-light {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  filter: brightness(0) invert(1);
-  clip-path: inset(0 0 0 40%);
-  pointer-events: none;
+.navbar .brand-logo--color,
+.site-header:is(.scrolled, .menu-open) .navbar .brand-logo--white {
   display: none;
 }
-.site-header:not(.scrolled):not(.menu-open) .brand-wordmark-light {
+.site-header:is(.scrolled, .menu-open) .navbar .brand-logo--color {
   display: block;
+}
+.site-header.scrolled .navbar .brand-logo {
+  height: 44px;
 }
 body .site-header.scrolled,
 body .site-header.menu-open {
@@ -53,26 +46,20 @@ body.company-page #mainContent {
     color: var(--text);
     border-color: var(--line);
   }
-  .no-js body .site-header .brand-wordmark-light {
+  .no-js body .site-header .brand-logo--white {
     display: none;
+  }
+  .no-js body .site-header .brand-logo--color {
+    display: block;
   }
   .no-js body .site-header .nav-link:is(:hover, .active) {
     color: #a85409;
   }
 }
 
-/* Navbar: simbol BMA (oranye, latar transparan). Logo footer tetap bma-logo.webp. */
-.navbar .brand-mark {
-  display: block;
-  width: auto;
-  height: 52px;
-  transition: height 0.35s ease;
-}
-.site-header.scrolled .navbar .brand-mark {
-  height: 44px;
-}
 @media (max-width: 680px) {
-  .navbar .brand-mark {
+  .navbar .brand-logo,
+  .site-header.scrolled .navbar .brand-logo {
     height: 42px;
   }
 }

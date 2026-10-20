@@ -1354,7 +1354,7 @@
   }
 }
 
-/* Pop-up foto (galeri Sosial & galeri Site di Beranda) */
+/* Pop-up foto (galeri Site di Beranda) */
 .lightbox {
   width: min(1100px, calc(100% - 32px));
   max-height: calc(100% - 32px);

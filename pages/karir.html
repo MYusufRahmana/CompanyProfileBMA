@@ -70,8 +70,8 @@
     <!-- Header: dibuat oleh tools/layout.mjs -->
     <header class="site-header" id="siteHeader">
       <nav class="navbar container" aria-label="Navigasi utama">
-        <a class="brand brand--mark" href="../index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
-          <img class="brand-mark" src="../assets/bma-mark.webp" alt="PT Berkat Maritim Abadi" width="121" height="128" />
+        <a class="brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
+          <img class="brand-logo brand-logo--white" src="../assets/logo/bma-logo-white.webp" alt="PT Berkat Maritim Abadi" width="398" height="160" /><img class="brand-logo brand-logo--color" src="../assets/logo/bma-logo-color.webp" alt="PT Berkat Maritim Abadi" width="398" height="160" />
         </a>
 
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
@@ -84,11 +84,15 @@
           <a href="../index.html" class="nav-link">Beranda</a>
           <a href="about.html" class="nav-link">Tentang Kami</a>
           <a href="services.html" class="nav-link">Layanan</a>
-          <a href="sosial.html" class="nav-link">Sosial</a>
           <a href="news.html" class="nav-link">Berita</a>
-          <a href="companies.html" class="nav-link">Perusahaan Kami</a>
           <a href="karir.html" class="nav-link active" aria-current="page">Karir</a>
           <a href="contact.html" class="nav-link">Kontak</a>
+          <!-- Pilihan bahasa: tampilan saja, belum berfungsi. -->
+          <div class="lang-switch" role="group" aria-label="Pilihan bahasa (Bahasa Inggris segera hadir)">
+            <button class="lang-switch__btn" type="button" aria-pressed="false" aria-disabled="true" title="English — segera hadir">EN</button>
+            <span class="lang-switch__sep" aria-hidden="true">|</span>
+            <button class="lang-switch__btn is-active" type="button" aria-pressed="true" aria-disabled="true" title="Bahasa Indonesia">IND</button>
+          </div>
           <div class="menu-contact">
             PT Berkat Maritim Abadi · Jasa Pertambangan &amp; Bongkar Muat<br /><a href="contact.html">Informasi kontak &amp; kerja sama ↗</a>
           </div>
@@ -138,25 +142,21 @@
               <option value="K3 &amp; Lingkungan">K3 &amp; Lingkungan</option>
               <option value="Logistik">Logistik</option>
               <option value="Plant &amp; Maintenance">Plant &amp; Maintenance</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Administrasi">Administrasi</option>
             </select></label>
             <label>Lokasi<select id="jobLocation"><option value="all">Semua lokasi</option>
               <option value="Kutai Kartanegara, Kaltim">Kutai Kartanegara, Kaltim</option>
               <option value="Tanah Bumbu, Kalsel">Tanah Bumbu, Kalsel</option>
-              <option value="Muara Enim, Sumsel">Muara Enim, Sumsel</option>
             </select></label>
-            <label>Status<select id="jobStatus"><option value="all">Semua status</option><option value="Dibuka">Dibuka</option><option value="Ditutup">Ditutup</option></select></label>
           </form>
           <div class="jobs-meta">
-            <p id="jobCount" role="status">8 lowongan</p>
+            <p id="jobCount" role="status">5 lowongan dibuka</p>
             <span class="sample-label">Data contoh, bukan lowongan resmi</span>
           </div>
           <div class="table-scroll" tabindex="0" role="region" aria-label="Tabel lowongan, dapat digeser ke samping">
             <table class="jobs-table" id="jobTable">
               <caption>Daftar lowongan kerja (data contoh)</caption>
               <thead>
-                <tr><th scope="col">No.</th><th scope="col">Posisi</th><th scope="col">Departemen</th><th scope="col">Lokasi Penempatan</th><th scope="col">Tipe Pekerjaan</th><th scope="col">Batas Lamaran</th><th scope="col">Status</th><th scope="col">Aksi</th></tr>
+                <tr><th scope="col">No.</th><th scope="col">Posisi</th><th scope="col">Departemen</th><th scope="col">Lokasi Penempatan</th><th scope="col">Batas Lamaran</th><th scope="col">Status</th><th scope="col">Aksi</th></tr>
               </thead>
               <tbody>
                 <tr data-department="Produksi" data-location="Kutai Kartanegara, Kaltim" data-status="Dibuka">
@@ -164,7 +164,6 @@
                   <td><a class="job-title" href="lowongan-operator-excavator.html">Operator Excavator</a><span class="job-code">BMA-PRD-01</span></td>
                   <td>Produksi</td>
                   <td>Kutai Kartanegara, Kaltim</td>
-                  <td>Kontrak</td>
                   <td><time datetime="2026-11-30">30 Nov 2026</time></td>
                   <td><span class="status-badge status-open">Dibuka</span></td>
                   <td><a class="btn-apply" href="lamar.html?posisi=operator-excavator" aria-label="Lamar posisi Operator Excavator">Lamar</a></td>
@@ -174,7 +173,6 @@
                   <td><a class="job-title" href="lowongan-hse-officer.html">HSE Officer</a><span class="job-code">BMA-HSE-02</span></td>
                   <td>K3 &amp; Lingkungan</td>
                   <td>Kutai Kartanegara, Kaltim</td>
-                  <td>Penuh waktu</td>
                   <td><time datetime="2026-11-15">15 Nov 2026</time></td>
                   <td><span class="status-badge status-open">Dibuka</span></td>
                   <td><a class="btn-apply" href="lamar.html?posisi=hse-officer" aria-label="Lamar posisi HSE Officer">Lamar</a></td>
@@ -184,7 +182,6 @@
                   <td><a class="job-title" href="lowongan-logistics-coordinator.html">Koordinator Logistik</a><span class="job-code">BMA-LOG-03</span></td>
                   <td>Logistik</td>
                   <td>Tanah Bumbu, Kalsel</td>
-                  <td>Penuh waktu</td>
                   <td><time datetime="2026-11-20">20 Nov 2026</time></td>
                   <td><span class="status-badge status-open">Dibuka</span></td>
                   <td><a class="btn-apply" href="lamar.html?posisi=logistics-coordinator" aria-label="Lamar posisi Koordinator Logistik">Lamar</a></td>
@@ -194,7 +191,6 @@
                   <td><span class="job-title">Foreman Produksi Coal Getting</span><span class="job-code">BMA-PRD-04</span></td>
                   <td>Produksi</td>
                   <td>Kutai Kartanegara, Kaltim</td>
-                  <td>Penuh waktu</td>
                   <td><time datetime="2026-12-10">10 Des 2026</time></td>
                   <td><span class="status-badge status-open">Dibuka</span></td>
                   <td><a class="btn-apply" href="lamar.html?posisi=foreman-produksi" aria-label="Lamar posisi Foreman Produksi Coal Getting">Lamar</a></td>
@@ -204,40 +200,9 @@
                   <td><span class="job-title">Mekanik Alat Berat</span><span class="job-code">BMA-PLT-05</span></td>
                   <td>Plant &amp; Maintenance</td>
                   <td>Tanah Bumbu, Kalsel</td>
-                  <td>Kontrak</td>
                   <td><time datetime="2026-12-05">5 Des 2026</time></td>
                   <td><span class="status-badge status-open">Dibuka</span></td>
                   <td><a class="btn-apply" href="lamar.html?posisi=mekanik-alat-berat" aria-label="Lamar posisi Mekanik Alat Berat">Lamar</a></td>
-                </tr>
-                <tr data-department="Engineering" data-location="Muara Enim, Sumsel" data-status="Ditutup" class="is-closed">
-                  <td data-no>6</td>
-                  <td><span class="job-title">Surveyor Tambang</span><span class="job-code">BMA-ENG-06</span></td>
-                  <td>Engineering</td>
-                  <td>Muara Enim, Sumsel</td>
-                  <td>Penuh waktu</td>
-                  <td><time datetime="2026-09-30">30 Sep 2026</time></td>
-                  <td><span class="status-badge status-closed">Ditutup</span></td>
-                  <td><button class="btn-apply" type="button" disabled aria-label="Lamaran Surveyor Tambang sudah ditutup">Lamar</button></td>
-                </tr>
-                <tr data-department="Administrasi" data-location="Muara Enim, Sumsel" data-status="Ditutup" class="is-closed">
-                  <td data-no>7</td>
-                  <td><span class="job-title">Staf Administrasi Site</span><span class="job-code">BMA-ADM-07</span></td>
-                  <td>Administrasi</td>
-                  <td>Muara Enim, Sumsel</td>
-                  <td>Kontrak</td>
-                  <td><time datetime="2026-09-15">15 Sep 2026</time></td>
-                  <td><span class="status-badge status-closed">Ditutup</span></td>
-                  <td><button class="btn-apply" type="button" disabled aria-label="Lamaran Staf Administrasi Site sudah ditutup">Lamar</button></td>
-                </tr>
-                <tr data-department="Produksi" data-location="Tanah Bumbu, Kalsel" data-status="Ditutup" class="is-closed">
-                  <td data-no>8</td>
-                  <td><span class="job-title">Pengemudi Dump Truck</span><span class="job-code">BMA-PRD-08</span></td>
-                  <td>Produksi</td>
-                  <td>Tanah Bumbu, Kalsel</td>
-                  <td>Kontrak</td>
-                  <td><time datetime="2026-08-31">31 Agu 2026</time></td>
-                  <td><span class="status-badge status-closed">Ditutup</span></td>
-                  <td><button class="btn-apply" type="button" disabled aria-label="Lamaran Pengemudi Dump Truck sudah ditutup">Lamar</button></td>
                 </tr>
               </tbody>
             </table>
@@ -278,7 +243,7 @@
       <div class="container footer-top">
         <div class="footer-about">
           <a class="brand footer-brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
-            <img class="brand-image" src="../assets/bma-logo.webp" alt="PT Berkat Maritim Abadi" width="130" height="53" loading="lazy" /><img class="brand-wordmark-light" src="../assets/bma-logo.webp" alt="" aria-hidden="true" width="130" height="53" loading="lazy" />
+            <img class="brand-logo footer-logo" src="../assets/logo/bma-logo-footer.webp" alt="PT Berkat Maritim Abadi — Member of Growin Group" width="795" height="409" loading="lazy" />
           </a>
           <p class="footer-desc">Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara sejak 2013.</p>
           <ul class="social-links" aria-label="Media sosial (tautan contoh)">
@@ -292,8 +257,6 @@
           <h2 id="footerLinks">Perusahaan</h2>
           <ul>
             <li><a href="about.html">Tentang Kami</a></li>
-            <li><a href="companies.html">Perusahaan Kami</a></li>
-            <li><a href="sosial.html">Sosial</a></li>
             <li><a href="news.html">Berita</a></li>
           </ul>
         </nav>
@@ -302,9 +265,12 @@
           <h2 id="footerPages">Layanan &amp; Karir</h2>
           <ul>
             <li><a href="services.html">Layanan</a></li>
-            <li><a href="services.html#alat-berat">Armada Alat Berat</a></li>
             <li><a href="karir.html">Karir</a></li>
           </ul>
+          <p class="footer-recruit">
+            <span class="footer-recruit__label">Email rekrutmen</span>
+            <a href="mailto:karir@growingroup.id"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>karir@growingroup.id</a>
+          </p>
         </nav>
 
         <div class="footer-col">
@@ -319,7 +285,7 @@
 
       <div class="container footer-bottom">
         <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
-        <span>Pratinjau desain · berita, sosial, dan karir masih contoh</span>
+        <span>Pratinjau desain · berita dan karir masih contoh</span>
       </div>
     </footer>
     <script src="../js/script.js" defer></script>

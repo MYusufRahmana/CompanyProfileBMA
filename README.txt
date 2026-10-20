@@ -4,29 +4,29 @@ Buka index.html langsung di browser, atau lewat Laragon (http://localhost/...). 
 Catatan: lewat file:// beberapa browser memblokir preload font (CORS); tampilan tetap berjalan dengan font fallback. Gunakan server lokal untuk hasil identik dengan produksi.
 
 STRUKTUR (multi-page, seluruh teks publik berbahasa Indonesia)
-Navbar utama (urutan tetap): Beranda · Tentang Kami · Layanan · Sosial · Berita · Perusahaan Kami · Kontak.
-Karir bukan menu/submenu: diakses dari footer (kolom "Layanan & Karir") dan dari menu mobile.
+Navbar utama (urutan tetap): Beranda · Tentang Kami · Layanan · Berita · Karir · Kontak.
+Halaman Sosial dan Perusahaan Kami sudah dihapus; konten sosial akan digabung ke Berita (kategori Sosial).
 
 - index.html                 Beranda: hero 3 slide, profil singkat, 3 layanan, 3 berita, Site Operasional (#site-operasional),
-                             slider logo perusahaan, footer.
+                             footer.
 - pages/about.html           Tentang Kami: profil, sejarah ([Tahun] placeholder), visi & misi, nilai, keunggulan.
 - pages/services.html        Layanan: 6 layanan sesuai company profile 2026 (#coal-getting, #overburden-removal, #coal-hauling,
-                             #equipment-support, #site-operations, #bongkar-muat) + Armada Alat Berat (#alat-berat):
-                             ringkasan jumlah per jenis + tabel rincian 47 tipe / 86 unit (dalam <details>, tertutup default).
-- pages/sosial.html          Sosial: komitmen, 4 bidang program (contoh), dokumentasi + lightbox, cerita terbaru (ke Berita kategori Sosial).
+                             #equipment-support, #site-operations, #bongkar-muat). Section Armada Alat Berat dihapus sementara
+                             (data 47 tipe / 86 unit masih ada di riwayat git, commit ecf8a2f).
 - pages/news.html            Berita: filter kategori (Korporat, Operasional, K3, Sosial), pencarian, pagination 6/halaman, artikel lengkap (#id).
-- pages/companies.html       Perusahaan Kami: direktori 6 perusahaan contoh, filter sektor, pencarian, detail.
 - pages/contact.html         Kontak: info kantor, formulir tampilan (belum terhubung backend), peta contoh. Mendukung ?layanan=<nama layanan>.
-- pages/karir.html           Karir: TABEL lowongan (No., Posisi, Departemen, Lokasi, Tipe, Batas Lamaran, Status, Aksi) + filter
-                             kata kunci/departemen/lokasi/status + pagination. Lowongan Ditutup: tombol Lamar nonaktif.
+- pages/karir.html           Karir: TABEL lowongan yang DIBUKA saja (No., Posisi, Departemen, Lokasi, Batas Lamaran, Status, Aksi)
+                             + filter kata kunci/departemen/lokasi + pagination. Lowongan yang ditutup dihapus dari tabel.
 - pages/lowongan-*.html      Detail lowongan (operator-excavator, hse-officer, logistics-coordinator).
 - pages/lamar.html           Formulir lamaran prototipe (?posisi=<id>). Tidak mengirim/menyimpan data.
 - css/style.css              Design system: token, tipografi, tombol, navbar, hero, footer ringkas, scroll reveal, formulir lamaran.
-- css/components.css         Komponen reusable: kartu layanan & berita, process steps, marquee logo, peta contoh, daftar kontak.
+- css/components.css         Komponen reusable: kartu layanan & berita, process steps, peta site, daftar kontak.
 - css/pages.css              Halaman dalam: banner + breadcrumb, timeline, visi-misi, nilai, layanan, galeri, pagination, form,
-                             tabel lowongan, detail lowongan, halaman Sosial.
-- css/brand-heroes.css       Logo dua warna (navbar transparan & footer gelap).
-- js/script.js               Modul navigation, hero, marquee, scrollReveal, directory, BMA.paginate (dipakai Berita & Karir),
+                             tabel lowongan, detail lowongan.
+- css/brand-heroes.css       Header transparan + logo navbar: versi putih di atas foto, versi berwarna setelah scroll/menu terbuka.
+- assets/logo/               bma-logo-color.* (teks abu gelap, untuk latar terang) dan bma-logo-white.* (teks putih, untuk latar gelap/foto),
+                             dibuat dari assets/images/FINAL LOGO BMA BLACK.png. Favicon dari simbol logo yang sama.
+- js/script.js               Modul navigation, hero, sites, scrollReveal, BMA.paginate (dipakai Berita & Karir),
                              filter berita, tabel lowongan, form kontak, lightbox galeri, navigasi layanan, formulir lamaran. GSAP lokal.
 - tools/layout.mjs           Sumber tunggal navbar, footer, dan ikon untuk SEMUA halaman.
 - tools/audit-paths.mjs      Pemeriksa path lokal.
@@ -34,7 +34,7 @@ Karir bukan menu/submenu: diakses dari footer (kolom "Layanan & Karir") dan dari
 HERO BERANDA
 Foto layar penuh, judul besar "BERKAT MARITIM ABADI" di atas (satu baris selebar layar di desktop,
 putih tembus pandang), CTA + deskripsi + kartu pratinjau slide berikutnya di bawah. Navbar tidak diubah.
-Foto hero: assets/images/FotoBMA/hero-{1,2,3}-*.webp (WebP 800px & ±1480px). Foto yang sama dipakai banner halaman dalam (kecuali Sosial).
+Foto hero: assets/images/FotoBMA/hero-{1,2,3}-*.webp (WebP 800px & ±1480px). Foto yang sama dipakai banner halaman dalam (Tentang Kami, Layanan, Berita, Karir, Kontak, lowongan, lamaran).
 Slide pertama juga dirujuk di index.html (preload, og:image, <picture> statis) — ganti bersamaan.
 Semua diatur dari js/script.js → window.BMA_HERO (tanpa mengubah HTML/CSS):
 - title            : judul utama; ukuran otomatis menyesuaikan lebar layar.
