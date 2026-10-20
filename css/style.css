@@ -30,9 +30,9 @@
   /* Brand palette */
   --charcoal: #171c20;
   --coal: #303941;
-  --gold: #d6a646;
-  --gold-light: #e8c77f; /* gold text on dark surfaces */
-  --gold-dark: #8a6a1f; /* gold text on white: 5:1 contrast */
+  --gold: #f4831f; /* oranye logo BMA (nama token tetap "gold") */
+  --gold-light: #ffa95c; /* oranye terang untuk teks di latar gelap */
+  --gold-dark: #a85409; /* oranye gelap untuk teks di latar putih: kontras 5,3:1 */
   --white: #fff;
   --bg-light: #f4f5f6;
   --text: #252b30;
@@ -42,7 +42,7 @@
 
   /* Legacy aliases kept for inner pages */
   --bma-orange: var(--gold);
-  --bma-orange-dark: #b98a2f;
+  --bma-orange-dark: #d96d0f;
   --bma-dark: var(--coal);
   --bma-black: #000;
   --bma-white: #fff;
@@ -295,7 +295,7 @@ button {
 .btn-primary {
   --btn-bg: var(--gold);
   --btn-fg: var(--charcoal);
-  --btn-hover-bg: #f0d18e;
+  --btn-hover-bg: #f9b47a;
 }
 .btn-dark {
   --btn-bg: var(--charcoal);
@@ -470,7 +470,7 @@ body:not(.inner-page)
    window.BMA_HERO (js/script.js). Nilai di sini hanya cadangan bila JS mati.
    Lapisan (bawah → atas): foto → overlay → judul → foreground → info bawah. */
 .hero {
-  --hero-accent: #fc7108; /* oranye BMA, dipakai hemat */
+  --hero-accent: #f4831f; /* oranye BMA, dipakai hemat */
   --hero-ink: #111111;
   --hero-overlay: 0.45;
   position: relative;
@@ -1073,7 +1073,7 @@ body:not(.inner-page)
   transform: none;
 }
 .to-top:hover {
-  background: #f0d18e;
+  background: #f9b47a;
 }
 .to-top .icon {
   stroke-width: 2.2;
@@ -1392,7 +1392,7 @@ button:disabled {
 }
 .article-index {
   flex-shrink: 0;
-  color: #8a6a1f;
+  color: #a85409;
   font-size: 12px;
 }
 .article-category {
@@ -1410,7 +1410,7 @@ button:disabled {
   margin-left: auto;
   font-size: 28px;
   font-weight: 400;
-  color: #8a6a1f;
+  color: #a85409;
   flex-shrink: 0;
 }
 .article-panel[open] .disclosure-plus {
@@ -1593,12 +1593,12 @@ button:disabled {
     color 0.2s;
 }
 .directory-filters button[aria-pressed="true"] {
-  background: #d6a646;
-  border-color: #d6a646;
+  background: #f4831f;
+  border-color: #f4831f;
   color: #222;
 }
 .directory-filters button:hover {
-  border-color: #d6a646;
+  border-color: #f4831f;
 }
 .directory-filters button span {
   margin-left: 8px;
@@ -1627,7 +1627,7 @@ button:disabled {
   color: #252b30;
 }
 .directory-search:focus-within {
-  outline: 2px solid #d6a646;
+  outline: 2px solid #f4831f;
   outline-offset: 3px;
 }
 .directory-search input:focus {
@@ -1664,7 +1664,7 @@ button:disabled {
     border-color 0.25s;
 }
 .directory-card:hover {
-  border-color: #e6d3a3;
+  border-color: #f5cdab;
   box-shadow: 0 12px 30px #23292f0c;
 }
 .directory-photo {
@@ -1760,7 +1760,7 @@ button:disabled {
 }
 .directory-location svg {
   flex-shrink: 0;
-  color: #8a6a1f;
+  color: #a85409;
 }
 .directory-details {
   border-top: 1px solid #e6e8ea;
@@ -1779,7 +1779,7 @@ button:disabled {
   display: none;
 }
 .directory-details summary span {
-  color: #8a6a1f;
+  color: #a85409;
   font-size: 24px;
   font-weight: 400;
 }
@@ -1794,7 +1794,7 @@ button:disabled {
 }
 .directory-details a {
   display: block;
-  color: #8a6a1f;
+  color: #a85409;
   margin-top: 12px;
   font-weight: 600;
 }
@@ -1886,8 +1886,8 @@ button:disabled {
 
 .vacancy-tag {
   display: inline-block;
-  color: #8a6a1f;
-  background: #f7f0e0;
+  color: #a85409;
+  background: #fdf0e4;
   border-radius: 5px;
   font-size: 11px;
   padding: 6px 10px;
@@ -1914,7 +1914,7 @@ button:disabled {
   padding: 30px;
   background: #fff;
   border: 1px solid #e2e5e7;
-  border-top: 3px solid #d6a646;
+  border-top: 3px solid #f4831f;
   border-radius: 10px;
 }
 .application-position h2 {
@@ -1986,8 +1986,8 @@ button:disabled {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #f7f0e0;
-  color: #8a6a1f;
+  background: #fdf0e4;
+  color: #a85409;
   font:
     600 12px Inter,
     sans-serif;
@@ -2030,7 +2030,7 @@ button:disabled {
   min-height: 110px;
 }
 .application-fields :is(input, select, textarea):focus {
-  outline: 2px solid #d6a646;
+  outline: 2px solid #f4831f;
   outline-offset: 2px;
 }
 .field-wide {
@@ -2048,8 +2048,8 @@ button:disabled {
   background: #fafbfc;
 }
 .cv-dropzone.dragover {
-  border-color: #d6a646;
-  background: #f7f0e0;
+  border-color: #f4831f;
+  background: #fdf0e4;
 }
 .cv-upload-icon {
   display: grid;
@@ -2058,8 +2058,8 @@ button:disabled {
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background: #f7f0e0;
-  color: #8a6a1f;
+  background: #fdf0e4;
+  color: #a85409;
   font-size: 28px;
 }
 .cv-dropzone label {
@@ -2126,7 +2126,7 @@ button:disabled {
 .cv-selected button {
   border: 0;
   background: transparent;
-  color: #8a6a1f;
+  color: #a85409;
   cursor: pointer;
   font-size: 12px;
   padding: 8px;
@@ -2146,7 +2146,7 @@ button:disabled {
 }
 .application-consent input {
   margin-top: 4px;
-  accent-color: #d6a646;
+  accent-color: #f4831f;
   flex-shrink: 0;
   width: 17px;
   height: 17px;

@@ -34,7 +34,7 @@ Karir bukan menu/submenu: diakses dari footer (kolom "Layanan & Karir") dan dari
 HERO BERANDA
 Foto layar penuh, judul besar "BERKAT MARITIM ABADI" di atas (satu baris selebar layar di desktop,
 putih tembus pandang), CTA + deskripsi + kartu pratinjau slide berikutnya di bawah. Navbar tidak diubah.
-Foto hero: assets/images/FotoBMA/hero-{1,2,3}-*.webp (WebP 800px & ±1480px dari FotoHero1–3.png).
+Foto hero: assets/images/FotoBMA/hero-{1,2,3}-*.webp (WebP 800px & ±1480px). Foto yang sama dipakai banner halaman dalam (kecuali Sosial).
 Slide pertama juga dirujuk di index.html (preload, og:image, <picture> statis) — ganti bersamaan.
 Semua diatur dari js/script.js → window.BMA_HERO (tanpa mengubah HTML/CSS):
 - title            : judul utama; ukuran otomatis menyesuaikan lebar layar.
@@ -53,7 +53,7 @@ Warna aksen hero: variabel --hero-accent (#FC7108) di css/style.css, blok "Hero"
 SITE OPERASIONAL (Beranda, setelah Berita)
 Satu peta gabungan menampilkan Kalimantan Tengah (Kelanis, Benao) dan Kalimantan Selatan (Banjarmasin) sekaligus.
 Peta yang ditampilkan: assets/images/Kalimantan-Site-Gabungan.svg (800 × 533).
-Dua SVG sumber dari paintmaps.com tetap ada di assets/images/KalimantanTengah.svg dan KalimantanSelatan.svg.
+Peta gabungan (assets/images/Kalimantan-Site-Gabungan.svg) bersumber dari paintmaps.com; SVG per provinsi sudah dihapus (masih ada di riwayat git).
 Kredit "Created with paintmaps.com" tetap terlihat pada peta gabungan dan di bawahnya.
 Posisi marker (%) dihitung terhadap peta gabungan; posisi tersebut ilustratif.
 Data di js/script.js:

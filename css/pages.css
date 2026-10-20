@@ -809,7 +809,7 @@
 .form-field :is(input, select, textarea):focus {
   outline: none;
   border-color: var(--gold-dark);
-  box-shadow: 0 0 0 3px #d6a64640;
+  box-shadow: 0 0 0 3px #f4831f40;
 }
 .form-field :is(input, textarea):user-invalid {
   border-color: #b42318;
@@ -847,9 +847,9 @@
   margin-top: 20px;
   padding: 16px 18px;
   border-radius: var(--radius-sm);
-  background: #fff8e8;
-  border: 1px solid #ecd9a6;
-  color: #5c4712;
+  background: #fff5ec;
+  border: 1px solid #f8d3b2;
+  color: #7a3705;
   font-size: 14px;
 }
 .form-notice .icon {
@@ -989,7 +989,7 @@
 .jobs-filter :is(input, select):focus {
   outline: none;
   border-color: var(--gold-dark);
-  box-shadow: 0 0 0 3px #d6a64640;
+  box-shadow: 0 0 0 3px #f4831f40;
 }
 .jobs-meta {
   display: flex;
@@ -1006,10 +1006,10 @@
   align-items: center;
   gap: 8px;
   padding: 4px 10px;
-  border: 1px dashed #c9a85a;
+  border: 1px dashed #e8924a;
   border-radius: 999px;
-  background: #fff8e8;
-  color: #6b5316;
+  background: #fff5ec;
+  color: #8a3f06;
   font-size: 12px;
   font-weight: 600;
 }
@@ -1064,7 +1064,7 @@
   background: #fafbfb;
 }
 .jobs-table tbody tr:hover {
-  background: #fbf5e7;
+  background: #fef4ea;
 }
 .jobs-table tbody tr.is-closed {
   color: var(--text-soft);
@@ -1131,7 +1131,7 @@ a.job-title:hover {
     transform 0.25s var(--ease-out);
 }
 .btn-apply:hover {
-  background: #f0d18e;
+  background: #f9b47a;
   transform: translateY(-1px);
 }
 .btn-apply:disabled {
@@ -1795,4 +1795,115 @@ a.job-title:hover {
 .application-detail .text-link {
   display: inline-block;
   margin-top: 18px;
+}
+
+/* ---------- Banner sederhana (Tentang Kami, Layanan, Sosial, Berita,
+   Perusahaan Kami, Karir, Kontak): foto penuh, judul besar, breadcrumb ---------- */
+.page-banner--simple {
+  min-height: clamp(380px, 52svh, 520px);
+}
+.page-banner--simple::before {
+  background:
+    linear-gradient(180deg, #171c2099 0%, transparent 28%),
+    linear-gradient(0deg, #171c20f2 0%, #171c20b3 35%, #171c2059 70%, #171c2040 100%);
+}
+.page-banner--simple::after {
+  display: none;
+}
+.page-banner--simple .page-banner-content {
+  padding-block: calc(var(--header-h) + 40px) clamp(40px, 6vw, 64px);
+}
+.page-banner--simple h1 {
+  font-size: clamp(2.6rem, 1.6rem + 4.4vw, 5.4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+.page-banner--simple .breadcrumb {
+  gap: 14px;
+  margin: 22px 0 0;
+  color: #ffffffd9;
+  font-size: 16px;
+}
+.page-banner--simple .breadcrumb a {
+  transition: color 0.2s ease;
+}
+/* Pemisah "/" diganti chevron tipis seperti ›. */
+.page-banner--simple .breadcrumb > span[aria-hidden] {
+  width: 7px;
+  height: 7px;
+  font-size: 0;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  opacity: 0.75;
+  transform: rotate(45deg);
+}
+.page-banner--simple .breadcrumb [aria-current] {
+  font-weight: 700;
+}
+@media (max-width: 680px) {
+  .page-banner--simple {
+    min-height: 320px;
+  }
+  .page-banner--simple .breadcrumb {
+    gap: 12px;
+    margin-top: 16px;
+    font-size: 14px;
+  }
+}
+
+/* Tentang Kami — "Sekilas Tentang Kami": foto dengan bingkai garis oranye
+   yang bergeser ke kiri-bawah dan sudut kanan atas membulat. */
+.about-profile__photo {
+  position: relative;
+  overflow: visible;
+  padding: 0 0 28px 28px;
+  aspect-ratio: auto;
+  background: none;
+  border-radius: 0;
+}
+.about-profile__photo::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: calc(100% - 64px);
+  height: calc(100% - 64px);
+  border: 4px solid var(--gold);
+  border-radius: 14px;
+}
+.about-profile__photo img {
+  position: relative;
+  aspect-ratio: 24 / 25;
+  border-radius: 14px 72px 14px 14px;
+  background: var(--coal);
+  box-shadow: var(--shadow-soft);
+}
+.about-profile__copy h2 {
+  font-size: clamp(2.2rem, 1.4rem + 2.6vw, 3.6rem);
+  line-height: 1.08;
+}
+.about-profile__copy .lead {
+  margin-top: 28px;
+}
+@media (max-width: 960px) {
+  .about-profile__photo {
+    max-width: 560px;
+  }
+  .about-profile__photo img {
+    aspect-ratio: 24 / 25;
+  }
+}
+@media (max-width: 680px) {
+  .about-profile__photo {
+    padding: 0 0 18px 18px;
+  }
+  .about-profile__photo::before {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    border-width: 3px;
+  }
+  .about-profile__photo img {
+    border-radius: 12px 48px 12px 12px;
+  }
 }

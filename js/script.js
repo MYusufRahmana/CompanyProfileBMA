@@ -475,7 +475,7 @@ window.BMA.hero = ({ motion, listen }) => {
 // Menambah site: tambahkan satu entri di BMA_SITES; marker & tab dibuat otomatis.
 window.BMA_SITE_DEFAULT = "kelanis";
 window.BMA_SITE_MAPS = {
-  // Sumber SVG paintmaps.com dipertahankan di assets/images/.
+  // Peta gabungan: assets/images/Kalimantan-Site-Gabungan.svg (paintmaps.com).
   kalteng: { name: "Kalimantan Tengah" },
   kalsel: { name: "Kalimantan Selatan" },
 };
