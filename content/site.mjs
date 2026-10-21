@@ -27,7 +27,7 @@ export const site = {
     ["about", "Tentang Kami"],
     ["services", "Layanan"],
     ["news", "Berita"],
-    ["careers", "Karir"],
+    ["careers", "Karier"],
     ["contact", "Kontak"],
   ],
 
@@ -54,18 +54,18 @@ export const site = {
   languageSwitch: true,
 
   footer: {
-    description: "Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara sejak 2013.",
+    description: "Mitra strategis pertambangan dan logistik sejak 2013. Mendukung kegiatan pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara.",
     // Kolom tautan: judul + daftar [key menu, label].
     columns: [
       { id: "footerLinks", title: "Perusahaan", links: [["about", "Tentang Kami"], ["news", "Berita"]] },
       {
         id: "footerPages",
-        title: "Layanan &amp; Karir",
-        links: [["services", "Layanan"], ["careers", "Karir"]],
+        title: "Layanan dan Karier",
+        links: [["services", "Layanan"], ["careers", "Karier"]],
         recruitEmail: "karir@growingroup.id",
       },
     ],
-    bottomNote: "Pratinjau desain · berita dan karir masih contoh",
+    bottomNote: "Pratinjau situs · Berita dan lowongan merupakan materi contoh",
   },
 
   contact: {

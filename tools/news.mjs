@@ -82,10 +82,10 @@ const page = (item, i) => {
     <link rel="apple-touch-icon" href="${base}assets/icons/apple-touch-icon.png" />
     <link rel="preload" href="${base}assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="${base}assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="${base}css/style.css" />
-    <link rel="stylesheet" href="${base}css/brand-heroes.css" />
-    <link rel="stylesheet" href="${base}css/components.css" />
-    <link rel="stylesheet" href="${base}css/pages.css" />
+    <link rel="stylesheet" href="${base}assets/css/style.css" />
+    <link rel="stylesheet" href="${base}assets/css/brand-heroes.css" />
+    <link rel="stylesheet" href="${base}assets/css/components.css" />
+    <link rel="stylesheet" href="${base}assets/css/pages.css" />
   </head>
 
   <body class="page-news page-article">
@@ -164,7 +164,7 @@ ${related(item).map(tile).join("\n")}
 
     <!-- Footer: dibuat oleh tools/layout.mjs -->
     ${footer("berita-" + item.slug, base)}
-    <script src="${base}js/script.js" defer></script>
+    <script src="${base}assets/js/script.js" defer></script>
   </body>
 </html>
 `;

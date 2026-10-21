@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400 800;
   font-display: swap;
-  src: url(../assets/fonts/inter-latin.woff2) format("woff2");
+  src: url(../fonts/inter-latin.woff2) format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
     U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
@@ -14,7 +14,7 @@
   font-style: normal;
   font-weight: 400 800;
   font-display: swap;
-  src: url(../assets/fonts/manrope-latin.woff2) format("woff2");
+  src: url(../fonts/manrope-latin.woff2) format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
     U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
@@ -479,14 +479,11 @@ body:not(.inner-page)
   outline-offset: 2px;
 }
 
-/* ===== Hero: foto layar penuh + judul besar "BERKAT MARITIM ABADI" =====
-   Gambar, posisi fokus, overlay, judul, dan foreground diatur dari
-   window.BMA_HERO (js/script.js). Nilai di sini hanya cadangan bila JS mati.
-   Lapisan (bawah → atas): foto → overlay → judul → foreground → info bawah. */
+/* ===== Hero: identitas perusahaan di kiri, dokumentasi operasional di kanan ===== */
 .hero {
-  --hero-accent: #f4831f; /* oranye BMA, dipakai hemat */
+  --hero-accent: #f4831f;
   --hero-ink: #111111;
-  --hero-overlay: 0.7;
+  --hero-overlay: 0.88;
   position: relative;
   color: #fff;
   background: var(--hero-ink);
@@ -495,27 +492,20 @@ body:not(.inner-page)
   position: relative;
   isolation: isolate;
   display: flex;
-  min-height: 640px;
+  min-height: 680px;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
   background: var(--hero-ink);
   touch-action: pan-y;
 }
-
-/* Foto & foreground: satu elemen per slide, crossfade lewat opacity. */
 .hero__media,
 .hero__foreground {
   position: absolute;
   inset: 0;
 }
-.hero__media {
-  z-index: -2;
-}
-.hero__foreground {
-  z-index: 1;
-  pointer-events: none;
-}
+.hero__media { z-index: -2; }
+.hero__foreground { z-index: 1; pointer-events: none; }
 .hero__photo,
 .hero__cutout {
   position: absolute;
@@ -524,9 +514,7 @@ body:not(.inner-page)
   transition: opacity 1.2s ease;
 }
 .hero__photo.is-active,
-.hero__cutout.is-active {
-  opacity: 1;
-}
+.hero__cutout.is-active { opacity: 1; }
 .hero__photo img,
 .hero__cutout img {
   width: 100%;
@@ -538,218 +526,123 @@ body:not(.inner-page)
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgb(17 17 17 / 0.72) 0%,
-    rgb(17 17 17 / calc(var(--hero-overlay) * 0.75)) 32%,
-    rgb(17 17 17 / var(--hero-overlay)) 64%,
-    rgb(17 17 17 / 0.94) 100%
-  );
+  background:
+    linear-gradient(180deg, rgb(17 17 17 / 0.58), transparent 28%, transparent 65%, rgb(17 17 17 / 0.55)),
+    linear-gradient(90deg, #111 0%, rgb(17 17 17 / var(--hero-overlay)) 28%, rgb(17 17 17 / 0.62) 47%, rgb(17 17 17 / 0.12) 78%, rgb(17 17 17 / 0.08));
 }
-
-/* Konten: judul di atas, info di bawah. .hero__inner sengaja tidak membuat
-   stacking context agar foreground bisa berada di antara judul dan info. */
 .hero__inner {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   width: min(calc(100% - var(--gutter) * 2), var(--container));
   margin-inline: auto;
-  padding-block: calc(var(--header-h) + 8px) clamp(24px, 3.5vh, 40px);
+  padding-block: calc(var(--header-h) + 80px) 120px;
 }
-.hero__head {
-  position: relative;
-  z-index: 0;
-  text-align: center;
-}
-.hero__title {
-  margin: 0;
-  font:
-    800 var(--hero-title-size, clamp(3.2rem, 9vw, 9rem)) / 0.9 Manrope,
-    Inter,
-    Arial,
-    sans-serif;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  white-space: nowrap; /* desktop: satu baris selebar kartu (diukur JS) */
-  /* Putih tembus pandang yang memudar ke bawah: menyatu dengan foto. */
-  color: rgb(255 255 255 / 0.7);
-  background: linear-gradient(
-    180deg,
-    rgb(255 255 255 / 0.92) 15%,
-    rgb(255 255 255 / 0.4) 95%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.hero__word {
-  display: inline-block;
-}
-
-/* Baris bawah: CTA · deskripsi · pratinjau slide berikutnya. */
-.hero__footer {
+.hero__copy {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 20px clamp(24px, 4vw, 56px);
+  width: min(600px, 60%);
 }
+.hero__head { text-align: left; }
+.hero__title {
+  margin: 0;
+  color: #fff;
+  font: 700 var(--hero-title-size, clamp(3.75rem, 6.15vw, 5.5rem)) / 1.06 Manrope, Inter, Arial, sans-serif;
+  letter-spacing: -0.045em;
+}
+.hero__word {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+.hero__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  margin-top: 26px;
+}
+.hero__description {
+  max-width: 46ch;
+  margin: 0;
+  color: rgb(255 255 255 / 0.88);
+  font-size: 16px;
+  line-height: 1.75;
+  transition: opacity 0.3s ease;
+}
+.hero.is-changing .hero__description { opacity: 0; }
 .hero__actions {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 14px 22px;
+  gap: 18px 28px;
 }
 .hero__cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: var(--hero-ink);
-  font-size: 15px;
-  font-weight: 700;
-}
-.hero__cta-label,
-.hero__cta-icon {
-  display: grid;
-  place-items: center;
-  height: 50px;
-  border-radius: 999px;
-  background: #fff;
-  transition:
-    background 0.3s,
-    transform 0.35s var(--ease-out);
-}
-.hero__cta-label {
-  padding: 0 24px;
-}
-.hero__cta-icon {
-  width: 50px;
-  font-size: 18px;
-}
-.hero__cta:hover .hero__cta-label,
-.hero__cta:hover .hero__cta-icon {
+  gap: 20px;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 4px;
   background: var(--hero-accent);
+  color: var(--hero-ink);
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.25s;
 }
-.hero__cta:hover .hero__cta-icon {
-  transform: rotate(45deg);
-}
+.hero__cta-icon { display: flex; font-size: 19px; }
+.hero__cta:hover { background: #ffa95c; }
 .hero__link {
-  padding-block: 6px;
-  border-bottom: 1px solid rgb(255 255 255 / 0.5);
+  padding-block: 8px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.55);
   color: #fff;
   font-size: 14px;
   font-weight: 600;
   transition: border-color 0.25s;
 }
-.hero__link:hover {
-  border-color: var(--hero-accent);
-}
-.hero__description {
-  max-width: 44ch;
-  color: rgb(255 255 255 / 0.82);
-  font-size: 14.5px;
-  line-height: 1.6;
-}
-
-/* Kontrol: tombol bulat + kartu pratinjau slide berikutnya. */
+.hero__link:hover { border-color: var(--hero-accent); }
 .hero__controls {
+  position: absolute;
+  right: 0;
+  bottom: 38px;
+  z-index: 2;
   display: flex;
-  align-items: flex-end;
-  gap: 12px;
+  align-items: center;
+  gap: 26px;
 }
-.hero__controls[hidden] {
-  display: none;
-}
-.hero__buttons {
-  display: grid;
-  gap: 8px;
-}
+.hero__controls[hidden] { display: none; }
+.hero__pagination { display: flex; align-items: center; gap: 18px; }
+.hero__buttons { display: flex; gap: 8px; }
 .hero__button {
   display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid rgb(255 255 255 / 0.4);
+  border: 1px solid rgb(255 255 255 / 0.5);
   border-radius: 50%;
-  background: rgb(17 17 17 / 0.25);
+  background: rgb(17 17 17 / 0.35);
   color: #fff;
   font-size: 16px;
-  transition:
-    background 0.25s,
-    border-color 0.25s,
-    color 0.25s;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
 }
-.hero__button:hover {
-  border-color: #fff;
-  background: #fff;
-  color: var(--hero-ink);
-}
-.hero__preview {
-  width: 220px;
-  padding: 8px;
-  border: 1px solid rgb(255 255 255 / 0.18);
-  border-radius: 16px;
-  background: rgb(17 17 17 / 0.45);
-}
-.hero__preview-thumb {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  border-radius: 10px;
-  background: var(--coal);
-}
-.hero__preview-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-out);
-}
-.hero__preview-thumb:hover img {
-  transform: scale(1.06);
-}
-.hero__preview-label {
-  position: absolute;
-  left: 8px;
-  bottom: 8px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: rgb(17 17 17 / 0.65);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-}
-.hero__preview-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 4px 2px;
-}
+.hero__button:hover { border-color: #fff; background: #fff; color: var(--hero-ink); }
 .hero__count {
+  margin: 0;
   white-space: nowrap;
   font-size: 12px;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.08em;
-  color: rgb(255 255 255 / 0.6);
+  letter-spacing: 0.06em;
+  color: rgb(255 255 255 / 0.75);
 }
-.hero__count strong {
-  color: #fff;
-}
-.hero__dots {
-  display: flex;
-  flex: 1;
-  gap: 4px;
-}
+.hero__count strong { color: #fff; }
+.hero__dots { display: flex; width: 96px; gap: 6px; }
 .hero__dot {
   position: relative;
   flex: 1;
-  height: 24px;
+  height: 32px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -760,151 +653,63 @@ body:not(.inner-page)
   position: absolute;
   left: 0;
   right: 0;
-  top: 11px;
+  top: 15px;
   height: 2px;
   border-radius: 2px;
-  background: rgb(255 255 255 / 0.3);
+  background: rgb(255 255 255 / 0.45);
 }
 .hero__dot::after {
   background: var(--hero-accent);
   transform: scaleX(0);
   transform-origin: left;
-  /* --dur diisi JS = interval autoplay; 0s saat dijeda. */
   transition: transform var(--dur, 0s) linear;
 }
-.hero__dot[aria-pressed="true"]::after {
-  transform: scaleX(var(--progress, 1));
-}
-
-/* Teks yang berganti per slide memudar singkat. */
-.hero__description {
-  transition: opacity 0.3s ease;
-}
-.hero.is-changing .hero__description {
+.hero__dot[aria-pressed="true"]::after { transform: scaleX(var(--progress, 1)); }
+.hero--animate .hero__copy {
   opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s var(--ease-out);
 }
-
-/* Animasi masuk: foto → judul → info. Hanya bila JS menandai .hero--animate. */
-.hero--animate .hero__media {
-  opacity: 0;
-  transform: scale(1.04);
-  transition:
-    opacity 1.1s ease,
-    transform 1.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.hero--animate .hero__head,
-.hero--animate .hero__footer {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.hero--animate .hero__head {
-  transition-delay: 0.15s;
-}
-.hero--animate .hero__footer {
-  transition-delay: 0.45s;
-}
-.hero--animate.is-ready .hero__media,
-.hero--animate.is-ready .hero__head,
-.hero--animate.is-ready .hero__footer {
-  opacity: 1;
-  transform: none;
-}
-
+.hero--animate.is-ready .hero__copy { opacity: 1; transform: none; }
 @media (max-width: 1100px) {
-  .hero__title {
-    white-space: normal; /* tablet & mobile: satu kata per baris bila perlu */
-    font-size: var(--hero-title-size, clamp(3rem, 12vw, 7.5rem));
-  }
-  .hero__footer {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-  .hero__description {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
+  .hero__copy { width: min(560px, 68%); }
+  .hero__title { font-size: var(--hero-title-size, clamp(3.5rem, 6.8vw, 4.75rem)); }
 }
 @media (max-width: 680px) {
-  .hero__stage {
-    min-height: 560px;
-    height: 92vh;
-    height: 92svh;
-  }
+  .hero__stage { min-height: 720px; height: 100svh; }
+  .hero__media,
+  .hero__foreground { inset: 0; }
   .hero__photo img,
-  .hero__cutout img {
-    object-position: var(--pos-mobile, var(--pos, center));
+  .hero__cutout img { object-position: var(--pos-mobile, var(--pos, center)); }
+  .hero__overlay {
+    background: linear-gradient(180deg, rgb(17 17 17 / 0.6) 0%, rgb(17 17 17 / 0.18) 23%, rgb(17 17 17 / 0.65) 43%, rgb(17 17 17 / 0.94) 70%, #111 100%);
   }
-  .hero__title {
-    font-size: var(--hero-title-size, clamp(2.8rem, 17vw, 5.4rem));
+  .hero__inner {
+    justify-content: flex-end;
+    padding-block: calc(var(--header-h) + 190px) 114px;
   }
-  .hero__footer {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .hero__actions {
-    flex-wrap: nowrap;
-    gap: 16px;
-  }
-  .hero__cta-label {
-    padding: 0 18px;
-  }
-  .hero__cta-label,
-  .hero__cta-icon {
-    height: 46px;
-  }
-  .hero__cta-icon {
-    width: 46px;
-  }
-  .hero__controls {
-    align-items: center;
-  }
-  .hero__buttons {
-    grid-auto-flow: column;
-  }
-  .hero__preview {
-    flex: 1;
-    width: auto;
-    padding: 0;
-    border: 0;
-    background: none;
-  }
-  .hero__preview {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .hero__preview-thumb {
-    flex: 0 0 56px;
-    width: 56px;
-    height: 40px;
-    aspect-ratio: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.35);
-  }
-  .hero__preview-label {
-    display: none;
-  }
-  .hero__preview-meta {
-    flex: 1;
-  }
-  .hero__preview-meta {
-    padding: 0;
-    flex: 1;
-  }
+  .hero__copy { width: 100%; }
+  .hero__title { font-size: var(--hero-title-size, clamp(2.75rem, 11.4vw, 3.25rem)); }
+  .hero__footer { margin-top: 20px; gap: 24px; }
+  .hero__description { max-width: 42ch; font-size: 14px; line-height: 1.7; }
+  .hero__actions { gap: 18px 22px; }
+  .hero__cta { min-height: 48px; padding-inline: 18px; gap: 14px; font-size: 13px; }
+  .hero__link { font-size: 13px; }
+  .hero__controls { left: 0; right: 0; bottom: 28px; justify-content: space-between; gap: 16px; }
+  .hero__pagination { gap: 12px; }
+  .hero__dots { width: 68px; }
+  .hero__buttons { gap: 6px; }
 }
-@media (max-width: 400px) {
-  .hero__cta-icon {
-    display: none;
-  }
+@media (max-width: 360px) {
+  .hero__actions { gap: 18px; }
+  .hero__cta { padding-inline: 14px; gap: 10px; }
+  .hero__dots { width: 52px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__photo,
   .hero__cutout,
-  .hero__description {
-    transition: none;
-  }
+  .hero__description,
+  .hero--animate .hero__copy { transition: none; }
 }
 
 /* ===== Footer (shared by every page) ===== */

@@ -127,7 +127,7 @@ export function header(page, base) {
         <div class="nav-menu" id="navMenu">
           ${items}${languageSwitch()}
           <div class="menu-contact">
-            ${site.menuNote}<br /><a href="${l.contact}">Informasi kontak &amp; kerja sama ↗</a>
+            ${site.menuNote}<br /><a href="${l.contact}">Informasi Kontak dan Kerja Sama ↗</a>
           </div>
         </div>
       </nav>
@@ -153,7 +153,7 @@ export function footer(page, base) {
             col.recruitEmail
               ? `
           <p class="footer-recruit">
-            <span class="footer-recruit__label">Email rekrutmen</span>
+            <span class="footer-recruit__label">Email Rekrutmen</span>
             <a href="mailto:${col.recruitEmail}">${icon("mail")}${col.recruitEmail}</a>
           </p>`
               : ""

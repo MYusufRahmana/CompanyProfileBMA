@@ -1,12 +1,21 @@
-# File sumber (`_source/`)
+# Arsip master
 
-File asli resolusi tinggi. **Tidak dipakai langsung oleh situs** dan tidak perlu diunggah ke hosting;
-simpan untuk membuat ulang aset web (WebP, favicon) bila perlu.
+Folder ini menyimpan bahan asli untuk memperbarui desain, teks, dan aset web. File di sini tidak digunakan langsung oleh HTML, CSS, atau JavaScript situs.
 
-| File | Keterangan |
+| Lokasi | Isi |
 | --- | --- |
-| `logo/bma-logo-master.png` | Logo asli (simbol oranye + teks abu gelap, latar transparan). Sumber semua file di `assets/logo/` dan `assets/icons/`. |
-| `logo/bma-logo-white.png` | Logo versi teks putih (latar gelap), resolusi tinggi. |
-| `logo/bma-logo-footer.png` | Logo footer: versi putih + "MEMBER OF GROWIN GROUP", resolusi tinggi. |
-| `photos/hero-1-original.jpg` | Foto asli slide hero 1 (excavator "Berkat Maritim Abadi"). |
-| `company-profile-2026.pdf` | Dokumen company profile — sumber teks & data situs. Diabaikan git karena besar. |
+| `company-profile-2026.pdf` | Sumber informasi perusahaan; diabaikan Git karena besar |
+| `logo/bma-logo-master.png` | Master logo warna dan favicon |
+| `logo/bma-logo-white.png` | Master logo untuk latar gelap |
+| `logo/bma-logo-footer.png` | Master logo footer beserta identitas Growin Group |
+| `photos/hero-1-original.jpg` | Foto asli alat berat pada hero beranda |
+| `generated-photos/bma-team-white-helmet.png` | Master ilustrasi pekerja dengan helm hijau dan putih |
+| `generated-heroes/about-hero-v1.png` | Master ilustrasi hero Tentang Kami |
+| `generated-heroes/services-hero-v1.png` | Master ilustrasi hero Layanan |
+| `generated-heroes/news-hero-v1.png` | Master ilustrasi hero Berita |
+| `generated-heroes/careers-hero-v1.png` | Master ilustrasi hero Karier |
+| `generated-heroes/contact-hero-v1.png` | Master ilustrasi hero Kontak |
+
+Versi web aktif telah diekspor sebagai WebP ke `assets/images/`. Versi pekerja yang telah digantikan tidak dipertahankan agar arsip hanya memuat master yang relevan.
+
+Catatan sumber dan lisensi ada di [docs/assets.md](../docs/assets.md). Untuk hosting aplikasi dinamis, simpan folder arsip ini di luar document root.

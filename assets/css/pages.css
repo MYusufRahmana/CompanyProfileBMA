@@ -1445,6 +1445,42 @@ a.job-title:hover {
   }
 }
 
+/* Hero Layanan, Berita, Karier, dan Kontak: satu bahasa visual, konteks berbeda. */
+.page-banner--editorial::before {
+  background:
+    linear-gradient(180deg, rgb(23 28 32 / 0.5), transparent 30%),
+    linear-gradient(90deg, rgb(23 28 32 / 0.88) 0%, rgb(23 28 32 / 0.6) 38%, rgb(23 28 32 / 0.08) 75%),
+    linear-gradient(0deg, rgb(23 28 32 / 0.6), transparent 65%);
+}
+.page-banner--editorial .page-banner-photo {
+  object-position: var(--banner-focus, center);
+}
+.page-banner--editorial .page-banner-content {
+  padding-bottom: clamp(36px, 4.5vw, 64px);
+}
+.page-banner-summary {
+  max-width: 44ch;
+  margin: 20px 0 0;
+  color: rgb(255 255 255 / 0.9);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.65;
+}
+.page-banner--editorial .breadcrumb {
+  margin-top: 24px;
+  font-size: 14px;
+}
+@media (max-width: 680px) {
+  .page-banner--editorial { min-height: 400px; }
+  .page-banner--editorial::before {
+    background:
+      linear-gradient(180deg, rgb(23 28 32 / 0.5), transparent 30%),
+      linear-gradient(0deg, rgb(23 28 32 / 0.94) 0%, rgb(23 28 32 / 0.7) 38%, rgb(23 28 32 / 0.1) 85%);
+  }
+  .page-banner--editorial .page-banner-content { padding-bottom: 32px; }
+  .page-banner-summary { max-width: 34ch; margin-top: 16px; font-size: 15px; }
+  .page-banner--editorial .breadcrumb { margin-top: 20px; font-size: 13px; }
+}
+
 /* Tentang Kami — "Sekilas Tentang Kami": foto dengan bingkai garis oranye
    yang bergeser ke kiri-bawah dan sudut kanan atas membulat. */
 .about-profile__photo {

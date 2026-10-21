@@ -1,6 +1,6 @@
 /* =============================================================
    DATA BERANDA — ubah isi hero dan site operasional di sini.
-   Dimuat sebelum js/script.js (hanya di index.html).
+   Dimuat sebelum assets/js/script.js (hanya di index.html).
    ============================================================= */
 
 /* ----- Hero (slide foto + teks) ----- */
@@ -10,16 +10,18 @@
 // - position / mobilePosition  : titik fokus foto (nilai CSS object-position)
 // - foregroundImage            : OPSIONAL — PNG/WebP objek yang sudah dipotong (latar transparan),
 //                                dibuat dari foto yang SAMA dan berukuran SAMA. Objek ini tampil
-//                                di depan judul (efek "tulisan di belakang objek").
+//                                di atas foto, dengan teks tetap berada di lapisan terdepan.
 //   foregroundMobileImage      : versi mobile dari foreground (opsional)
 // - eyebrow                    : nama singkat slide (dibacakan pembaca layar pada tombol slide)
-// - description                : teks di kiri bawah hero
+// - titleLines                 : susunan baris nama perusahaan
+// - description                : teks di bawah judul hero
 // - overlayOpacity             : 0 (terang) – 0.8 (gelap); bisa juga per slide.
-//                                Samakan dengan --hero-overlay di css/style.css (nilai cadangan tanpa JS).
+//                                Samakan dengan --hero-overlay di assets/css/style.css (nilai cadangan tanpa JS).
 // - interval                   : jeda antarslide (ms). Satu slide = tanpa autoplay & kontrol.
 window.BMA_HERO = {
   title: "Berkat Maritim Abadi",
-  overlayOpacity: 0.7,
+  titleLines: ["Berkat Maritim", "Abadi"],
+  overlayOpacity: 0.88,
   interval: 6500,
   slides: [
     {
@@ -28,9 +30,9 @@ window.BMA_HERO = {
       position: "center 55%",
       mobilePosition: "64% center",
       foregroundImage: "",
-      eyebrow: "Partner Strategis Pertambangan dan Logistik",
+      eyebrow: "Mitra Strategis Pertambangan dan Logistik",
       description:
-        "Dengan fokus pada efisiensi operasional dan pelayanan prima, kami berkomitmen untuk menjadi mitra terpercaya dalam mendukung kelancaran aktivitas pertambangan dan pelabuhan di Indonesia.",
+        "Kami mendukung kelancaran kegiatan pertambangan dan pelabuhan di Indonesia melalui layanan yang mengutamakan keselamatan, efisiensi operasional, dan profesionalisme.",
     },
     {
       desktopImage: "assets/images/company/hero-2-1480.webp",
@@ -40,7 +42,7 @@ window.BMA_HERO = {
       foregroundImage: "",
       eyebrow: "Jasa Pertambangan",
       description:
-        "Overburden removal, coal getting, land clearing, crushing & stockpiling, hingga reklamasi lahan bekas tambang.",
+        "Layanan pertambangan mencakup pengupasan lapisan penutup, pengambilan dan pengolahan batu bara, pembukaan lahan, hingga reklamasi lahan bekas tambang.",
     },
     {
       desktopImage: "assets/images/company/hero-3-1460.webp",
@@ -48,9 +50,9 @@ window.BMA_HERO = {
       position: "center 50%",
       mobilePosition: "62% center",
       foregroundImage: "",
-      eyebrow: "Jasa Hauling & Bongkar Muat",
+      eyebrow: "Pengangkutan dan Bongkar Muat",
       description:
-        "Pengangkutan hasil tambang serta bongkar muat di pelabuhan maupun dermaga khusus, hingga pemuatan di atas tongkang.",
+        "Layanan pengangkutan hasil tambang dan bongkar muat di pelabuhan serta dermaga khusus untuk mendukung kelancaran distribusi hingga pemuatan ke tongkang.",
     },
   ],
 };
@@ -71,7 +73,7 @@ window.BMA_SITES = {
     name: "Banjarmasin",
     map: "kalsel",
     description:
-      "Kantor pusat PT Berkat Maritim Abadi berada di Banjarmasin, Kalimantan Selatan. Dari sini kami mendukung proyek jasa pertambangan dan bongkar muat di wilayah Kalimantan.",
+      "Banjarmasin, Kalimantan Selatan, merupakan lokasi kantor pusat PT Berkat Maritim Abadi yang mendukung koordinasi proyek pertambangan dan bongkar muat di wilayah Kalimantan.",
     link: "pages/services.html", // nanti: pages/site-banjarmasin.html
     position: { x: 64.1, y: 62.5 },
     images: [
@@ -84,7 +86,7 @@ window.BMA_SITES = {
     name: "Kelanis",
     map: "kalteng",
     description:
-      "Informasi mengenai Site Kelanis akan ditampilkan berdasarkan data resmi perusahaan.",
+      "Informasi terperinci mengenai lokasi operasional Kelanis akan tersedia setelah data resmi perusahaan diperbarui.",
     link: "pages/services.html", // nanti: pages/site-kelanis.html
     position: { x: 53.7, y: 71.5 },
     images: [
@@ -109,7 +111,7 @@ window.BMA_SITES = {
     name: "Benao",
     map: "kalteng",
     description:
-      "Informasi mengenai Site Benao akan ditampilkan berdasarkan data resmi perusahaan.",
+      "Informasi terperinci mengenai lokasi operasional Benao akan tersedia setelah data resmi perusahaan diperbarui.",
     link: "pages/services.html", // nanti: pages/site-benao.html
     position: { x: 56.4, y: 46.2 },
     images: [

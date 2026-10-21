@@ -126,11 +126,8 @@ window.BMA.hero = ({ motion, listen }) => {
   const number = document.getElementById("slideNumber");
   const total = document.getElementById("slideTotal");
   const pause = document.getElementById("heroPause");
-  const previewImage = document.getElementById("heroPreviewImage");
-  const previewLabel = document.getElementById("heroPreviewLabel");
   const nextButton = document.getElementById("heroNext");
   const interval = Math.max(3000, Number(config.interval) || 6500);
-  const mobile = matchMedia("(max-width: 680px)");
   const pad = (n) => String(n).padStart(2, "0");
   const reasons = new Set();
   let current = 0;
@@ -147,34 +144,26 @@ window.BMA.hero = ({ motion, listen }) => {
   };
   setOverlay(config.overlayOpacity);
   if (config.title) {
-    // Spasi asli di antara kata agar judul terbaca benar oleh pembaca layar & mesin pencari.
-    const words = String(config.title).trim().split(/\s+/);
+    // Baris judul diatur eksplisit agar nama perusahaan tetap utuh dan terbaca.
+    const lines = config.titleLines?.length ? config.titleLines : [config.title];
     title.replaceChildren(
-      ...words.flatMap((word, i) => {
+      ...lines.flatMap((line, i) => {
         const span = document.createElement("span");
         span.className = "hero__word";
-        span.textContent = word;
+        span.textContent = line;
         return i ? [document.createTextNode(" "), span] : [span];
       }),
     );
   }
 
-  // Desktop (satu baris): judul diskalakan memenuhi lebar kartu.
-  // Tablet/mobile (boleh beberapa baris): kata terpanjang tidak boleh terpotong.
+  // Pertahankan skala CSS; perkecil hanya jika satu baris melebihi area teks.
   const fitTitle = () => {
     hero.style.removeProperty("--hero-title-size");
-    const style = getComputedStyle(title);
-    const size = parseFloat(style.fontSize);
+    const size = parseFloat(getComputedStyle(title).fontSize);
     const available = title.clientWidth;
-    if (style.whiteSpace === "nowrap") {
-      const width = title.scrollWidth;
-      const target = Math.min(size * (available / width) * 0.99, 260);
-      hero.style.setProperty("--hero-title-size", target + "px");
-    } else {
-      const widest = Math.max(...[...title.children].map((word) => word.scrollWidth));
-      if (widest > available)
-        hero.style.setProperty("--hero-title-size", size * (available / widest) * 0.98 + "px");
-    }
+    const widest = Math.max(0, ...[...title.children].map((line) => line.scrollWidth));
+    if (widest > available && available > 0)
+      hero.style.setProperty("--hero-title-size", size * (available / widest) * 0.99 + "px");
   };
 
   // Foto per slide. Foto pertama di HTML dipakai ulang bila sama (tanpa kedip).
@@ -216,7 +205,7 @@ window.BMA.hero = ({ motion, listen }) => {
   });
   if (photos.length) media.replaceChildren(...photos);
 
-  // Foreground opsional (objek di depan judul). Slide tanpa foreground dilewati.
+  // Lapisan objek opsional di atas foto. Slide tanpa foreground dilewati.
   const cutouts = slides.map((slide) =>
     slide.foregroundImage
       ? layer("hero__cutout", slide.foregroundImage, slide.foregroundMobileImage, slide, true)
@@ -224,13 +213,13 @@ window.BMA.hero = ({ motion, listen }) => {
   );
   foreground?.replaceChildren(...cutouts.filter(Boolean));
 
-  // Indikator, pratinjau, dan kontrol hanya untuk lebih dari satu slide.
+  // Indikator dan kontrol hanya untuk lebih dari satu slide.
   const multi = photos.length > 1;
   const dots = slides.map((slide, i) => {
     const dot = document.createElement("button");
     dot.type = "button";
     dot.className = "hero__dot";
-    dot.setAttribute("aria-label", `Slide ${i + 1}${slide.eyebrow ? ": " + slide.eyebrow : ""}`);
+    dot.setAttribute("aria-label", `Tayangan ${i + 1}${slide.eyebrow ? ": " + slide.eyebrow : ""}`);
     listen(dot, "click", () => show(i));
     dotsWrap.append(dot);
     return dot;
@@ -238,13 +227,10 @@ window.BMA.hero = ({ motion, listen }) => {
   controls.hidden = !multi;
   total.textContent = pad(Math.max(1, photos.length));
 
-  const updatePreview = () => {
-    if (!multi || !previewImage) return;
+  const updateNextLabel = () => {
+    if (!multi) return;
     const next = slides[(current + 1) % slides.length];
-    previewImage.src = (mobile.matches ? next.mobileImage : next.mobileImage || next.desktopImage) || next.desktopImage;
-    previewImage.style.objectPosition = next.mobilePosition || next.position || "center";
-    previewLabel.textContent = "Berikutnya";
-    nextButton.setAttribute("aria-label", `Slide berikutnya${next.eyebrow ? ": " + next.eyebrow : ""}`);
+    nextButton.setAttribute("aria-label", `Tayangan berikutnya${next.eyebrow ? ": " + next.eyebrow : ""}`);
   };
 
   const canPlay = () => multi && !manuallyPaused && !motion.matches && !reasons.size && !document.hidden;
@@ -288,7 +274,7 @@ window.BMA.hero = ({ motion, listen }) => {
     cutouts.forEach((cutout, i) => cutout?.classList.toggle("is-active", i === next));
     dots.forEach((dot, i) => dot.setAttribute("aria-pressed", String(i === next)));
     number.textContent = pad(next + 1);
-    updatePreview();
+    updateNextLabel();
     clearTimeout(textTimer);
     if (initial || motion.matches) applyText(slides[next]);
     else {
@@ -303,7 +289,7 @@ window.BMA.hero = ({ motion, listen }) => {
 
   const updatePause = () => {
     pause.setAttribute("aria-pressed", String(manuallyPaused));
-    pause.setAttribute("aria-label", manuallyPaused ? "Lanjutkan slideshow" : "Jeda slideshow");
+    pause.setAttribute("aria-label", manuallyPaused ? "Lanjutkan tayangan" : "Jeda tayangan");
     pause.querySelector("use")?.setAttribute("href", manuallyPaused ? "#i-play" : "#i-pause");
     pause.disabled = motion.matches;
   };
@@ -320,7 +306,6 @@ window.BMA.hero = ({ motion, listen }) => {
   listen(stage, "focusin", () => hold("focus", true));
   listen(stage, "focusout", (event) => !stage.contains(event.relatedTarget) && hold("focus", false));
   listen(document, "visibilitychange", () => start());
-  listen(mobile, "change", updatePreview);
   listen(stage, "keydown", (event) => {
     if (!multi || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
     if (event.target.closest("a, input, textarea, select")) return;
@@ -440,7 +425,7 @@ window.BMA.sites = ({ motion, listen }) => {
     marker.dataset.site = key;
     marker.style.setProperty("--x", site.position.x + "%");
     marker.style.setProperty("--y", site.position.y + "%");
-    marker.setAttribute("aria-label", "Tampilkan Site " + site.name);
+    marker.setAttribute("aria-label", "Tampilkan lokasi operasional " + site.name);
     const label = document.createElement("span");
     label.className = "site-marker__label";
     label.setAttribute("aria-hidden", "true");
@@ -479,7 +464,7 @@ window.BMA.sites = ({ motion, listen }) => {
     title.textContent = site.name;
     description.textContent = site.description;
     link.href = site.link || "pages/services.html";
-    link.setAttribute("aria-label", "Lebih lanjut tentang Site " + site.name);
+    link.setAttribute("aria-label", "Lihat layanan terkait lokasi operasional " + site.name);
   };
   // Pop-up foto: <dialog> dengan navigasi panah, Esc, dan klik latar untuk menutup.
   const showPhoto = (i) => {
@@ -551,7 +536,7 @@ window.BMA.sites = ({ motion, listen }) => {
     // Label "Foto ilustrasi" hanya jika ada foto contoh (tanpa alt khusus).
     if (galleryNote) {
       const illustrative = (site.images || []).some((image) => !image.alt);
-      galleryNote.textContent = illustrative ? "Foto ilustrasi" : "Dokumentasi site";
+      galleryNote.textContent = illustrative ? "Foto ilustrasi" : "Dokumentasi operasional";
     }
     showEmptyIfNeeded();
   };
@@ -720,7 +705,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     status.innerHTML =
-      '<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span>Formulir belum terhubung ke sistem pengiriman, sehingga pesan Anda <strong>belum terkirim</strong>. Silakan hubungi kami melalui email atau telepon yang tercantum.</span>';
+      '<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span>Pesan Anda <strong>belum terkirim</strong> karena layanan pengiriman melalui formulir belum tersedia. Silakan sampaikan pertanyaan atau kebutuhan layanan melalui email atau telepon yang tercantum.</span>';
   });
   const top = document.createElement("button");
   top.type = "button";
@@ -821,7 +806,7 @@ document.addEventListener("DOMContentLoaded", () => {
       page = result.page;
       const count = matches.length;
       document.querySelector("#newsCount").textContent =
-        count + " artikel contoh" + (result.pages > 1 ? " · halaman " + page + " dari " + result.pages : "");
+        count + " artikel ditemukan" + (result.pages > 1 ? " · halaman " + page + " dari " + result.pages : "");
       document.querySelector("#newsEmpty").hidden = count !== 0;
       tabs.forEach((tab) =>
         tab.setAttribute(
@@ -907,7 +892,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       page = result.page;
       document.querySelector("#jobCount").textContent =
-        matches.length + " lowongan dibuka" +
+        matches.length + " lowongan ditemukan" +
         (result.pages > 1 ? " · halaman " + page + " dari " + result.pages : "");
       document.querySelector("#jobEmpty").hidden = matches.length !== 0;
       wrapper.hidden = matches.length === 0;

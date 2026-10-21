@@ -6,7 +6,7 @@
     <title>BMA</title>
     <meta
       name="description"
-      content="PT Berkat Maritim Abadi — Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara di Kalimantan sejak 2013."
+      content="PT Berkat Maritim Abadi — Mitra Strategis Pertambangan dan Logistik. Layanan pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara di Kalimantan sejak 2013."
     />
     <meta name="theme-color" content="#171C20" />
     <meta name="robots" content="index, follow" />
@@ -15,11 +15,11 @@
     <meta property="og:site_name" content="PT Berkat Maritim Abadi" />
     <meta
       property="og:title"
-      content="PT Berkat Maritim Abadi | Partner Strategis Pertambangan dan Logistik"
+      content="PT Berkat Maritim Abadi | Mitra Strategis Pertambangan dan Logistik"
     />
     <meta
       property="og:description"
-      content="PT Berkat Maritim Abadi — Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara di Kalimantan sejak 2013."
+      content="PT Berkat Maritim Abadi — Mitra Strategis Pertambangan dan Logistik. Layanan pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara di Kalimantan sejak 2013."
     />
     <meta
       property="og:image"
@@ -65,9 +65,9 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/brand-heroes.css" />
-    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="assets/css/style.css?v=hero-20261021-2" />
+    <link rel="stylesheet" href="assets/css/brand-heroes.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
   </head>
 
   <body class="home-page">
@@ -132,7 +132,7 @@
           <a href="pages/about.html" class="nav-link">Tentang Kami</a>
           <a href="pages/services.html" class="nav-link">Layanan</a>
           <a href="pages/news.html" class="nav-link">Berita</a>
-          <a href="pages/karir.html" class="nav-link">Karir</a>
+          <a href="pages/karir.html" class="nav-link">Karier</a>
           <a href="pages/contact.html" class="nav-link">Kontak</a>
           <!-- Pilihan bahasa: tampilan saja, belum berfungsi. -->
           <div class="lang-switch" role="group" aria-label="Pilihan bahasa (Bahasa Inggris segera hadir)">
@@ -141,7 +141,7 @@
             <button class="lang-switch__btn is-active" type="button" aria-pressed="true" aria-disabled="true" title="Bahasa Indonesia">IND</button>
           </div>
           <div class="menu-contact">
-            PT Berkat Maritim Abadi · Jasa Pertambangan &amp; Bongkar Muat<br /><a href="pages/contact.html">Informasi kontak &amp; kerja sama ↗</a>
+            PT Berkat Maritim Abadi · Jasa Pertambangan &amp; Bongkar Muat<br /><a href="pages/contact.html">Informasi Kontak dan Kerja Sama ↗</a>
           </div>
         </div>
       </nav>
@@ -152,7 +152,7 @@
          HERO SLIDER
       ========================== -->
       <section class="hero" id="home" aria-label="PT Berkat Maritim Abadi">
-        <!-- Gambar, posisi, overlay, judul, deskripsi, dan foreground diatur di js/site-data.js → window.BMA_HERO.
+        <!-- Gambar, posisi, overlay, judul, deskripsi, dan foreground diatur di assets/js/site-data.js → window.BMA_HERO.
              Slide pertama ditulis di sini agar langsung tampil (dan tetap tampil tanpa JavaScript). -->
         <div
           class="hero__stage"
@@ -172,13 +172,14 @@
                 alt=""
                 width="1480"
                 height="1055"
+                style="--pos: center 55%; --pos-mobile: 64% center"
                 fetchpriority="high"
                 decoding="async"
               />
             </picture>
           </div>
           <div class="hero__overlay" aria-hidden="true"></div>
-          <!-- Opsional: PNG objek terpotong (latar transparan) tampil DI DEPAN judul. -->
+          <!-- Opsional: Lapisan objek terpotong opsional (latar transparan) di atas foto. -->
           <div
             class="hero__foreground"
             id="heroForeground"
@@ -186,85 +187,35 @@
           ></div>
 
           <div class="hero__inner">
-            <div class="hero__head">
-              <h1 class="hero__title" id="heroTitle">
-                <span class="hero__word">Berkat</span>
-                <span class="hero__word">Maritim</span>
-                <span class="hero__word">Abadi</span>
-              </h1>
-            </div>
-
-            <div class="hero__footer">
-              <div class="hero__actions">
-                <a href="pages/services.html" class="hero__cta">
-                  <span class="hero__cta-label">Jelajahi Layanan</span>
-                  <span class="hero__cta-icon" aria-hidden="true"
-                    ><svg class="icon"><use href="#i-arrow-up-right" /></svg
-                  ></span>
-                </a>
-                <a href="pages/about.html" class="hero__link">Tentang Kami</a>
+            <div class="hero__copy">
+              <div class="hero__head">
+                <h1 class="hero__title" id="heroTitle">
+                  <span class="hero__word">Berkat Maritim</span>
+                  <span class="hero__word">Abadi</span>
+                </h1>
               </div>
-              <p class="hero__description" id="heroDescription">
-                Dengan fokus pada efisiensi operasional dan pelayanan prima,
-                kami berkomitmen untuk menjadi mitra terpercaya dalam mendukung
-                kelancaran aktivitas pertambangan dan pelabuhan di Indonesia.
-              </p>
-              <div class="hero__controls" id="heroControls" hidden>
-                <div class="hero__buttons">
-                  <button
-                    class="hero__button"
-                    id="heroPrev"
-                    type="button"
-                    aria-label="Slide sebelumnya"
-                  >
-                    <svg class="icon" aria-hidden="true">
-                      <use href="#i-arrow-left" />
-                    </svg>
-                  </button>
-                  <button
-                    class="hero__button"
-                    id="heroPause"
-                    type="button"
-                    aria-label="Jeda slideshow"
-                    aria-pressed="false"
-                  >
-                    <svg class="icon" aria-hidden="true">
-                      <use href="#i-pause" />
-                    </svg>
-                  </button>
+              <div class="hero__footer">
+                <p class="hero__description" id="heroDescription">
+                  Kami mendukung kelancaran kegiatan pertambangan dan pelabuhan di Indonesia melalui layanan yang mengutamakan keselamatan, efisiensi operasional, dan profesionalisme.
+                </p>
+                <div class="hero__actions">
+                  <a href="pages/services.html" class="hero__cta">
+                    <span class="hero__cta-label">Lihat Layanan Kami</span>
+                    <span class="hero__cta-icon" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right" /></svg></span>
+                  </a>
+                  <a href="pages/about.html" class="hero__link">Tentang Kami</a>
                 </div>
-                <div class="hero__preview">
-                  <button
-                    class="hero__preview-thumb"
-                    id="heroNext"
-                    type="button"
-                    aria-label="Slide berikutnya"
-                  >
-                    <img
-                      id="heroPreviewImage"
-                      src=""
-                      alt=""
-                      width="160"
-                      height="100"
-                    />
-                    <span class="hero__preview-label" id="heroPreviewLabel"
-                      >Berikutnya</span
-                    >
-                  </button>
-                  <div class="hero__preview-meta">
-                    <p class="hero__count" aria-hidden="true">
-                      <strong id="slideNumber">01</strong>/<span id="slideTotal"
-                        >01</span
-                      >
-                    </p>
-                    <div
-                      class="hero__dots"
-                      id="heroDots"
-                      role="group"
-                      aria-label="Pilih slide"
-                    ></div>
-                  </div>
-                </div>
+              </div>
+            </div>
+            <div class="hero__controls" id="heroControls" hidden>
+              <div class="hero__pagination">
+                <p class="hero__count" aria-hidden="true"><strong id="slideNumber">01</strong> / <span id="slideTotal">03</span></p>
+                <div class="hero__dots" id="heroDots" role="group" aria-label="Pilih tayangan"></div>
+              </div>
+              <div class="hero__buttons">
+                <button class="hero__button" id="heroPrev" type="button" aria-label="Tayangan sebelumnya"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg></button>
+                <button class="hero__button" id="heroPause" type="button" aria-label="Jeda tayangan" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pause" /></svg></button>
+                <button class="hero__button" id="heroNext" type="button" aria-label="Tayangan berikutnya"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></button>
               </div>
             </div>
           </div>
@@ -319,12 +270,9 @@
 
           <div class="about-copy" data-reveal="up">
             <p class="section-kicker">Profil Perusahaan</p>
-            <h2 id="aboutTitle">Partner Strategis Pertambangan dan Logistik</h2>
+            <h2 id="aboutTitle">Mitra Strategis Pertambangan dan Logistik</h2>
             <p class="lead">
-              PT Berkat Maritim Abadi merupakan perusahaan yang bergerak di
-              bidang jasa pertambangan dan jasa bongkar muat, didirikan dengan
-              landasan nilai profesionalisme, integritas, serta dedikasi tinggi
-              terhadap pembangunan industri nasional yang berkelanjutan.
+              PT Berkat Maritim Abadi menyediakan jasa pertambangan dan bongkar muat dengan berlandaskan profesionalisme, integritas, dan dedikasi terhadap pertumbuhan industri nasional yang berkelanjutan.
             </p>
             <ul class="advantage-list">
               <li>
@@ -333,10 +281,9 @@
                     <use href="#i-check" /></svg
                 ></span>
                 <div>
-                  <strong>Profesional &amp; Berpengalaman</strong
+                  <strong>Tenaga Profesional dan Berpengalaman</strong
                   ><span
-                    >Didukung oleh tenaga ahli dengan pengalaman panjang di
-                    industri pertambangan dan bongkar muat.</span
+                    >Tenaga ahli berpengalaman mendukung pelaksanaan kegiatan pertambangan dan bongkar muat.</span
                   >
                 </div>
               </li>
@@ -346,10 +293,9 @@
                     <use href="#i-check" /></svg
                 ></span>
                 <div>
-                  <strong>Optimalisasi Kinerja &amp; Waktu</strong
+                  <strong>Efisiensi dan Ketepatan Waktu</strong
                   ><span
-                    >Mengutamakan produktivitas dan ketepatan waktu tanpa
-                    mengurangi standar keselamatan kerja.</span
+                    >Produktivitas dan ketepatan waktu menjadi prioritas dengan tetap mengutamakan keselamatan kerja.</span
                   >
                 </div>
               </li>
@@ -359,11 +305,9 @@
                     <use href="#i-check" /></svg
                 ></span>
                 <div>
-                  <strong>Kepatuhan Standar &amp; Perizinan</strong
+                  <strong>Kepatuhan terhadap Standar dan Perizinan</strong
                   ><span
-                    >Seluruh kegiatan operasional kami telah sesuai dengan
-                    standar K3L serta memenuhi ketentuan perizinan
-                    pemerintah.</span
+                    >Kegiatan operasional dilaksanakan sesuai standar keselamatan, kesehatan kerja, dan lingkungan (K3L), serta ketentuan perizinan yang berlaku.</span
                   >
                 </div>
               </li>
@@ -373,10 +317,9 @@
                     <use href="#i-check" /></svg
                 ></span>
                 <div>
-                  <strong>Jaringan Mitra yang Luas</strong
+                  <strong>Kemitraan Strategis</strong
                   ><span
-                    >Kami bekerja sama dengan mitra strategis di berbagai
-                    wilayah pertambangan dan pelabuhan di Indonesia.</span
+                    >Kerja sama dengan mitra strategis mendukung kegiatan pertambangan dan pelabuhan di berbagai wilayah Indonesia.</span
                   >
                 </div>
               </li>
@@ -402,11 +345,10 @@
           <div class="section-heading">
             <div>
               <p class="section-kicker">Layanan</p>
-              <h2 id="servicesTitle">Jasa Pertambangan &amp; Bongkar Muat</h2>
+              <h2 id="servicesTitle">Layanan Pertambangan dan Bongkar Muat</h2>
             </div>
             <p>
-              Layanan kami mendukung seluruh rangkaian kegiatan pertambangan,
-              mulai dari overburden hingga proses pemuatan di atas tongkang.
+              Kami mendukung rangkaian kegiatan pertambangan, mulai dari pengupasan lapisan penutup hingga pemuatan hasil tambang ke tongkang.
             </p>
           </div>
           <div class="service-grid">
@@ -435,11 +377,10 @@
                   >
                 </h3>
                 <p>
-                  Pengambilan batu bara beserta crushing dan stockpiling sebagai
-                  bagian dari jasa pertambangan.
+                  Pengambilan, peremukan, dan penimbunan batu bara untuk mendukung kegiatan produksi pertambangan.
                 </p>
                 <span class="more-indicator" aria-hidden="true"
-                  >Pelajari Selengkapnya
+                  >Lihat Detail Layanan
                   <span class="icon-circle"
                     ><svg class="icon"><use href="#i-arrow-right" /></svg></span
                 ></span>
@@ -470,11 +411,10 @@
                   >
                 </h3>
                 <p>
-                  Overburden removal, land clearing, serta cut and fill untuk
-                  membuka akses ke lapisan batu bara.
+                  Pengupasan lapisan penutup, pembukaan lahan, serta pekerjaan galian dan timbunan untuk mengakses lapisan batu bara.
                 </p>
                 <span class="more-indicator" aria-hidden="true"
-                  >Pelajari Selengkapnya
+                  >Lihat Detail Layanan
                   <span class="icon-circle"
                     ><svg class="icon"><use href="#i-arrow-right" /></svg></span
                 ></span>
@@ -505,11 +445,10 @@
                   >
                 </h3>
                 <p>
-                  Jasa hauling untuk pengangkutan batubara, nikel, mineral, dan
-                  hasil tambang lainnya.
+                  Layanan pengangkutan batu bara, nikel, mineral, dan hasil tambang lainnya untuk mendukung kelancaran distribusi.
                 </p>
                 <span class="more-indicator" aria-hidden="true"
-                  >Pelajari Selengkapnya
+                  >Lihat Detail Layanan
                   <span class="icon-circle"
                     ><svg class="icon"><use href="#i-arrow-right" /></svg></span
                 ></span>
@@ -533,12 +472,11 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Berita Terbaru</p>
-              <h2 id="newsTitle">Kabar dari Lapangan</h2>
+              <p class="section-kicker">Publikasi Perusahaan</p>
+              <h2 id="newsTitle">Informasi dan Kegiatan Perusahaan</h2>
             </div>
             <p>
-              Kabar terbaru seputar operasi, keselamatan kerja, dan kemitraan.
-              Artikel dan tanggal di bawah adalah contoh.
+              Informasi mengenai kegiatan operasional, keselamatan kerja, dan kemitraan perusahaan. Artikel dan tanggal yang ditampilkan merupakan materi contoh.
             </p>
           </div>
 
@@ -667,7 +605,7 @@
 
       <!-- =========================
          SITE OPERASIONAL (setelah Berita)
-         Data site, posisi marker, dan galeri: js/site-data.js → window.BMA_SITES
+         Data site, posisi marker, dan galeri: assets/js/site-data.js → window.BMA_SITES
       ========================== -->
       <section
         class="section home-sites"
@@ -677,12 +615,11 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Site Operasional</p>
-              <h2 id="sitesTitle">Lokasi Operasional Kami</h2>
+              <p class="section-kicker">Wilayah Operasional</p>
+              <h2 id="sitesTitle">Lokasi Kegiatan Operasional</h2>
             </div>
             <p>
-              Kalimantan Tengah dan Kalimantan Selatan dalam satu peta. Pilih
-              penanda untuk melihat informasi setiap site.
+              Kegiatan operasional kami mencakup wilayah Kalimantan Tengah dan Kalimantan Selatan. Pilih penanda pada peta untuk melihat informasi setiap lokasi.
             </p>
           </div>
 
@@ -692,7 +629,7 @@
                 <img
                   class="site-map__image"
                   src="assets/images/maps/kalimantan-sites.svg"
-                  alt="Peta gabungan Kalimantan Tengah dan Kalimantan Selatan dengan penanda site operasional"
+                  alt="Peta Kalimantan Tengah dan Kalimantan Selatan dengan penanda lokasi operasional"
                   width="800"
                   height="533"
                   decoding="async"
@@ -703,11 +640,10 @@
                 class="site-list"
                 id="siteList"
                 role="group"
-                aria-label="Pilih site operasional"
+                aria-label="Pilih lokasi operasional"
               ></div>
               <p class="site-map__note">
-                Posisi penanda bersifat ilustratif · Kedua peta: Created with
-                paintmaps.com
+                Posisi penanda merupakan ilustrasi lokasi · Sumber peta: paintmaps.com
               </p>
             </div>
 
@@ -718,18 +654,17 @@
                 aria-live="polite"
               >
                 <p class="site-content__eyebrow">
-                  Site aktif · <span id="siteProvince">Kalimantan Tengah</span>
+                  Lokasi terpilih · <span id="siteProvince">Kalimantan Tengah</span>
                 </p>
                 <h3 class="site-content__title" id="siteTitle">Kelanis</h3>
                 <p class="site-content__description" id="siteDescription">
-                  Informasi mengenai Site Kelanis akan ditampilkan berdasarkan
-                  data resmi perusahaan.
+                  Informasi terperinci mengenai lokasi operasional Kelanis akan tersedia setelah data resmi perusahaan diperbarui.
                 </p>
                 <a
                   class="btn btn-primary site-content__button"
                   id="siteLink"
                   href="pages/services.html"
-                  >Lebih Lanjut
+                  >Lihat Layanan Terkait
                   <svg class="icon" aria-hidden="true">
                     <use href="#i-arrow-right" /></svg
                 ></a>
@@ -738,7 +673,7 @@
               <div class="site-gallery">
                 <div class="site-gallery__header">
                   <h4 id="siteGalleryTitle">
-                    Galeri <small>Dokumentasi site</small>
+                    Galeri <small>Dokumentasi operasional</small>
                   </h4>
                   <div class="site-gallery__navigation">
                     <button
@@ -799,7 +734,7 @@
                   </li>
                 </ul>
                 <p class="site-gallery__empty" id="siteGalleryEmpty" hidden>
-                  Galeri belum tersedia.
+                  Dokumentasi untuk lokasi ini belum tersedia.
                 </p>
               </div>
             </div>
@@ -808,7 +743,7 @@
       </section>
     </main>
 
-    <dialog class="lightbox" id="siteLightbox" aria-label="Foto site">
+    <dialog class="lightbox" id="siteLightbox" aria-label="Foto lokasi operasional">
       <img src="" alt="" />
       <div class="lightbox-bar">
         <p><span data-lightbox-caption></span><small data-counter></small></p>
@@ -827,7 +762,7 @@
           <a class="brand footer-brand" href="index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
             <img class="brand-logo footer-logo" src="assets/logo/bma-logo-footer.webp" alt="PT Berkat Maritim Abadi — Member of Growin Group" width="795" height="409" loading="lazy" />
           </a>
-          <p class="footer-desc">Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara sejak 2013.</p>
+          <p class="footer-desc">Mitra strategis pertambangan dan logistik sejak 2013. Mendukung kegiatan pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara.</p>
           <ul class="social-links" aria-label="Media sosial (tautan contoh)">
             <li><a href="#" aria-label="LinkedIn (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
             <li><a href="#" aria-label="Instagram (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
@@ -844,13 +779,13 @@
         </nav>
 
         <nav class="footer-col" aria-labelledby="footerPages">
-          <h2 id="footerPages">Layanan &amp; Karir</h2>
+          <h2 id="footerPages">Layanan dan Karier</h2>
           <ul>
             <li><a href="pages/services.html">Layanan</a></li>
-            <li><a href="pages/karir.html">Karir</a></li>
+            <li><a href="pages/karir.html">Karier</a></li>
           </ul>
           <p class="footer-recruit">
-            <span class="footer-recruit__label">Email rekrutmen</span>
+            <span class="footer-recruit__label">Email Rekrutmen</span>
             <a href="mailto:karir@growingroup.id"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>karir@growingroup.id</a>
           </p>
         </nav>
@@ -867,10 +802,10 @@
 
       <div class="container footer-bottom">
         <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
-        <span>Pratinjau desain · berita dan karir masih contoh</span>
+        <span>Pratinjau situs · Berita dan lowongan merupakan materi contoh</span>
       </div>
     </footer>
-    <script src="js/site-data.js" defer></script>
-    <script src="js/script.js" defer></script>
+    <script src="assets/js/site-data.js?v=hero-20261021-2" defer></script>
+    <script src="assets/js/script.js?v=hero-20261021-2" defer></script>
   </body>
 </html>

@@ -2,9 +2,10 @@
 // Usage: node tools/audit-paths.mjs   (exit 0 = all resolve, exit 1 = broken)
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const ROOT = path.resolve(import.meta.dirname, "..");
-const SKIP_DIRS = new Set(["docs", "tools", "node_modules", ".git"]);
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const SKIP_DIRS = new Set(["docs", "_source", "tools", "node_modules", ".git"]);
 const EXTERNAL = /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i;
 const HAS_EXT = /\.[a-z0-9]{2,5}(?:$|[?#])/i;
 const FILE_EXT = /\.(?:png|jpe?g|webp|avif|svg|gif|ico|css|js|html|woff2?|ttf|otf|mp4|webm)$/i;
