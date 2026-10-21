@@ -35,9 +35,6 @@ body .site-header.menu-open {
   color: var(--text);
   background: #fffffff5;
 }
-body.company-page #mainContent {
-  padding-top: 0;
-}
 
 /* Without JavaScript the mobile header is in normal flow, above the image. */
 @media (max-width: 960px) {

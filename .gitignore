@@ -1,3 +1,7 @@
-PT BMA - Company Profile 2026.pdf
-REVISI_COMPANY_PROFILE_TAMBANG.md
-site.md
+# Dokumen sumber berukuran besar (tidak dipakai situs, simpan di luar git)
+_source/*.pdf
+
+# Alat & sistem
+node_modules/
+.DS_Store
+Thumbs.db

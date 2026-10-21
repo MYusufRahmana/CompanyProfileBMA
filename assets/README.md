@@ -1,13 +1,13 @@
 ## Logo (`logo/`)
 
-Dibuat dari `images/FINAL LOGO BMA BLACK.png` (file sumber, simpan untuk membuat ulang):
+Dibuat dari `../_source/logo/bma-logo-master.png` (file sumber, simpan untuk membuat ulang):
 
 - `bma-logo-color.*` — simbol oranye + teks abu gelap, untuk latar terang (navbar setelah scroll, menu mobile, og:image).
-- `bma-logo-white.*` — simbol oranye + teks putih, untuk latar gelap/foto (navbar di atas foto).
-- `bma-logo-footer.*` — versi putih + garis + "MEMBER OF GROWIN GROUP" (footer).
-- `../favicon-32.png`, `../favicon-192.png`, `../apple-touch-icon.png` — dari simbol logo yang sama.
+- `bma-logo-white.webp` — simbol oranye + teks putih, untuk latar gelap/foto (navbar di atas foto).
+- `bma-logo-footer.webp` — versi putih + garis + "MEMBER OF GROWIN GROUP" (footer).
+- `icons/favicon-32.png`, `icons/favicon-192.png`, `icons/apple-touch-icon.png` — dari simbol logo yang sama.
 
-## Foto perusahaan (`images/FotoBMA/`)
+## Foto perusahaan (`images/company/`)
 
 Foto asli BMA, dikonversi ke WebP:
 
@@ -34,16 +34,16 @@ Bukan dokumentasi BMA; ganti dengan foto perusahaan sebelum publikasi.
 | pit-benches-* | https://unsplash.com/photos/1O_HNWeY0O4 |
 | hse-inspection-* | https://unsplash.com/photos/lHI9NA4U7hg |
 
-- `images/photo-1524522173746-f628baad3644*` — kapal kargo (layanan Bongkar Muat), Unsplash: https://images.unsplash.com/photo-1524522173746-f628baad3644
-- `images/social/social-{education,health,environment}-640.webp` — foto artikel kategori Sosial di Berita (Unsplash License): TmdrCRVDOnQ, k2nXCVm-SUg, FyCjvyPG9Pg (https://unsplash.com/photos/<id>)
+- `images/logistics/cargo-ship-*` — kapal kargo (layanan Bongkar Muat), Unsplash: https://images.unsplash.com/photo-1524522173746-f628baad3644
+- `images/social/social-{education,health,environment}-*` — foto artikel kategori Sosial di Berita (Unsplash License): TmdrCRVDOnQ, k2nXCVm-SUg, FyCjvyPG9Pg (https://unsplash.com/photos/<id>)
 - `images/about/about-team-portrait-*` — dua pekerja ber-APD ("Sekilas Tentang Kami"), Pexels License: https://www.pexels.com/photo/a-man-and-a-woman-wearing-hard-hats-talking-at-the-construction-site-8961030/
 
-## Peta (`images/Kalimantan-Site-Gabungan.svg`)
+## Peta (`images/maps/kalimantan-sites.svg`)
 
 Peta gabungan Kalimantan Tengah & Selatan dibuat dengan paintmaps.com; kredit "Created with paintmaps.com" di dalam peta dipertahankan.
 
 ## Font & ikon
 
-Inter dan Manrope dibundel sebagai WOFF2 variabel (Latin) dari Google Fonts; file lisensi SIL Open Font License (`fonts/*-OFL.txt`) wajib tetap ada di samping file font. GSAP 3.12.5 dan ScrollTrigger dibundel di akhir `js/script.js` dengan header lisensi aslinya.
+Inter dan Manrope dibundel sebagai WOFF2 variabel (Latin) dari Google Fonts; file lisensi SIL Open Font License (`fonts/*-OFL.txt`) wajib tetap ada di samping file font.
 
 Sprite ikon SVG inline (dibuat oleh `tools/layout.mjs`) memakai ikon garis buatan sendiri dan beberapa path yang diadaptasi dari Feather Icons (MIT) dan Lucide (ISC).

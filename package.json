@@ -1,0 +1,13 @@
+{
+  "name": "bma-company-profile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Template website company profile statis (HTML, CSS, JavaScript tanpa framework). Contoh: PT Berkat Maritim Abadi.",
+  "scripts": {
+    "build": "node tools/news.mjs && node tools/layout.mjs",
+    "check": "node tools/audit-paths.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

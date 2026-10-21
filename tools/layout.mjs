@@ -1,5 +1,6 @@
 // Shared layout partials (icon sprite, header, footer) for every static page.
-// Run: node tools/layout.mjs
+// Run: node tools/layout.mjs  (atau npm run build)
+// Data perusahaan, menu, dan kontak diambil dari content/site.mjs.
 // Each partial maps to a future Blade include:
 //   iconSprite() -> partials/icons.blade.php
 //   header()     -> partials/header.blade.php
@@ -7,6 +8,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { site } from "../content/site.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -57,6 +59,7 @@ const icons = {
     '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/>',
   youtube:
     '<path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><path d="m9.75 15.02 5.75-3.27-5.75-3.27z"/>',
+  whatsapp: '<path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>',
   facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
 };
 
@@ -71,43 +74,39 @@ export const icon = (name, cls = "icon") =>
   `<svg class="${cls}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 
 // page: file name without extension; base: "" for root, "../" for pages/.
-// Every menu item is a real page; no in-page anchors.
-const links = (page, base) => {
-  const p = (file) => (page === "index" ? `pages/${file}` : file);
-  return {
-    home: `${base}index.html`,
-    about: p("about.html"),
-    services: p("services.html"),
-    news: p("news.html"),
-    careers: p("karir.html"),
-    contact: p("contact.html"),
-  };
-};
-
-// Main menu items in display order. Karir is a top-level item (not a submenu).
-const menu = [
-  ["home", "Beranda"],
-  ["about", "Tentang Kami"],
-  ["services", "Layanan"],
-  ["news", "Berita"],
-  ["careers", "Karir"],
-  ["contact", "Kontak"],
-];
+// Menu files and labels come from content/site.mjs.
+const links = (page, base) =>
+  Object.fromEntries(
+    Object.entries(site.pages).map(([key, file]) => [
+      key,
+      key === "home" ? `${base}${file}` : page === "index" ? `pages/${file}` : file,
+    ]),
+  );
 
 // Pages that are not menu items highlight their closest parent menu.
-const activeKey = (page) =>
-  ({
-    index: "home",
-    about: "about",
-    services: "services",
-    news: "news",
-    contact: "contact",
-  })[page] ?? (/^(karir|lamar|lowongan-)/.test(page) ? "careers" : "");
+const activeKey = (page) => {
+  if (page === "index") return "home";
+  const direct = Object.entries(site.pages).find(([, file]) => file === `${page}.html`);
+  if (direct) return direct[0];
+  return site.activeParents.find(([pattern]) => pattern.test(page))?.[1] ?? "";
+};
+
+const languageSwitch = () =>
+  site.languageSwitch
+    ? `
+          <!-- Pilihan bahasa: tampilan saja, belum berfungsi. -->
+          <div class="lang-switch" role="group" aria-label="Pilihan bahasa (Bahasa Inggris segera hadir)">
+            <button class="lang-switch__btn" type="button" aria-pressed="false" aria-disabled="true" title="English — segera hadir">EN</button>
+            <span class="lang-switch__sep" aria-hidden="true">|</span>
+            <button class="lang-switch__btn is-active" type="button" aria-pressed="true" aria-disabled="true" title="Bahasa Indonesia">IND</button>
+          </div>`
+    : "";
 
 export function header(page, base) {
   const l = links(page, base);
   const active = activeKey(page);
-  const items = menu
+  const { light, dark } = site.logo;
+  const items = site.menu
     .map(([key, label]) => {
       const current = active === key ? ' active" aria-current="page' : "";
       return `<a href="${l[key]}" class="nav-link${current}">${label}</a>`;
@@ -115,8 +114,8 @@ export function header(page, base) {
     .join("\n          ");
   return `<header class="site-header" id="siteHeader">
       <nav class="navbar container" aria-label="Navigasi utama">
-        <a class="brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
-          <img class="brand-logo brand-logo--white" src="${base}assets/logo/bma-logo-white.webp" alt="PT Berkat Maritim Abadi" width="398" height="160" /><img class="brand-logo brand-logo--color" src="${base}assets/logo/bma-logo-color.webp" alt="PT Berkat Maritim Abadi" width="398" height="160" />
+        <a class="brand" href="${l.home}" aria-label="${site.name} — Beranda">
+          <img class="brand-logo brand-logo--white" src="${base}assets/${light.src}" alt="${site.name}" width="${light.width}" height="${light.height}" /><img class="brand-logo brand-logo--color" src="${base}assets/${dark.src}" alt="${site.name}" width="${dark.width}" height="${dark.height}" />
         </a>
 
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
@@ -126,15 +125,9 @@ export function header(page, base) {
         </button>
 
         <div class="nav-menu" id="navMenu">
-          ${items}
-          <!-- Pilihan bahasa: tampilan saja, belum berfungsi. -->
-          <div class="lang-switch" role="group" aria-label="Pilihan bahasa (Bahasa Inggris segera hadir)">
-            <button class="lang-switch__btn" type="button" aria-pressed="false" aria-disabled="true" title="English — segera hadir">EN</button>
-            <span class="lang-switch__sep" aria-hidden="true">|</span>
-            <button class="lang-switch__btn is-active" type="button" aria-pressed="true" aria-disabled="true" title="Bahasa Indonesia">IND</button>
-          </div>
+          ${items}${languageSwitch()}
           <div class="menu-contact">
-            PT Berkat Maritim Abadi · Jasa Pertambangan &amp; Bongkar Muat<br /><a href="${l.contact}">Informasi kontak &amp; kerja sama ↗</a>
+            ${site.menuNote}<br /><a href="${l.contact}">Informasi kontak &amp; kerja sama ↗</a>
           </div>
         </div>
       </nav>
@@ -143,54 +136,57 @@ export function header(page, base) {
 
 export function footer(page, base) {
   const l = links(page, base);
+  const { footer: f, contact: c, logo } = site;
   const li = (href, label) => `<li><a href="${href}">${label}</a></li>`;
+  const allSample = site.social.every((s) => s.sample);
+  const social = site.social
+    .map((s) => `<li><a href="${s.url}" aria-label="${s.label}${s.sample ? " (tautan contoh)" : ""}">${icon(s.icon)}</a></li>`)
+    .join("\n            ");
+  const columns = f.columns
+    .map(
+      (col) => `
+        <nav class="footer-col" aria-labelledby="${col.id}">
+          <h2 id="${col.id}">${col.title}</h2>
+          <ul>
+            ${col.links.map(([key, label]) => li(l[key], label)).join("\n            ")}
+          </ul>${
+            col.recruitEmail
+              ? `
+          <p class="footer-recruit">
+            <span class="footer-recruit__label">Email rekrutmen</span>
+            <a href="mailto:${col.recruitEmail}">${icon("mail")}${col.recruitEmail}</a>
+          </p>`
+              : ""
+          }
+        </nav>
+`,
+    )
+    .join("");
   return `<footer class="footer">
       <div class="container footer-top">
         <div class="footer-about">
-          <a class="brand footer-brand" href="${l.home}" aria-label="PT Berkat Maritim Abadi — Beranda">
-            <img class="brand-logo footer-logo" src="${base}assets/logo/bma-logo-footer.webp" alt="PT Berkat Maritim Abadi — Member of Growin Group" width="795" height="409" loading="lazy" />
+          <a class="brand footer-brand" href="${l.home}" aria-label="${site.name} — Beranda">
+            <img class="brand-logo footer-logo" src="${base}assets/${logo.footer.src}" alt="${logo.footer.alt}" width="${logo.footer.width}" height="${logo.footer.height}" loading="lazy" />
           </a>
-          <p class="footer-desc">Partner Strategis Pertambangan dan Logistik. Jasa pertambangan, hauling, dan bongkar muat batubara sejak 2013.</p>
-          <ul class="social-links" aria-label="Media sosial (tautan contoh)">
-            <li><a href="#" aria-label="LinkedIn (tautan contoh)">${icon("linkedin")}</a></li>
-            <li><a href="#" aria-label="Instagram (tautan contoh)">${icon("instagram")}</a></li>
-            <li><a href="#" aria-label="YouTube (tautan contoh)">${icon("youtube")}</a></li>
+          <p class="footer-desc">${f.description}</p>
+          <ul class="social-links" aria-label="Media sosial${allSample ? " (tautan contoh)" : ""}">
+            ${social}
           </ul>
         </div>
-
-        <nav class="footer-col" aria-labelledby="footerLinks">
-          <h2 id="footerLinks">Perusahaan</h2>
-          <ul>
-            ${li(l.about, "Tentang Kami")}
-            ${li(l.news, "Berita")}
-          </ul>
-        </nav>
-
-        <nav class="footer-col" aria-labelledby="footerPages">
-          <h2 id="footerPages">Layanan &amp; Karir</h2>
-          <ul>
-            ${li(l.services, "Layanan")}
-            ${li(l.careers, "Karir")}
-          </ul>
-          <p class="footer-recruit">
-            <span class="footer-recruit__label">Email rekrutmen</span>
-            <a href="mailto:karir@growingroup.id">${icon("mail")}karir@growingroup.id</a>
-          </p>
-        </nav>
-
+${columns}
         <div class="footer-col">
           <h2>Kontak</h2>
           <ul class="footer-contact">
-            <li>${icon("pin")}<span>Jl. Lodan Raya No. 01, Ancol, Pademangan, Jakarta Utara 14430</span></li>
-            <li>${icon("mail")}<a href="mailto:vincent@growingroup.id">vincent@growingroup.id</a></li>
-            <li>${icon("phone")}<a href="tel:+628128222858">+62 812-8222-858</a></li>
+            <li>${icon("pin")}<span>${c.address}</span></li>
+            <li>${icon("mail")}<a href="mailto:${c.email}">${c.email}</a></li>
+            <li>${icon("phone")}<a href="tel:${c.phone.tel}">${c.phone.label}</a></li>
           </ul>
         </div>
       </div>
 
       <div class="container footer-bottom">
-        <span>© <span id="year"></span> PT Berkat Maritim Abadi. Hak cipta dilindungi.</span>
-        <span>Pratinjau desain · berita dan karir masih contoh</span>
+        <span>© <span id="year"></span> ${site.name}. Hak cipta dilindungi.</span>
+        <span>${f.bottomNote}</span>
       </div>
     </footer>`;
 }

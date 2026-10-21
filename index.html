@@ -23,7 +23,7 @@
     />
     <meta
       property="og:image"
-      content="assets/images/FotoBMA/hero-1-1480.webp"
+      content="assets/images/company/hero-1-1480.webp"
     />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -31,22 +31,22 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="assets/favicon-32.png"
+      href="assets/icons/favicon-32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="192x192"
-      href="assets/favicon-192.png"
+      href="assets/icons/favicon-192.png"
     />
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
     <link
       rel="preload"
       as="image"
-      href="assets/images/FotoBMA/hero-1-1480.webp"
+      href="assets/images/company/hero-1-1480.webp"
       imagesrcset="
-        assets/images/FotoBMA/hero-1-800.webp   800w,
-        assets/images/FotoBMA/hero-1-1480.webp 1480w
+        assets/images/company/hero-1-800.webp   800w,
+        assets/images/company/hero-1-1480.webp 1480w
       "
       imagesizes="100vw"
       fetchpriority="high"
@@ -108,6 +108,7 @@
       <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
       <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></symbol>
       <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><path d="m9.75 15.02 5.75-3.27-5.75-3.27z"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></symbol>
       <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
     </svg>
     <!-- icons:end -->
@@ -151,7 +152,7 @@
          HERO SLIDER
       ========================== -->
       <section class="hero" id="home" aria-label="PT Berkat Maritim Abadi">
-        <!-- Gambar, posisi, overlay, judul, deskripsi, dan foreground diatur di js/script.js → window.BMA_HERO.
+        <!-- Gambar, posisi, overlay, judul, deskripsi, dan foreground diatur di js/site-data.js → window.BMA_HERO.
              Slide pertama ditulis di sini agar langsung tampil (dan tetap tampil tanpa JavaScript). -->
         <div
           class="hero__stage"
@@ -164,10 +165,10 @@
             <picture class="hero__photo is-active">
               <source
                 media="(max-width: 680px)"
-                srcset="assets/images/FotoBMA/hero-1-800.webp"
+                srcset="assets/images/company/hero-1-800.webp"
               />
               <img
-                src="assets/images/FotoBMA/hero-1-1480.webp"
+                src="assets/images/company/hero-1-1480.webp"
                 alt=""
                 width="1480"
                 height="1055"
@@ -562,7 +563,7 @@
                   <time datetime="2026-09-20">20 September 2026</time>
                 </p>
                 <h3>
-                  <a class="stretched-link" href="pages/news.html#sinergi"
+                  <a class="stretched-link" href="pages/berita-sinergi.html"
                     >Memperkuat sinergi operasional untuk pertumbuhan
                     berkelanjutan</a
                   >
@@ -599,7 +600,7 @@
                   <time datetime="2026-08-28">28 Agustus 2026</time>
                 </p>
                 <h3>
-                  <a class="stretched-link" href="pages/news.html#keselamatan"
+                  <a class="stretched-link" href="pages/berita-keselamatan.html"
                     >Membangun budaya keselamatan dari setiap briefing
                     lapangan</a
                   >
@@ -636,7 +637,7 @@
                   <time datetime="2026-07-12">12 Juli 2026</time>
                 </p>
                 <h3>
-                  <a class="stretched-link" href="pages/news.html#maritim"
+                  <a class="stretched-link" href="pages/berita-maritim.html"
                     >Kolaborasi maritim dan logistik untuk konektivitas
                     antarpulau</a
                   >
@@ -666,7 +667,7 @@
 
       <!-- =========================
          SITE OPERASIONAL (setelah Berita)
-         Data site, posisi marker, dan galeri: js/script.js → window.BMA_SITES
+         Data site, posisi marker, dan galeri: js/site-data.js → window.BMA_SITES
       ========================== -->
       <section
         class="section home-sites"
@@ -690,7 +691,7 @@
               <div class="site-map" id="siteMap">
                 <img
                   class="site-map__image"
-                  src="assets/images/Kalimantan-Site-Gabungan.svg"
+                  src="assets/images/maps/kalimantan-sites.svg"
                   alt="Peta gabungan Kalimantan Tengah dan Kalimantan Selatan dengan penanda site operasional"
                   width="800"
                   height="533"
@@ -768,7 +769,7 @@
                 >
                   <li class="site-gallery__item">
                     <img
-                      src="assets/images/FotoBMA/site-kelanis-1-640.webp"
+                      src="assets/images/company/site-kelanis-1-640.webp"
                       alt="Foto udara stockpile batu bara dan tongkang di tepi sungai, Site Kelanis"
                       width="640"
                       height="457"
@@ -778,7 +779,7 @@
                   </li>
                   <li class="site-gallery__item">
                     <img
-                      src="assets/images/FotoBMA/site-kelanis-2-640.webp"
+                      src="assets/images/company/site-kelanis-2-640.webp"
                       alt="Tim lapangan dan excavator saat pembukaan lahan, Site Kelanis"
                       width="640"
                       height="568"
@@ -788,7 +789,7 @@
                   </li>
                   <li class="site-gallery__item">
                     <img
-                      src="assets/images/FotoBMA/site-kelanis-3-640.webp"
+                      src="assets/images/company/site-kelanis-3-640.webp"
                       alt="Dua excavator bekerja di front batu bara, Site Kelanis"
                       width="640"
                       height="463"
@@ -869,6 +870,7 @@
         <span>Pratinjau desain · berita dan karir masih contoh</span>
       </div>
     </footer>
+    <script src="js/site-data.js" defer></script>
     <script src="js/script.js" defer></script>
   </body>
 </html>
