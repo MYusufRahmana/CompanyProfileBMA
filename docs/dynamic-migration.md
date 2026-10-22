@@ -9,7 +9,7 @@ Proyek ini adalah prototipe statis. Belum ada backend, database, autentikasi, at
 | Header, footer, ikon di `tools/layout.mjs` | Layout dan partial/component bersama |
 | `content/site.mjs` | Konfigurasi perusahaan atau pengaturan CMS |
 | `content/news.mjs` | Model/tabel berita, kategori, dan media |
-| `assets/js/site-data.js` | Data hero dan lokasi operasional dari konfigurasi/CMS |
+| `assets/js/site-data.js` | Data hero beranda dari konfigurasi/CMS |
 | Kartu berita di beranda dan daftar | Query artikel pada template |
 | Tabel karier, data jobs/jobDetails, halaman detail | Satu sumber data lowongan |
 | `pages/contact.html` dan `pages/lamar.html` | Endpoint, validasi server, dan penanganan formulir |
@@ -20,7 +20,7 @@ Jika memilih Laravel, HTML dapat dipindahkan ke Blade, komponen bersama menjadi 
 ## Urutan migrasi
 
 1. Buat layout bersama dengan mempertahankan tampilan dan perilaku responsif.
-2. Satukan data berita, lowongan, hero, dan lokasi operasional agar tidak diedit di beberapa tempat.
+2. Satukan data berita, lowongan, dan hero agar tidak diedit di beberapa tempat.
 3. Hubungkan halaman detail dan daftar ke sumber data yang sama.
 4. Implementasikan formulir dengan validasi server, penyimpanan sesuai kebutuhan, serta notifikasi. Pertahankan keterangan simulasi sampai fungsi ini tersedia.
 5. Ganti berita, lowongan, tautan, dan ilustrasi dengan materi yang siap dipublikasikan.

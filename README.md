@@ -62,7 +62,7 @@ Build membuat detail berita dari `content/news.mjs` lalu menyinkronkan komponen 
 | --- | --- |
 | Identitas, menu, kontak, footer | `content/site.mjs`, lalu build |
 | Isi artikel | `content/news.mjs`, lalu build |
-| Hero beranda dan lokasi operasional | `assets/js/site-data.js` |
+| Hero beranda | `assets/js/site-data.js` |
 | Profil, layanan, daftar berita, karier, kontak | Bagian `main` pada HTML terkait |
 | Tampilan global dan hero beranda | `assets/css/style.css` |
 | Header transparan dan variasi logo | `assets/css/brand-heroes.css` |
@@ -72,7 +72,7 @@ Build membuat detail berita dari `content/news.mjs` lalu menyinkronkan komponen 
 
 Jangan menyunting `pages/berita-*.html` langsung karena dibuat ulang oleh generator. Header, footer, dan sprite ikon pada semua HTML juga dibuat oleh `tools/layout.mjs`.
 
-Slide pertama beranda mempunyai HTML cadangan di `index.html`; samakan gambar, posisi, deskripsi, dan preload dengan konfigurasi slide pertama saat mengubahnya.
+Hero beranda menggunakan satu foto pekerja di kanan dengan teks rata kiri, tanpa slider atau tombol. Samakan HTML cadangan di `index.html` dengan gambar, posisi, deskripsi, dan preload pada konfigurasi `BMA_HERO` saat mengubahnya.
 
 Kartu berita pada daftar dan beranda masih ditulis sebagai HTML; build belum menyinkronkan keduanya dari data artikel. Lowongan masih tersebar di tabel `pages/karir.html`, data `jobs`/`jobDetails` pada `assets/js/script.js`, halaman detail, dan pilihan posisi pada `pages/lamar.html`.
 

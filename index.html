@@ -23,7 +23,7 @@
     />
     <meta
       property="og:image"
-      content="assets/images/company/hero-1-1480.webp"
+      content="assets/images/company/home-team-hero-1600.webp"
     />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -43,10 +43,10 @@
     <link
       rel="preload"
       as="image"
-      href="assets/images/company/hero-1-1480.webp"
+      href="assets/images/company/home-team-hero-1600.webp"
       imagesrcset="
-        assets/images/company/hero-1-800.webp   800w,
-        assets/images/company/hero-1-1480.webp 1480w
+        assets/images/company/home-team-hero-800.webp   800w,
+        assets/images/company/home-team-hero-1600.webp 1600w
       "
       imagesizes="100vw"
       fetchpriority="high"
@@ -65,9 +65,9 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/style.css?v=hero-20261021-2" />
+    <link rel="stylesheet" href="assets/css/style.css?v=home-team-hero-20261022-v2" />
     <link rel="stylesheet" href="assets/css/brand-heroes.css" />
-    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/components.css?v=fleet-brands-20261022" />
   </head>
 
   <body class="home-page">
@@ -149,74 +149,22 @@
 
     <main id="mainContent" tabindex="-1">
       <!-- =========================
-         HERO SLIDER
+         HERO BERANDA
       ========================== -->
-      <section class="hero" id="home" aria-label="PT Berkat Maritim Abadi">
-        <!-- Gambar, posisi, overlay, judul, deskripsi, dan foreground diatur di assets/js/site-data.js → window.BMA_HERO.
-             Slide pertama ditulis di sini agar langsung tampil (dan tetap tampil tanpa JavaScript). -->
-        <div
-          class="hero__stage"
-          id="heroSlider"
-          role="region"
-          aria-roledescription="carousel"
-          aria-label="Foto kegiatan operasional"
-        >
-          <div class="hero__media" id="heroMedia">
-            <picture class="hero__photo is-active">
-              <source
-                media="(max-width: 680px)"
-                srcset="assets/images/company/hero-1-800.webp"
-              />
-              <img
-                src="assets/images/company/hero-1-1480.webp"
-                alt=""
-                width="1480"
-                height="1055"
-                style="--pos: center 55%; --pos-mobile: 64% center"
-                fetchpriority="high"
-                decoding="async"
-              />
+      <section class="hero" id="home" aria-labelledby="heroTitle" aria-describedby="heroDescription">
+        <!-- Samakan foto dan teks cadangan dengan assets/js/site-data.js. -->
+        <div class="hero__stage" id="heroStage">
+          <div class="hero__media">
+            <picture class="hero__photo">
+              <source media="(max-width: 680px)" srcset="assets/images/company/home-team-hero-800.webp" />
+              <img src="assets/images/company/home-team-hero-1600.webp" alt="Ilustrasi AI tiga pekerja berseragam BMA meninjau rencana kerja di area operasional" width="1600" height="900" style="--pos: center; --pos-mobile: 78% center" fetchpriority="high" decoding="async" />
             </picture>
           </div>
           <div class="hero__overlay" aria-hidden="true"></div>
-          <!-- Opsional: Lapisan objek terpotong opsional (latar transparan) di atas foto. -->
-          <div
-            class="hero__foreground"
-            id="heroForeground"
-            aria-hidden="true"
-          ></div>
-
           <div class="hero__inner">
             <div class="hero__copy">
-              <div class="hero__head">
-                <h1 class="hero__title" id="heroTitle">
-                  <span class="hero__word">Berkat Maritim</span>
-                  <span class="hero__word">Abadi</span>
-                </h1>
-              </div>
-              <div class="hero__footer">
-                <p class="hero__description" id="heroDescription">
-                  Kami mendukung kelancaran kegiatan pertambangan dan pelabuhan di Indonesia melalui layanan yang mengutamakan keselamatan, efisiensi operasional, dan profesionalisme.
-                </p>
-                <div class="hero__actions">
-                  <a href="pages/services.html" class="hero__cta">
-                    <span class="hero__cta-label">Lihat Layanan Kami</span>
-                    <span class="hero__cta-icon" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right" /></svg></span>
-                  </a>
-                  <a href="pages/about.html" class="hero__link">Tentang Kami</a>
-                </div>
-              </div>
-            </div>
-            <div class="hero__controls" id="heroControls" hidden>
-              <div class="hero__pagination">
-                <p class="hero__count" aria-hidden="true"><strong id="slideNumber">01</strong> / <span id="slideTotal">03</span></p>
-                <div class="hero__dots" id="heroDots" role="group" aria-label="Pilih tayangan"></div>
-              </div>
-              <div class="hero__buttons">
-                <button class="hero__button" id="heroPrev" type="button" aria-label="Tayangan sebelumnya"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg></button>
-                <button class="hero__button" id="heroPause" type="button" aria-label="Jeda tayangan" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pause" /></svg></button>
-                <button class="hero__button" id="heroNext" type="button" aria-label="Tayangan berikutnya"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></button>
-              </div>
+              <h1 class="hero__title" id="heroTitle">Berkat Maritim Abadi</h1>
+              <p class="hero__description" id="heroDescription">Mitra strategis pertambangan dan logistik.</p>
             </div>
           </div>
         </div>
@@ -225,110 +173,25 @@
       <!-- =========================
          ABOUT COMPANY PREVIEW
       ========================== -->
-      <section
-        class="section about-home"
-        id="about"
-        aria-labelledby="aboutTitle"
-      >
+      <section class="section about-home" id="about" aria-labelledby="aboutTitle">
         <div class="container about-home-grid">
-          <div class="about-media" data-reveal="left">
-            <span class="dot-grid" aria-hidden="true"></span>
-            <figure class="about-photo-main">
-              <img
-                src="assets/images/mining/coal-loading-640.webp"
-                srcset="
-                  assets/images/mining/coal-loading-640.webp   640w,
-                  assets/images/mining/coal-loading-1000.webp 1000w
-                "
-                sizes="(max-width: 960px) 90vw, 45vw"
-                alt="Excavator memuat batu bara ke articulated dump truck di area tambang terbuka"
-                width="640"
-                height="853"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-            <figure class="about-photo-overlap">
-              <img
-                src="assets/images/mining/hero-hauling-800.webp"
-                alt="Haul truck melintas di jalan tambang"
-                width="800"
-                height="533"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-            <div class="about-badge">
-              <svg class="icon" aria-hidden="true">
-                <use href="#i-excavator" />
-              </svg>
-              <strong>Coal Getting</strong>
-              <span>Operasional</span>
-            </div>
-            <span class="hazard-stripes" aria-hidden="true"></span>
-          </div>
-
-          <div class="about-copy" data-reveal="up">
+          <figure class="about-photo-main">
+            <img src="assets/images/company/hero-1-1480.webp" srcset="assets/images/company/hero-1-800.webp 800w, assets/images/company/hero-1-1480.webp 1480w" sizes="(max-width: 900px) 90vw, 45vw" alt="Excavator Berkat Maritim Abadi dan truk angkut di area pertambangan" width="1480" height="1055" loading="lazy" decoding="async" />
+          </figure>
+          <div class="about-copy">
             <p class="section-kicker">Profil Perusahaan</p>
             <h2 id="aboutTitle">Mitra Strategis Pertambangan dan Logistik</h2>
-            <p class="lead">
-              PT Berkat Maritim Abadi menyediakan jasa pertambangan dan bongkar muat dengan berlandaskan profesionalisme, integritas, dan dedikasi terhadap pertumbuhan industri nasional yang berkelanjutan.
-            </p>
-            <ul class="advantage-list">
-              <li>
-                <span class="advantage-list__icon"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#i-check" /></svg
-                ></span>
-                <div>
-                  <strong>Tenaga Profesional dan Berpengalaman</strong
-                  ><span
-                    >Tenaga ahli berpengalaman mendukung pelaksanaan kegiatan pertambangan dan bongkar muat.</span
-                  >
-                </div>
-              </li>
-              <li>
-                <span class="advantage-list__icon"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#i-check" /></svg
-                ></span>
-                <div>
-                  <strong>Efisiensi dan Ketepatan Waktu</strong
-                  ><span
-                    >Produktivitas dan ketepatan waktu menjadi prioritas dengan tetap mengutamakan keselamatan kerja.</span
-                  >
-                </div>
-              </li>
-              <li>
-                <span class="advantage-list__icon"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#i-check" /></svg
-                ></span>
-                <div>
-                  <strong>Kepatuhan terhadap Standar dan Perizinan</strong
-                  ><span
-                    >Kegiatan operasional dilaksanakan sesuai standar keselamatan, kesehatan kerja, dan lingkungan (K3L), serta ketentuan perizinan yang berlaku.</span
-                  >
-                </div>
-              </li>
-              <li>
-                <span class="advantage-list__icon"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#i-check" /></svg
-                ></span>
-                <div>
-                  <strong>Kemitraan Strategis</strong
-                  ><span
-                    >Kerja sama dengan mitra strategis mendukung kegiatan pertambangan dan pelabuhan di berbagai wilayah Indonesia.</span
-                  >
-                </div>
-              </li>
+            <div class="about-home__description">
+              <p>PT Berkat Maritim Abadi (BMA) merupakan bagian dari Growin Group yang menyediakan jasa pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara.</p>
+              <p>Sejak 2013, kami mendukung kebutuhan operasional dengan mengutamakan keselamatan, profesionalisme, dan efisiensi.</p>
+            </div>
+            <ul class="advantage-list" aria-label="Keunggulan BMA">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Tenaga berpengalaman</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Efisiensi operasional</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Standar K3L dan perizinan</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Kemitraan strategis</li>
             </ul>
-            <a href="pages/about.html" class="btn btn-dark"
-              >Tentang Kami
-              <svg class="icon" aria-hidden="true">
-                <use href="#i-arrow-right" /></svg
-            ></a>
+            <a href="pages/about.html" class="about-home__link">Selengkapnya tentang BMA<svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
           </div>
         </div>
       </section>
@@ -462,6 +325,27 @@
                 <use href="#i-arrow-right" /></svg
             ></a>
           </div>
+        </div>
+      </section>
+
+      <!-- =========================
+         ARMADA PENDUKUNG
+      ========================== -->
+      <section class="section fleet-home" id="armada" aria-labelledby="fleetTitle">
+        <div class="container">
+          <div class="fleet-home__intro">
+            <h2 id="fleetTitle">Armada Pendukung Operasional</h2>
+            <p>Kegiatan operasional BMA didukung alat berat dan kendaraan angkut dari berbagai merek untuk menunjang kebutuhan pekerjaan di lapangan.</p>
+          </div>
+          <p class="fleet-home__label" id="fleetBrandsLabel">Merek peralatan yang digunakan</p>
+          <ul class="fleet-home__brands" aria-labelledby="fleetBrandsLabel">
+            <li><img src="assets/logo/equipment/komatsu.svg" alt="Komatsu" width="148" height="48" loading="lazy" decoding="async" /></li>
+            <li><img src="assets/logo/equipment/hitachi.svg" alt="Hitachi" width="148" height="48" loading="lazy" decoding="async" /></li>
+            <li><img src="assets/logo/equipment/liugong.svg" alt="LiuGong" width="148" height="48" loading="lazy" decoding="async" /></li>
+            <li><img src="assets/logo/equipment/sany.svg" alt="SANY" width="148" height="48" loading="lazy" decoding="async" /></li>
+            <li><img class="fleet-home__logo--compact" src="assets/logo/equipment/howo.png" alt="HOWO" width="123" height="109" loading="lazy" decoding="async" /></li>
+            <li><img class="fleet-home__logo--compact" src="assets/logo/equipment/lgmg.png" alt="LGMG" width="95" height="73" loading="lazy" decoding="async" /></li>
+          </ul>
         </div>
       </section>
 
@@ -603,157 +487,7 @@
         </div>
       </section>
 
-      <!-- =========================
-         SITE OPERASIONAL (setelah Berita)
-         Data site, posisi marker, dan galeri: assets/js/site-data.js → window.BMA_SITES
-      ========================== -->
-      <section
-        class="section home-sites"
-        id="site-operasional"
-        aria-labelledby="sitesTitle"
-      >
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="section-kicker">Wilayah Operasional</p>
-              <h2 id="sitesTitle">Lokasi Kegiatan Operasional</h2>
-            </div>
-            <p>
-              Kegiatan operasional kami mencakup wilayah Kalimantan Tengah dan Kalimantan Selatan. Pilih penanda pada peta untuk melihat informasi setiap lokasi.
-            </p>
-          </div>
-
-          <div class="home-sites__container">
-            <div class="site-map-column" data-reveal="up">
-              <div class="site-map" id="siteMap">
-                <img
-                  class="site-map__image"
-                  src="assets/images/maps/kalimantan-sites.svg"
-                  alt="Peta Kalimantan Tengah dan Kalimantan Selatan dengan penanda lokasi operasional"
-                  width="800"
-                  height="533"
-                  decoding="async"
-                />
-                <!-- Penanda dibuat dari data site oleh JavaScript. -->
-              </div>
-              <div
-                class="site-list"
-                id="siteList"
-                role="group"
-                aria-label="Pilih lokasi operasional"
-              ></div>
-              <p class="site-map__note">
-                Posisi penanda merupakan ilustrasi lokasi · Sumber peta: paintmaps.com
-              </p>
-            </div>
-
-            <div class="site-content" data-reveal="up">
-              <div
-                class="site-content__body"
-                id="siteContent"
-                aria-live="polite"
-              >
-                <p class="site-content__eyebrow">
-                  Lokasi terpilih · <span id="siteProvince">Kalimantan Tengah</span>
-                </p>
-                <h3 class="site-content__title" id="siteTitle">Kelanis</h3>
-                <p class="site-content__description" id="siteDescription">
-                  Informasi terperinci mengenai lokasi operasional Kelanis akan tersedia setelah data resmi perusahaan diperbarui.
-                </p>
-                <a
-                  class="btn btn-primary site-content__button"
-                  id="siteLink"
-                  href="pages/services.html"
-                  >Lihat Layanan Terkait
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-arrow-right" /></svg
-                ></a>
-              </div>
-
-              <div class="site-gallery">
-                <div class="site-gallery__header">
-                  <h4 id="siteGalleryTitle">
-                    Galeri <small>Dokumentasi operasional</small>
-                  </h4>
-                  <div class="site-gallery__navigation">
-                    <button
-                      type="button"
-                      id="siteGalleryPrev"
-                      aria-label="Geser galeri ke kiri"
-                    >
-                      <svg class="icon" aria-hidden="true">
-                        <use href="#i-arrow-left" />
-                      </svg>
-                    </button>
-                    <button
-                      type="button"
-                      id="siteGalleryNext"
-                      aria-label="Geser galeri ke kanan"
-                    >
-                      <svg class="icon" aria-hidden="true">
-                        <use href="#i-arrow-right" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <ul
-                  class="site-gallery__track"
-                  id="siteGallery"
-                  aria-labelledby="siteGalleryTitle"
-                  tabindex="0"
-                >
-                  <li class="site-gallery__item">
-                    <img
-                      src="assets/images/company/site-kelanis-1-640.webp"
-                      alt="Foto udara stockpile batu bara dan tongkang di tepi sungai, Site Kelanis"
-                      width="640"
-                      height="457"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </li>
-                  <li class="site-gallery__item">
-                    <img
-                      src="assets/images/company/site-kelanis-2-640.webp"
-                      alt="Tim lapangan dan excavator saat pembukaan lahan, Site Kelanis"
-                      width="640"
-                      height="568"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </li>
-                  <li class="site-gallery__item">
-                    <img
-                      src="assets/images/company/site-kelanis-3-640.webp"
-                      alt="Dua excavator bekerja di front batu bara, Site Kelanis"
-                      width="640"
-                      height="463"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </li>
-                </ul>
-                <p class="site-gallery__empty" id="siteGalleryEmpty" hidden>
-                  Dokumentasi untuk lokasi ini belum tersedia.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
-
-    <dialog class="lightbox" id="siteLightbox" aria-label="Foto lokasi operasional">
-      <img src="" alt="" />
-      <div class="lightbox-bar">
-        <p><span data-lightbox-caption></span><small data-counter></small></p>
-        <div class="lightbox-controls">
-          <button type="button" data-prev aria-label="Foto sebelumnya"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg></button>
-          <button type="button" data-next aria-label="Foto berikutnya"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></button>
-          <button type="button" data-close aria-label="Tutup foto"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg></button>
-        </div>
-      </div>
-    </dialog>
 
     <!-- Footer: generated by tools/layout.mjs -->
     <footer class="footer">
@@ -805,7 +539,7 @@
         <span>Pratinjau situs · Berita dan lowongan merupakan materi contoh</span>
       </div>
     </footer>
-    <script src="assets/js/site-data.js?v=hero-20261021-2" defer></script>
-    <script src="assets/js/script.js?v=hero-20261021-2" defer></script>
+    <script src="assets/js/site-data.js?v=home-team-hero-20261022-v2" defer></script>
+    <script src="assets/js/script.js?v=home-team-hero-20261022-v2" defer></script>
   </body>
 </html>

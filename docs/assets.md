@@ -15,10 +15,11 @@ Dibuat dari `_source/logo/bma-logo-master.png` (file sumber, simpan untuk membua
 
 Foto asli BMA, dikonversi ke WebP:
 
-- `hero-{1,2,3}-*` — slide hero Beranda dan banner halaman dalam.
-- `site-kelanis-{1,2,3}-*` — galeri Site Kelanis.
+- `hero-{1,2,3}-*` — foto profil beranda dan banner halaman dalam.
 
 ## Foto ilustrasi
+
+- `assets/images/company/home-team-hero-{800,1600}.webp` — ilustrasi generatif AI pekerja BMA untuk hero beranda, dengan area kosong di kiri untuk teks. Bukan dokumentasi karyawan asli. Master: `_source/generated-heroes/home-team-hero-v1.png`.
 
 - `assets/images/company/{services,news,careers,contact}-hero-bma-{800,1600}.webp` — empat ilustrasi generatif AI untuk hero Layanan (pemuatan hasil tambang), Berita (pencatatan kegiatan lapangan), Karier (kolaborasi rekan kerja), dan Kontak (diskusi kebutuhan proyek). Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi karyawan, kantor, atau kegiatan asli BMA. Sumber resolusi penuh tersimpan di `_source/generated-heroes/`.
 
@@ -31,7 +32,6 @@ Bukan dokumentasi BMA; ganti dengan foto perusahaan sebelum publikasi.
 | File | Unsplash photo |
 | --- | --- |
 | hero-coal-getting-* | https://unsplash.com/photos/RzwixD6C67s |
-| hero-hauling-* | https://unsplash.com/photos/1HEDPbH6HIE |
 | coal-loading-* | https://unsplash.com/photos/7QAbQrQ2Iog |
 | coal-extraction-* | https://unsplash.com/photos/mzEAjV141Ds |
 | overburden-removal-* | https://unsplash.com/photos/NWByxwVN-J0 |
@@ -46,12 +46,21 @@ Bukan dokumentasi BMA; ganti dengan foto perusahaan sebelum publikasi.
 - `assets/images/social/social-{education,health,environment}-*` — foto artikel kategori Sosial di Berita (Unsplash License): TmdrCRVDOnQ, k2nXCVm-SUg, FyCjvyPG9Pg (https://unsplash.com/photos/<id>)
 - `assets/images/about/bma-team-white-helmet-{560,960}.webp` — ilustrasi generatif AI dua pekerja berseragam BMA untuk halaman Tentang Kami. Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi karyawan asli. Sumber resolusi penuh: `_source/generated-photos/bma-team-white-helmet.png` (helm pekerja perempuan berwarna putih).
 
-## Peta (`assets/images/maps/kalimantan-sites.svg`)
-
-Peta gabungan Kalimantan Tengah & Selatan dibuat dengan paintmaps.com; kredit "Created with paintmaps.com" di dalam peta dipertahankan.
-
 ## Font & ikon
 
 Inter dan Manrope dibundel sebagai WOFF2 variabel (Latin) dari Google Fonts; file lisensi SIL Open Font License (`assets/fonts/*-OFL.txt`) wajib tetap ada di samping file font.
 
 Sprite ikon SVG inline (dibuat oleh `tools/layout.mjs`) memakai ikon garis buatan sendiri dan beberapa path yang diadaptasi dari Feather Icons (MIT) dan Lucide (ISC).
+
+## Merek armada (`assets/logo/equipment/`)
+
+Deretan merek pada beranda mengacu pada daftar alat berat halaman 8–9 profil perusahaan. Logo menunjukkan merek peralatan yang digunakan, bukan daftar mitra atau sponsor. Jumlah unit, model, dan tahun tidak ditampilkan. SVG disimpan dari aset produsen; PNG dipangkas hanya pada ruang transparan. Tampilan monokrom diatur melalui CSS. Area tampilan SVG LiuGong dibatasi ke logo agar slogan di sebelah kanan tidak mengecilkan mereknya.
+
+| Aset | Sumber produsen |
+| --- | --- |
+| komatsu.svg | https://www.komatsu.jp/assets/images/logo.svg |
+| hitachi.svg | SVG logo inline di https://hitachicm.com.au/ |
+| liugong.svg | https://www.liugong.com/storage/upload/2025-12-19/RixySEpRfn.svg |
+| sany.svg | https://www.sanyglobal.com/static/new/img/logo.svg |
+| howo.png | https://en.sinotruk.com/uiFramework/commonResource/image/2023110415485850271.png |
+| lgmg.png | https://www.lgmg.com.cn/upload/images/2025/11/17/2d78da88ed8e4602a6c3d860fd16697a.png |
