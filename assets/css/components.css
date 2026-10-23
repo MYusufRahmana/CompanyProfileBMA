@@ -46,7 +46,7 @@
   gap: 12px;
   margin-top: auto;
   padding-top: 24px;
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-size: 14px;
   font-weight: 700;
 }
@@ -120,7 +120,7 @@
   font-size: 14px;
   line-height: 1.5;
 }
-.about-home .advantage-list .icon { flex: 0 0 16px; width: 16px; height: 16px; margin-top: 3px; color: var(--gold-dark); }
+.about-home .advantage-list .icon { flex: 0 0 16px; width: 16px; height: 16px; margin-top: 3px; color: var(--accent-text); }
 .about-home__link {
   display: inline-flex;
   align-items: center;
@@ -131,7 +131,7 @@
   font-weight: 700;
   text-underline-offset: 5px;
 }
-.about-home__link:hover { color: var(--gold-dark); text-decoration: underline; }
+.about-home__link:hover { color: var(--accent-text); text-decoration: underline; }
 @media (max-width: 900px) {
   .about-home-grid { grid-template-columns: 1fr; gap: 32px; }
   .about-home .about-photo-main { max-height: 440px; }
@@ -183,7 +183,7 @@
   content: "";
   position: absolute;
   inset: 40% 0 0;
-  background: linear-gradient(transparent, #171c2073);
+  background: linear-gradient(transparent, #2c303973);
   pointer-events: none;
 }
 .service-tile:hover .service-tile-media img {
@@ -209,7 +209,7 @@
   background: var(--gold);
   color: var(--charcoal);
   font-size: 30px;
-  box-shadow: 0 10px 24px #171c2026;
+  box-shadow: 0 10px 24px #2c303926;
   transition:
     background 0.4s,
     color 0.4s;
@@ -222,7 +222,7 @@
   position: absolute;
   top: 18px;
   right: 28px;
-  color: #a2aab0;
+  color: var(--brand-muted);
   font:
     700 14px Manrope,
     sans-serif;
@@ -310,7 +310,7 @@
   font-size: 13px;
 }
 .news-tile-meta .icon {
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-size: 15px;
 }
 .news-tile h3 {
@@ -367,7 +367,7 @@
   height: 50px;
   border-radius: 50%;
   background: #fff;
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-size: 20px;
   box-shadow: 0 0 0 1px var(--line);
   transition:
@@ -395,7 +395,7 @@
   overflow-wrap: anywhere;
 }
 .contact-list a:hover {
-  color: var(--gold-dark);
+  color: var(--accent-text);
 }
 
 .map-placeholder {
@@ -403,10 +403,10 @@
   min-height: 460px;
   overflow: hidden;
   border-radius: var(--radius-md);
-  background-color: #e3e7ea;
+  background-color: var(--line);
   background-image:
-    linear-gradient(#d3d9dd 1px, transparent 1px),
-    linear-gradient(90deg, #d3d9dd 1px, transparent 1px);
+    linear-gradient(var(--brand-muted) 1px, transparent 1px),
+    linear-gradient(90deg, var(--brand-muted) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 .map-roads {
@@ -425,7 +425,7 @@
   stroke-width: 6;
 }
 .map-roads .water {
-  fill: #c9d6de;
+  fill: var(--line);
   stroke: none;
 }
 .map-pin {
@@ -441,7 +441,7 @@
   color: var(--gold);
   font-size: 24px;
   transform: translate(-50%, -100%) rotate(-45deg);
-  box-shadow: 0 12px 30px #171c2059;
+  box-shadow: 0 12px 30px #2c303959;
 }
 .map-pin .icon {
   transform: rotate(45deg);

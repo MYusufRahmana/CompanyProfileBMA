@@ -28,9 +28,9 @@
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, #171c20a6, transparent 30%),
-    linear-gradient(90deg, #171c20eb 0%, #171c20a6 55%, #171c2040 100%),
-    linear-gradient(0deg, #171c20cc, transparent 50%);
+    linear-gradient(180deg, #2c3039a6, transparent 30%),
+    linear-gradient(90deg, #2c3039eb 0%, #2c3039a6 55%, #2c303940 100%),
+    linear-gradient(0deg, #2c3039cc, transparent 50%);
 }
 .page-banner-content {
   padding-block: calc(var(--header-h) + 48px) clamp(48px, 7vw, 84px);
@@ -41,7 +41,7 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 28px;
-  color: #c3c9ce;
+  color: var(--line);
   font-size: 14px;
 }
 .page-banner .breadcrumb a:hover {
@@ -120,8 +120,8 @@
   right: 0;
   bottom: 0;
   padding: 8px 14px;
-  background: #171c20cc;
-  color: #e4e8eb;
+  background: #2c3039cc;
+  color: var(--line);
   font-size: 12px;
 }
 
@@ -161,7 +161,7 @@
 .cta-band p:not(.section-kicker) {
   max-width: 560px;
   margin-top: 14px;
-  color: #c3c9ce;
+  color: var(--line);
 }
 .cta-band .section-kicker {
   color: var(--gold-light);
@@ -197,7 +197,7 @@
   height: 44px;
   border-radius: var(--radius-sm);
   background: var(--bg-light);
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font:
     800 14px Manrope,
     sans-serif;
@@ -282,7 +282,7 @@
     color 0.25s;
 }
 .service-nav a span {
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-size: 12px;
 }
 .service-nav a:hover,
@@ -480,7 +480,7 @@
   width: 100%;
   min-height: 50px;
   padding: 12px 14px;
-  border: 1px solid #cfd5da;
+  border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: #fff;
   color: var(--text);
@@ -535,8 +535,8 @@
   margin-top: 20px;
   padding: 16px 18px;
   border-radius: var(--radius-sm);
-  background: #fff5ec;
-  border: 1px solid #f8d3b2;
+  background: var(--brand-tint);
+  border: 1px solid var(--gold-light);
   color: #7a3705;
   font-size: 14px;
 }
@@ -612,7 +612,7 @@
   width: 100%;
   min-height: 46px;
   padding: 10px 12px;
-  border: 1px solid #cfd5da;
+  border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: #fff;
   color: var(--text);
@@ -639,9 +639,9 @@
   align-items: center;
   gap: 8px;
   padding: 4px 10px;
-  border: 1px dashed #e8924a;
+  border: 1px dashed var(--gold-dark);
   border-radius: 999px;
-  background: #fff5ec;
+  background: var(--brand-tint);
   color: #8a3f06;
   font-size: 12px;
   font-weight: 600;
@@ -694,10 +694,10 @@
   transition: background 0.2s;
 }
 .jobs-table tbody tr:nth-child(even) {
-  background: #fafbfb;
+  background: var(--bg-light);
 }
 .jobs-table tbody tr:hover {
-  background: #fef4ea;
+  background: var(--brand-tint);
 }
 .jobs-table tbody tr.is-closed {
   color: var(--text-soft);
@@ -710,7 +710,7 @@
     sans-serif;
 }
 a.job-title:hover {
-  color: var(--gold-dark);
+  color: var(--accent-text);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -760,12 +760,12 @@ a.job-title:hover {
     transform 0.25s var(--ease-out);
 }
 .btn-apply:hover {
-  background: #f9b47a;
+  background: var(--gold-hover);
   transform: translateY(-1px);
 }
 .btn-apply:disabled {
-  background: #e3e6e9;
-  color: #6b747c;
+  background: var(--line);
+  color: var(--text-soft);
   cursor: not-allowed;
   transform: none;
   opacity: 1;
@@ -800,7 +800,7 @@ a.job-title:hover {
 }
 .career-faq summary::after {
   content: "+";
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-size: 22px;
   line-height: 1;
 }
@@ -895,7 +895,7 @@ a.job-title:hover {
 .job-back {
   display: inline-flex;
   margin-top: 16px;
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-size: 14px;
   font-weight: 600;
 }
@@ -997,40 +997,144 @@ a.job-title:hover {
   font-size: 15px;
 }
 
-/* Sejarah: timeline vertikal */
-.history-list {
-  margin: 0;
+/* Sejarah: tiga milestone selalu terlihat, dengan sumbu vertikal di tengah. */
+.history-section {
+  padding-block: clamp(48px, 5vw, 72px);
+}
+.history-head {
+  margin-bottom: 32px;
+  text-align: center;
+}
+.history-head .section-kicker {
+  justify-content: center;
+}
+.history-head h2 {
+  font-size: clamp(1.8rem, 1.25rem + 1.6vw, 2.6rem);
+}
+.history-timeline {
+  max-width: 860px;
+  margin-inline: auto;
+}
+.history-years {
+  position: relative;
+  display: grid;
+  gap: 24px;
   padding: 0;
+  margin: 0;
   list-style: none;
 }
-.history-list li {
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 24px;
-  padding: 22px 0;
-  border-top: 1px solid var(--line);
+.history-years::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 50%;
+  width: 1px;
+  background: var(--line);
+  transform: translateX(-50%);
 }
-.history-list li:last-child {
+.history-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
+  align-items: start;
+  gap: 0 20px;
+  min-height: 100px;
+}
+.history-step::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 6px var(--brand-tint);
+  transform: translateX(-50%);
+}
+.history-year {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  display: inline-block;
+  padding-top: 2px;
+  color: var(--charcoal);
+  font: 600 clamp(2rem, 3.5vw, 2.75rem) / 1.2 Manrope, sans-serif;
+  letter-spacing: -0.035em;
+  transition: color 180ms ease, transform 180ms ease;
+}
+.history-story {
+  grid-column: 3;
+  grid-row: 1;
+  padding: 9px 0 12px;
   border-bottom: 1px solid var(--line);
 }
-.history-list__year {
-  color: var(--gold-dark);
-  font:
-    700 17px/1.4 Manrope,
-    sans-serif;
+.history-step:nth-child(even) .history-year {
+  grid-column: 3;
+  justify-self: start;
 }
-.history-list h3,
+.history-step:nth-child(even) .history-story {
+  grid-column: 1;
+  text-align: right;
+}
+.history-story h3,
 .value-list h3 {
   font-size: 1.05rem;
 }
-.history-list p,
+.history-story p,
 .value-list p {
   margin-top: 4px;
   color: var(--text-soft);
   font-size: 15px;
 }
+.history-story p {
+  margin-top: 8px;
+  line-height: 1.65;
+}
+@media (hover: hover) and (pointer: fine) {
+  .history-year:hover {
+    color: var(--gold-dark);
+    transform: translateY(-3px);
+  }
+}
+.history-note {
+  margin: 24px 0 0;
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .history-head { margin-bottom: 28px; }
+  .history-years { gap: 22px; }
+  .history-years::before { left: 12px; top: 20px; bottom: 32px; }
+  .history-step {
+    grid-template-columns: 24px minmax(0, 1fr);
+    column-gap: 18px;
+    min-height: 0;
+  }
+  .history-step::before { left: 12px; top: 16px; }
+  .history-year,
+  .history-step:nth-child(even) .history-year {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    font-size: 2rem;
+  }
+  .history-story,
+  .history-step:nth-child(even) .history-story {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 8px 0 18px;
+    text-align: left;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .history-year:hover { transform: none; }
+}
 
-/* Visi & misi: kartu visi gelap + daftar misi bernomor. */
+/* Visi & misi: satu komposisi dua bidang, mengikuti palet resmi BMA. */
 .vm-head {
   max-width: 640px;
   margin-bottom: clamp(32px, 4vw, 48px);
@@ -1038,129 +1142,90 @@ a.job-title:hover {
 .vm-layout {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: clamp(20px, 3vw, 40px);
   align-items: stretch;
-}
-.vm-label {
-  color: var(--gold-dark);
-  font:
-    700 12px Inter,
-    sans-serif;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.vm-vision {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: clamp(28px, 3.5vw, 44px);
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background:
-    radial-gradient(120% 80% at 100% 0%, #f4831f2e, transparent 60%),
-    var(--charcoal);
-  color: #fff;
+  background: var(--brand-tint);
 }
-/* Tanda kutip besar sebagai aksen. */
-.vm-vision::after {
-  content: "\201C";
-  position: absolute;
-  top: -6px;
-  right: 28px;
-  color: var(--gold);
-  opacity: 0.22;
-  font:
-    800 200px/1 Manrope,
-    sans-serif;
-  pointer-events: none;
+.vm-label {
+  margin: 0 0 24px;
+  font: 700 clamp(1.35rem, 1.15rem + 0.5vw, 1.65rem) / 1.2 Manrope, sans-serif;
+  letter-spacing: -0.02em;
+  text-transform: none;
 }
-.vm-vision__icon {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 24px;
-  border-radius: 12px;
-  background: var(--gold);
-  color: var(--charcoal);
-  font-size: 22px;
+.vm-vision {
+  min-width: 0;
+  margin: 0;
+  padding: clamp(28px, 3.5vw, 48px);
+  border-top: 4px solid var(--gold);
+  background: var(--charcoal);
+  color: var(--white);
 }
 .vm-vision .vm-label {
   color: var(--gold-light);
 }
-.vm-vision blockquote {
-  position: relative;
-  z-index: 1;
-  margin: 12px 0 0;
-  font:
-    600 clamp(1.15rem, 0.95rem + 0.7vw, 1.45rem) / 1.55 Manrope,
-    sans-serif;
+.vm-vision__copy {
+  margin: 0;
+  max-width: 36ch;
+  font: 500 clamp(1.15rem, 1rem + 0.4vw, 1.35rem) / 1.7 Manrope, sans-serif;
   letter-spacing: -0.01em;
 }
+.vm-missions {
+  min-width: 0;
+  padding: clamp(28px, 3.5vw, 48px);
+  border-top: 4px solid transparent;
+}
 .vm-missions .vm-label {
-  margin-bottom: 14px;
+  color: var(--charcoal);
 }
 .vm-mission-list {
-  display: grid;
-  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .vm-mission {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
-  padding: 20px 22px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: #fff;
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-dark) 25%, var(--brand-tint));
 }
-.vm-mission:hover {
-  border-color: var(--gold);
-  box-shadow: var(--shadow-soft);
+.vm-mission:first-child {
+  padding-top: 0;
 }
-.vm-mission__num {
-  display: grid;
-  flex-shrink: 0;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #fdf0e4;
-  color: var(--gold-dark);
-  font:
-    800 15px/1 Manrope,
-    sans-serif;
+.vm-mission:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 .vm-mission p {
   margin: 0;
-  align-self: center;
+  max-width: 62ch;
   color: var(--text);
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.75;
 }
 @media (max-width: 960px) {
   .vm-layout {
     grid-template-columns: 1fr;
   }
+  .vm-vision__copy {
+    max-width: 62ch;
+  }
+  .vm-missions {
+    border-top: 0;
+  }
 }
 @media (max-width: 680px) {
+  .vm-layout {
+    border-radius: var(--radius-md);
+  }
+  .vm-vision,
+  .vm-missions {
+    padding: 28px 24px;
+  }
+  .vm-label {
+    margin-bottom: 20px;
+  }
   .vm-mission {
-    gap: 14px;
-    padding: 16px;
-  }
-  .vm-mission__num {
-    width: 36px;
-    height: 36px;
-    font-size: 13px;
-  }
-  .vm-vision::after {
-    font-size: 160px;
-    right: 20px;
+    padding-block: 18px;
   }
 }
 
@@ -1189,7 +1254,7 @@ a.job-title:hover {
   border: 1px solid var(--line);
   border-radius: 50%;
   background: #fff;
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-size: 20px;
 }
 
@@ -1209,10 +1274,7 @@ a.job-title:hover {
   .value-list {
     grid-template-columns: 1fr;
   }
-  .history-list li {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
+
 }
 
 /* Proyek & klien (Tentang Kami) */
@@ -1281,7 +1343,7 @@ a.job-title:hover {
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fff;
-  box-shadow: 0 1px 2px #171c200a;
+  box-shadow: 0 1px 2px #2c30390a;
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease;
@@ -1297,7 +1359,7 @@ a.job-title:hover {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #f4831f, #d96d0f);
+  background: linear-gradient(135deg, #f4831f, var(--gold-dark));
   color: #fff;
   font:
     800 16px/1 Manrope,
@@ -1397,8 +1459,8 @@ a.job-title:hover {
 }
 .page-banner--simple::before {
   background:
-    linear-gradient(180deg, #171c2099 0%, transparent 28%),
-    linear-gradient(0deg, #171c20f2 0%, #171c20b3 35%, #171c2059 70%, #171c2040 100%);
+    linear-gradient(180deg, #2c303999 0%, transparent 28%),
+    linear-gradient(0deg, #2c3039f2 0%, #2c3039b3 35%, #2c303959 70%, #2c303940 100%);
 }
 .page-banner--simple::after {
   display: none;
@@ -1596,7 +1658,7 @@ a.job-title:hover {
 }
 .article-content > p {
   margin: 0 0 20px;
-  color: #3d454c;
+  color: var(--text);
 }
 .article-content .article-lead {
   margin-bottom: 32px;
@@ -1698,7 +1760,7 @@ a.job-title:hover {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1729,7 +1791,7 @@ a.job-title:hover {
 }
 .article-aside__title {
   margin: 0 0 12px;
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font:
     700 12px Inter,
     sans-serif;
@@ -1795,7 +1857,7 @@ a.job-title:hover {
   align-items: center;
   gap: 8px;
   margin-top: 14px;
-  color: var(--gold-dark);
+  color: var(--accent-text);
   font-weight: 700;
   font-size: 14px;
 }

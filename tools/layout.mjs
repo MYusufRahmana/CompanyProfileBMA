@@ -204,7 +204,8 @@ function sync() {
     html = html.replace(/<footer class="footer">[\s\S]*?<\/footer>/, () => footer(page, base));
     html = html.replace(/\s*<!-- icons:start -->[\s\S]*?<!-- icons:end -->/, "");
     html = html.replace(/(<body[^>]*>)/, `$1\n    <!-- icons:start -->\n    ${iconSprite()}\n    <!-- icons:end -->`);
-    html = html.replace(/<meta name="theme-color" content="[^"]*"/, '<meta name="theme-color" content="#171C20"');
+    html = html.replace(/<meta name="theme-color" content="[^"]*"/, '<meta name="theme-color" content="#2c3039"');
+    html = html.replace(/href="([^"]*assets\/css\/(?:style|brand-heroes|components|pages)\.css)(?:\?[^"]*)?"/g, 'href="$1?v=palette-20261023"');
     if (html !== before) fs.writeFileSync(file, html);
     console.log(`${rel.padEnd(44)} ${html !== before ? "updated" : "unchanged"}`);
   }

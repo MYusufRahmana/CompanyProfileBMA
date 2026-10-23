@@ -27,17 +27,21 @@
    Content stays visible without JavaScript.
    ============================================================= */
 :root {
-  /* Palet merek — ubah warna template di sini. --gold = warna aksen (oranye logo). */
-  --charcoal: #171c20;
-  --coal: #303941;
+  /* Palet resmi colorPalletBma.pdf. Nama token gold dipertahankan untuk komponen bersama. */
+  --charcoal: #2c3039;
+  --coal: #686969;
   --gold: #f4831f; /* oranye logo BMA (nama token tetap "gold") */
-  --gold-light: #ffa95c; /* oranye terang untuk teks di latar gelap */
-  --gold-dark: #a85409; /* oranye gelap untuk teks di latar putih: kontras 5,3:1 */
+  --gold-hover: #f79c1d;
+  --gold-light: #fcd997;
+  --gold-dark: #be6217;
+  --brand-tint: #feecd8;
+  --brand-muted: #a6aab3;
+  --accent-text: var(--charcoal); /* Teks kecil memakai kontras tinggi; aksen tetap oranye. */
   --white: #fff;
-  --bg-light: #f4f5f6;
-  --text: #252b30;
-  --text-soft: #5a636b;
-  --line: #dfe2e5;
+  --bg-light: color-mix(in srgb, #dde0e5 28%, #fff);
+  --text: var(--charcoal);
+  --text-soft: #686969;
+  --line: #dde0e5;
   --line-dark: #ffffff1f;
 
   --accent: var(--gold); /* alias */
@@ -55,8 +59,8 @@
   --radius-sm: 4px;
   --radius-md: 10px;
   --radius-lg: 18px;
-  --shadow-soft: 0 10px 40px #171c200f;
-  --shadow-card: 0 24px 60px #171c201f;
+  --shadow-soft: 0 10px 40px #2c30390f;
+  --shadow-card: 0 24px 60px #2c30391f;
 }
 * {
   box-sizing: border-box;
@@ -176,7 +180,7 @@ button {
   text-transform: uppercase;
 }
 .section-kicker {
-  color: var(--gold-dark);
+  color: var(--accent-text);
   margin-bottom: 22px;
 }
 .section-kicker::before {
@@ -278,7 +282,7 @@ button {
 .btn-primary {
   --btn-bg: var(--gold);
   --btn-fg: var(--charcoal);
-  --btn-hover-bg: #f9b47a;
+  --btn-hover-bg: var(--gold-hover);
 }
 .btn-dark {
   --btn-bg: var(--charcoal);
@@ -294,7 +298,7 @@ button {
   --btn-fg: var(--text);
   --btn-hover-bg: var(--charcoal);
   --btn-hover-fg: #fff;
-  border-color: #c9ced3;
+  border-color: var(--line);
 }
 .btn-outline-dark:hover {
   border-color: var(--charcoal);
@@ -370,13 +374,13 @@ button {
 }
 .nav-link:hover,
 .nav-link.active {
-  color: var(--gold-dark);
+  color: var(--accent-text);
 }
 
 .inner-page .site-header {
   color: var(--text);
   background: transparent;
-  border-color: #e5e9ec;
+  border-color: var(--line);
 }
 body:not(.inner-page) .site-header:not(.scrolled):not(.menu-open) {
   background: transparent;
@@ -549,7 +553,7 @@ body:not(.inner-page)
 .footer {
   position: relative;
   background: var(--charcoal);
-  color: #c3c9ce;
+  color: var(--line);
   border-top: 3px solid var(--gold);
 }
 .footer-top {
@@ -662,7 +666,7 @@ body:not(.inner-page)
   font-size: 14px;
 }
 .footer-recruit__label {
-  color: #8f989f;
+  color: var(--brand-muted);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -683,7 +687,7 @@ body:not(.inner-page)
 .footer small {
   display: block;
   margin-top: 14px;
-  color: #8f989f;
+  color: var(--brand-muted);
   font-size: 12px;
 }
 .footer-bottom {
@@ -694,7 +698,7 @@ body:not(.inner-page)
   gap: 6px 24px;
   padding-block: 14px;
   border-top: 1px solid var(--line-dark);
-  color: #9aa3aa;
+  color: var(--brand-muted);
   font-size: 12.5px;
 }
 
@@ -713,7 +717,7 @@ body:not(.inner-page)
   background: var(--gold);
   color: var(--charcoal);
   font-size: 20px;
-  box-shadow: 0 10px 30px #171c2040;
+  box-shadow: 0 10px 30px #2c303940;
   opacity: 0;
   visibility: hidden;
   transform: translateY(12px);
@@ -729,7 +733,7 @@ body:not(.inner-page)
   transform: none;
 }
 .to-top:hover {
-  background: #f9b47a;
+  background: var(--gold-hover);
 }
 .to-top .icon {
   stroke-width: 2.2;
@@ -879,7 +883,7 @@ body:not(.inner-page)
     font-size: 14px;
   }
   .menu-contact a {
-    color: var(--gold-dark);
+    color: var(--accent-text);
     font-weight: 600;
   }
   .nav-link {
@@ -1015,7 +1019,7 @@ button:disabled {
   width: 100%;
   min-height: 44px;
   padding: 11px 14px;
-  border: 1px solid #bfc1c4;
+  border: 1px solid var(--brand-muted);
   border-radius: 2px;
   background: #fff;
   color: var(--text);
@@ -1033,7 +1037,7 @@ button:disabled {
 
 .empty-results {
   text-align: center;
-  border: 1px dashed #bfc1c4;
+  border: 1px dashed var(--brand-muted);
   padding: 55px 25px;
 }
 .empty-results h3 {
@@ -1089,7 +1093,7 @@ button:disabled {
   .no-js .site-header {
     position: static;
     background: #fff;
-    color: #252b30;
+    color: var(--text);
   }
   .no-js .navbar {
     flex-wrap: wrap;
@@ -1128,8 +1132,8 @@ button:disabled {
 
 .vacancy-tag {
   display: inline-block;
-  color: #a85409;
-  background: #fdf0e4;
+  color: var(--accent-text);
+  background: var(--brand-tint);
   border-radius: 5px;
   font-size: 11px;
   padding: 6px 10px;
@@ -1137,7 +1141,7 @@ button:disabled {
 }
 
 .application-page {
-  background: #f5f6f7;
+  background: var(--bg-light);
 }
 
 .application-layout {
@@ -1155,7 +1159,7 @@ button:disabled {
 .application-position {
   padding: 30px;
   background: #fff;
-  border: 1px solid #e2e5e7;
+  border: 1px solid var(--line);
   border-top: 3px solid #f4831f;
   border-radius: 10px;
 }
@@ -1167,13 +1171,13 @@ button:disabled {
 }
 .application-position > p {
   font-size: 13px;
-  color: #6e7479;
+  color: var(--text-soft);
   line-height: 1.8;
   margin-bottom: 16px;
 }
 .application-position hr {
   border: 0;
-  border-top: 1px solid #e3e6e8;
+  border-top: 1px solid var(--line);
   margin: 20px 0;
 }
 .application-position h3 {
@@ -1183,7 +1187,7 @@ button:disabled {
   padding-left: 17px;
   font-size: 12px;
   line-height: 1.9;
-  color: #6d7378;
+  color: var(--text-soft);
   margin: 14px 0 26px;
 }
 .application-position .text-link {
@@ -1192,12 +1196,12 @@ button:disabled {
 .application-demo {
   font-size: 12px;
   line-height: 1.85;
-  color: #737a80;
+  color: var(--text-soft);
   margin: 20px 10px;
 }
 .application-form {
   background: #fff;
-  border: 1px solid #e2e5e7;
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: 36px;
 }
@@ -1228,15 +1232,15 @@ button:disabled {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #fdf0e4;
-  color: #a85409;
+  background: var(--brand-tint);
+  color: var(--accent-text);
   font:
     600 12px Inter,
     sans-serif;
 }
 .fieldset-note {
   font-size: 12px;
-  color: #747b81;
+  color: var(--text-soft);
   margin-bottom: 20px;
 }
 .application-fields {
@@ -1250,7 +1254,7 @@ button:disabled {
   gap: 9px;
   font-size: 12px;
   font-weight: 600;
-  color: #42484d;
+  color: var(--text);
   min-width: 0;
 }
 .application-fields input,
@@ -1258,14 +1262,14 @@ button:disabled {
 .application-fields textarea {
   width: 100%;
   min-width: 0;
-  border: 1px solid #dce1e5;
+  border: 1px solid var(--line);
   background: #fff;
   border-radius: 6px;
   padding: 13px 14px;
   font:
     400 14px/1.5 Inter,
     sans-serif;
-  color: #343a40;
+  color: var(--text);
 }
 .application-fields textarea {
   resize: vertical;
@@ -1280,18 +1284,18 @@ button:disabled {
 }
 .optional {
   font-weight: 400;
-  color: #7e858b;
+  color: var(--text-soft);
 }
 .cv-dropzone {
-  border: 1.5px dashed #cbd1d6;
+  border: 1.5px dashed var(--brand-muted);
   border-radius: 10px;
   padding: 25px;
   text-align: center;
-  background: #fafbfc;
+  background: var(--bg-light);
 }
 .cv-dropzone.dragover {
   border-color: #f4831f;
-  background: #fdf0e4;
+  background: var(--brand-tint);
 }
 .cv-upload-icon {
   display: grid;
@@ -1300,8 +1304,8 @@ button:disabled {
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background: #fdf0e4;
-  color: #a85409;
+  background: var(--brand-tint);
+  color: var(--accent-text);
   font-size: 28px;
 }
 .cv-dropzone label {
@@ -1311,7 +1315,7 @@ button:disabled {
   cursor: pointer;
 }
 .cv-dropzone p {
-  color: #7b8288;
+  color: var(--text-soft);
   font-size: 12px;
   margin: 8px 0 18px;
 }
@@ -1320,7 +1324,7 @@ button:disabled {
   font-size: 12px;
 }
 .cv-dropzone input::file-selector-button {
-  border: 1px solid #d6dce0;
+  border: 1px solid var(--line);
   border-radius: 5px;
   padding: 9px 14px;
   background: white;
@@ -1368,13 +1372,13 @@ button:disabled {
 .cv-selected button {
   border: 0;
   background: transparent;
-  color: #a85409;
+  color: var(--accent-text);
   cursor: pointer;
   font-size: 12px;
   padding: 8px;
 }
 .application-submit {
-  border-top: 1px solid #e5e8ea;
+  border-top: 1px solid var(--line);
   padding-top: 26px;
 }
 .application-consent {
@@ -1383,7 +1387,7 @@ button:disabled {
   gap: 12px;
   font-size: 12px;
   line-height: 1.8;
-  color: #6c7379;
+  color: var(--text-soft);
   margin-bottom: 24px;
 }
 .application-consent input {
@@ -1399,12 +1403,12 @@ button:disabled {
 .application-submit > p {
   text-align: center;
   font-size: 11px;
-  color: #7b8288;
+  color: var(--text-soft);
   margin-top: 14px;
 }
 .application-success {
   scroll-margin-top: 110px;
-  border: 1px solid #e1e5e8;
+  border: 1px solid var(--line);
   border-radius: 12px;
   background: #fff;
   text-align: center;
@@ -1428,7 +1432,7 @@ button:disabled {
 .application-success > p:not(.section-kicker) {
   font-size: 14px;
   line-height: 1.8;
-  color: #70777d;
+  color: var(--text-soft);
   margin: 15px 0;
 }
 .application-success .btn {

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tentang Kami | BMA</title>
     <meta name="description" content="Profil PT Berkat Maritim Abadi: mitra strategis pertambangan dan logistik sejak 2013 — sejarah, visi, misi, nilai, serta proyek dan klien." />
-    <meta name="theme-color" content="#171C20" />
+    <meta name="theme-color" content="#2c3039" />
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="id_ID" />
@@ -18,10 +18,10 @@
     <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png" />
     <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/brand-heroes.css" />
-    <link rel="stylesheet" href="../assets/css/components.css" />
-    <link rel="stylesheet" href="../assets/css/pages.css" />
+    <link rel="stylesheet" href="../assets/css/style.css?v=palette-20261023" />
+    <link rel="stylesheet" href="../assets/css/brand-heroes.css?v=palette-20261023" />
+    <link rel="stylesheet" href="../assets/css/components.css?v=palette-20261023" />
+    <link rel="stylesheet" href="../assets/css/pages.css?v=palette-20261023" />
   </head>
 
   <body class="page-about">
@@ -127,17 +127,29 @@
       </section>
 
       <!-- Sejarah perusahaan -->
-      <section class="section bg-light" aria-labelledby="historyTitle">
-        <div class="container about-split">
-          <div class="about-split__head">
+      <section class="section bg-light history-section" aria-labelledby="historyTitle" aria-describedby="historyNote">
+        <div class="container">
+          <div class="history-head">
             <p class="section-kicker">Sejarah Perusahaan</p>
-            <h2 id="historyTitle">Perkembangan Perusahaan</h2>
-            <p>Sejak berdiri pada 2013, kami terus mengembangkan layanan untuk mendukung kebutuhan industri pertambangan nasional.</p>
+            <h2 id="historyTitle">Perjalanan BMA</h2>
           </div>
-          <ol class="history-list" data-reveal="up">
-            <li><span class="history-list__year">Juli 2013</span><div><h3>Pendirian Perusahaan</h3><p>PT Berkat Maritim Abadi didirikan dan berkantor pusat di Banjarmasin, Kalimantan Selatan.</p></div></li>
-            <li><span class="history-list__year">Saat Ini</span><div><h3>Pengembangan Layanan Pertambangan dan Logistik</h3><p>Layanan perusahaan berkembang untuk mendukung rangkaian kegiatan pertambangan, mulai dari pengupasan lapisan penutup, pengangkutan hasil tambang, hingga pemuatan ke tongkang.</p></div></li>
-          </ol>
+          <div class="history-timeline">
+            <ol class="history-years" role="list" aria-label="Tahun perjalanan BMA">
+              <li class="history-step">
+                <time class="history-year" id="historyYear2013" datetime="2013">2013</time>
+                <article class="history-story" id="historyStory2013" aria-labelledby="historyYear2013"><h3>Awal Perjalanan</h3><p>BMA berdiri dan mulai membangun kepercayaan sebagai mitra industri pertambangan.</p></article>
+              </li>
+              <li class="history-step">
+                <time class="history-year" id="historyYear2022" datetime="2022">2022</time>
+                <article class="history-story" id="historyStory2022" aria-labelledby="historyYear2022"><h3>Memperluas Langkah</h3><p>Memperkuat tim dan dukungan peralatan untuk menjangkau kebutuhan operasional yang lebih luas.</p></article>
+              </li>
+              <li class="history-step">
+                <time class="history-year" id="historyYear2025" datetime="2025">2025</time>
+                <article class="history-story" id="historyStory2025" aria-labelledby="historyYear2025"><h3>Bergerak Terpadu</h3><p>Menghubungkan layanan pertambangan, pengangkutan, dan bongkar muat dalam satu koordinasi.</p></article>
+              </li>
+            </ol>
+          </div>
+          <p id="historyNote" class="history-note">Uraian milestone merupakan data contoh dan perlu diverifikasi.</p>
         </div>
       </section>
 
@@ -149,19 +161,18 @@
             <h2 id="vmTitle">Arah Strategis Perusahaan</h2>
           </div>
           <div class="vm-layout">
-            <figure class="vm-vision" data-reveal="up">
-              <span class="vm-vision__icon" aria-hidden="true"><svg class="icon"><use href="#i-compass" /></svg></span>
-              <figcaption class="vm-label">Visi</figcaption>
-              <blockquote>Menjadi perusahaan terkemuka yang senantiasa memberikan layanan dan hasil terbaik bagi seluruh pemangku kepentingan, serta berkontribusi pada pembangunan ekonomi Indonesia melalui kualitas kerja unggul, penerapan standar keselamatan, dan komitmen terhadap kelestarian lingkungan (Eco Green).</blockquote>
-            </figure>
-            <div class="vm-missions" data-reveal="up">
-              <h3 class="vm-label">Misi</h3>
-              <ol class="vm-mission-list">
-                <li class="vm-mission"><span class="vm-mission__num" aria-hidden="true">01</span><p>Membangun kesadaran seluruh karyawan untuk mengetahui, memahami, dan menerapkan budaya perusahaan secara konsisten.</p></li>
-                <li class="vm-mission"><span class="vm-mission__num" aria-hidden="true">02</span><p>Melakukan perbaikan berkelanjutan dalam aspek keselamatan, kualitas, dan kecepatan kerja.</p></li>
-                <li class="vm-mission"><span class="vm-mission__num" aria-hidden="true">03</span><p>Meningkatkan kapasitas dan kompetensi sumber daya manusia secara berkesinambungan.</p></li>
-                <li class="vm-mission"><span class="vm-mission__num" aria-hidden="true">04</span><p>Berkomitmen mendukung pertumbuhan perusahaan di tengah perkembangan ekonomi global melalui inovasi, kerja keras, dedikasi, dan strategi yang berkelanjutan.</p></li>
-              </ol>
+            <article class="vm-vision" aria-labelledby="visionTitle">
+              <h3 id="visionTitle" class="vm-label">Visi</h3>
+              <p class="vm-vision__copy">Menjadi perusahaan terkemuka yang senantiasa memberikan layanan dan hasil terbaik bagi seluruh pemangku kepentingan, serta berkontribusi pada pembangunan ekonomi Indonesia melalui kualitas kerja unggul, penerapan standar keselamatan, dan komitmen terhadap kelestarian lingkungan (Eco Green).</p>
+            </article>
+            <div class="vm-missions" aria-labelledby="missionTitle">
+              <h3 id="missionTitle" class="vm-label">Misi</h3>
+              <ul class="vm-mission-list" role="list">
+                <li class="vm-mission"><p>Membangun kesadaran seluruh karyawan untuk mengetahui, memahami, dan menerapkan budaya perusahaan secara konsisten.</p></li>
+                <li class="vm-mission"><p>Melakukan perbaikan berkelanjutan dalam aspek keselamatan, kualitas, dan kecepatan kerja.</p></li>
+                <li class="vm-mission"><p>Meningkatkan kapasitas dan kompetensi sumber daya manusia secara berkesinambungan.</p></li>
+                <li class="vm-mission"><p>Berkomitmen mendukung pertumbuhan perusahaan di tengah perkembangan ekonomi global melalui inovasi, kerja keras, dedikasi, dan strategi yang berkelanjutan.</p></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -317,7 +328,7 @@
           <h2>Kontak</h2>
           <ul class="footer-contact">
             <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Jl. Lodan Raya No. 01, Ancol, Pademangan, Jakarta Utara 14430</span></li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:vincent@growingroup.id">vincent@growingroup.id</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:info@growingroup.id">info@growingroup.id</a></li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+628128222858">+62 812-8222-858</a></li>
           </ul>
         </div>

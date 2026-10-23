@@ -67,7 +67,7 @@ const page = (item, i) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${esc(item.title)} · Berita | BMA</title>
     <meta name="description" content="${esc(item.excerpt)}" />
-    <meta name="theme-color" content="#171C20" />
+    <meta name="theme-color" content="#2c3039" />
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="id_ID" />
@@ -82,10 +82,10 @@ const page = (item, i) => {
     <link rel="apple-touch-icon" href="${base}assets/icons/apple-touch-icon.png" />
     <link rel="preload" href="${base}assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="${base}assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="${base}assets/css/style.css" />
-    <link rel="stylesheet" href="${base}assets/css/brand-heroes.css" />
-    <link rel="stylesheet" href="${base}assets/css/components.css" />
-    <link rel="stylesheet" href="${base}assets/css/pages.css" />
+    <link rel="stylesheet" href="${base}assets/css/style.css?v=palette-20261023" />
+    <link rel="stylesheet" href="${base}assets/css/brand-heroes.css?v=palette-20261023" />
+    <link rel="stylesheet" href="${base}assets/css/components.css?v=palette-20261023" />
+    <link rel="stylesheet" href="${base}assets/css/pages.css?v=palette-20261023" />
   </head>
 
   <body class="page-news page-article">

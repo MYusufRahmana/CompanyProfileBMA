@@ -70,7 +70,7 @@ export const site = {
 
   contact: {
     address: "Jl. Lodan Raya No. 01, Ancol, Pademangan, Jakarta Utara 14430",
-    email: "vincent@growingroup.id",
+    email: "info@growingroup.id",
     phone: { label: "+62 812-8222-858", tel: "+628128222858" },
   },
 

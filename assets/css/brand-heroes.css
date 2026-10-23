@@ -7,7 +7,7 @@ body .site-header:not(.scrolled):not(.menu-open) {
   box-shadow: none;
 }
 body .site-header:not(.scrolled):not(.menu-open) .nav-link:is(:hover, .active) {
-  color: #ffa95c;
+  color: var(--gold-light);
 }
 /* Logo navbar: versi putih saat header transparan di atas foto,
    versi berwarna saat header putih (scroll / menu terbuka). */
@@ -50,7 +50,7 @@ body .site-header.menu-open {
     display: block;
   }
   .no-js body .site-header .nav-link:is(:hover, .active) {
-    color: #a85409;
+    color: var(--accent-text);
   }
 }
 
