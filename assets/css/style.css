@@ -449,19 +449,20 @@ body:not(.inner-page)
   align-items: center;
   gap: 2px;
   margin-left: 6px;
-  padding: 3px;
+  padding: 2px;
   border: 1px solid currentColor;
   border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
 }
 .lang-switch__sep {
   opacity: 0.35;
 }
 .lang-switch__btn {
-  min-width: 36px;
-  padding: 5px 9px;
+  min-width: 28px;
+  padding: 3px 6px;
   border: 0;
   border-radius: 999px;
   background: none;
@@ -549,7 +550,7 @@ body:not(.inner-page)
   .home-page .hero__description { max-width: 30ch; margin-top: 20px; font-size: 16px; }
 }
 
-/* ===== Footer (shared by every page) ===== */
+/* ===== Footer: identitas BMA, empat kolom dengan pemisah vertikal. ===== */
 .footer {
   position: relative;
   background: var(--charcoal);
@@ -558,49 +559,60 @@ body:not(.inner-page)
 }
 .footer-top {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
-  gap: clamp(24px, 3vw, 48px);
-  padding-block: clamp(36px, 4vw, 52px) clamp(28px, 3vw, 40px);
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.9fr) minmax(0, 1.15fr) minmax(0, 1.25fr);
+  gap: clamp(24px, 2.5vw, 40px);
+  padding-block: 20px;
 }
-.footer-brand {
-  position: relative;
-  display: inline-block;
-}
-/* Logo footer: versi putih + "Member of Growin Group". */
+.footer-about,
+.footer-col { min-width: 0; }
+.footer-brand { display: inline-block; }
 .footer .footer-logo {
   display: block;
-  width: 170px;
+  width: 140px;
   max-width: 100%;
   height: auto;
 }
+.footer-group {
+  margin-top: 8px;
+  color: var(--line);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.footer-group::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin-bottom: 7px;
+  background: var(--gold);
+}
 .footer-desc {
-  max-width: 320px;
-  margin-top: 22px;
-  font-size: 14px;
-  line-height: 1.65;
+  max-width: 46ch;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.55;
 }
 .social-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 16px 0 0;
+  gap: 8px;
+  margin: 10px 0 0;
   padding: 0;
   list-style: none;
 }
 .social-links a {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border: 1px solid #ffffff2e;
   border-radius: 50%;
-  color: #fff;
+  color: var(--white);
   font-size: 15px;
-  transition:
-    background 0.3s,
-    border-color 0.3s,
-    color 0.3s,
-    transform 0.3s var(--ease-out);
+  transition: background 180ms, border-color 180ms, color 180ms, transform 180ms;
 }
 .social-links a:hover {
   background: var(--gold);
@@ -608,11 +620,17 @@ body:not(.inner-page)
   color: var(--charcoal);
   transform: translateY(-3px);
 }
+.footer-col {
+  margin-top: 8px;
+  padding-left: clamp(20px, 2.5vw, 36px);
+  border-left: 1px solid var(--line-dark);
+}
 .footer h2 {
-  margin-bottom: 12px;
-  color: #fff;
-  font-size: 15px;
+  margin-bottom: 8px;
+  color: var(--white);
+  font-size: 14px;
   letter-spacing: 0;
+  line-height: 1.4;
 }
 .footer-col ul {
   display: grid;
@@ -620,50 +638,37 @@ body:not(.inner-page)
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.65;
 }
 .footer-col a {
   display: inline-flex;
   align-items: center;
-  transition: color 0.25s;
+  min-height: 24px;
+  overflow-wrap: anywhere;
+  transition: color 180ms;
 }
-.footer-col a::before {
-  content: "";
-  width: 0;
-  height: 1px;
-  background: var(--gold);
-  transition:
-    width 0.3s var(--ease-out),
-    margin 0.3s var(--ease-out);
-}
-.footer-col a:hover {
-  color: var(--gold-light);
-}
-.footer-col a:hover::before {
-  width: 12px;
-  margin-right: 8px;
-}
+.footer-col a:hover { color: var(--gold-light); }
 .footer-contact li {
   display: flex;
-  gap: 12px;
   align-items: flex-start;
+  gap: 8px;
 }
 .footer-contact .icon {
+  flex-shrink: 0;
   margin-top: 4px;
   color: var(--gold);
   font-size: 16px;
 }
-.footer-contact a::before {
-  display: none;
-}
-/* Email rekrutmen di kolom "Layanan & Karir". */
+.footer-contact span,
+.footer-contact a { min-width: 0; }
 .footer-recruit {
   display: grid;
-  gap: 4px;
-  margin: 16px 0 0;
-  padding-top: 14px;
-  border-top: 1px solid #ffffff1a;
-  font-size: 14px;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-dark);
+  font-size: 13px;
 }
 .footer-recruit__label {
   color: var(--brand-muted);
@@ -672,34 +677,23 @@ body:not(.inner-page)
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.footer-col .footer-recruit a {
-  gap: 8px;
-  overflow-wrap: anywhere;
-}
-.footer-recruit a::before {
-  display: none;
-}
+.footer-col .footer-recruit a { gap: 8px; }
 .footer-recruit .icon {
   flex-shrink: 0;
   color: var(--gold);
-  font-size: 15px;
-}
-.footer small {
-  display: block;
-  margin-top: 14px;
-  color: var(--brand-muted);
-  font-size: 12px;
+  font-size: 16px;
 }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 6px 24px;
-  padding-block: 14px;
+  gap: 12px 24px;
+  padding-block: 10px 12px;
+  padding-right: 56px;
   border-top: 1px solid var(--line-dark);
   color: var(--brand-muted);
-  font-size: 12.5px;
+  font-size: 11px;
+  line-height: 1.65;
 }
 
 .to-top {
@@ -738,31 +732,32 @@ body:not(.inner-page)
 .to-top .icon {
   stroke-width: 2.2;
 }
-@media (max-width: 960px) {
-  .footer-top {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .footer-about {
-    grid-column: 1 / -1;
-  }
+/* Tablet: identitas di atas tiga kolom navigasi. */
+@media (max-width: 1100px) {
+  .footer-top { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .footer-about { grid-column: 1 / -1; }
+  .footer-desc { max-width: 64ch; }
+  .footer-col { margin-top: 0; }
+  .footer-top > .footer-col:nth-child(2) { padding-left: 0; border-left: 0; }
+  .footer-bottom { flex-wrap: wrap; }
 }
 @media (max-width: 680px) {
-  .footer-top {
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 20px;
-    padding-block: 32px 24px;
-  }
-  .footer-col:last-child {
-    grid-column: 1 / -1;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .to-top {
-    right: 16px;
-    bottom: 16px;
-  }
+  .footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; padding-block: 20px; }
+  .footer .footer-logo { width: 140px; }
+  .footer-desc { font-size: 13px; }
+  .footer-col { padding-left: 0; border-left: 0; }
+  .footer h2 { margin-bottom: 8px; font-size: 14px; }
+  .footer-col ul { gap: 10px; font-size: 14px; }
+  .footer-recruit { margin-top: 12px; padding-top: 10px; font-size: 13px; }
+  .footer-col .footer-recruit a { gap: 8px; }
+  .footer-col:last-child { grid-column: 1 / -1; padding-top: 14px; border-top: 1px solid var(--line-dark); }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; padding-block: 10px 12px; padding-right: 52px; font-size: 11px; }
+  .to-top { right: 16px; bottom: 16px; }
+}
+@media (max-width: 420px) {
+  .footer-top { grid-template-columns: 1fr; gap: 14px; }
+  .footer-col { padding-top: 14px; border-top: 1px solid var(--line-dark); }
+  .footer-col:last-child { grid-column: auto; }
 }
 
 .about-logo-wrap {
@@ -871,8 +866,8 @@ body:not(.inner-page)
   }
   .lang-switch {
     align-self: flex-start;
-    margin: 24px 0 0;
-    font-size: 13px;
+    margin: 20px 0 0;
+    font-size: 11px;
   }
 
   .menu-contact {
@@ -1516,51 +1511,4 @@ button:disabled {
 .motion-ok [data-reveal].is-revealed {
   opacity: 1;
   transform: none;
-}
-
-/* Footer ringkas: baris tautan rapat, ikon sosial sejajar logo di layar kecil. */
-.footer-col ul {
-  gap: 6px;
-  line-height: 1.5;
-}
-.footer-contact li {
-  line-height: 1.5;
-}
-@media (max-width: 680px) {
-  .footer-about {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 12px 16px;
-  }
-  .footer .footer-logo {
-    width: 140px;
-  }
-  .footer-about .footer-desc {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    margin: 0;
-    font-size: 13.5px;
-  }
-  .footer-about .social-links {
-    justify-self: end;
-    margin: 0;
-  }
-  .footer-top {
-    gap: 22px 16px;
-    padding-block: 28px 20px;
-  }
-  .footer h2 {
-    margin-bottom: 8px;
-  }
-  .footer-bottom {
-    gap: 2px;
-    padding-block: 12px;
-    font-size: 12px;
-  }
-}
-@media (max-width: 680px) {
-  .footer-bottom {
-    padding-right: 64px;
-  }
 }

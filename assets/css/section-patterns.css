@@ -1,0 +1,286 @@
+/* Decorative surfaces for Beranda, Tentang Kami, Kontak, Karir and Berita only. No animation, dependencies or content changes.
+   Pattern layers sit above the section background and below its content.
+   SVG strokes use the official BMA palette; opacity is controlled here. */
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) {
+  --pattern-line: rgb(221 224 229 / 0.1);
+  --pattern-accent: rgb(244 131 31 / 0.18);
+}
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .section-pattern,
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) > .footer {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .section-pattern::before,
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .section-pattern::after,
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) > .footer::before,
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) > .footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+}
+
+/* Profile: geological contours concentrated in the upper-right margin. */
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-topographic::before {
+  background-image: url(../patterns/topographic.svg);
+  background-size: 860px auto;
+  background-position: right -190px top -240px;
+  opacity: 0.18;
+  mask-image: linear-gradient(180deg, #000, transparent 85%);
+}
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-topographic::after {
+  background-image: linear-gradient(135deg, rgb(254 236 216 / 0.65), transparent 60%);
+  inset: auto auto 0 0;
+  width: 38%;
+  height: 38%;
+}
+
+/* Services: charcoal blueprint surface. White service cards remain opaque. */
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint { background: var(--charcoal); }
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint::before {
+  background-image:
+    linear-gradient(var(--pattern-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pattern-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-repeat: repeat;
+  mask-image: linear-gradient(135deg, #000, transparent 75%);
+  opacity: 0.6;
+}
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint::after {
+  background-image:
+    radial-gradient(circle at 1px 1px, var(--pattern-accent) 1px, transparent 1.5px),
+    linear-gradient(90deg, transparent 76%, var(--pattern-accent) 76%, var(--pattern-accent) calc(76% + 1px), transparent calc(76% + 1px));
+  background-size: 32px 32px, 100% 100%;
+  background-repeat: repeat, no-repeat;
+  mask-image: linear-gradient(0deg, #000, transparent 32%);
+}
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint .section-heading { color: var(--white); }
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint .section-heading > p { color: var(--line); }
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint .section-kicker { color: var(--gold-light); }
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint .section-cta .btn {
+  --btn-bg: var(--gold);
+  --btn-fg: var(--charcoal);
+  --btn-hover-bg: var(--gold-light);
+  --btn-hover-fg: var(--charcoal);
+}
+
+/* Equipment and logistics: broad wave contours below the brand row,
+   paired with a small diagonal accent in the opposite corner. */
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-maritime { background: var(--white); }
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-maritime::before {
+  background-image: url(../patterns/maritime-waves.svg);
+  background-size: 100% auto;
+  background-position: center bottom -50px;
+  opacity: 0.28;
+  mask-image: linear-gradient(0deg, #000, transparent 65%);
+}
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-maritime::after {
+  inset: 0 0 auto auto;
+  width: 260px;
+  height: 120px;
+  background-image: repeating-linear-gradient(135deg, transparent 0 22px, var(--pattern-accent) 22px 23px, transparent 23px 46px);
+  mask-image: linear-gradient(225deg, #000, transparent 75%);
+  opacity: 0.6;
+}
+
+/* News: quiet editorial arcs, with a restrained dot field in the lower margin. */
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-editorial { background: var(--bg-light); }
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-editorial::before {
+  inset: -150px -150px auto auto;
+  width: 560px;
+  height: 560px;
+  border: 1px solid rgb(190 98 23 / 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 48px rgb(254 236 216 / 0.32), 0 0 0 96px rgb(221 224 229 / 0.18);
+}
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-editorial::after {
+  inset: auto auto 0 0;
+  width: 260px;
+  height: 180px;
+  background-image: radial-gradient(circle at 2px 2px, rgb(104 105 105 / 0.2) 1px, transparent 1.5px);
+  background-size: 18px 18px;
+  background-repeat: repeat;
+  mask-image: linear-gradient(45deg, #000, transparent 75%);
+}
+
+/* Footer is generated by layout.mjs. Scope through home-page instead of
+   changing its shared markup or the footer appearance on unrelated pages. */
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) > .footer::before {
+  background-image: repeating-linear-gradient(135deg, transparent 0 36px, rgb(221 224 229 / 0.06) 36px 37px, transparent 37px 72px);
+  mask-image: linear-gradient(90deg, transparent 30%, #000);
+}
+:is(.home-page, .page-about, .page-contact, .page-careers, .page-news) > .footer::after {
+  background-image: radial-gradient(ellipse at 100% 0%, rgb(244 131 31 / 0.09), transparent 65%);
+}
+
+/* About: the timeline stays readable against a quiet data/coordinate field. */
+.page-about .pattern-dots::before {
+  background-image: radial-gradient(circle at 2px 2px, rgb(104 105 105 / 0.18) 1px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-repeat: repeat;
+  mask-image: linear-gradient(110deg, #000, transparent 35%);
+  opacity: 0.7;
+}
+.page-about .pattern-dots::after {
+  background-image: linear-gradient(90deg, transparent calc(100% - 1px), rgb(244 131 31 / 0.14) 0);
+  background-size: 80px 100%;
+  background-repeat: repeat;
+  mask-image: linear-gradient(270deg, #000, transparent 32%);
+}
+/* Keep the existing dark vision / peach mission panels over a light blueprint. */
+.page-about .pattern-planning::before {
+  background-image: linear-gradient(rgb(104 105 105 / 0.07) 1px, transparent 1px), linear-gradient(90deg, rgb(104 105 105 / 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-repeat: repeat;
+  mask-image: linear-gradient(135deg, #000, transparent 65%);
+}
+.page-about .pattern-planning::after {
+  background-image: radial-gradient(ellipse at 100% 100%, rgb(254 236 216 / 0.6), transparent 55%);
+}
+.page-about .pattern-diagonal::before {
+  background-image: repeating-linear-gradient(135deg, transparent 0 32px, rgb(190 98 23 / 0.1) 32px 33px, transparent 33px 64px);
+  mask-image: linear-gradient(225deg, #000, transparent 38%);
+}
+.page-about .pattern-diagonal::after {
+  inset: auto auto 0 0;
+  width: 220px;
+  height: 180px;
+  background-image: linear-gradient(135deg, transparent 49.5%, rgb(244 131 31 / 0.16) 49.5% 50%, transparent 50%);
+}
+/* Maritime collaboration echoes the waves already used for operations. */
+.page-about .pattern-maritime::before { opacity: 0.15; }
+/* CTA has an existing pseudo-element; explicitly reset its size/background. */
+.page-about .pattern-flow::before {
+  width: auto;
+  height: auto;
+  background: url(../patterns/maritime-waves.svg) right center / 1000px auto no-repeat;
+  opacity: 0.25;
+  mask-image: linear-gradient(90deg, transparent 30%, #000);
+}
+.page-about .pattern-flow::after {
+  background-image: radial-gradient(ellipse at 100% 50%, rgb(244 131 31 / 0.15), transparent 65%);
+}
+
+/* Compact surfaces: fewer lines, smaller edge details and lower contrast.
+   All patterns remain static, including under prefers-reduced-motion. */
+@media (max-width: 680px) {
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-topographic::before { background-size: 500px auto; background-position: right -240px top -160px; opacity: 0.12; }
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-topographic::after { width: 70%; height: 16%; opacity: 0.6; }
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint::before { background-size: 96px 96px; opacity: 0.4; }
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-blueprint::after { background-size: 48px 48px, 100% 100%; opacity: 0.65; }
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-maritime::before { background-size: 900px auto; opacity: 0.18; }
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-maritime::after { width: 160px; height: 90px; opacity: 0.4; }
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-editorial::before { width: 320px; height: 320px; inset: -150px -180px auto auto; }
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) .pattern-editorial::after { width: 140px; height: 130px; opacity: 0.6; }
+  :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) > .footer::before { opacity: 0.5; }
+}
+
+@media (max-width: 680px) {
+  .page-about .pattern-dots::before { background-size: 32px 32px; opacity: 0.4; }
+  .page-about .pattern-dots::after { opacity: 0.5; }
+  .page-about .pattern-planning::before { background-size: 80px 80px; opacity: 0.65; }
+  .page-about .pattern-diagonal::before { opacity: 0.5; }
+  .page-about .pattern-diagonal::after { width: 120px; height: 110px; }
+  .page-about .pattern-flow::before { background-size: 720px auto; opacity: 0.16; }
+}
+
+/* Contact: stronger palette strokes, kept behind the opaque form surface.
+   Scope the increased weight to this page so existing surfaces stay unchanged. */
+.page-contact .pattern-connections { background: var(--white); }
+.page-contact .pattern-connections::before {
+  background-image:
+    linear-gradient(rgb(166 170 179 / 0.24) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgb(166 170 179 / 0.24) 1.5px, transparent 1.5px),
+    radial-gradient(ellipse at 0% 0%, var(--brand-tint), transparent 58%);
+  background-size: 88px 88px, 88px 88px, 100% 100%;
+  background-repeat: repeat, repeat, no-repeat;
+  mask-image: linear-gradient(120deg, #000, transparent 68%);
+}
+.page-contact .pattern-connections::after {
+  background-image: url(../patterns/contact-connections.svg);
+  background-size: min(100%, 1100px) auto;
+  background-position: right -180px bottom -40px;
+  opacity: 0.42;
+  mask-image: linear-gradient(0deg, #000, transparent 85%);
+}
+.page-contact > .footer::before {
+  background-image: repeating-linear-gradient(135deg, transparent 0 36px, rgb(221 224 229 / 0.09) 36px 37.5px, transparent 37.5px 72px);
+}
+.page-contact > .footer::after {
+  background-image: radial-gradient(ellipse at 100% 0%, rgb(244 131 31 / 0.13), transparent 65%);
+}
+@media (max-width: 680px) {
+  .page-contact .pattern-connections::before {
+    background-size: 112px 112px, 112px 112px, 100% 100%;
+    mask-image: linear-gradient(160deg, #000, transparent 45%);
+  }
+  .page-contact .pattern-connections::after {
+    background-size: 720px auto;
+    background-position: right -260px bottom -80px;
+    opacity: 0.3;
+  }
+}
+
+/* Careers: culture, vacancy search and recruitment each have a static surface. */
+.page-careers .pattern-career-culture { background: var(--white); }
+.page-careers .pattern-career-culture::before {
+  background-image: repeating-linear-gradient(135deg, transparent 0 36px, rgb(190 98 23 / 0.14) 36px 37.5px, transparent 37.5px 72px);
+  mask-image: linear-gradient(225deg, #000, transparent 38%);
+}
+.page-careers .pattern-career-culture::after {
+  background-image: radial-gradient(ellipse at 0% 100%, rgb(254 236 216 / 0.7), transparent 48%);
+}
+.page-careers .pattern-recruitment { background: var(--bg-light); }
+.page-careers .pattern-recruitment::before {
+  background-image: linear-gradient(rgb(166 170 179 / 0.18) 1.5px, transparent 1.5px), linear-gradient(90deg, rgb(166 170 179 / 0.18) 1.5px, transparent 1.5px);
+  background-size: 80px 80px;
+  background-repeat: repeat;
+  mask-image: linear-gradient(135deg, #000, transparent 65%);
+}
+.page-careers .pattern-recruitment::after {
+  background-image: radial-gradient(ellipse at 100% 100%, rgb(254 236 216 / 0.8), transparent 55%);
+}
+.page-careers .pattern-career-process { background: var(--white); }
+.page-careers .pattern-career-process::before {
+  background-image: url(../patterns/maritime-waves.svg);
+  background-position: right -200px bottom -100px;
+  background-size: 1200px auto;
+  opacity: 0.22;
+  mask-image: linear-gradient(0deg, #000, transparent 72%);
+}
+.page-careers .pattern-career-process::after {
+  background-image: radial-gradient(ellipse at 100% 0%, rgb(254 236 216 / 0.65), transparent 60%);
+}
+/* A five-column table accommodates full province names without date/status fields. */
+.page-careers .jobs-table { min-width: 740px; }
+.page-careers .jobs-table th:nth-child(2) { width: 30%; }
+.page-careers .jobs-table th:nth-child(3) { width: 23%; }
+.page-careers .jobs-table th:nth-child(4) { width: 29%; }
+.page-careers .value-card,
+.page-careers .career-faq { background: var(--white); }
+@media (max-width: 680px) {
+  .page-careers .pattern-career-culture::before { opacity: 0.5; }
+  .page-careers .pattern-recruitment::before { background-size: 112px 112px; opacity: 0.65; }
+  .page-careers .pattern-career-process::before { background-size: 800px auto; opacity: 0.15; }
+}
+
+/* News: editorial arcs and a quiet dot field; category controls remain opaque. */
+.page-news .pattern-editorial::before {
+  border-width: 1.5px;
+  border-color: rgb(190 98 23 / 0.18);
+}
+.page-news .news-toolbar {
+  margin-bottom: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
+.page-news .news-toolbar .filter-tabs { gap: 8px; }
+@media (max-width: 680px) {
+  .page-news .news-toolbar { padding: 12px; }
+  .page-news .news-toolbar .filter-tabs button { padding: 9px 12px; font-size: 13px; }
+}

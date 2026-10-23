@@ -335,17 +335,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const news = document.querySelector("#newsList");
   if (news) {
     let category = "all";
-    const search = document.querySelector("#newsSearch");
     const tabs = [...document.querySelectorAll("[data-news-category]")];
     const cards = [...news.children];
     let page = 1;
-    // Kategori dan pencarian memilih berita; pagination menampilkan enam per halaman.
+    // Filter kategori memilih berita; pagination menampilkan enam per halaman.
     const filter = (resetPage = true) => {
       if (resetPage) page = 1;
       const matches = cards.filter(
         (card) =>
-          (category === "all" || card.dataset.category === category) &&
-          normalize(card.textContent).includes(normalize(search.value)),
+          category === "all" || card.dataset.category === category,
       );
       const result = window.BMA.paginate({
         all: cards,
@@ -377,14 +375,12 @@ document.addEventListener("DOMContentLoaded", () => {
         filter();
       }),
     );
-    search.addEventListener("input", () => filter());
     document
       .querySelector("[data-reset-news]")
       .addEventListener("click", () => {
         category = "all";
-        search.value = "";
         filter();
-        search.focus();
+        tabs.find((tab) => tab.dataset.newsCategory === "all")?.focus();
       });
     filter();
   }
@@ -413,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
       share.statusTimer = setTimeout(() => (status.textContent = ""), 3000);
     });
   }
-  // Tabel lowongan (hanya lowongan dibuka): filter kata kunci, departemen, lokasi + pagination.
+  // Tabel lowongan: filter kata kunci, departemen, lokasi + pagination.
   const jobTable = document.querySelector("#jobTable");
   if (jobTable) {
     const rows = [...jobTable.tBodies[0].rows];
@@ -490,7 +486,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#applicationForm');
   if (!form) return;
-  const jobs = [["operator-excavator","Operator Excavator","Produksi","Kutai Kartanegara, Kaltim","Kontrak"],["hse-officer","HSE Officer","K3 & Lingkungan","Kutai Kartanegara, Kaltim","Penuh waktu"],["logistics-coordinator","Koordinator Logistik","Logistik","Tanah Bumbu, Kalsel","Penuh waktu"],["foreman-produksi","Foreman Produksi Coal Getting","Produksi","Kutai Kartanegara, Kaltim","Penuh waktu"],["mekanik-alat-berat","Mekanik Alat Berat","Plant & Maintenance","Tanah Bumbu, Kalsel","Kontrak"]];
+  const jobs = [["operator-excavator","Operator Excavator","Produksi","Kutai Kartanegara, Kalimantan Timur","Kontrak"],["hse-officer","HSE Officer","K3 & Lingkungan","Kutai Kartanegara, Kalimantan Timur","Penuh waktu"],["logistics-coordinator","Koordinator Logistik","Logistik","Tanah Bumbu, Kalimantan Selatan","Penuh waktu"],["foreman-produksi","Foreman Produksi Coal Getting","Produksi","Kutai Kartanegara, Kalimantan Timur","Penuh waktu"],["mekanik-alat-berat","Mekanik Alat Berat","Plant & Maintenance","Tanah Bumbu, Kalimantan Selatan","Kontrak"]];
   // Rincian posisi untuk panel kiri formulir (teks sama dengan halaman lowongan;
   // posisi tanpa halaman detail menampilkan catatan bahwa rincian belum tersedia).
   const jobDetails = {

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="../assets/css/brand-heroes.css?v=palette-20261023" />
     <link rel="stylesheet" href="../assets/css/components.css?v=palette-20261023" />
     <link rel="stylesheet" href="../assets/css/pages.css?v=palette-20261023" />
+    <link rel="stylesheet" href="../assets/css/section-patterns.css?v=20261023-5" />
   </head>
 
   <body class="page-news">
@@ -86,7 +87,7 @@
           <a href="about.html" class="nav-link">Tentang Kami</a>
           <a href="services.html" class="nav-link">Layanan</a>
           <a href="news.html" class="nav-link active" aria-current="page">Berita</a>
-          <a href="karir.html" class="nav-link">Karier</a>
+          <a href="karir.html" class="nav-link">Karir</a>
           <a href="contact.html" class="nav-link">Kontak</a>
           <!-- Pilihan bahasa: tampilan saja, belum berfungsi. -->
           <div class="lang-switch" role="group" aria-label="Pilihan bahasa (Bahasa Inggris segera hadir)">
@@ -111,7 +112,7 @@
         </div>
       </section>
 
-      <section class="section bg-light" aria-labelledby="listTitle">
+      <section class="section bg-light section-pattern pattern-editorial" aria-labelledby="listTitle">
         <div class="container">
           <h2 id="listTitle" class="visually-hidden">Publikasi Perusahaan</h2>
           <div class="filter-toolbar news-toolbar" id="newsFilters">
@@ -122,7 +123,6 @@
               <button type="button" data-news-category="K3" aria-pressed="false">K3</button>
               <button type="button" data-news-category="Sosial" aria-pressed="false">Sosial</button>
             </div>
-            <label class="search-field"><span>Cari berita</span><input id="newsSearch" type="search" placeholder="Masukkan judul atau topik berita" autocomplete="off" /></label>
           </div>
           <p class="result-count" id="newsCount" role="status">9 artikel ditemukan</p>
           <div class="news-tiles news-listing" id="newsList">
@@ -237,7 +237,7 @@
           </div>
           <div class="empty-results" id="newsEmpty" hidden>
             <h3>Tidak Ada Berita yang Sesuai</h3>
-            <p>Silakan gunakan kata kunci lain atau ubah kategori pencarian.</p>
+            <p>Pilih kategori lain untuk melihat artikel yang tersedia.</p>
             <button class="btn btn-outline-dark" type="button" data-reset-news>Tampilkan Semua Berita</button>
           </div>
           <nav class="pagination" id="newsPagination" aria-label="Halaman berita" hidden></nav>
@@ -251,8 +251,9 @@
       <div class="container footer-top">
         <div class="footer-about">
           <a class="brand footer-brand" href="../index.html" aria-label="PT Berkat Maritim Abadi — Beranda">
-            <img class="brand-logo footer-logo" src="../assets/logo/bma-logo-footer.webp" alt="PT Berkat Maritim Abadi — Member of Growin Group" width="795" height="409" loading="lazy" />
+            <img class="brand-logo footer-logo" src="../assets/logo/bma-logo-white.webp" alt="PT Berkat Maritim Abadi" width="398" height="160" loading="lazy" />
           </a>
+          <p class="footer-group">Member of Growin Group</p>
           <p class="footer-desc">Mitra strategis pertambangan dan logistik sejak 2013. Mendukung kegiatan pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara.</p>
           <ul class="social-links" aria-label="Media sosial (tautan contoh)">
             <li><a href="#" aria-label="LinkedIn (tautan contoh)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
@@ -270,23 +271,23 @@
         </nav>
 
         <nav class="footer-col" aria-labelledby="footerPages">
-          <h2 id="footerPages">Layanan dan Karier</h2>
+          <h2 id="footerPages">Layanan dan Karir</h2>
           <ul>
             <li><a href="services.html">Layanan</a></li>
-            <li><a href="karir.html">Karier</a></li>
+            <li><a href="karir.html">Karir</a></li>
           </ul>
           <p class="footer-recruit">
             <span class="footer-recruit__label">Email Rekrutmen</span>
-            <a href="mailto:karir@growingroup.id"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>karir@growingroup.id</a>
+            <a href="mailto:career@growingroup.id"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>career@growingroup.id</a>
           </p>
         </nav>
 
         <div class="footer-col">
           <h2>Kontak</h2>
           <ul class="footer-contact">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Jl. Lodan Raya No. 01, Ancol, Pademangan, Jakarta Utara 14430</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Lodan Center Blok M-5, Jl. Lodan Raya No. 2, Ancol, Jakarta Utara, Indonesia 14430</span></li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:info@growingroup.id">info@growingroup.id</a></li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+628128222858">+62 812-8222-858</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+622121695522">+62 21 21695522</a></li>
           </ul>
         </div>
       </div>

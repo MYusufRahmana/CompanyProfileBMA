@@ -11,7 +11,7 @@ Proyek ini adalah prototipe statis. Belum ada backend, database, autentikasi, at
 | `content/news.mjs` | Model/tabel berita, kategori, dan media |
 | `assets/js/site-data.js` | Data hero beranda dari konfigurasi/CMS |
 | Kartu berita di beranda dan daftar | Query artikel pada template |
-| Tabel karier, data jobs/jobDetails, halaman detail | Satu sumber data lowongan |
+| Tabel karir, data jobs/jobDetails, halaman detail | Satu sumber data lowongan |
 | `pages/contact.html` dan `pages/lamar.html` | Endpoint, validasi server, dan penanganan formulir |
 | `assets/` | Aset publik yang disalin atau diproses bundler |
 

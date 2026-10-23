@@ -27,7 +27,7 @@ export const site = {
     ["about", "Tentang Kami"],
     ["services", "Layanan"],
     ["news", "Berita"],
-    ["careers", "Karier"],
+    ["careers", "Karir"],
     ["contact", "Kontak"],
   ],
 
@@ -60,18 +60,19 @@ export const site = {
       { id: "footerLinks", title: "Perusahaan", links: [["about", "Tentang Kami"], ["news", "Berita"]] },
       {
         id: "footerPages",
-        title: "Layanan dan Karier",
-        links: [["services", "Layanan"], ["careers", "Karier"]],
-        recruitEmail: "karir@growingroup.id",
+        title: "Layanan dan Karir",
+        links: [["services", "Layanan"], ["careers", "Karir"]],
+        recruitEmail: "career@growingroup.id",
       },
     ],
     bottomNote: "Pratinjau situs · Berita dan lowongan merupakan materi contoh",
   },
 
   contact: {
-    address: "Jl. Lodan Raya No. 01, Ancol, Pademangan, Jakarta Utara 14430",
+    address: "Lodan Center Blok M-5, Jl. Lodan Raya No. 2, Ancol, Jakarta Utara, Indonesia 14430",
+    branchAddress: "Jl. HKSN Komp. AMD Permai Blok A23 No.462 RT.22/RW.02, Kel. Alalak Selatan, Kec. Banjarmasin Utara, Kota Banjarmasin, 70126",
     email: "info@growingroup.id",
-    phone: { label: "+62 812-8222-858", tel: "+628128222858" },
+    phone: { label: "+62 21 21695522", tel: "+622121695522" },
   },
 
   // Media sosial: ganti "#" dengan URL resmi. sample: true = diberi label "tautan contoh".

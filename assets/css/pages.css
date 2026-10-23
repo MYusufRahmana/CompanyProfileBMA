@@ -378,15 +378,8 @@
   border-color: var(--charcoal);
   background: var(--charcoal);
 }
-.news-toolbar .search-field > span,
 .result-count {
   font-size: 13px;
-}
-.news-toolbar .search-field input {
-  min-height: 48px;
-  border-color: var(--line);
-  border-radius: var(--radius-sm);
-  font-size: 15px;
 }
 .news-listing .news-tile[hidden] {
   display: none;
@@ -813,6 +806,63 @@ a.job-title:hover {
   font-size: 15px;
 }
 
+/* Alur rekrutmen: tiga tahap berurutan, diikuti panel pertanyaan umum. */
+.recruitment-section { padding-block: clamp(48px, 6vw, 80px); }
+.recruitment-heading { margin-bottom: 32px; }
+.recruitment-heading .section-kicker { margin-bottom: 14px; }
+.recruitment-heading h2 { font-size: clamp(1.8rem, 1.2rem + 1.8vw, 2.8rem); line-height: 1.2; }
+.recruitment-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.recruitment-step { position: relative; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.recruitment-step:not(:last-child)::after { content: ""; position: absolute; top: 24px; left: 64px; right: -12px; height: 1px; background: color-mix(in srgb, var(--gold) 40%, var(--line)); }
+.recruitment-step__number {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--white));
+  border-radius: 50%;
+  background: var(--brand-tint);
+  color: var(--charcoal);
+  font: 700 14px / 1 Manrope, sans-serif;
+}
+.recruitment-step__copy { flex: 1; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); }
+.recruitment-step__copy h3 { font-size: 17px; line-height: 1.45; }
+.recruitment-step__copy p { margin-top: 12px; color: var(--text-soft); font-size: 14px; line-height: 1.75; }
+.recruitment-faq { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); gap: 32px; margin-top: 36px; padding: 28px 32px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); }
+.recruitment-faq__intro { padding-top: 12px; }
+.recruitment-faq__intro h3 { font-size: 22px; line-height: 1.3; }
+.recruitment-faq__intro p { max-width: 30ch; margin-top: 10px; color: var(--text-soft); font-size: 14px; line-height: 1.7; }
+.recruitment-faq .career-faq details:last-child { border-bottom: 0; }
+.recruitment-faq .career-faq summary { align-items: center; padding: 14px 0; font-size: 14px; line-height: 1.6; font-weight: 600; }
+.recruitment-faq .career-faq summary::after { display: grid; place-items: center; flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--brand-tint); color: var(--charcoal); font-size: 20px; }
+.recruitment-faq .career-faq details p { max-width: 65ch; padding: 0 40px 16px 0; font-size: 14px; line-height: 1.75; }
+@media (max-width: 960px) {
+  .recruitment-steps { gap: 18px; }
+  .recruitment-step__copy { padding: 20px; }
+  .recruitment-faq { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
+  .recruitment-faq__intro { padding-top: 0; }
+  .recruitment-faq__intro p { max-width: none; }
+}
+@media (max-width: 680px) {
+  .recruitment-steps { grid-template-columns: 1fr; gap: 20px; }
+  .recruitment-step { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: start; }
+  .recruitment-step__number { width: 40px; height: 40px; font-size: 12px; }
+  .recruitment-step:not(:last-child)::after { top: 52px; bottom: -8px; left: 20px; right: auto; width: 1px; height: auto; }
+  .recruitment-step__copy { padding: 18px; }
+  .recruitment-step__copy h3 { font-size: 15px; }
+  .recruitment-step__copy p { margin-top: 8px; font-size: 13px; }
+  .recruitment-faq { gap: 14px; margin-top: 28px; padding: 20px; }
+  .recruitment-faq__intro h3 { font-size: 20px; }
+}
+
 /* Detail lowongan */
 .job-layout {
   display: grid;
@@ -968,6 +1018,19 @@ a.job-title:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.about-profile__copy {
+  width: 100%;
+  max-width: 60ch;
+  margin-inline: auto;
+  text-align: left;
+}
+.about-profile__copy > p:not(.section-kicker) {
+  max-width: none;
+  margin-inline: 0;
+  line-height: 1.8;
+  text-align: justify;
+  text-align-last: left;
 }
 .about-profile__copy h2,
 .about-split__head h2 {
@@ -1277,151 +1340,61 @@ a.job-title:hover {
 
 }
 
-/* Proyek & klien (Tentang Kami) */
-/* Proyek & Klien (Tentang Kami): dua baris kartu klien bergerak berlawanan arah.
-   Tiap baris = dua grup identik; track bergeser -50% lalu berulang tanpa jeda. */
-.clients-intro {
+/* Klien Kami: panel pengantar BMA dan direktori perusahaan yang statis. */
+.clients-section { padding-block: clamp(48px, 6vw, 80px); background: var(--white); }
+.clients-layout {
   display: grid;
-  gap: 18px;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 2fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: stretch;
 }
-.clients-stat {
+.clients-heading {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 36px;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--radius-lg);
+  background: var(--charcoal);
+  color: var(--white);
 }
-.clients-stat strong {
-  color: var(--gold);
-  font:
-    800 44px/1 Manrope,
-    sans-serif;
-}
-.clients-stat span {
-  max-width: 180px;
-  color: var(--text-soft);
-  font-size: 14px;
-  line-height: 1.4;
-}
-.client-marquee {
+.clients-heading__accent { display: block; width: 40px; height: 3px; margin-bottom: 24px; background: var(--gold); }
+.clients-heading h2 { max-width: 7ch; font-size: clamp(2rem, 1.3rem + 2vw, 3rem); line-height: 1.12; letter-spacing: -0.035em; }
+.clients-heading > div > p { margin-top: 20px; color: var(--line); font-size: 14px; line-height: 1.75; }
+.clients-summary { display: flex; align-items: center; gap: 18px; padding-top: 24px; border-top: 1px solid var(--line-dark); }
+.clients-summary strong { color: var(--gold-light); font: 500 48px / 1 Manrope, sans-serif; letter-spacing: -0.04em; }
+.clients-summary span { color: var(--line); font-size: 12px; line-height: 1.6; }
+.clients-grid {
   display: grid;
-  gap: 16px;
-  margin-top: clamp(8px, 2vw, 16px);
-  overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-.client-marquee__track {
-  display: flex;
-  width: max-content;
-  animation: client-scroll var(--duration, 45s) linear infinite;
-}
-.client-marquee__row[data-direction="right"] .client-marquee__track {
-  animation-direction: reverse;
-}
-.client-marquee:hover .client-marquee__track,
-.client-marquee:focus-within .client-marquee__track {
-  animation-play-state: paused;
-}
-.client-marquee__group {
-  display: flex;
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 10px 20px;
   margin: 0;
-  padding: 0 16px 0 0;
+  padding: 0;
   list-style: none;
 }
-@keyframes client-scroll {
-  to {
-    transform: translateX(-50%);
-  }
+.clients-grid__item { display: flex; flex-direction: column; justify-content: center; gap: 6px; min-height: 78px; padding: 14px 18px; border-radius: var(--radius-sm); background: var(--bg-light); }
+.clients-grid__item:nth-child(4n + 1),
+.clients-grid__item:nth-child(4n + 2) { background: var(--brand-tint); }
+.clients-grid__prefix { color: var(--text-soft); font: 400 11px / 1.3 Inter, sans-serif; letter-spacing: 0.04em; }
+.clients-grid__name { color: var(--charcoal); font: 600 clamp(15px, 1.2vw, 17px) / 1.5 Manrope, sans-serif; }
+@media (max-width: 960px) {
+  .clients-layout { grid-template-columns: 1fr; gap: 24px; }
+  .clients-heading { flex-direction: row; align-items: center; gap: 40px; }
+  .clients-heading > div { max-width: 54ch; }
+  .clients-heading h2 { max-width: none; }
+  .clients-summary { flex-shrink: 0; flex-direction: column; align-items: flex-start; gap: 10px; padding: 0 0 0 28px; border-top: 0; border-left: 1px solid var(--line-dark); }
+  .clients-heading__accent { margin-bottom: 18px; }
 }
-.client-chip {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  gap: 14px;
-  min-width: 270px;
-  padding: 16px 22px 16px 16px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 1px 2px #2c30390a;
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-.client-chip:hover {
-  border-color: var(--gold);
-  box-shadow: var(--shadow-soft);
-}
-.client-chip__mark {
-  display: grid;
-  flex-shrink: 0;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #f4831f, var(--gold-dark));
-  color: #fff;
-  font:
-    800 16px/1 Manrope,
-    sans-serif;
-  letter-spacing: 0.02em;
-}
-.client-chip__name {
-  color: var(--text);
-  font:
-    700 15px/1.35 Manrope,
-    sans-serif;
-  white-space: nowrap;
-}
-.client-chip__name small {
-  display: block;
-  margin-bottom: 2px;
-  color: var(--text-soft);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-}
-@media (max-width: 680px) {
-  .client-marquee {
-    gap: 12px;
-  }
-  .client-marquee__group {
-    gap: 12px;
-    padding-right: 12px;
-  }
-  .client-chip {
-    min-width: 0;
-    gap: 12px;
-    padding: 12px 18px 12px 12px;
-  }
-  .client-chip__mark {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-  }
-  .client-chip__name {
-    font-size: 14px;
-  }
-  .clients-stat strong {
-    font-size: 36px;
-  }
-}
-/* Tanpa animasi: baris diam dan bisa digeser manual; salinan disembunyikan. */
-@media (prefers-reduced-motion: reduce) {
-  .client-marquee {
-    mask-image: none;
-  }
-  .client-marquee__row {
-    overflow-x: auto;
-    padding-inline: var(--gutter);
-  }
-  .client-marquee__track {
-    animation: none;
-  }
-  .client-marquee__group[aria-hidden="true"],
-  .client-chip[aria-hidden="true"] {
-    display: none;
-  }
+@media (max-width: 600px) {
+  .clients-heading { flex-direction: column; align-items: stretch; gap: 24px; padding: 24px; border-radius: var(--radius-md); }
+  .clients-heading > div > p { margin-top: 16px; }
+  .clients-summary { flex-direction: row; align-items: center; gap: 16px; padding: 20px 0 0; border-left: 0; border-top: 1px solid var(--line-dark); }
+  .clients-summary strong { font-size: 36px; }
+  .clients-grid { grid-template-columns: 1fr; }
+  .clients-grid__item { min-height: 78px; padding: 14px 18px; }
+  .clients-grid__item:nth-child(n) { background: var(--bg-light); }
+  .clients-grid__item:nth-child(odd) { background: var(--brand-tint); }
 }
 
 /* Formulir lamaran: rincian posisi terpilih di kartu kiri */
@@ -1507,7 +1480,7 @@ a.job-title:hover {
   }
 }
 
-/* Hero Layanan, Berita, Karier, dan Kontak: satu bahasa visual, konteks berbeda. */
+/* Hero Layanan, Berita, Karir, dan Kontak: satu bahasa visual, konteks berbeda. */
 .page-banner--editorial::before {
   background:
     linear-gradient(180deg, rgb(23 28 32 / 0.5), transparent 30%),
@@ -1571,15 +1544,22 @@ a.job-title:hover {
   box-shadow: var(--shadow-soft);
 }
 .about-profile__copy h2 {
-  font-size: clamp(2.2rem, 1.4rem + 2.6vw, 3.6rem);
-  line-height: 1.08;
+  max-width: none;
+  margin-inline: 0;
+  font-size: clamp(2rem, 1.3rem + 2vw, 3rem);
+  line-height: 1.15;
 }
+.about-profile__copy .section-kicker { margin-bottom: 16px; }
+.about-profile__brand { color: var(--gold-dark); }
+.about-profile__copy h2 + p { margin-top: 24px; }
 .about-profile__copy .lead {
   margin-top: 28px;
 }
 @media (max-width: 960px) {
   .about-profile__photo {
+    width: 100%;
     max-width: 560px;
+    margin-inline: auto;
   }
   .about-profile__photo img {
     aspect-ratio: 24 / 25;

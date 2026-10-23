@@ -166,8 +166,9 @@ export function footer(page, base) {
       <div class="container footer-top">
         <div class="footer-about">
           <a class="brand footer-brand" href="${l.home}" aria-label="${site.name} — Beranda">
-            <img class="brand-logo footer-logo" src="${base}assets/${logo.footer.src}" alt="${logo.footer.alt}" width="${logo.footer.width}" height="${logo.footer.height}" loading="lazy" />
+            <img class="brand-logo footer-logo" src="${base}assets/${logo.light.src}" alt="${site.name}" width="${logo.light.width}" height="${logo.light.height}" loading="lazy" />
           </a>
+          <p class="footer-group">Member of Growin Group</p>
           <p class="footer-desc">${f.description}</p>
           <ul class="social-links" aria-label="Media sosial${allSample ? " (tautan contoh)" : ""}">
             ${social}

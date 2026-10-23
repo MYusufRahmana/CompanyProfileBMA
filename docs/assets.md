@@ -21,7 +21,7 @@ Foto asli BMA, dikonversi ke WebP:
 
 - `assets/images/company/home-team-hero-{800,1600}.webp` — ilustrasi generatif AI pekerja BMA untuk hero beranda, dengan area kosong di kiri untuk teks. Bukan dokumentasi karyawan asli. Master: `_source/generated-heroes/home-team-hero-v1.png`.
 
-- `assets/images/company/{services,news,careers,contact}-hero-bma-{800,1600}.webp` — empat ilustrasi generatif AI untuk hero Layanan (pemuatan hasil tambang), Berita (pencatatan kegiatan lapangan), Karier (kolaborasi rekan kerja), dan Kontak (diskusi kebutuhan proyek). Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi karyawan, kantor, atau kegiatan asli BMA. Sumber resolusi penuh tersimpan di `_source/generated-heroes/`.
+- `assets/images/company/{services,news,careers,contact}-hero-bma-{800,1600}.webp` — empat ilustrasi generatif AI untuk hero Layanan (pemuatan hasil tambang), Berita (pencatatan kegiatan lapangan), Karir (kolaborasi rekan kerja), dan Kontak (diskusi kebutuhan proyek). Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi karyawan, kantor, atau kegiatan asli BMA. Sumber resolusi penuh tersimpan di `_source/generated-heroes/`.
 
 - `assets/images/company/about-mining-bma-{800,1600}.webp` — ilustrasi generatif AI excavator dan truk berlabel Berkat Maritim Abadi, untuk hero Tentang Kami. Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi operasional asli. Sumber resolusi penuh: `_source/generated-heroes/about-hero-v1.png`.
 
