@@ -75,11 +75,11 @@ Teks lama dihapus dan diisi warna serta tekstur cat di sekitarnya; pelat dipasan
 
 ## Video hero beranda (28 Oktober 2026)
 
-Video aktif: `assets/videos/BmaVidio.mp4`, salinan apa adanya (tanpa kompres ulang, tanpa perubahan) dari `_source/BmaVidio.MP4`: H.264 High, 1280 × 720, 30 fps, 12 detik, tanpa audio, ±16 MB, sudah *fast start*. Satu file dipakai untuk semua ukuran layar.
+Video aktif: `assets/videos/BmaVidio-2cuplikan.mp4`, dari `_source/BmaVidio.MP4` dengan cuplikan ke-3 (pemandangan area tambang, detik 9,8–12) dibuang. Dipotong dengan *stream copy* di keyframe detik 8,7 (`ffmpeg -t 8.7 -c copy`), jadi frame yang tersisa identik dengan aslinya, tanpa kompres ulang: H.264 High, 1280 × 720, 30 fps, 8,7 detik, tanpa audio, ±12 MB. Isi: cuplikan 1 dump truck (0–2 s), cuplikan 2 pemuatan excavator SANY (2–8,7 s). Satu file untuk semua ukuran layar. Warna/kontras disesuaikan lewat CSS `filter` dan sambungan loop memudar lewat gelap (`is-loop-dip`), file video tidak diubah.
 
 Poster (tampil sebelum video berputar): `assets/images/company/home-hero-bmavidio-poster.webp`, frame pertama video yang sama (1280 × 720).
 
-Versi olahan sebelumnya (`bma-hero-1080p.mp4`, `bma-hero-mobile-1080.mp4`, `bma-hero-720p-hd.mp4`, `bma-hero-fullhd-v2.mp4`, `bma-hero-720p.mp4`) dan poster `home-hero-hd-poster-*`, `home-hero-fullhd-poster-*`, `home-hero-video-poster-*` tidak lagi dipakai.
+Versi sebelumnya (`BmaVidio.mp4` utuh 3 cuplikan, `bma-hero-1080p.mp4`, `bma-hero-mobile-1080.mp4`, `bma-hero-720p-hd.mp4`, `bma-hero-fullhd-v2.mp4`, `bma-hero-720p.mp4`) dan poster `home-hero-hd-poster-*`, `home-hero-fullhd-poster-*`, `home-hero-video-poster-*` tidak lagi dipakai.
 
 ## Font & ikon
 

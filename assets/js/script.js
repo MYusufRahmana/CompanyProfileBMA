@@ -195,8 +195,8 @@ window.BMA.hero = () => {
       if (duration) {
         const time = video.currentTime;
         const left = duration - time;
-        if (left < 0.45) looped = true;
-        hero.classList.toggle("is-loop-dip", left < 0.45 || (looped && time < 0.35));
+        if (left < 0.6) looped = true;
+        hero.classList.toggle("is-loop-dip", left < 0.6 || (looped && time < 0.25));
       }
       frame = requestAnimationFrame(tick);
     };

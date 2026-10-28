@@ -17,8 +17,8 @@ window.BMA_HERO = {
     "PT Berkat Maritim Abadi melayani jasa pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara di Kalimantan sejak 2013.",
   posterDesktop: "assets/images/company/home-hero-bmavidio-poster.webp",
   posterMobile: "assets/images/company/home-hero-bmavidio-poster.webp",
-  // Video asli _source/BmaVidio.MP4, disalin apa adanya (1280 × 720, ±16 MB), satu file untuk semua layar.
-  video: [{ src: "assets/videos/BmaVidio.mp4" }],
+  // _source/BmaVidio.MP4 tanpa cuplikan ke-3 (dipotong tanpa kompres ulang; 1280 × 720, 8,7 detik, ±12 MB).
+  video: [{ src: "assets/videos/BmaVidio-2cuplikan.mp4" }],
   position: "center",
   // Di ponsel video dipotong; geser fokus ke excavator.
   mobilePosition: "74% center",
