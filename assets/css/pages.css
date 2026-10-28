@@ -1516,6 +1516,22 @@ a.job-title:hover {
   .page-banner--editorial .breadcrumb { margin-top: 20px; font-size: 13px; }
 }
 
+/* Gradasi lebih gelap untuk lima Hero halaman utama; foto tetap utuh.
+   Detail berita/lowongan dan Hero Beranda mempertahankan tampilannya. */
+:is(.page-about, .page-services, .page-news, .page-careers, .page-contact):not(.page-article):not(.page-job) main > .page-banner--simple::before {
+  background:
+    linear-gradient(180deg, rgb(44 48 57 / 0.55) 0%, rgb(44 48 57 / 0.12) 42%, rgb(44 48 57 / 0.26) 100%),
+    linear-gradient(90deg, rgb(44 48 57 / 0.9) 0%, rgb(44 48 57 / 0.72) 40%, rgb(44 48 57 / 0.4) 100%),
+    linear-gradient(0deg, rgb(44 48 57 / 0.65) 0%, transparent 80%);
+}
+@media (max-width: 680px) {
+  :is(.page-about, .page-services, .page-news, .page-careers, .page-contact):not(.page-article):not(.page-job) main > .page-banner--simple::before {
+    background:
+      linear-gradient(180deg, rgb(44 48 57 / 0.65) 0%, rgb(44 48 57 / 0.4) 38%, rgb(44 48 57 / 0.82) 100%),
+      linear-gradient(90deg, rgb(44 48 57 / 0.38), rgb(44 48 57 / 0.18));
+  }
+}
+
 /* Tentang Kami — "Sekilas Tentang Kami": foto dengan bingkai garis oranye
    yang bergeser ke kiri-bawah dan sudut kanan atas membulat. */
 .about-profile__photo {

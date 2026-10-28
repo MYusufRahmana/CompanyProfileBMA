@@ -17,11 +17,24 @@ Foto asli BMA, dikonversi ke WebP:
 
 - `hero-{1,2,3}-*` — foto profil beranda dan banner halaman dalam.
 
+## Hero Berita, Karir, dan Kontak (26 Oktober 2026)
+
+Pengguna meminta foto operasional yang disediakan perusahaan, tanpa menampilkan ilustrasi orang sebagai pekerja BMA.
+
+| Halaman | Aset aktif | Sumber |
+| --- | --- | --- |
+| Berita | `assets/images/company/news-operations-{800,1475}.webp` | `D:/GrowinGroup/FotoBMA/FotoHero2.png`, 1475 × 1066 px |
+| Karir | `assets/images/company/careers-operations-{800,1466}.webp` | `D:/GrowinGroup/FotoBMA/FotoHero3.png`, 1466 × 1073 px |
+| Kontak | `assets/images/company/contact-company-profile-{800,2042}.webp` | Gambar `X4.jpg`, diekstrak langsung dari slide 12 `_source/company-profile-2026.pdf`, 2042 × 1362 px |
+
+Master yang dipakai disalin ke `_source/hero-operasional/`. Varian WebP berkualitas 92 memakai resolusi sumber penuh dan versi 800 px untuk layar kecil. Tidak ada pembesaran generatif, penggantian wajah, penambahan objek, atau perubahan isi foto. Potongan yang terlihat diatur melalui CSS `object-fit: cover` dan `--banner-focus`; file sumber tetap utuh. Resolusi tidak diklaim melebihi detail asli sumber. Foto udara utama di slide 12 hanya 768 × 576 px, sehingga tidak dipilih untuk banner desktop.
+
 ## Foto ilustrasi
 
 - `assets/images/company/home-team-hero-{800,1600}.webp` — ilustrasi generatif AI pekerja BMA untuk hero beranda, dengan area kosong di kiri untuk teks. Bukan dokumentasi karyawan asli. Master: `_source/generated-heroes/home-team-hero-v1.png`.
 
-- `assets/images/company/{services,news,careers,contact}-hero-bma-{800,1600}.webp` — empat ilustrasi generatif AI untuk hero Layanan (pemuatan hasil tambang), Berita (pencatatan kegiatan lapangan), Karir (kolaborasi rekan kerja), dan Kontak (diskusi kebutuhan proyek). Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi karyawan, kantor, atau kegiatan asli BMA. Sumber resolusi penuh tersimpan di `_source/generated-heroes/`.
+- `assets/images/company/services-hero-bma-{800,1600}.webp` — ilustrasi generatif AI untuk hero Layanan (pemuatan hasil tambang). Bukan dokumentasi operasional asli. Sumber resolusi penuh tersimpan di `_source/generated-heroes/`.
+- Varian ilustrasi lama `news-hero-bma-*`, `careers-hero-bma-*`, dan `contact-hero-bma-*` tidak lagi dipakai pada Hero Berita, Karir, dan Kontak sejak revisi 26 Oktober 2026.
 
 - `assets/images/company/about-mining-bma-{800,1600}.webp` — ilustrasi generatif AI excavator dan truk berlabel Berkat Maritim Abadi, untuk hero Tentang Kami. Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi operasional asli. Sumber resolusi penuh: `_source/generated-heroes/about-hero-v1.png`.
 
