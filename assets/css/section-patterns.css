@@ -257,9 +257,12 @@
 /* A five-column table accommodates full province names without date/status fields. */
 .page-careers .jobs-table { min-width: 740px; }
 .page-careers .jobs-table th:nth-child(2) { width: 30%; }
-.page-careers .jobs-table th:nth-child(3) { width: 23%; }
-.page-careers .jobs-table th:nth-child(4) { width: 29%; }
-.page-careers .value-card,
+.page-careers .jobs-table th:nth-child(3) { width: 21%; }
+.page-careers .jobs-table th:nth-child(4) { width: 27%; }
+@media (max-width: 680px) {
+  .page-careers .jobs-table { min-width: 640px; }
+}
+.page-careers .career-perk,
 .page-careers .career-faq { background: var(--white); }
 @media (max-width: 680px) {
   .page-careers .pattern-career-culture::before { opacity: 0.5; }

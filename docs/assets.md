@@ -59,6 +59,20 @@ Bukan dokumentasi BMA; ganti dengan foto perusahaan sebelum publikasi.
 - `assets/images/social/social-{education,health,environment}-*` — foto artikel kategori Sosial di Berita (Unsplash License): TmdrCRVDOnQ, k2nXCVm-SUg, FyCjvyPG9Pg (https://unsplash.com/photos/<id>)
 - `assets/images/about/bma-team-white-helmet-{560,960}.webp` — ilustrasi generatif AI dua pekerja berseragam BMA untuk halaman Tentang Kami. Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi karyawan asli. Sumber resolusi penuh: `_source/generated-photos/bma-team-white-helmet.png` (helm pekerja perempuan berwarna putih).
 
+## Pelat kode unit pada ilustrasi excavator (28 Oktober 2026)
+
+Tulisan kode unit yang dicat langsung pada bodi excavator (mis. `BMA-EX-75-01`) diganti dengan pelat biru dua baris: **BMA** / **EX-75-0N**, berbingkai putih seperti pelat nomor aset. Nomor unit mengikuti gambar: unit 01 (SANY), unit 02 dan 03 (LiuGong).
+
+| Aset web | Master baru (`_source/generated-heroes/`) |
+| --- | --- |
+| `hero-1-bma-unit-01-{800,1480}.webp` | `hero-1-unit-01-v3.png` (EX-75-01, ditambah EX-75-02 di latar) |
+| `hero-2-bma-unit-02-{800,1480}.webp` | `hero-2-unit-02-v3.png` (EX-75-02) |
+| `hero-3-bma-unit-03-{800,1460}.webp` | `hero-3-unit-03-v3.png` (EX-75-03, ditambah EX-75-02 pada boom di latar) |
+| `about-mining-bma-unit-01-{800,1600}.webp` | `about-hero-unit-01-v3.png` (EX-75-01) |
+| `services-hero-bma-unit-02-{800,1600}.webp` | `services-hero-unit-02-v3.png` (EX-75-02) |
+
+Teks lama dihapus dan diisi warna serta tekstur cat di sekitarnya; pelat dipasang mengikuti kemiringan bodi dan pencahayaan foto. Revisi 28 Oktober: ukuran pelat diperkecil menjadi ±70% dan dibuat lebih realistis (biru sedikit pudar `#16428E`, putih cat, tekstur dan debu tipis, bayangan tepi, butiran foto). Bagian lain gambar tidak diubah. Master `-v2.png` tetap disimpan sebagai versi sebelum pelat. Font FreeSans Bold. Ekspor WebP kualitas 88, ukuran sama dengan file sebelumnya.
+
 ## Font & ikon
 
 Inter dan Manrope dibundel sebagai WOFF2 variabel (Latin) dari Google Fonts; file lisensi SIL Open Font License (`assets/fonts/*-OFL.txt`) wajib tetap ada di samping file font.

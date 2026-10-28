@@ -106,6 +106,7 @@
       <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></symbol>
       <symbol id="i-mountain" viewBox="0 0 24 24"><path d="m3 20 6-11 4 6 3-4 5 9z"/></symbol>
       <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
       <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
       <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></symbol>
       <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><path d="m9.75 15.02 5.75-3.27-5.75-3.27z"/></symbol>
@@ -176,23 +177,28 @@
       ========================== -->
       <section class="section about-home section-pattern pattern-topographic" id="about" aria-labelledby="aboutTitle">
         <div class="container about-home-grid">
-          <figure class="about-photo-main">
-            <img src="assets/images/company/hero-1-1480.webp" srcset="assets/images/company/hero-1-800.webp 800w, assets/images/company/hero-1-1480.webp 1480w" sizes="(max-width: 900px) 90vw, 45vw" alt="Excavator Berkat Maritim Abadi dan truk angkut di area pertambangan" width="1480" height="1055" loading="lazy" decoding="async" />
-          </figure>
-          <div class="about-copy">
+          <div class="about-home__media" data-reveal="left">
+            <figure class="about-home__photo about-home__photo--main">
+              <img src="assets/images/company/hero-1-bma-unit-01-1480.webp" srcset="assets/images/company/hero-1-bma-unit-01-800.webp 800w, assets/images/company/hero-1-bma-unit-01-1480.webp 1480w" sizes="(max-width: 900px) 90vw, 42vw" alt="Excavator SANY PC 800 unit BMA-EX-75-01 dan truk angkut di area pertambangan" width="1480" height="1055" loading="lazy" decoding="async" />
+            </figure>
+            <figure class="about-home__photo about-home__photo--inset">
+              <img src="assets/images/company/hero-2-bma-unit-02-800.webp" alt="Excavator LiuGong memuat material ke dump truck di area tambang" width="800" height="578" loading="lazy" decoding="async" />
+            </figure>
+            <p class="about-home__badge">
+              <span class="about-home__badge-year">2013</span>
+              <span class="about-home__badge-text">Tahun<br />berdiri</span>
+            </p>
+          </div>
+          <div class="about-copy" data-reveal="right">
             <p class="section-kicker">Profil Perusahaan</p>
-            <h2 id="aboutTitle">Mitra Strategis Pertambangan dan Logistik</h2>
+            <h2 id="aboutTitle">Mitra Strategis <span class="about-home__accent">Pertambangan</span> dan Logistik</h2>
             <div class="about-home__description">
-              <p>PT Berkat Maritim Abadi (BMA) merupakan bagian dari Growin Group yang menyediakan jasa pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara.</p>
+              <p>PT Berkat Maritim Abadi (BMA) merupakan bagian dari <strong>Growin Group</strong> yang menyediakan jasa pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara.</p>
               <p>Sejak 2013, kami mendukung kebutuhan operasional dengan mengutamakan keselamatan, profesionalisme, dan efisiensi.</p>
             </div>
-            <ul class="advantage-list" aria-label="Keunggulan BMA">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Tenaga berpengalaman</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Efisiensi operasional</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Standar K3L dan perizinan</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>Kemitraan strategis</li>
-            </ul>
-            <a href="pages/about.html" class="about-home__link">Selengkapnya tentang BMA<svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+            <div class="about-home__actions">
+              <a href="pages/about.html" class="btn btn-primary">Selengkapnya tentang BMA<svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+            </div>
           </div>
         </div>
       </section>

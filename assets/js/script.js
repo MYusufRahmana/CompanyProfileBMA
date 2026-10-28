@@ -130,7 +130,54 @@ window.BMA.hero = () => {
   }
   if (Number.isFinite(config.overlayOpacity))
     hero.style.setProperty("--hero-overlay", Math.min(0.9, Math.max(0, config.overlayOpacity)));
-  return () => {};
+
+  // Efek ketik pada judul. Semua huruf sudah menempati tempatnya (tersembunyi),
+  // lalu ditampilkan satu per satu, jadi tata letak tidak bergeser.
+  // Pembaca layar membaca judul utuh lewat aria-label.
+  let typingTimer = 0;
+  const text = title?.textContent.trim();
+  if (title && text && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    title.setAttribute("aria-label", text);
+    title.classList.add("is-typing");
+    title.innerHTML = "";
+    // Kata dibungkus agar pemenggalan baris tetap per kata, bukan per huruf.
+    const chars = [];
+    text.split(/(\s+)/).forEach((part) => {
+      if (/^\s+$/.test(part)) {
+        const space = document.createElement("span");
+        space.className = "hero__char";
+        space.setAttribute("aria-hidden", "true");
+        space.textContent = " ";
+        title.append(space);
+        chars.push(space);
+        return;
+      }
+      const word = document.createElement("span");
+      word.className = "hero__word";
+      word.setAttribute("aria-hidden", "true");
+      [...part].forEach((letter) => {
+        const char = document.createElement("span");
+        char.className = "hero__char";
+        char.textContent = letter;
+        word.append(char);
+        chars.push(char);
+      });
+      title.append(word);
+    });
+    let index = 0;
+    const step = () => {
+      chars[index - 1]?.classList.remove("is-current");
+      if (index >= chars.length) {
+        title.classList.replace("is-typing", "is-typed");
+        return;
+      }
+      chars[index].classList.add("is-shown", "is-current");
+      index += 1;
+      typingTimer = setTimeout(step, chars[index - 1].textContent === " " ? 40 : 85);
+    };
+    typingTimer = setTimeout(step, 450);
+  }
+  return () => clearTimeout(typingTimer);
 };
 
 /* ===== animations/scroll-reveal.js ===== */
@@ -443,20 +490,32 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       });
       page = result.page;
-      document.querySelector("#jobCount").textContent =
-        matches.length + " lowongan ditemukan" +
-        (result.pages > 1 ? " · halaman " + page + " dari " + result.pages : "");
+      const count = document.querySelector("#jobCount");
+      const strong = document.createElement("strong");
+      strong.textContent = matches.length;
+      count.replaceChildren(
+        strong,
+        " lowongan ditemukan" +
+          (result.pages > 1 ? " · halaman " + page + " dari " + result.pages : ""),
+      );
+      // Tombol atur ulang di samping jumlah hanya muncul saat ada filter aktif.
+      const active =
+        search.value.trim() !== "" || Object.values(selects).some((select) => select.value !== "all");
+      const metaReset = document.querySelector(".jobs-meta [data-reset-jobs]");
+      if (metaReset) metaReset.hidden = !active;
       document.querySelector("#jobEmpty").hidden = matches.length !== 0;
       wrapper.hidden = matches.length === 0;
     };
     search.addEventListener("input", () => filter());
     Object.values(selects).forEach((select) => select.addEventListener("change", () => filter()));
-    document.querySelector("[data-reset-jobs]").addEventListener("click", () => {
-      search.value = "";
-      Object.values(selects).forEach((select) => (select.value = "all"));
-      filter();
-      search.focus();
-    });
+    document.querySelectorAll("[data-reset-jobs]").forEach((button) =>
+      button.addEventListener("click", () => {
+        search.value = "";
+        Object.values(selects).forEach((select) => (select.value = "all"));
+        filter();
+        search.focus();
+      }),
+    );
     filter();
   }
   const form = document.querySelector("#demoContactForm");
@@ -633,4 +692,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const section = document.getElementById(id);
     if (section) observer.observe(section);
   });
+});
+
+// Sejarah perusahaan: sumbu terisi warna saat halaman digulir, setiap milestone masuk saat terlihat,
+// dan titik milestone yang sudah dilewati tetap menyala. Tanpa JavaScript atau dengan
+// prefers-reduced-motion, semua milestone langsung tampil.
+document.addEventListener("DOMContentLoaded", () => {
+  const timeline = document.querySelector("[data-history]");
+  if (!timeline) return;
+  const steps = [...timeline.querySelectorAll(".history-step")];
+  const dots = steps.map((step) => step.querySelector(".history-dot"));
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) {
+    timeline.style.setProperty("--history-progress", 1);
+    steps.forEach((step) => step.classList.add("is-visible", "is-passed"));
+    return;
+  }
+  let frame = 0;
+  const measure = () => {
+    frame = 0;
+    const anchor = window.innerHeight * 0.62;
+    const rect = timeline.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, (anchor - rect.top) / Math.max(rect.height, 1)));
+    timeline.style.setProperty("--history-progress", progress);
+    dots.forEach((dot, index) =>
+      steps[index].classList.toggle("is-passed", !!dot && dot.getBoundingClientRect().top <= anchor),
+    );
+  };
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(measure);
+  };
+  const observer = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }),
+    { rootMargin: "0px 0px -12% 0px", threshold: 0.2 },
+  );
+  steps.forEach((step) => observer.observe(step));
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule);
+  measure();
 });
