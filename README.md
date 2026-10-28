@@ -72,7 +72,7 @@ Build membuat detail berita dari `content/news.mjs` lalu menyinkronkan komponen 
 
 Jangan menyunting `pages/berita-*.html` langsung karena dibuat ulang oleh generator. Header, footer, dan sprite ikon pada semua HTML juga dibuat oleh `tools/layout.mjs`.
 
-Hero beranda menggunakan satu foto pekerja di kanan dengan teks rata kiri, tanpa slider atau tombol. Samakan HTML cadangan di `index.html` dengan gambar, posisi, deskripsi, dan preload pada konfigurasi `BMA_HERO` saat mengubahnya.
+Hero beranda memakai video kegiatan tambang (`assets/videos/`) sebagai latar dengan teks rata kiri dan dua tombol. Video dipasang oleh JavaScript; poster WebP tampil lebih dulu, saat video gagal dimuat, atau saat pengguna mengurangi animasi/menghemat data. Samakan poster, deskripsi, dan preload di `index.html` dengan konfigurasi `BMA_HERO` saat mengubahnya. Video aktif `assets/videos/bma-hero-fullhd-v2.mp4` diekspor dari master `_source/BMA_Hero_12s_1080p.mp4` (1920×1080, 30 fps, 12 detik, tanpa audio, faststart; sekitar 22,3 MB). Ekspor memakai H.264 CRF 17 dan penajaman ringan agar tidak memakai versi 720p pada layar besar. Poster `home-hero-fullhd-poster-{800,1920}.webp` diambil dari detik ke-8 video aktif. Lapisan hero dipergelap di CSS tanpa mengubah warna berkas video.
 
 Kartu berita pada daftar dan beranda masih ditulis sebagai HTML; build belum menyinkronkan keduanya dari data artikel. Lowongan masih tersebar di tabel `pages/karir.html`, data `jobs`/`jobDetails` pada `assets/js/script.js`, halaman detail, dan pilihan posisi pada `pages/lamar.html`.
 

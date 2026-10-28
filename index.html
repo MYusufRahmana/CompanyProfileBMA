@@ -23,7 +23,7 @@
     />
     <meta
       property="og:image"
-      content="assets/images/company/home-team-hero-1600.webp"
+      content="assets/images/company/home-hero-fullhd-poster-1920.webp"
     />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -43,10 +43,10 @@
     <link
       rel="preload"
       as="image"
-      href="assets/images/company/home-team-hero-1600.webp"
+      href="assets/images/company/home-hero-fullhd-poster-1920.webp"
       imagesrcset="
-        assets/images/company/home-team-hero-800.webp   800w,
-        assets/images/company/home-team-hero-1600.webp 1600w
+        assets/images/company/home-hero-fullhd-poster-800.webp   800w,
+        assets/images/company/home-hero-fullhd-poster-1920.webp 1920w
       "
       imagesizes="100vw"
       fetchpriority="high"
@@ -65,7 +65,7 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/style.css?v=palette-20261023" />
+    <link rel="stylesheet" href="assets/css/style.css?v=hero-fullhd-20261028-v2" />
     <link rel="stylesheet" href="assets/css/brand-heroes.css?v=palette-20261023" />
     <link rel="stylesheet" href="assets/css/components.css?v=palette-20261023" />
     <link rel="stylesheet" href="assets/css/section-patterns.css?v=20261023-2" />
@@ -153,22 +153,35 @@
       <!-- =========================
          HERO BERANDA
       ========================== -->
-      <section class="hero" id="home" aria-labelledby="heroTitle" aria-describedby="heroDescription">
-        <!-- Samakan foto dan teks cadangan dengan assets/js/site-data.js. -->
+      <section class="hero hero--video" id="home" aria-labelledby="heroTitle" aria-describedby="heroDescription">
+        <!-- Samakan poster, video, dan teks cadangan dengan assets/js/site-data.js. -->
         <div class="hero__stage" id="heroStage">
           <div class="hero__media">
+            <!-- Poster: tampil saat video belum siap, gagal dimuat, atau gerak dikurangi. -->
             <picture class="hero__photo">
-              <source media="(max-width: 680px)" srcset="assets/images/company/home-team-hero-800.webp" />
-              <img src="assets/images/company/home-team-hero-1600.webp" alt="Ilustrasi AI tiga pekerja berseragam BMA meninjau rencana kerja di area operasional" width="1600" height="900" style="--pos: center; --pos-mobile: 78% center" fetchpriority="high" decoding="async" />
+              <source media="(max-width: 680px)" srcset="assets/images/company/home-hero-fullhd-poster-800.webp" />
+              <img src="assets/images/company/home-hero-fullhd-poster-1920.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async" />
             </picture>
+            <!-- Video dekoratif: sumbernya dipasang oleh assets/js/script.js. -->
+            <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
           </div>
           <div class="hero__overlay" aria-hidden="true"></div>
           <div class="hero__inner">
             <div class="hero__copy">
               <h1 class="hero__title" id="heroTitle">Berkat Maritim Abadi</h1>
               <p class="hero__description" id="heroDescription">Mitra strategis pertambangan dan logistik.</p>
+              <div class="hero__actions">
+                <a href="pages/services.html" class="btn btn-primary">Lihat Layanan Kami<svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+                <a href="pages/about.html" class="btn btn-ghost">Tentang Kami</a>
+              </div>
             </div>
           </div>
+          <a class="hero__scroll" href="#about" aria-label="Gulir ke profil perusahaan"><span class="hero__scroll-line" aria-hidden="true"></span></a>
+          <button class="hero__video-toggle" id="heroVideoToggle" type="button" aria-label="Jeda video latar" aria-pressed="false" hidden>
+            <svg class="hero__video-ring" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20.5" pathLength="1" /></svg>
+            <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause" /></svg>
+            <svg class="icon icon-play" aria-hidden="true"><use href="#i-play" /></svg>
+          </button>
         </div>
       </section>
 
@@ -547,7 +560,7 @@
         <span>Pratinjau situs · Berita dan lowongan merupakan materi contoh</span>
       </div>
     </footer>
-    <script src="assets/js/site-data.js?v=home-team-hero-20261022-v2" defer></script>
-    <script src="assets/js/script.js?v=home-team-hero-20261022-v2" defer></script>
+    <script src="assets/js/site-data.js?v=hero-fullhd-20261028-v2" defer></script>
+    <script src="assets/js/script.js?v=hero-fullhd-20261028-v2" defer></script>
   </body>
 </html>

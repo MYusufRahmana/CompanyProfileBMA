@@ -31,7 +31,9 @@ Master yang dipakai disalin ke `_source/hero-operasional/`. Varian WebP berkuali
 
 ## Foto ilustrasi
 
-- `assets/images/company/home-team-hero-{800,1600}.webp` — ilustrasi generatif AI pekerja BMA untuk hero beranda, dengan area kosong di kiri untuk teks. Bukan dokumentasi karyawan asli. Master: `_source/generated-heroes/home-team-hero-v1.png`.
+- `assets/videos/bma-hero-fullhd-v2.mp4` — video hero beranda aktif (12 detik, 1920×1080, 30 fps, tanpa audio, sekitar 22,3 MB), dari `_source/BMA_Hero_12s_1080p.mp4`, dengan penajaman ringan, H.264 CRF 17 dan faststart. Poster: `assets/images/company/home-hero-fullhd-poster-{800,1920}.webp` (bingkai detik ke-8). Versi 720p sebelumnya tetap tersedia sebagai arsip, tetapi tidak lagi dipilih hero.
+
+- `assets/images/company/home-team-hero-{800,1600}.webp` — (tidak lagi dipakai sejak hero video) ilustrasi generatif AI pekerja BMA untuk hero beranda, dengan area kosong di kiri untuk teks. Bukan dokumentasi karyawan asli. Master: `_source/generated-heroes/home-team-hero-v1.png`.
 
 - `assets/images/company/services-hero-bma-{800,1600}.webp` — ilustrasi generatif AI untuk hero Layanan (pemuatan hasil tambang). Bukan dokumentasi operasional asli. Sumber resolusi penuh tersimpan di `_source/generated-heroes/`.
 - Varian ilustrasi lama `news-hero-bma-*`, `careers-hero-bma-*`, dan `contact-hero-bma-*` tidak lagi dipakai pada Hero Berita, Karir, dan Kontak sejak revisi 26 Oktober 2026.
@@ -55,7 +57,7 @@ Bukan dokumentasi BMA; ganti dengan foto perusahaan sebelum publikasi.
 | pit-benches-* | https://unsplash.com/photos/1O_HNWeY0O4 |
 | hse-inspection-* | https://unsplash.com/photos/lHI9NA4U7hg |
 
-- `assets/images/logistics/cargo-ship-*` — kapal kargo (layanan Bongkar Muat), Unsplash: https://images.unsplash.com/photo-1524522173746-f628baad3644
+- `assets/images/logistics/cargo-ship-*` — kapal kargo (artikel berita Maritim), Unsplash: https://images.unsplash.com/photo-1524522173746-f628baad3644
 - `assets/images/social/social-{education,health,environment}-*` — foto artikel kategori Sosial di Berita (Unsplash License): TmdrCRVDOnQ, k2nXCVm-SUg, FyCjvyPG9Pg (https://unsplash.com/photos/<id>)
 - `assets/images/about/bma-team-white-helmet-{560,960}.webp` — ilustrasi generatif AI dua pekerja berseragam BMA untuk halaman Tentang Kami. Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi karyawan asli. Sumber resolusi penuh: `_source/generated-photos/bma-team-white-helmet.png` (helm pekerja perempuan berwarna putih).
 
@@ -67,7 +69,7 @@ Tulisan kode unit yang dicat langsung pada bodi excavator (mis. `BMA-EX-75-01`) 
 | --- | --- |
 | `hero-1-bma-unit-01-{800,1480}.webp` | `hero-1-unit-01-v3.png` (EX-75-01, ditambah EX-75-02 di latar) |
 | `hero-2-bma-unit-02-{800,1480}.webp` | `hero-2-unit-02-v3.png` (EX-75-02) |
-| `hero-3-bma-unit-03-{800,1460}.webp` | `hero-3-unit-03-v3.png` (EX-75-03, ditambah EX-75-02 pada boom di latar) |
+| `hero-3-bma-unit-03-{800,1460}.webp` | `hero-3-unit-03-v3.png` (EX-75-03, ditambah EX-75-02 pada boom di latar) — dipakai juga pada layanan Jasa Bongkar Muat |
 | `about-mining-bma-unit-01-{800,1600}.webp` | `about-hero-unit-01-v3.png` (EX-75-01) |
 | `services-hero-bma-unit-02-{800,1600}.webp` | `services-hero-unit-02-v3.png` (EX-75-02) |
 

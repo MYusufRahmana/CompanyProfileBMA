@@ -1,5 +1,6 @@
 # Dokumen sumber berukuran besar (tidak dipakai situs, simpan di luar git)
 _source/*.pdf
+_source/*.mp4
 
 # Alat & sistem
 node_modules/

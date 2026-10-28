@@ -119,24 +119,104 @@ window.BMA.hero = () => {
   const description = hero.querySelector("#heroDescription");
   const photo = hero.querySelector(".hero__photo img");
   const source = hero.querySelector(".hero__photo source");
+  const video = hero.querySelector("#heroVideo");
+  const toggle = hero.querySelector("#heroVideoToggle");
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
   if (config.title && title) title.textContent = config.title;
   if (config.description && description) description.textContent = config.description;
-  if (photo) {
-    if (config.desktopImage) photo.src = config.desktopImage;
-    if (config.position) photo.style.setProperty("--pos", config.position);
-    if (config.mobilePosition) photo.style.setProperty("--pos-mobile", config.mobilePosition);
-    if (config.mobileImage && source) source.srcset = config.mobileImage;
-  }
+  if (photo && config.posterDesktop) photo.src = config.posterDesktop;
+  if (source && config.posterMobile) source.srcset = config.posterMobile;
+  if (config.position) hero.style.setProperty("--pos", config.position);
+  if (config.mobilePosition) hero.style.setProperty("--pos-mobile", config.mobilePosition);
   if (Number.isFinite(config.overlayOpacity))
     hero.style.setProperty("--hero-overlay", Math.min(0.9, Math.max(0, config.overlayOpacity)));
+
+  // Video latar. Poster tetap di bawahnya; video baru terlihat (memudar masuk)
+  // setelah benar-benar berputar. Tidak dimuat bila gerak dikurangi atau
+  // penghemat data aktif. Gagal dimuat/diblokir → poster tetap tampil.
+  let observer = { disconnect() {} };
+  let userPaused = false;
+  let frame = 0;
+  const setToggle = (paused) => {
+    if (!toggle) return;
+    toggle.setAttribute("aria-pressed", String(paused));
+    toggle.setAttribute("aria-label", paused ? "Putar video latar" : "Jeda video latar");
+    toggle.classList.toggle("is-paused", paused);
+  };
+  const fail = () => {
+    hero.classList.remove("is-video-ready");
+    hero.classList.add("is-video-failed");
+    if (toggle) toggle.hidden = true;
+  };
+  const connection = navigator.connection || {};
+  const saveData = connection.saveData || /(^|-)2g$/.test(connection.effectiveType || "");
+  const sources = Array.isArray(config.video) ? config.video : [];
+  if (video && sources.length && !reduceMotion.matches && !saveData) {
+    const width = window.innerWidth;
+    const pick = sources.find((item) => item.maxWidth && width <= item.maxWidth) || sources[sources.length - 1];
+    video.muted = true; // wajib untuk autoplay di peramban seluler
+    video.addEventListener("playing", () => {
+      hero.classList.add("is-video-ready");
+      if (toggle) toggle.hidden = false;
+      setToggle(false);
+    });
+    video.addEventListener("error", fail);
+    video.src = pick.src;
+    video.preload = "auto";
+    const play = () => video.play().catch(() => {
+      // Autoplay diblokir: poster tetap, tombol menawarkan putar manual.
+      // Bila videonya sendiri gagal dimuat, tombol tetap disembunyikan.
+      if (video.error || hero.classList.contains("is-video-failed")) return;
+      if (toggle) { toggle.hidden = false; setToggle(true); userPaused = true; }
+    });
+    play();
+    toggle?.addEventListener("click", () => {
+      if (video.paused) { userPaused = false; play(); setToggle(false); }
+      else { userPaused = true; video.pause(); setToggle(true); }
+    });
+    // Hemat baterai: jeda saat hero tidak terlihat.
+    if ("IntersectionObserver" in window) {
+      observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) video.pause();
+        else if (!userPaused) video.play().catch(() => {});
+      });
+      observer.observe(hero);
+    }
+    reduceMotion.addEventListener?.("change", (event) => {
+      if (event.matches) { userPaused = true; video.pause(); setToggle(true); }
+    });
+
+    // Cincin progres pada tombol + transisi gelap singkat di sambungan loop
+    // (akhir video → awal) agar tidak terasa seperti potongan kasar.
+    let looped = false;
+    const tick = () => {
+      const duration = video.duration;
+      if (duration) {
+        const time = video.currentTime;
+        const left = duration - time;
+        if (left < 0.45) looped = true;
+        toggle?.style.setProperty("--progress", (time / duration).toFixed(4));
+        hero.classList.toggle("is-loop-dip", left < 0.45 || (looped && time < 0.35));
+      }
+      frame = requestAnimationFrame(tick);
+    };
+    video.addEventListener("play", () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(tick);
+    });
+    video.addEventListener("pause", () => {
+      cancelAnimationFrame(frame);
+      hero.classList.remove("is-loop-dip");
+    });
+  }
 
   // Efek ketik pada judul. Semua huruf sudah menempati tempatnya (tersembunyi),
   // lalu ditampilkan satu per satu, jadi tata letak tidak bergeser.
   // Pembaca layar membaca judul utuh lewat aria-label.
   let typingTimer = 0;
   const text = title?.textContent.trim();
-  if (title && text && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (title && text && !reduceMotion.matches) {
     title.setAttribute("aria-label", text);
     title.classList.add("is-typing");
     title.innerHTML = "";
@@ -177,7 +257,11 @@ window.BMA.hero = () => {
     };
     typingTimer = setTimeout(step, 450);
   }
-  return () => clearTimeout(typingTimer);
+  return () => {
+    clearTimeout(typingTimer);
+    cancelAnimationFrame(frame);
+    observer.disconnect();
+  };
 };
 
 /* ===== animations/scroll-reveal.js ===== */
