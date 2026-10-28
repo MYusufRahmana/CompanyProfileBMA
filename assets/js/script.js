@@ -187,8 +187,8 @@ window.BMA.hero = () => {
       if (event.matches) { userPaused = true; video.pause(); setToggle(true); }
     });
 
-    // Cincin progres pada tombol + transisi gelap singkat di sambungan loop
-    // (akhir video → awal) agar tidak terasa seperti potongan kasar.
+    // Transisi gelap singkat di sambungan loop (akhir video → awal)
+    // agar tidak terasa seperti potongan kasar.
     let looped = false;
     const tick = () => {
       const duration = video.duration;
@@ -196,7 +196,6 @@ window.BMA.hero = () => {
         const time = video.currentTime;
         const left = duration - time;
         if (left < 0.45) looped = true;
-        toggle?.style.setProperty("--progress", (time / duration).toFixed(4));
         hero.classList.toggle("is-loop-dip", left < 0.45 || (looped && time < 0.35));
       }
       frame = requestAnimationFrame(tick);
@@ -211,54 +210,7 @@ window.BMA.hero = () => {
     });
   }
 
-  // Efek ketik pada judul. Semua huruf sudah menempati tempatnya (tersembunyi),
-  // lalu ditampilkan satu per satu, jadi tata letak tidak bergeser.
-  // Pembaca layar membaca judul utuh lewat aria-label.
-  let typingTimer = 0;
-  const text = title?.textContent.trim();
-  if (title && text && !reduceMotion.matches) {
-    title.setAttribute("aria-label", text);
-    title.classList.add("is-typing");
-    title.innerHTML = "";
-    // Kata dibungkus agar pemenggalan baris tetap per kata, bukan per huruf.
-    const chars = [];
-    text.split(/(\s+)/).forEach((part) => {
-      if (/^\s+$/.test(part)) {
-        const space = document.createElement("span");
-        space.className = "hero__char";
-        space.setAttribute("aria-hidden", "true");
-        space.textContent = " ";
-        title.append(space);
-        chars.push(space);
-        return;
-      }
-      const word = document.createElement("span");
-      word.className = "hero__word";
-      word.setAttribute("aria-hidden", "true");
-      [...part].forEach((letter) => {
-        const char = document.createElement("span");
-        char.className = "hero__char";
-        char.textContent = letter;
-        word.append(char);
-        chars.push(char);
-      });
-      title.append(word);
-    });
-    let index = 0;
-    const step = () => {
-      chars[index - 1]?.classList.remove("is-current");
-      if (index >= chars.length) {
-        title.classList.replace("is-typing", "is-typed");
-        return;
-      }
-      chars[index].classList.add("is-shown", "is-current");
-      index += 1;
-      typingTimer = setTimeout(step, chars[index - 1].textContent === " " ? 40 : 85);
-    };
-    typingTimer = setTimeout(step, 450);
-  }
   return () => {
-    clearTimeout(typingTimer);
     cancelAnimationFrame(frame);
     observer.disconnect();
   };

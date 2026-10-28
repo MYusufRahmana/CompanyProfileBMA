@@ -486,7 +486,7 @@ body:not(.inner-page)
    Lapisan: poster (gambar) → video (memudar masuk setelah berputar) → overlay → teks.
    Video & poster diatur di assets/js/site-data.js. */
 .home-page .hero {
-  --hero-overlay: 0.9;
+  --hero-overlay: 0.8;
   --hero-ink: 17 20 24; /* warna dasar overlay (RGB) */
   position: relative;
   color: #fff;
@@ -526,199 +526,120 @@ body:not(.inner-page)
   pointer-events: none;
   transition: opacity 0.4s ease;
 }
-.home-page .hero.is-loop-dip .hero__media::after { opacity: 0.55; }
+.home-page .hero.is-loop-dip .hero__media::after { opacity: 0.4; }
 
-/* Overlay berlapis: atas (navbar), kiri (di belakang teks), bawah (menyatu
-   dengan section berikutnya), vinyet, dan lapisan dasar gelap di seluruh video. */
+/* Overlay: hanya sisi kiri (keterbacaan teks) dan tepi atas (navbar) yang digelapkan,
+   sehingga sebagian besar video tampil terang dan tajam. */
 .home-page .hero__overlay {
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgb(var(--hero-ink) / 0.72) 0%, rgb(var(--hero-ink) / 0.3) 14%, transparent 30%),
-    linear-gradient(0deg, rgb(var(--hero-ink) / 0.9) 0%, rgb(var(--hero-ink) / 0.4) 18%, transparent 42%),
-    linear-gradient(90deg, rgb(var(--hero-ink) / var(--hero-overlay)) 0%, rgb(var(--hero-ink) / 0.76) 30%, rgb(var(--hero-ink) / 0.42) 50%, rgb(var(--hero-ink) / 0.1) 68%, transparent 82%),
-    radial-gradient(120% 90% at 70% 45%, transparent 55%, rgb(var(--hero-ink) / 0.35) 100%),
-    linear-gradient(rgb(var(--hero-ink) / 0.18), rgb(var(--hero-ink) / 0.18));
+    linear-gradient(180deg, rgb(var(--hero-ink) / 0.55) 0%, transparent 22%),
+    linear-gradient(90deg,
+      rgb(var(--hero-ink) / var(--hero-overlay)) 0%,
+      rgb(var(--hero-ink) / calc(var(--hero-overlay) * 0.92)) 34%,
+      rgb(var(--hero-ink) / calc(var(--hero-overlay) * 0.45)) 54%,
+      transparent 70%),
+    linear-gradient(0deg, rgb(var(--hero-ink) / 0.35) 0%, transparent 22%);
 }
 .home-page .hero__inner {
   display: flex;
   align-items: center;
   width: min(calc(100% - var(--gutter) * 2), var(--container));
   margin-inline: auto;
-  padding-block: calc(var(--header-h) + 32px) 112px;
+  padding-block: calc(var(--header-h) + 32px) 96px;
 }
-.home-page .hero__copy { width: min(600px, 48%); text-align: left; }
+.home-page .hero__copy { width: min(640px, 52%); text-align: left; }
 .home-page .hero__title {
+  max-width: 15ch;
   margin: 0;
   color: #fff;
-  font: 800 clamp(2.75rem, 4.8vw, 4.75rem) / 1.08 Manrope, Inter, Arial, sans-serif;
-  letter-spacing: -0.035em;
-  text-wrap: wrap;
-  text-shadow: 0 2px 24px rgb(var(--hero-ink) / 0.45);
-}
-/* Efek ketik judul (dibuat assets/js/script.js). Huruf tersembunyi tetap
-   memakan tempat; kursor oranye menempel di huruf terakhir tanpa menggeser teks. */
-.hero__word { display: inline-block; white-space: nowrap; }
-.hero__title.is-typing .hero__char { visibility: hidden; }
-.hero__title.is-typing .hero__char.is-shown { visibility: visible; }
-.hero__char { position: relative; }
-.hero__title.is-typing .hero__char.is-current::after,
-.hero__title.is-typed .hero__word:last-child .hero__char:last-child::after {
-  content: "";
-  position: absolute;
-  top: 0.12em;
-  right: -0.08em;
-  width: 0.06em;
-  height: 0.9em;
-  background: var(--gold);
-  visibility: visible;
-}
-.hero__title.is-typed .hero__word:last-child .hero__char:last-child::after {
-  animation: hero-caret 0.9s steps(1) 4 forwards;
-}
-@keyframes hero-caret {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+  font: 800 clamp(2.5rem, 4.3vw, 4.25rem) / 1.1 Manrope, Inter, Arial, sans-serif;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  text-shadow: 0 2px 18px rgb(var(--hero-ink) / 0.35);
 }
 .home-page .hero__description {
-  max-width: 34ch;
+  max-width: 44ch;
   margin: 24px 0 0;
-  padding-left: 18px;
-  border-left: 3px solid var(--gold);
-  color: rgb(255 255 255 / 0.92);
-  font-size: clamp(17px, 1.45vw, 21px);
-  line-height: 1.6;
-  text-shadow: 0 1px 12px rgb(var(--hero-ink) / 0.5);
+  color: rgb(255 255 255 / 0.88);
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.65;
+  text-shadow: 0 1px 10px rgb(var(--hero-ink) / 0.4);
 }
-.home-page .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
-.home-page .hero__actions .btn { min-height: 54px; padding-inline: 28px; font-size: 15px; }
-.home-page .hero__actions .btn-ghost { background: rgb(255 255 255 / 0.06); backdrop-filter: blur(6px); }
+/* Satu ajakan utama, berbentuk pil. */
+.home-page .hero__cta {
+  margin-top: 36px;
+  min-height: 56px;
+  padding-inline: 30px 26px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+}
 .home-page .hero :is(.btn, .hero__video-toggle):focus-visible {
   outline: 3px solid var(--gold-light);
   outline-offset: 4px;
 }
 
-/* Tombol jeda/putar video (WCAG 2.2.2): kecil, di pojok kanan bawah. */
+/* Tombol jeda/putar video (WCAG 2.2.2): kecil dan tenang di pojok kanan bawah. */
 .hero__video-toggle {
   position: absolute;
   right: var(--gutter);
   bottom: 32px;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   padding: 0;
-  border: 1px solid rgb(255 255 255 / 0.35);
+  border: 1px solid rgb(255 255 255 / 0.3);
   border-radius: 50%;
-  background: rgb(var(--hero-ink, 17 20 24) / 0.45);
+  background: rgb(var(--hero-ink, 17 20 24) / 0.35);
   color: #fff;
+  opacity: 0.8;
   backdrop-filter: blur(6px);
-  transition: background 0.25s ease, border-color 0.25s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
 }
 .hero__video-toggle[hidden] { display: none; }
-.hero__video-toggle:hover { background: rgb(var(--hero-ink, 17 20 24) / 0.75); border-color: #fff; }
-.hero__video-toggle .icon { width: 16px; height: 16px; }
-/* Cincin progres video (diisi --progress 0–1 oleh script.js). */
-.hero__video-ring {
-  position: absolute;
-  inset: -1px;
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
-  transform: rotate(-90deg);
-  pointer-events: none;
-}
-.hero__video-ring circle {
-  fill: none;
-  stroke: var(--gold);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: calc(1 - var(--progress, 0));
-}
-
-/* Petunjuk gulir: garis tipis dengan titik bergerak, hanya di layar lebar. */
-.hero__scroll {
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 64px;
-  transform: translateX(-50%);
-  color: #fff;
-  opacity: 0.85;
-  transition: opacity 0.25s ease;
-}
-.hero__scroll:hover { opacity: 1; }
-.hero__scroll-line {
-  position: relative;
-  width: 1px;
-  height: 48px;
-  overflow: hidden;
-  background: rgb(255 255 255 / 0.35);
-}
-.hero__scroll-line::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -40%;
-  width: 1px;
-  height: 40%;
-  background: var(--gold);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero__scroll-line::after { animation: hero-scroll 2.2s var(--ease-out) infinite; }
-}
-@keyframes hero-scroll {
-  0% { top: -40%; }
-  70%, 100% { top: 100%; }
-}
-.home-page .hero .hero__scroll:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 2px; }
+.hero__video-toggle:hover { opacity: 1; background: rgb(var(--hero-ink, 17 20 24) / 0.7); border-color: #fff; }
+.hero__video-toggle .icon { width: 14px; height: 14px; }
 .hero__video-toggle .icon-play,
 .hero__video-toggle.is-paused .icon-pause { display: none; }
 .hero__video-toggle.is-paused .icon-play { display: block; }
 
-/* Animasi masuk singkat untuk deskripsi & tombol (judul memakai efek ketik). */
+/* Animasi masuk singkat dan berurutan: judul → deskripsi → tombol. */
 @media (prefers-reduced-motion: no-preference) {
-  .js .home-page .hero__description,
-  .js .home-page .hero__actions {
-    animation: hero-rise 0.7s var(--ease-out) both;
-    animation-delay: 0.35s;
-  }
-  .js .home-page .hero__actions { animation-delay: 0.55s; }
+  .js .home-page .hero__copy > * { animation: hero-rise 0.8s var(--ease-out) both; }
+  .js .home-page .hero__description { animation-delay: 0.12s; }
+  .js .home-page .hero__cta { animation-delay: 0.24s; }
 }
 @keyframes hero-rise {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: none; }
 }
 
 @media (min-width: 681px) and (max-width: 960px) {
-  .home-page .hero__copy { width: 58%; }
-  .home-page .hero__title { font-size: clamp(2.5rem, 6vw, 3.25rem); }
+  .home-page .hero__copy { width: 64%; }
+  .home-page .hero__title { font-size: clamp(2.375rem, 5.6vw, 3.25rem); }
 }
 /* Ponsel: video mengisi bagian atas (fokus pada ekskavator), teks di bawah
    di atas gradasi gelap yang menyatu dengan latar. */
 @media (max-width: 680px) {
   .home-page .hero__stage { min-height: 640px; max-height: none; }
-  .home-page .hero__media { bottom: auto; height: 66%; }
+  .home-page .hero__media { bottom: auto; height: 62%; }
   .home-page .hero__photo img,
   .home-page .hero__video { object-position: var(--pos-mobile, var(--pos, center)); }
   .home-page .hero__overlay {
     background:
-      linear-gradient(180deg, rgb(var(--hero-ink) / 0.7) 0%, rgb(var(--hero-ink) / 0.15) 20%, transparent 32%, rgb(var(--hero-ink) / 0.6) 50%, var(--charcoal) 63%),
-      linear-gradient(rgb(var(--hero-ink) / 0.18), rgb(var(--hero-ink) / 0.18));
+      linear-gradient(180deg, rgb(var(--hero-ink) / 0.55) 0%, transparent 18%, transparent 36%, rgb(var(--hero-ink) / 0.7) 52%, var(--charcoal) 62%);
   }
-  .home-page .hero__inner { align-items: flex-end; padding-block: calc(var(--header-h) + 24px) clamp(36px, 7svh, 64px); }
+  .home-page .hero__inner { align-items: flex-end; padding-block: calc(var(--header-h) + 24px) clamp(40px, 8svh, 64px); }
   .home-page .hero__copy { width: 100%; max-width: 460px; }
-  .home-page .hero__title { max-width: 14ch; font-size: clamp(2.375rem, 10.5vw, 3.125rem); line-height: 1.12; }
-  .home-page .hero__description { max-width: 30ch; margin-top: 18px; padding-left: 14px; font-size: 16px; }
-  .home-page .hero__actions { margin-top: 28px; gap: 10px; }
-  .home-page .hero__actions .btn { flex: 1 1 auto; min-height: 50px; padding-inline: 20px; }
-  .hero__video-toggle { top: calc(var(--header-h) + 14px); bottom: auto; width: 40px; height: 40px; }
-  .hero__scroll { display: none; }
+  .home-page .hero__title { max-width: 14ch; font-size: clamp(2.125rem, 9.4vw, 2.75rem); line-height: 1.12; }
+  .home-page .hero__description { margin-top: 16px; font-size: 16px; }
+  .home-page .hero__cta { width: 100%; margin-top: 28px; min-height: 54px; }
+  .hero__video-toggle { top: calc(var(--header-h) + 14px); bottom: auto; width: 36px; height: 36px; }
 }
 
 /* ===== Footer: identitas BMA, empat kolom dengan pemisah vertikal. ===== */

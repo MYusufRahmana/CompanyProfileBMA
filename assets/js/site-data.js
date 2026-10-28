@@ -12,12 +12,16 @@
 // - position / mobilePosition: titik fokus video & poster (object-position).
 // - overlayOpacity: kegelapan di belakang teks, 0 (terang) hingga 0.9 (gelap).
 window.BMA_HERO = {
-  title: "Berkat Maritim Abadi",
-  description: "Mitra strategis pertambangan dan logistik.",
-  posterDesktop: "assets/images/company/home-hero-fullhd-poster-1920.webp",
-  posterMobile: "assets/images/company/home-hero-fullhd-poster-800.webp",
-  video: [{ src: "assets/videos/bma-hero-fullhd-v2.mp4" }],
+  title: "Mitra Strategis Pertambangan dan Logistik",
+  description:
+    "PT Berkat Maritim Abadi melayani jasa pertambangan, pengangkutan hasil tambang, dan bongkar muat batu bara di Kalimantan sejak 2013.",
+  posterDesktop: "assets/images/company/home-hero-bmavidio-poster.webp",
+  posterMobile: "assets/images/company/home-hero-bmavidio-poster.webp",
+  // Video asli _source/BmaVidio.MP4, disalin apa adanya (1280 × 720, ±16 MB), satu file untuk semua layar.
+  video: [{ src: "assets/videos/BmaVidio.mp4" }],
   position: "center",
+  // Di ponsel video dipotong; geser fokus ke excavator.
   mobilePosition: "74% center",
-  overlayOpacity: 0.9,
+  // Hanya menggelapkan sisi kiri di belakang teks; sisa video tetap terang dan tajam.
+  overlayOpacity: 0.8,
 };
