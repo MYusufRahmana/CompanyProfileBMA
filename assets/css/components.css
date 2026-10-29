@@ -78,7 +78,7 @@
 .about-home__media {
   position: relative;
   isolation: isolate;
-  padding: 0 11% 15% 0;
+  padding: 0 9% 13% 0;
 }
 .about-home__media::before {
   content: "";
@@ -113,7 +113,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 48%;
+  width: 40%;
   aspect-ratio: 4 / 3;
   border: 8px solid #fff;
   border-radius: 16px;
@@ -164,6 +164,128 @@
 .about-home__description p:first-child { color: var(--text); font-size: clamp(16px, 1.25vw, 18px); }
 .about-home__description strong { font-weight: 700; }
 .about-home__description p + p { margin-top: 12px; }
+
+/* Bingkai video profil: bezel gelap seperti layar monitor,
+   label "Aktivitas operasional" dan tombol putar/jeda dengan cincin progres. */
+.about-video {
+  position: relative;
+  padding: 8px;
+  overflow: visible;
+  background: linear-gradient(145deg, #3a3f49, var(--charcoal) 55%, #22262d);
+  border-radius: 22px;
+  box-shadow:
+    0 30px 70px rgb(23 28 32 / 0.28),
+    inset 0 1px 0 rgb(255 255 255 / 0.08);
+}
+.about-video__screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--charcoal);
+}
+.about-video__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% center;
+}
+/* Gradasi bawah agar label & tombol terbaca */
+.about-video__screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(17 20 24 / 0.72) 0%, rgb(17 20 24 / 0.2) 26%, transparent 45%);
+  pointer-events: none;
+}
+.about-video__bar {
+  position: absolute;
+  left: 30px;
+  bottom: 28px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 50%;
+  margin: 0;
+  color: #fff;
+}
+.about-video__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 999px;
+  background: rgb(17 20 24 / 0.5);
+  backdrop-filter: blur(6px);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+.about-video__dot {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 0 rgb(244 131 31 / 0.6);
+}
+.about-video.is-playing .about-video__dot { animation: about-video-pulse 1.8s ease-out infinite; }
+@keyframes about-video-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(244 131 31 / 0.6); }
+  80%, 100% { box-shadow: 0 0 0 8px rgb(244 131 31 / 0); }
+}
+.about-video__toggle {
+  position: relative;
+  flex: 0 0 44px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.35);
+  border-radius: 50%;
+  background: rgb(17 20 24 / 0.5);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.about-video__toggle[hidden] { display: none; }
+.about-video__toggle:hover { background: var(--gold); border-color: var(--gold); color: var(--charcoal); transform: scale(1.05); }
+.about-video__toggle:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 3px; }
+.about-video__toggle .icon { width: 16px; height: 16px; }
+.about-video__toggle .icon-play,
+.about-video__toggle.is-paused .icon-pause { display: none; }
+.about-video__toggle.is-paused .icon-play { display: block; margin-left: 2px; }
+.about-video__ring {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+.about-video__ring circle {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--progress, 0));
+}
+@media (max-width: 560px) {
+  .about-video { padding: 5px; border-radius: 16px; }
+  .about-video__screen { border-radius: 11px; }
+  .about-video__bar { left: 18px; bottom: 16px; max-width: 46%; gap: 8px; }
+  .about-video__label { display: none; }
+  .about-video__toggle { flex-basis: 40px; width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-video.is-playing .about-video__dot { animation: none; }
+}
 
 /* Tombol */
 .about-home__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 34px; }

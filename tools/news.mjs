@@ -37,7 +37,7 @@ const related = (item) =>
   [...news.filter((n) => n !== item && n.category === item.category), ...news.filter((n) => n !== item && n.category !== item.category)].slice(0, 3);
 
 const figure = (f) => `            <figure class="article-figure">
-              <img src="${img(f.large)}" srcset="${img(f.small)} 640w, ${img(f.large)} 1200w" sizes="(max-width: 960px) 100vw, 720px" alt="${esc(f.alt)}" width="1200" height="800" loading="lazy" decoding="async" />
+              <img src="${img(f.large)}" srcset="${img(f.small)} ${f.smallW || 640}w, ${img(f.large)} ${f.largeW || 1200}w" sizes="(max-width: 960px) 100vw, 720px" alt="${esc(f.alt)}" width="1200" height="800" loading="lazy" decoding="async" />
               <figcaption>${esc(f.caption)}</figcaption>
             </figure>`;
 
@@ -99,7 +99,7 @@ const page = (item, i) => {
     <!-- Dibuat oleh tools/news.mjs dari content/news.mjs — jangan edit manual. -->
     <main id="mainContent" tabindex="-1">
       <section class="page-banner page-banner--simple page-banner--article" aria-labelledby="pageTitle">
-        <img class="page-banner-photo" src="${img(item.image.large)}" srcset="${img(item.image.small)} 640w, ${img(item.image.large)} 1200w" sizes="100vw" alt="" width="1200" height="800" fetchpriority="high" decoding="async" />
+        <img class="page-banner-photo" src="${img(item.image.large)}" srcset="${img(item.image.small)} ${item.image.smallW || 640}w, ${img(item.image.large)} ${item.image.largeW || 1200}w" sizes="100vw" alt="" width="1200" height="800" fetchpriority="high" decoding="async" />
         <div class="container page-banner-content">
           <p class="article-meta-top"><span class="article-chip">${esc(item.category)}</span><span>${icon("calendar")}<time datetime="${item.date}">${esc(item.dateLabel)}</time></span><span>${icon("clock")}${minutes} menit baca</span></p>
           <h1 id="pageTitle">${esc(item.title)}</h1>

@@ -111,108 +111,164 @@ window.BMA.navigation = ({ motion, listen }) => {
 /* ===== sections/hero.js ===== */
 window.BMA = window.BMA || {};
 
+// Motion hero: gambar HD bergerak pelan (zoom + geser, Ken Burns) lalu memudar ke gambar
+// berikutnya. Slide pertama sudah ada di HTML; slide lain dari window.BMA_HERO.slides.
+// Berhenti saat hero tidak terlihat / tab disembunyikan; tombol jeda memenuhi WCAG 2.2.2.
+// Dengan "kurangi animasi" hanya gambar pertama yang tampil, diam.
 window.BMA.hero = () => {
   const hero = document.getElementById("home");
   if (!hero) return () => {};
   const config = window.BMA_HERO || {};
   const title = hero.querySelector("#heroTitle");
   const description = hero.querySelector("#heroDescription");
-  const photo = hero.querySelector(".hero__photo img");
-  const source = hero.querySelector(".hero__photo source");
-  const video = hero.querySelector("#heroVideo");
+  const holder = hero.querySelector("#heroSlides");
+  const progress = hero.querySelector("#heroProgress");
   const toggle = hero.querySelector("#heroVideoToggle");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
   if (config.title && title) title.textContent = config.title;
   if (config.description && description) description.textContent = config.description;
-  if (photo && config.posterDesktop) photo.src = config.posterDesktop;
-  if (source && config.posterMobile) source.srcset = config.posterMobile;
-  if (config.position) hero.style.setProperty("--pos", config.position);
-  if (config.mobilePosition) hero.style.setProperty("--pos-mobile", config.mobilePosition);
   if (Number.isFinite(config.overlayOpacity))
     hero.style.setProperty("--hero-overlay", Math.min(0.9, Math.max(0, config.overlayOpacity)));
 
-  // Video latar. Poster tetap di bawahnya; video baru terlihat (memudar masuk)
-  // setelah benar-benar berputar. Tidak dimuat bila gerak dikurangi atau
-  // penghemat data aktif. Gagal dimuat/diblokir → poster tetap tampil.
-  let observer = { disconnect() {} };
+  const isMobile = window.innerWidth <= 680;
+  const slidesConfig = (Array.isArray(config.slides) ? config.slides : []).filter((item) => !(isMobile && item.mobile === false));
+  const interval = Math.max(3000, Number(config.interval) || 6500);
+  const fade = 1600; // samakan dengan transisi opacity di CSS
+  hero.style.setProperty("--slide-interval", `${interval}ms`);
+  hero.style.setProperty("--slide-fade", `${fade}ms`);
+
+  const styleSlide = (img, item) => {
+    if (item.position) img.style.setProperty("--pos", item.position);
+    img.style.setProperty("--pos-mobile", item.mobilePosition || item.position || "center");
+    img.style.setProperty("--kb-x", item.kbX || "0%");
+    img.style.setProperty("--kb-y", item.kbY || "0%");
+  };
+  const first = holder?.querySelector(".hero__slide");
+  if (first && slidesConfig[0]) styleSlide(first, slidesConfig[0]);
+  if (!holder || !first || slidesConfig.length < 2 || reduceMotion.matches) return () => {};
+
+  // Slide berikutnya dibuat setelah halaman selesai dimuat agar tidak menunda gambar pertama.
+  const slides = [first];
+  const bars = slidesConfig.map(() => {
+    const bar = document.createElement("span");
+    bar.className = "hero__progress-bar";
+    progress?.append(bar);
+    return bar;
+  });
+  const addSlides = () => {
+    slidesConfig.slice(1).forEach((item) => {
+      const img = document.createElement("img");
+      img.className = "hero__slide";
+      img.alt = "";
+      img.decoding = "async";
+      img.width = item.width || 1920;
+      img.height = item.height || 1080;
+      img.src = item.src;
+      styleSlide(img, item);
+      holder.append(img);
+      slides.push(img);
+    });
+  };
+  if (document.readyState === "complete") addSlides();
+  else window.addEventListener("load", addSlides, { once: true });
+
+  let index = 0;
+  let timer = 0;
+  let remaining = interval;
+  let startedAt = 0;
   let userPaused = false;
-  let frame = 0;
+  let hiddenPaused = false;
+  const leaveTimers = new Set();
+
+  const markBars = () => bars.forEach((bar, i) => {
+    bar.classList.toggle("is-done", i < index);
+    bar.classList.remove("is-active");
+  });
+  const startBar = () => {
+    const bar = bars[index];
+    if (!bar) return;
+    void bar.offsetWidth; // mulai ulang animasi pengisian
+    bar.classList.add("is-active");
+  };
+  const show = async (next) => {
+    const target = slides[next];
+    if (!target) { schedule(interval); return; } // belum dibuat: coba lagi nanti
+    try { await target.decode(); } catch { /* tetap tampilkan */ }
+    const current = slides[index];
+    current.classList.remove("is-active");
+    current.classList.add("is-leaving");
+    const leaving = setTimeout(() => { current.classList.remove("is-leaving"); leaveTimers.delete(leaving); }, fade + 50);
+    leaveTimers.add(leaving);
+    target.classList.remove("is-leaving");
+    void target.offsetWidth; // mulai ulang animasi gerak
+    target.classList.add("is-active");
+    index = next;
+    markBars();
+    startBar();
+    schedule(interval);
+  };
+  function schedule(delay) {
+    clearTimeout(timer);
+    remaining = delay;
+    startedAt = performance.now();
+    timer = setTimeout(() => show((index + 1) % slidesConfig.length), delay);
+  }
+  const running = () => !userPaused && !hiddenPaused;
+  const pause = () => {
+    if (hero.classList.contains("is-paused")) return;
+    clearTimeout(timer);
+    remaining = Math.max(0, remaining - (performance.now() - startedAt));
+    hero.classList.add("is-paused");
+  };
+  const resume = () => {
+    if (!running() || !hero.classList.contains("is-paused")) return;
+    hero.classList.remove("is-paused");
+    schedule(remaining);
+  };
   const setToggle = (paused) => {
     if (!toggle) return;
     toggle.setAttribute("aria-pressed", String(paused));
-    toggle.setAttribute("aria-label", paused ? "Putar video latar" : "Jeda video latar");
+    toggle.setAttribute("aria-label", paused ? "Putar animasi latar" : "Jeda animasi latar");
     toggle.classList.toggle("is-paused", paused);
   };
-  const fail = () => {
-    hero.classList.remove("is-video-ready");
-    hero.classList.add("is-video-failed");
-    if (toggle) toggle.hidden = true;
-  };
-  const connection = navigator.connection || {};
-  const saveData = connection.saveData || /(^|-)2g$/.test(connection.effectiveType || "");
-  const sources = Array.isArray(config.video) ? config.video : [];
-  if (video && sources.length && !reduceMotion.matches && !saveData) {
-    const width = window.innerWidth;
-    const pick = sources.find((item) => item.maxWidth && width <= item.maxWidth) || sources[sources.length - 1];
-    video.muted = true; // wajib untuk autoplay di peramban seluler
-    video.addEventListener("playing", () => {
-      hero.classList.add("is-video-ready");
-      if (toggle) toggle.hidden = false;
-      setToggle(false);
-    });
-    video.addEventListener("error", fail);
-    video.src = pick.src;
-    video.preload = "auto";
-    const play = () => video.play().catch(() => {
-      // Autoplay diblokir: poster tetap, tombol menawarkan putar manual.
-      // Bila videonya sendiri gagal dimuat, tombol tetap disembunyikan.
-      if (video.error || hero.classList.contains("is-video-failed")) return;
-      if (toggle) { toggle.hidden = false; setToggle(true); userPaused = true; }
-    });
-    play();
-    toggle?.addEventListener("click", () => {
-      if (video.paused) { userPaused = false; play(); setToggle(false); }
-      else { userPaused = true; video.pause(); setToggle(true); }
-    });
-    // Hemat baterai: jeda saat hero tidak terlihat.
-    if ("IntersectionObserver" in window) {
-      observer = new IntersectionObserver(([entry]) => {
-        if (!entry.isIntersecting) video.pause();
-        else if (!userPaused) video.play().catch(() => {});
-      });
-      observer.observe(hero);
-    }
-    reduceMotion.addEventListener?.("change", (event) => {
-      if (event.matches) { userPaused = true; video.pause(); setToggle(true); }
-    });
 
-    // Transisi gelap singkat di sambungan loop (akhir video → awal)
-    // agar tidak terasa seperti potongan kasar.
-    let looped = false;
-    const tick = () => {
-      const duration = video.duration;
-      if (duration) {
-        const time = video.currentTime;
-        const left = duration - time;
-        if (left < 0.6) looped = true;
-        hero.classList.toggle("is-loop-dip", left < 0.6 || (looped && time < 0.25));
-      }
-      frame = requestAnimationFrame(tick);
-    };
-    video.addEventListener("play", () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(tick);
+  hero.classList.add("is-motion");
+  markBars();
+  startBar();
+  schedule(interval);
+  if (toggle) { toggle.hidden = false; setToggle(false); }
+  toggle?.addEventListener("click", () => {
+    userPaused = !userPaused;
+    setToggle(userPaused);
+    if (userPaused) pause(); else resume();
+  });
+
+  // Hemat baterai: berhenti saat hero di luar layar atau tab tidak aktif.
+  let observer = { disconnect() {} };
+  if ("IntersectionObserver" in window) {
+    observer = new IntersectionObserver(([entry]) => {
+      hiddenPaused = !entry.isIntersecting || document.hidden;
+      if (hiddenPaused) pause(); else resume();
     });
-    video.addEventListener("pause", () => {
-      cancelAnimationFrame(frame);
-      hero.classList.remove("is-loop-dip");
-    });
+    observer.observe(hero);
   }
+  const onVisibility = () => {
+    hiddenPaused = document.hidden;
+    if (hiddenPaused) pause(); else resume();
+  };
+  document.addEventListener("visibilitychange", onVisibility);
+  const onReduce = (event) => {
+    if (event.matches) { userPaused = true; setToggle(true); pause(); }
+  };
+  reduceMotion.addEventListener?.("change", onReduce);
 
   return () => {
-    cancelAnimationFrame(frame);
+    clearTimeout(timer);
+    leaveTimers.forEach(clearTimeout);
     observer.disconnect();
+    document.removeEventListener("visibilitychange", onVisibility);
+    reduceMotion.removeEventListener?.("change", onReduce);
   };
 };
 
@@ -314,6 +370,88 @@ window.BMA.scrollReveal = ({ motion, listen }) => {
   };
 };
 
+/* ===== sections/about-video.js ===== */
+window.BMA = window.BMA || {};
+
+// Video di bingkai Profil Perusahaan (beranda). Video baru diunduh saat bingkai
+// mulai terlihat di layar, berputar otomatis (tanpa suara), dan berhenti saat keluar
+// layar. Bila gerak dikurangi / penghemat data aktif, poster tampil dan video
+// hanya diputar lewat tombol. Gagal dimuat → poster tetap, tombol disembunyikan.
+window.BMA.aboutVideo = ({ motion }) => {
+  const frame = document.getElementById("aboutVideo");
+  const video = frame?.querySelector("video");
+  const toggle = document.getElementById("aboutVideoToggle");
+  if (!frame || !video || !video.dataset.src) return () => {};
+
+  const connection = navigator.connection || {};
+  const quiet = motion.matches || connection.saveData || /(^|-)2g$/.test(connection.effectiveType || "");
+  let userPaused = quiet;
+  let inView = false;
+  let raf = 0;
+
+  const setState = (paused) => {
+    frame.classList.toggle("is-playing", !paused);
+    if (!toggle) return;
+    toggle.classList.toggle("is-paused", paused);
+    toggle.setAttribute("aria-pressed", String(paused));
+    toggle.setAttribute("aria-label", paused ? "Putar video operasional" : "Jeda video operasional");
+  };
+  const load = () => {
+    if (video.getAttribute("src")) return;
+    video.muted = true;
+    video.src = video.dataset.src;
+    video.preload = "auto";
+  };
+  const play = () => {
+    load();
+    video.play().catch(() => setState(true));
+  };
+  const tick = () => {
+    if (video.duration) toggle?.style.setProperty("--progress", (video.currentTime / video.duration).toFixed(4));
+    raf = requestAnimationFrame(tick);
+  };
+
+  video.addEventListener("playing", () => {
+    setState(false);
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(tick);
+  });
+  video.addEventListener("pause", () => {
+    setState(true);
+    cancelAnimationFrame(raf);
+  });
+  video.addEventListener("error", () => {
+    frame.classList.add("is-video-failed");
+    if (toggle) toggle.hidden = true;
+  });
+
+  if (toggle) {
+    toggle.hidden = false;
+    setState(true);
+    toggle.addEventListener("click", () => {
+      if (video.paused) { userPaused = false; play(); }
+      else { userPaused = true; video.pause(); }
+    });
+  }
+
+  let observer = null;
+  if ("IntersectionObserver" in window) {
+    observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      if (inView && !userPaused) play();
+      else if (!inView && !video.paused) video.pause();
+    }, { threshold: 0.2 });
+    observer.observe(frame);
+  } else if (!userPaused) {
+    play();
+  }
+
+  return () => {
+    observer?.disconnect();
+    cancelAnimationFrame(raf);
+  };
+};
+
 /* ===== script.js ===== */
 document.addEventListener("DOMContentLoaded", () => {
   const cleanups = [];
@@ -324,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cleanups.push(() => target.removeEventListener(event, callback, options));
   };
   const runtime = { motion, listen };
-  ["navigation", "hero", "scrollReveal"].forEach(
+  ["navigation", "hero", "aboutVideo", "scrollReveal"].forEach(
     (name) => {
       if (window.BMA?.[name]) cleanups.push(window.BMA[name](runtime));
     },

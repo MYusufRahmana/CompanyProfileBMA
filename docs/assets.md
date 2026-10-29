@@ -29,7 +29,13 @@ Pengguna meminta foto operasional yang disediakan perusahaan, tanpa menampilkan 
 
 Master yang dipakai disalin ke `_source/hero-operasional/`. Varian WebP berkualitas 92 memakai resolusi sumber penuh dan versi 800 px untuk layar kecil. Tidak ada pembesaran generatif, penggantian wajah, penambahan objek, atau perubahan isi foto. Potongan yang terlihat diatur melalui CSS `object-fit: cover` dan `--banner-focus`; file sumber tetap utuh. Resolusi tidak diklaim melebihi detail asli sumber. Foto udara utama di slide 12 hanya 768 × 576 px, sehingga tidak dipilih untuk banner desktop.
 
+## Video profil beranda
+
+- `assets/videos/bma-profil-960.mp4` — video di bingkai Profil Perusahaan (12 detik, 960×540, tanpa audio, ±2,4 MB), dikompresi dari `assets/videos/BmaVidio.mp4`. Poster: `assets/images/company/profil-video-poster-960.webp` (bingkai detik ke-6). Video dimuat saat bingkai terlihat; tidak diputar otomatis bila gerak dikurangi/penghemat data aktif.
+
 ## Foto ilustrasi
+
+- `assets/images/company/foto-layanan-armada-{800,1600}.webp` — ilustrasi barisan dump truck dan truk tangki. Dipakai pada layanan Alat Berat & Tenaga Kerja, berita Pelatihan (foto utama), dan berita Keselamatan (foto tengah). Master: `_source/generated-photos/foto-layanan-armada-v1.png`.
 
 - `assets/images/company/home-team-hero-{800,1600}.webp` — ilustrasi generatif AI pekerja BMA untuk hero beranda, dengan area kosong di kiri untuk teks. Bukan dokumentasi karyawan asli. Master: `_source/generated-heroes/home-team-hero-v1.png`.
 
@@ -49,7 +55,6 @@ Bukan dokumentasi BMA; ganti dengan foto perusahaan sebelum publikasi.
 | coal-extraction-* | https://unsplash.com/photos/mzEAjV141Ds |
 | overburden-removal-* | https://unsplash.com/photos/NWByxwVN-J0 |
 | haul-truck-* | https://unsplash.com/photos/Evss0Whf5OI |
-| equipment-support-* | https://unsplash.com/photos/Mx6Xmf_nbRk |
 | mine-site-aerial-* | https://unsplash.com/photos/EN1tF2EG-50 |
 | hauling-fleet-* | https://unsplash.com/photos/ed9HcUgZORI |
 | pit-benches-* | https://unsplash.com/photos/1O_HNWeY0O4 |
@@ -73,13 +78,20 @@ Tulisan kode unit yang dicat langsung pada bodi excavator (mis. `BMA-EX-75-01`) 
 
 Teks lama dihapus dan diisi warna serta tekstur cat di sekitarnya; pelat dipasang mengikuti kemiringan bodi dan pencahayaan foto. Revisi 28 Oktober: ukuran pelat diperkecil menjadi ±70% dan dibuat lebih realistis (biru sedikit pudar `#16428E`, putih cat, tekstur dan debu tipis, bayangan tepi, butiran foto). Bagian lain gambar tidak diubah. Master `-v2.png` tetap disimpan sebagai versi sebelum pelat. Font FreeSans Bold. Ekspor WebP kualitas 88, ukuran sama dengan file sebelumnya.
 
-## Video hero beranda (28 Oktober 2026)
+## Hero beranda: motion (28 Oktober 2026)
 
-Video aktif: `assets/videos/BmaVidio-2cuplikan.mp4`, dari `_source/BmaVidio.MP4` dengan cuplikan ke-3 (pemandangan area tambang, detik 9,8–12) dibuang. Dipotong dengan *stream copy* di keyframe detik 8,7 (`ffmpeg -t 8.7 -c copy`), jadi frame yang tersisa identik dengan aslinya, tanpa kompres ulang: H.264 High, 1280 × 720, 30 fps, 8,7 detik, tanpa audio, ±12 MB. Isi: cuplikan 1 dump truck (0–2 s), cuplikan 2 pemuatan excavator SANY (2–8,7 s). Satu file untuk semua ukuran layar. Warna/kontras disesuaikan lewat CSS `filter` dan sambungan loop memudar lewat gelap (`is-loop-dip`), file video tidak diubah.
+Hero memakai rangkaian gambar HD yang bergerak pelan (zoom + geser, *Ken Burns*) dan berganti dengan *crossfade* setiap 6,5 detik, menggantikan video. Diatur di `assets/js/site-data.js` (`slides`, `interval`); slide pertama juga ditulis di `index.html`.
 
-Poster (tampil sebelum video berputar): `assets/images/company/home-hero-bmavidio-poster.webp`, frame pertama video yang sama (1280 × 720).
+| Slide | File | Master (`_source/generated-heroes/`) | Ponsel |
+| --- | --- | --- | --- |
+| 1 | `hero-motion-1-1475.webp` (1475 × 1067) | `hero-2-unit-02-v3.png` (LiuGong EX-75-02) | ya |
+| 2 | `hero-motion-2-1920.webp` (1920 × 720) | `about-hero-unit-01-v3.png` (SANY EX-75-01) | tidak (panorama) |
+| 3 | `hero-motion-3-1466.webp` (1466 × 1073) | `hero-3-unit-03-v3.png` (LiuGong EX-75-03) | ya |
+| 4 | `hero-motion-4-1920.webp` (1920 × 640) | `services-hero-unit-02-v3.png` (LiuGong EX-75-02) | tidak (panorama) |
 
-Versi sebelumnya (`BmaVidio.mp4` utuh 3 cuplikan, `bma-hero-1080p.mp4`, `bma-hero-mobile-1080.mp4`, `bma-hero-720p-hd.mp4`, `bma-hero-fullhd-v2.mp4`, `bma-hero-720p.mp4`) dan poster `home-hero-hd-poster-*`, `home-hero-fullhd-poster-*`, `home-hero-video-poster-*` tidak lagi dipakai.
+Semua gambar adalah ilustrasi generatif AI (lihat bagian Foto ilustrasi). WebP kualitas 86, total ±1,6 MB. Animasi berhenti saat hero di luar layar atau tab tidak aktif, bisa dijeda dengan tombol, dan diganti gambar diam bila pengguna memilih "kurangi animasi".
+
+Video sebelumnya (`assets/videos/*.mp4`) dan poster `home-hero-*-poster*` tidak lagi dipakai; sumber video tetap di `_source/BmaVidio.MP4`.
 
 ## Font & ikon
 

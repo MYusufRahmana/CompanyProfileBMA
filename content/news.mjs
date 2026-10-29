@@ -5,6 +5,7 @@
 // Field:
 //   slug, category, date (YYYY-MM-DD), dateLabel, title, excerpt (ringkasan kartu & meta description)
 //   image: { small, large, alt }   — foto utama (path relatif dari assets/images/)
+//     opsional smallW/largeW: lebar asli file (default 640 & 1200) untuk srcset
 //   lead: paragraf pembuka; sections: [{ heading, paragraphs[] }]
 //   figure (opsional): { small, large, alt, caption } — foto di tengah artikel
 //   highlights: poin penting (3–4 butir)
@@ -95,7 +96,7 @@ export const news = [
         ],
       },
     ],
-    figure: { small: "mining/equipment-support-640.webp", large: "mining/equipment-support-1200.webp", alt: "Alat berat bekerja di front tambang", caption: "Unit alat berat di area kerja (foto ilustrasi)." },
+    figure: { small: "company/foto-layanan-armada-800.webp", large: "company/foto-layanan-armada-1600.webp", smallW: 800, largeW: 1600, alt: "Barisan dump truck dan truk tangki di area kerja tambang", caption: "Armada kendaraan di area kerja (foto ilustrasi)." },
     highlights: [
       "Safety briefing di awal setiap shift",
       "Pemeriksaan unit sebelum operasi (P2H)",
@@ -202,7 +203,7 @@ export const news = [
     dateLabel: "18 Mei 2026",
     title: "Program pelatihan operator alat berat bagi tenaga kerja lokal",
     excerpt: "Pelatihan dasar dan pendampingan lapangan untuk menyiapkan operator yang kompeten dan memahami prosedur aman.",
-    image: { small: "mining/equipment-support-640.webp", large: "mining/equipment-support-1200.webp", alt: "Alat berat di area kerja tambang" },
+    image: { small: "company/foto-layanan-armada-800.webp", large: "company/foto-layanan-armada-1600.webp", smallW: 800, largeW: 1600, alt: "Barisan dump truck dan truk tangki di area kerja tambang" },
     lead: "Pelatihan dasar dan pendampingan lapangan untuk menyiapkan operator yang kompeten dan memahami prosedur aman, dengan memberi kesempatan bagi tenaga kerja lokal.",
     sections: [
       {
