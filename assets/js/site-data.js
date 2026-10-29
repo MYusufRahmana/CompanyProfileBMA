@@ -16,7 +16,7 @@ window.BMA_HERO = {
     "Mendukung kelancaran produksi dan distribusi dengan keselamatan sebagai prioritas.",
   slides: [
     { src: "assets/images/company/hero-motion-1-1475.webp", width: 1475, height: 1067, position: "40% center", mobilePosition: "34% center", kbX: "1.5%", kbY: "-1%" },
-    { src: "assets/images/company/hero-motion-2-1920.webp", width: 1920, height: 720, position: "68% center", kbX: "-2%", kbY: "0%", mobile: false },
+    { src: "assets/images/company/hero-motion-2-foto3-1920.webp", width: 1920, height: 1080, position: "62% center", mobilePosition: "60% center", kbX: "-2%", kbY: "0%" },
     { src: "assets/images/company/hero-motion-3-1466.webp", width: 1466, height: 1073, position: "62% center", mobilePosition: "66% center", kbX: "-1.5%", kbY: "1%" },
     { src: "assets/images/company/hero-motion-4-1920.webp", width: 1920, height: 640, position: "82% center", kbX: "-1.5%", kbY: "-0.5%", mobile: false },
   ],

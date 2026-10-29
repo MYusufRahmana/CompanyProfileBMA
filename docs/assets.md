@@ -35,6 +35,8 @@ Master yang dipakai disalin ke `_source/hero-operasional/`. Varian WebP berkuali
 
 ## Foto ilustrasi
 
+- `assets/images/company/about-fleet-foto11-{800,1920}.webp` — hero aktif halaman Tentang Kami (rasio 8:3). Suntingan AI dari foto pengguna `_source/photos/about-foto11-original.jpeg`: kejernihan, kabut, pencahayaan, dan komposisi panorama diperbaiki dengan mempertahankan tiga kendaraan kuning, putih, dan merah. Master hasil suntingan: `_source/generated-heroes/about-fleet-foto11-v1.png`. Sumber asli tetap disimpan.
+
 - `assets/images/company/foto-layanan-armada-{800,1600}.webp` — ilustrasi barisan dump truck dan truk tangki. Dipakai pada layanan Alat Berat & Tenaga Kerja, berita Pelatihan (foto utama), dan berita Keselamatan (foto tengah). Master: `_source/generated-photos/foto-layanan-armada-v1.png`.
 
 - `assets/images/company/home-team-hero-{800,1600}.webp` — ilustrasi generatif AI pekerja BMA untuk hero beranda, dengan area kosong di kiri untuk teks. Bukan dokumentasi karyawan asli. Master: `_source/generated-heroes/home-team-hero-v1.png`.
@@ -85,11 +87,11 @@ Hero memakai rangkaian gambar HD yang bergerak pelan (zoom + geser, *Ken Burns*)
 | Slide | File | Master (`_source/generated-heroes/`) | Ponsel |
 | --- | --- | --- | --- |
 | 1 | `hero-motion-1-1475.webp` (1475 × 1067) | `hero-2-unit-02-v3.png` (LiuGong EX-75-02) | ya |
-| 2 | `hero-motion-2-1920.webp` (1920 × 720) | `about-hero-unit-01-v3.png` (SANY EX-75-01) | tidak (panorama) |
+| 2 | `hero-motion-2-foto3-1920.webp` (1920 × 1080) | `hero-foto3-clean-v1.png` (excavator Komatsu memuat dump truck; suntingan foto pengguna) | ya |
 | 3 | `hero-motion-3-1466.webp` (1466 × 1073) | `hero-3-unit-03-v3.png` (LiuGong EX-75-03) | ya |
 | 4 | `hero-motion-4-1920.webp` (1920 × 640) | `services-hero-unit-02-v3.png` (LiuGong EX-75-02) | tidak (panorama) |
 
-Semua gambar adalah ilustrasi generatif AI (lihat bagian Foto ilustrasi). WebP kualitas 86, total ±1,6 MB. Animasi berhenti saat hero di luar layar atau tab tidak aktif, bisa dijeda dengan tombol, dan diganti gambar diam bila pengguna memilih "kurangi animasi".
+Slide 1, 3, dan 4 adalah ilustrasi generatif AI (lihat bagian Foto ilustrasi). Slide 2 berasal dari foto pengguna `_source/photos/hero-foto3-original.jpeg`, disunting dengan AI untuk menghapus cap waktu, tanggal, koordinat, kode foto, dan tulisan Timemark, memperbaiki kejernihan, serta menyusun ulang bingkai horizontal. Master suntingan disimpan di `_source/generated-heroes/hero-foto3-clean-v1.png`; sumber asli tidak diubah. WebP kualitas 86–90, total sekitar 2.0 MB. Animasi berhenti saat hero di luar layar atau tab tidak aktif, bisa dijeda dengan tombol, dan diganti gambar diam bila pengguna memilih "kurangi animasi".
 
 Video sebelumnya (`assets/videos/*.mp4`) dan poster `home-hero-*-poster*` tidak lagi dipakai; sumber video tetap di `_source/BmaVidio.MP4`.
 
