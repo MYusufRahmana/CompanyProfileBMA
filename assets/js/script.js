@@ -515,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Interaksi halaman berita, karir, dan kontak.
+// Interaksi halaman berita, karier, dan kontak.
 // Pagination bersama untuk daftar berita dan tabel lowongan: menampilkan
 // `items` yang cocok per halaman dan membuat tombol halaman di `pager`.
 window.BMA.paginate = ({ all, matches, pager, perPage, page, onChange }) => {
@@ -722,8 +722,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const jobs = [["operator-excavator","Operator Excavator","Produksi","Kutai Kartanegara, Kalimantan Timur","Kontrak"],["hse-officer","HSE Officer","K3 & Lingkungan","Kutai Kartanegara, Kalimantan Timur","Penuh waktu"],["logistics-coordinator","Koordinator Logistik","Logistik","Tanah Bumbu, Kalimantan Selatan","Penuh waktu"],["foreman-produksi","Foreman Produksi Coal Getting","Produksi","Kutai Kartanegara, Kalimantan Timur","Penuh waktu"],["mekanik-alat-berat","Mekanik Alat Berat","Plant & Maintenance","Tanah Bumbu, Kalimantan Selatan","Kontrak"]];
   // Rincian posisi untuk panel kiri formulir (teks sama dengan halaman lowongan;
   // posisi tanpa halaman detail menampilkan catatan bahwa rincian belum tersedia).
+  // summary: ringkasan pekerjaan satu-dua kalimat, tampil di bawah nama posisi.
   const jobDetails = {
     "operator-excavator": {
+      "summary": "Anda akan bekerja di front tambang bersama pengawas produksi untuk menggali dan memuat batu bara sesuai rencana kerja harian.",
       "tasks": [
         "Mengoperasikan excavator untuk penggalian dan pemuatan batu bara.",
         "Melakukan pemeriksaan unit sebelum dan sesudah shift (P2H).",
@@ -741,6 +743,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "page": "lowongan-operator-excavator.html"
     },
     "hse-officer": {
+      "summary": "Anda akan mendampingi tim operasional untuk mengidentifikasi risiko, menjalankan inspeksi, dan membangun kebiasaan kerja yang aman di site.",
       "tasks": [
         "Melaksanakan inspeksi area kerja dan memantau kepatuhan prosedur keselamatan.",
         "Menyusun identifikasi bahaya dan penilaian risiko bersama tim lapangan.",
@@ -756,6 +759,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "page": "lowongan-hse-officer.html"
     },
     "logistics-coordinator": {
+      "summary": "Anda akan menghubungkan kebutuhan site dengan proses pengadaan, pergudangan, dan distribusi agar operasi berjalan tanpa hambatan.",
       "tasks": [
         "Mengoordinasikan permintaan material dan suku cadang dari tim site.",
         "Mengelola administrasi gudang dan pencatatan stok.",
@@ -777,15 +781,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const syncPosition = () => {
     const job = jobs.find(job => job[0] === position.value);
     document.querySelector('#applicationJob').textContent = job ? job[1] : 'Pilih posisi Anda';
-    document.querySelector('#applicationLocation').textContent = job ? job[3] + ' · ' + job[2] : 'Pilih salah satu lowongan pada formulir.';
-    const type = document.querySelector('#applicationType');
-    if (type) type.textContent = job ? job[4] + ' · Penempatan di site' : 'Penempatan di site';
+    document.querySelector('#applicationHint').hidden = Boolean(job);
+    document.querySelector('#applicationMeta').hidden = !job;
+    document.querySelector('#applicationLocation').textContent = job ? job[3] : '';
+    document.querySelector('#applicationDepartment').textContent = job ? job[2] : '';
+    const summaryBox = document.querySelector('#applicationSummaryBox');
+    const summary = job && jobDetails[job[0]] && jobDetails[job[0]].summary;
+    // Tanpa ringkasan: kotak disembunyikan (catatan "rincian belum tersedia" sudah tampil di bawah).
+    summaryBox.hidden = !summary;
+    document.querySelector('#applicationJobSummary').textContent = summary || '';
     renderJobDetail(job ? jobDetails[job[0]] : null);
   };
   const renderJobDetail = (detail) => {
     const panel = document.querySelector('#applicationDetail');
     if (!panel) return;
     panel.hidden = !detail;
+    const link = document.querySelector('#applicationJobLink');
+    link.hidden = !(detail && detail.page);
+    if (detail && detail.page) link.href = detail.page;
     if (!detail) return;
     const list = (selector, items) => {
       const ul = document.querySelector(selector);
@@ -799,9 +812,6 @@ document.addEventListener('DOMContentLoaded', () => {
     list('#applicationTasks', detail.tasks);
     list('#applicationRequirements', detail.requirements);
     document.querySelector('#applicationDetailEmpty').hidden = Boolean(detail.tasks?.length);
-    const link = document.querySelector('#applicationJobLink');
-    link.hidden = !detail.page;
-    if (detail.page) link.href = detail.page;
   };
   const requested = new URLSearchParams(location.search).get('posisi');
   if (jobs.some(job => job[0] === requested)) position.value = requested;

@@ -1,4 +1,4 @@
-/* Decorative surfaces for Beranda, Tentang Kami, Kontak, Karir and Berita only. No animation, dependencies or content changes.
+/* Decorative surfaces for Beranda, Tentang Kami, Kontak, Karier and Berita only. No animation, dependencies or content changes.
    Pattern layers sit above the section background and below its content.
    SVG strokes use the official BMA palette; opacity is controlled here. */
 :is(.home-page, .page-about, .page-contact, .page-careers, .page-news) {

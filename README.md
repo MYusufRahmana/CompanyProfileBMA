@@ -63,7 +63,7 @@ Build membuat detail berita dari `content/news.mjs` lalu menyinkronkan komponen 
 | Identitas, menu, kontak, footer | `content/site.mjs`, lalu build |
 | Isi artikel | `content/news.mjs`, lalu build |
 | Hero beranda | `assets/js/site-data.js` |
-| Profil, layanan, daftar berita, karir, kontak | Bagian `main` pada HTML terkait |
+| Profil, layanan, daftar berita, karier, kontak | Bagian `main` pada HTML terkait |
 | Tampilan global dan hero beranda | `assets/css/style.css` |
 | Header transparan dan variasi logo | `assets/css/brand-heroes.css` |
 | Komponen beranda dan komponen bersama | `assets/css/components.css` |

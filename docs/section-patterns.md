@@ -4,7 +4,7 @@
 
 Halaman menggunakan HTML, CSS, dan JavaScript statis tanpa framework. Pattern dimuat melalui `assets/css/section-patterns.css`, pada `index.html`, `pages/about.html`, `pages/contact.html`, `pages/karir.html`, dan halaman detail lowongan. Halaman daftar `pages/news.html` juga memuat stylesheet ini. Selector dibatasi ke `.home-page`, `.page-about`, `.page-contact`, `.page-careers`, dan `.page-news`, sehingga halaman lainnya dan backend tidak terpengaruh.
 
-Implementasi mengikuti section yang sudah tersedia. Tidak ada section Statistik, Proyek, atau Karir/CTA baru. Keunggulan tetap berada di Profil Perusahaan; konteks operasional dan logistik diwakili Armada Pendukung.
+Implementasi mengikuti section yang sudah tersedia. Tidak ada section Statistik, Proyek, atau Karier/CTA baru. Keunggulan tetap berada di Profil Perusahaan; konteks operasional dan logistik diwakili Armada Pendukung.
 
 ## Pemetaan visual
 
@@ -39,7 +39,7 @@ Implementasi mengikuti section yang sudah tersedia. Tidak ada section Statistik,
 - Footer Kontak mendapat tekstur diagonal 1,5 px dan aksen oranye yang sedikit lebih terlihat. Hero Beranda tetap tanpa corak.
 - Keterangan kantor pusat lama di halaman Kontak diselaraskan menjadi Jakarta Utara sesuai koreksi pengguna sebelumnya.
 
-## Pattern dan penyederhanaan Karir
+## Pattern dan penyederhanaan Karier
 
 - Budaya kerja memakai `.pattern-career-culture`: aksen diagonal oranye dan cahaya peach di tepi.
 - Daftar lowongan dan isi detail posisi memakai `.pattern-recruitment`: grid teknis di permukaan abu-abu muda. Tabel serta kartu posisi tetap mudah dibaca.
@@ -83,7 +83,7 @@ Pattern SVG digambar sebagai kode dekoratif, bukan logo perusahaan atau aset fot
 - Breakpoint 680 px mengurangi detail dan opacity serta memperkecil dekorasi tepi.
 - Semua corak statis. Tidak ada animasi tambahan, termasuk ketika `prefers-reduced-motion` aktif.
 - Tidak ada ukuran atau ruang layout yang bergantung pada proses pemuatan SVG, sehingga dekorasi tidak menimbulkan pergeseran layout.
-- Footer dikenali melalui `.home-page > .footer`, sehingga sinkronisasi `tools/layout.mjs` tidak menghapus dekorasi dan tidak menambah pattern pada footer halaman di luar Beranda, Tentang Kami, Kontak, dan halaman Karir yang memuat stylesheet ini.
+- Footer dikenali melalui `.home-page > .footer`, sehingga sinkronisasi `tools/layout.mjs` tidak menghapus dekorasi dan tidak menambah pattern pada footer halaman di luar Beranda, Tentang Kami, Kontak, dan halaman Karier yang memuat stylesheet ini.
 
 ## Verifikasi
 

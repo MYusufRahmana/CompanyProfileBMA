@@ -1257,15 +1257,6 @@ button:disabled {
 }
 /* Direktori Perusahaan Kami: foto dan identitas dalam kartu katalog. */
 
-.vacancy-tag {
-  display: inline-block;
-  color: var(--accent-text);
-  background: var(--brand-tint);
-  border-radius: 5px;
-  font-size: 11px;
-  padding: 6px 10px;
-  margin-bottom: 12px;
-}
 
 .application-page {
   background: var(--bg-light);

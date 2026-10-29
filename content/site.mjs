@@ -27,7 +27,7 @@ export const site = {
     ["about", "Tentang Kami"],
     ["services", "Layanan"],
     ["news", "Berita"],
-    ["careers", "Karir"],
+    ["careers", "Karier"],
     ["contact", "Kontak"],
   ],
 
@@ -60,8 +60,8 @@ export const site = {
       { id: "footerLinks", title: "Perusahaan", links: [["about", "Tentang Kami"], ["news", "Berita"]] },
       {
         id: "footerPages",
-        title: "Layanan dan Karir",
-        links: [["services", "Layanan"], ["careers", "Karir"]],
+        title: "Layanan dan Karier",
+        links: [["services", "Layanan"], ["careers", "Karier"]],
         recruitEmail: "career@growingroup.id",
       },
     ],

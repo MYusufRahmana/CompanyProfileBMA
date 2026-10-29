@@ -543,7 +543,7 @@
   }
 }
 /* =============================================================
-   Karir — pencarian + tabel lowongan (tetap tabel di semua ukuran layar)
+   Karier — pencarian + tabel lowongan (tetap tabel di semua ukuran layar)
    ============================================================= */
 .jobs-filter {
   display: grid;
@@ -1652,12 +1652,8 @@ a.job-title:focus-visible {
   font-size: 13px;
   line-height: 1.6;
 }
-.application-detail .text-link {
-  display: inline-block;
-  margin-top: 18px;
-}
 
-/* ---------- Banner sederhana (Tentang Kami, Layanan, Berita, Karir,
+/* ---------- Banner sederhana (Tentang Kami, Layanan, Berita, Karier,
    Kontak): foto penuh, judul besar, breadcrumb ---------- */
 .page-banner--simple {
   min-height: clamp(380px, 52svh, 520px);
@@ -1712,7 +1708,7 @@ a.job-title:focus-visible {
   }
 }
 
-/* Hero Layanan, Berita, Karir, dan Kontak: satu bahasa visual, konteks berbeda. */
+/* Hero Layanan, Berita, Karier, dan Kontak: satu bahasa visual, konteks berbeda. */
 .page-banner--editorial::before {
   background:
     linear-gradient(180deg, rgb(23 28 32 / 0.5), transparent 30%),
@@ -2278,11 +2274,6 @@ a.job-title:focus-visible {
 .file-list__item strong { display: block; overflow: hidden; color: var(--text); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
 .file-list__item small { display: block; margin-top: 3px; color: var(--text-soft); font-size: 11px; }
 
-/* Kartu kiri: daftar persiapan dengan centang */
-.application-position .apply-checklist { padding: 0; list-style: none; }
-.apply-checklist li { position: relative; padding-left: 22px; }
-.apply-checklist li::before { content: ""; position: absolute; left: 2px; top: 0.72em; width: 9px; height: 5px; border-left: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: translateY(-50%) rotate(-45deg); }
-
 .application-submit > .btn .icon { width: 18px; height: 18px; }
 
 @media (max-width: 1000px) {
@@ -2301,4 +2292,69 @@ a.job-title:focus-visible {
   .photo-field__actions { justify-content: center; }
   .cv-dropzone--compact { grid-template-columns: 1fr; text-align: center; }
   .cv-dropzone--compact .cv-upload-icon { grid-row: auto; margin: 0 auto 10px; }
+}
+
+/* Kartu kiri: lokasi, departemen, dan ringkasan pekerjaan posisi terpilih */
+.application-hint { margin: 0; color: var(--text-soft); font-size: 13px; line-height: 1.7; }
+.application-position .application-meta { display: grid; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; font-size: 13px; line-height: 1.5; color: var(--text-soft); }
+.application-meta li { display: flex; align-items: flex-start; gap: 9px; }
+.application-meta .icon { flex: 0 0 16px; width: 16px; height: 16px; margin-top: 2px; color: var(--gold-dark); }
+.application-summary {
+  padding: 16px 18px;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(135deg, var(--brand-tint), rgb(254 236 216 / 0.35));
+}
+.application-summary__label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 8px;
+  color: var(--gold-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.application-summary__label .icon { width: 14px; height: 14px; }
+.application-summary__text { margin: 0; color: var(--text); font-size: 14px; line-height: 1.7; }
+
+/* Kartu kiri: tombol aksi di bagian bawah */
+.application-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.application-actions__detail { width: 100%; min-height: 48px; justify-content: space-between; padding-inline: 18px; font-size: 14px; }
+.application-actions__detail .icon { width: 18px; height: 18px; }
+.application-actions__back {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 6px 14px 6px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.application-actions__back-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand-tint);
+  color: var(--gold-dark);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.25s var(--ease-out);
+}
+.application-actions__back-icon .icon { width: 17px; height: 17px; }
+.application-actions__back:hover { background: var(--bg-light); }
+.application-actions__back:hover .application-actions__back-icon { background: var(--gold); color: #fff; transform: translateX(-3px); }
+@media (prefers-reduced-motion: reduce) {
+  .application-actions__back:hover .application-actions__back-icon { transform: none; }
 }

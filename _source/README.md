@@ -16,7 +16,7 @@ Folder ini menyimpan bahan asli untuk memperbarui desain, teks, dan aset web. Fi
 | `generated-heroes/about-hero-v1.png` | Master ilustrasi hero Tentang Kami |
 | `generated-heroes/services-hero-v1.png` | Master ilustrasi hero Layanan |
 | `generated-heroes/news-hero-v1.png` | Master ilustrasi hero Berita |
-| `generated-heroes/careers-hero-v1.png` | Master ilustrasi hero Karir |
+| `generated-heroes/careers-hero-v1.png` | Master ilustrasi hero Karier |
 | `generated-heroes/contact-hero-v1.png` | Master ilustrasi hero Kontak |
 
 Versi web aktif telah diekspor sebagai WebP ke `assets/images/`. Versi pekerja yang telah digantikan tidak dipertahankan agar arsip hanya memuat master yang relevan.
