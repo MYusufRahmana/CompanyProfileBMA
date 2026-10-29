@@ -17,6 +17,19 @@ Foto asli BMA, dikonversi ke WebP:
 
 - `hero-{1,2,3}-*` — foto profil beranda dan banner halaman dalam.
 
+## Foto Layanan (29 Oktober 2026)
+
+Empat foto yang dipasok pengguna disunting dengan AI untuk memperbaiki kejernihan, kabut, pencahayaan, dan pembingkaian. Cap waktu, koordinat, serta tulisan aplikasi kamera dihapus. Urutan pemakaian mengikuti urutan lampiran pengguna, bukan nomor nama berkas.
+
+| Pemakaian | Sumber asli | Aset web di assets/images/company/ |
+| --- | --- | --- |
+| Coal Getting | Foto7.jpeg (lampiran 1) | service-coal-getting-foto7-{800,1600}.webp |
+| Pengupasan Lapisan Penutup dan Penyiapan Lahan | Foto1.jpeg (lampiran 2) | service-overburden-foto1-{800,1600}.webp |
+| Pengangkutan Hasil Tambang | Foto2.jpeg (lampiran 3) | service-hauling-foto2-{800,1600}.webp |
+| Hero Layanan | Foto9.jpeg (lampiran 4) | services-hero-fleet-foto9-{800,1920}.webp |
+
+Foto asli diarsipkan sebagai _source/photos/services-fotoN-original.jpeg. Master suntingan memakai nama aset yang sama dengan akhiran -v1.png di _source/generated-photos/. Foto layanan diekspor 4:3, hero 8:3; WebP kualitas 89. Foto tiga layanan lainnya tetap memakai aset sebelumnya karena tidak ada pemetaan pengganti yang diberikan.
+
 ## Hero Berita, Karier, dan Kontak (26 Oktober 2026)
 
 Pengguna meminta foto operasional yang disediakan perusahaan, tanpa menampilkan ilustrasi orang sebagai pekerja BMA.
