@@ -62,7 +62,7 @@ Bukan dokumentasi BMA; ganti dengan foto perusahaan sebelum publikasi.
 
 - `assets/images/logistics/cargo-ship-*` — kapal kargo (layanan Bongkar Muat), Unsplash: https://images.unsplash.com/photo-1524522173746-f628baad3644
 - `assets/images/social/social-{education,health,environment}-*` — foto artikel kategori Sosial di Berita (Unsplash License): TmdrCRVDOnQ, k2nXCVm-SUg, FyCjvyPG9Pg (https://unsplash.com/photos/<id>)
-- `assets/images/about/bma-team-white-helmet-{560,960}.webp` — ilustrasi generatif AI dua pekerja berseragam BMA untuk halaman Tentang Kami. Dibuat menggunakan OpenAI ImageGen; bukan dokumentasi karyawan asli. Sumber resolusi penuh: `_source/generated-photos/bma-team-white-helmet.png` (helm pekerja perempuan berwarna putih).
+- `assets/images/about/bma-profile-dio-diki-v2-{560,960}.webp` — foto Profil Perusahaan pada halaman Tentang Kami, disunting menggunakan OpenAI ImageGen berdasarkan `_source/PhotoOrang/PakDio.jpeg` (kiri, helm hijau) dan `_source/PhotoOrang/PakDiki.jpeg` (kanan, helm putih). Latar tambang dan pose berasal dari ilustrasi sebelumnya; bukan dokumentasi lapangan asli. Master: `_source/generated-photos/bma-profile-dio-diki-v2.png` (revisi kemiripan wajah, pandangan lebih menghadap kamera). Foto referensi dan master sebelumnya tetap disimpan.
 
 ## Pelat kode unit pada ilustrasi excavator (28 Oktober 2026)
 

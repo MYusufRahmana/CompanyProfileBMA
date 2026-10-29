@@ -2130,3 +2130,175 @@ a.job-title:focus-visible {
     padding: 20px;
   }
 }
+
+/* ---------- Formulir lamaran: kemajuan, foto profil, gaji, dokumen ---------- */
+.application-form { padding: 0 40px 40px; overflow: clip; }
+.application-form fieldset { scroll-margin-top: 190px; }
+
+/* Kemajuan pengisian (menempel di atas saat menggulir) */
+.apply-progress {
+  position: sticky;
+  top: 74px;
+  z-index: 5;
+  margin: 0 -40px 36px;
+  padding: 22px 40px 18px;
+  border-bottom: 1px solid var(--line);
+  background: rgb(255 255 255 / 0.96);
+  backdrop-filter: blur(8px);
+}
+.apply-progress__head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.apply-progress__title { margin: 0; font: 700 15px Manrope, Inter, sans-serif; color: var(--text); }
+.apply-progress__count { margin: 0; font-size: 12px; font-weight: 600; color: var(--text-soft); }
+.apply-progress__bar { height: 6px; margin: 12px 0 16px; overflow: hidden; border-radius: 99px; background: var(--bg-light); }
+.apply-progress__bar span { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--gold), var(--gold-hover)); transition: width 0.45s var(--ease-out); }
+.apply-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.apply-steps a { display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 4px 6px; border-radius: 8px; color: var(--text-soft); font-size: 12px; font-weight: 600; line-height: 1.25; text-decoration: none; transition: background 0.2s ease, color 0.2s ease; }
+.apply-steps a:hover { background: var(--bg-light); color: var(--text); }
+.apply-steps__no { flex: 0 0 24px; display: grid; place-items: center; width: 24px; height: 24px; border: 1.5px solid var(--line); border-radius: 50%; background: #fff; font-size: 11px; font-weight: 700; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+.apply-steps a.is-done { color: var(--text); }
+.apply-steps a.is-done .apply-steps__no { border-color: var(--gold); background: var(--gold); color: #fff; }
+
+/* Label & petunjuk */
+.application-fields label,
+.salary-field { gap: 8px; }
+.field-label { margin: 0; color: var(--text); font-size: 13px; font-weight: 600; }
+.req { color: #c2410c; font-weight: 700; }
+.field-hint { margin: 0; color: var(--text-soft); font-size: 12px; font-weight: 400; line-height: 1.6; }
+.field-hint--end { align-self: flex-end; }
+.field-error { margin: 8px 0 0; color: #b42318; font-size: 12px; font-weight: 500; line-height: 1.5; }
+.field-error:empty { display: none; }
+.application-fields :is(input, select, textarea) { transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.application-fields :is(input, select, textarea):hover { border-color: var(--brand-muted); }
+.application-fields :is(input, select, textarea):focus { outline: 0; border-color: var(--gold); box-shadow: 0 0 0 3px rgb(244 131 31 / 0.18); }
+.application-fields :is(input, select, textarea):user-invalid { border-color: #d92d20; }
+
+/* Foto profil */
+.photo-field {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 26px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-light);
+  transition: border-color 0.2s ease;
+}
+.photo-field.is-invalid { border-color: #d92d20; }
+.photo-field.has-photo { border-color: rgb(244 131 31 / 0.45); background: #fff; }
+.photo-field__preview {
+  position: relative;
+  flex: 0 0 96px;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--brand-tint);
+  color: var(--gold-dark);
+  box-shadow: 0 6px 18px rgb(44 48 57 / 0.12);
+}
+.photo-field__preview .icon { width: 40px; height: 40px; }
+.photo-field__preview img { width: 100%; height: 100%; object-fit: cover; }
+.photo-field__body { min-width: 0; }
+.photo-field__body .field-hint { margin: 4px 0 12px; }
+.photo-field__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.upload-btn:hover { border-color: var(--gold); color: var(--gold-dark); }
+.upload-btn .icon { width: 17px; height: 17px; }
+.photo-field__actions:has(input:focus-visible) .upload-btn,
+.cv-dropzone:has(input:focus-visible) { outline: 3px solid var(--gold); outline-offset: 3px; }
+.upload-remove { padding: 6px 4px; border: 0; background: none; color: #b42318; font-size: 13px; font-weight: 600; cursor: pointer; }
+.upload-remove:hover { text-decoration: underline; }
+
+/* Input dengan awalan/akhiran (Rp, /bulan, ikon) */
+.salary-field { display: flex; flex-direction: column; min-width: 0; }
+.application-fields label.field-label { display: block; }
+.application-fields label.check-inline { flex-direction: row; align-self: flex-start; }
+.input-affix {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input-affix:hover { border-color: var(--brand-muted); }
+.input-affix:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgb(244 131 31 / 0.18); }
+.input-affix:has(input:user-invalid) { border-color: #d92d20; }
+.input-affix:has(input:disabled) { background: var(--bg-light); }
+.application-fields .input-affix input { flex: 1; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+.application-fields .input-affix input:focus { box-shadow: none; }
+.input-affix__text,
+.input-affix__icon { display: grid; place-items: center; padding: 0 12px; background: var(--bg-light); color: var(--text-soft); font-size: 13px; font-weight: 600; }
+.input-affix__text--end { font-weight: 500; }
+.input-affix__icon { color: var(--gold-dark); }
+.input-affix__icon .icon { width: 18px; height: 18px; }
+.check-inline { display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); font-size: 12px; font-weight: 500; cursor: pointer; }
+.check-inline input { width: 16px; height: 16px; accent-color: var(--gold); }
+
+/* Dropzone dokumen: seluruh area dapat diklik */
+.cv-dropzone { position: relative; margin-top: 10px; padding: 28px 20px; transition: border-color 0.2s ease, background 0.2s ease; }
+.cv-dropzone:hover { border-color: var(--gold); background: #fff; }
+.cv-dropzone.is-invalid { border-color: #d92d20; background: #fef3f2; }
+.cv-dropzone label { font-weight: 500; color: var(--text-soft); }
+.cv-dropzone label::after { content: ""; position: absolute; inset: 0; cursor: pointer; }
+.cv-dropzone__action { color: var(--gold-dark); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.cv-dropzone p { margin: 6px 0 0; }
+.cv-upload-icon { color: var(--gold-dark); }
+.cv-upload-icon .icon { width: 22px; height: 22px; }
+.cv-dropzone--compact { display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 16px; padding: 18px 20px; text-align: left; }
+.cv-dropzone--compact .cv-upload-icon { grid-row: span 2; margin: 0; }
+.docs-label { margin-top: 30px; }
+
+/* Daftar berkas terpilih */
+.file-list { display: grid; gap: 10px; margin: 12px 0 0; padding: 0; list-style: none; }
+.file-list:empty { display: none; }
+.file-list__item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.file-list__type { flex: 0 0 42px; display: grid; place-items: center; height: 46px; border-radius: 6px; background: var(--brand-tint); color: var(--gold-dark); font-size: 10px; font-weight: 800; letter-spacing: 0.04em; }
+.file-list__item > div { flex: 1; min-width: 0; }
+.file-list__item strong { display: block; overflow: hidden; color: var(--text); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.file-list__item small { display: block; margin-top: 3px; color: var(--text-soft); font-size: 11px; }
+
+/* Kartu kiri: daftar persiapan dengan centang */
+.application-position .apply-checklist { padding: 0; list-style: none; }
+.apply-checklist li { position: relative; padding-left: 22px; }
+.apply-checklist li::before { content: ""; position: absolute; left: 2px; top: 0.72em; width: 9px; height: 5px; border-left: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: translateY(-50%) rotate(-45deg); }
+
+.application-submit > .btn .icon { width: 18px; height: 18px; }
+
+@media (max-width: 1000px) {
+  .application-form { padding: 0 25px 25px; }
+  .apply-progress { margin: 0 -25px 30px; padding: 18px 25px 14px; }
+}
+@media (max-width: 700px) {
+  .application-form { padding: 0 20px 22px; }
+  .apply-progress { top: 66px; margin: 0 -20px 26px; padding: 14px 20px 12px; }
+  .apply-steps { gap: 4px; }
+  .apply-progress__title { font-size: 14px; }
+  .apply-progress__steps { display: none; }
+  .apply-steps a { justify-content: center; padding: 4px; }
+  .apply-steps__label { display: none; }
+  .photo-field { flex-direction: column; text-align: center; }
+  .photo-field__actions { justify-content: center; }
+  .cv-dropzone--compact { grid-template-columns: 1fr; text-align: center; }
+  .cv-dropzone--compact .cv-upload-icon { grid-row: auto; margin: 0 auto 10px; }
+}

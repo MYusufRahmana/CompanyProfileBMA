@@ -81,6 +81,12 @@
       <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></symbol>
       <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><path d="m9.75 15.02 5.75-3.27-5.75-3.27z"/></symbol>
       <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 7H5a2 2 0 0 1 0-4h13v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15V7"/><path d="M16 14h.01"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/></symbol>
       <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
     </svg>
     <!-- icons:end -->
@@ -122,9 +128,117 @@
           <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Beranda</a><span aria-hidden="true">/</span><a href="karir.html">Karir</a><span aria-hidden="true">/</span><span aria-current="page">Formulir Lamaran</span></nav>
           <p class="section-kicker">Karir</p>
           <h1 id="pageTitle">Formulir Lamaran</h1>
-          <p class="page-banner-lead">Lengkapi data diri, latar belakang, dan CV Anda untuk posisi yang dipilih. Formulir ini masih prototipe dan belum mengirim data.</p>
+          <p class="page-banner-lead">Lengkapi data diri, alamat, informasi gaji, dan dokumen Anda untuk posisi yang dipilih. Formulir ini masih prototipe dan belum mengirim data.</p>
         </div>
-      </section><div class="container application-layout"><aside class="application-sidebar"><div class="application-position"><span class="section-kicker">Posisi pilihan</span><h2 id="applicationJob">Pilih posisi Anda</h2><p id="applicationLocation">Pilih salah satu lowongan pada formulir.</p><span class="vacancy-tag" id="applicationType">Penempatan di site</span><div class="application-detail" id="applicationDetail" hidden aria-live="polite"><section><h3>Tanggung jawab</h3><ul id="applicationTasks"></ul></section><section><h3>Kualifikasi</h3><ul id="applicationRequirements"></ul></section><p class="application-detail-empty" id="applicationDetailEmpty" hidden>Rincian tanggung jawab dan kualifikasi posisi ini belum tersedia.</p><a class="text-link" id="applicationJobLink" href="karir.html#lowongan">Lihat halaman lowongan ↗</a></div><hr><h3>Sebelum memulai</h3><ul><li>Siapkan email dan nomor telepon aktif.</li><li>Gunakan CV terbaru dalam format PDF.</li><li>Ukuran berkas maksimal 5 MB.</li></ul><a href="karir.html#lowongan" class="text-link">← Kembali ke lowongan</a></div><p class="application-demo">Pratinjau formulir. Data pribadi dan CV hanya diproses di browser, tidak dikirim atau disimpan.</p></aside><div><form id="applicationForm" class="application-form"><fieldset><legend><span>01</span> Data diri</legend><p class="fieldset-note">Kolom bertanda * wajib diisi.</p><div class="application-fields"><label class="field-wide">Posisi yang dilamar *<select id="applicationPosition" name="position" required><option value="">Pilih posisi</option><option value="operator-excavator">Operator Excavator</option><option value="hse-officer">HSE Officer</option><option value="logistics-coordinator">Koordinator Logistik</option><option value="foreman-produksi">Foreman Produksi Coal Getting</option><option value="mekanik-alat-berat">Mekanik Alat Berat</option></select></label><label class="field-wide">Nama lengkap *<input name="fullName" autocomplete="name" required maxlength="100" placeholder="Nama sesuai identitas Anda"></label><label>Email *<input type="email" name="email" autocomplete="email" required maxlength="150" placeholder="nama@email.com"></label><label>Nomor telepon / WhatsApp *<input type="tel" name="phone" autocomplete="tel" required pattern="[+0-9() .-]{8,20}" maxlength="20" placeholder="08xx xxxx xxxx" title="Masukkan 8–20 karakter berupa nomor telepon."></label><label class="field-wide">Kota domisili *<input name="city" autocomplete="address-level2" required maxlength="100" placeholder="Contoh: Samarinda"></label></div></fieldset><fieldset><legend><span>02</span> Latar belakang</legend><div class="application-fields"><label>Pendidikan terakhir *<select name="education" required><option value="">Pilih pendidikan</option><option>SMA / SMK</option><option>Diploma</option><option>S1 / D4</option><option>S2</option><option>S3</option></select></label><label>Pengalaman kerja *<select name="experience" required><option value="">Pilih pengalaman</option><option>Belum berpengalaman</option><option>Kurang dari 1 tahun</option><option>1–2 tahun</option><option>3–5 tahun</option><option>Lebih dari 5 tahun</option></select></label><label class="field-wide">Ceritakan tentang diri Anda <span class="optional">(opsional)</span><textarea name="introduction" rows="4" maxlength="1500" placeholder="Keahlian, pengalaman relevan, atau alasan Anda tertarik bergabung."></textarea></label></div></fieldset><fieldset><legend><span>03</span> Curriculum vitae</legend><p class="fieldset-note" id="cvHelp">Unggah CV dalam format PDF, maksimal 5 MB. *</p><div class="cv-dropzone" id="cvDropzone"><span class="cv-upload-icon" aria-hidden="true">↑</span><label for="cvFile">Pilih CV dari perangkat</label><p>atau tarik dan letakkan berkas di sini</p><input id="cvFile" type="file" accept=".pdf,application/pdf" aria-describedby="cvHelp cvError" required></div><p id="cvError" class="cv-error" role="alert"></p><div class="cv-selected" id="cvSelected" hidden><span class="cv-file-icon">PDF</span><div><strong id="cvName"></strong><small id="cvSize"></small></div><button type="button" id="cvRemove" aria-label="Hapus CV">Hapus</button></div></fieldset><div class="application-submit"><label class="application-consent"><input type="checkbox" required><span>Saya telah memeriksa informasi yang diisi dan memahami bahwa ini adalah simulasi lamaran, bukan pengiriman ke tim rekrutmen.</span></label><button type="submit" class="btn btn-primary">Selesaikan simulasi lamaran <span aria-hidden="true">↗</span></button><p>Data dan CV tidak disimpan setelah halaman ditutup.</p></div></form><section class="application-success" id="applicationSuccess" hidden tabindex="-1" aria-labelledby="successTitle"><span class="success-icon" aria-hidden="true">✓</span><p class="section-kicker">Simulasi selesai</p><h2 id="successTitle">Profil Anda sudah lengkap.</h2><p id="applicationSummary"></p><p>Ini adalah konfirmasi simulasi. Data dan CV Anda belum dikirim ke BMA.</p><a class="btn btn-primary" href="karir.html#lowongan">Kembali ke halaman Karir</a><button type="button" id="editApplication" class="text-link">Tinjau kembali formulir</button></section><noscript><p class="demo-note">Aktifkan JavaScript untuk mencoba simulasi formulir ini. Tidak ada data yang dikirim.</p></noscript></div></div></main>
+      </section><div class="container application-layout"><aside class="application-sidebar"><div class="application-position"><span class="section-kicker">Posisi pilihan</span><h2 id="applicationJob">Pilih posisi Anda</h2><p id="applicationLocation">Pilih salah satu lowongan pada formulir.</p><span class="vacancy-tag" id="applicationType">Penempatan di site</span><div class="application-detail" id="applicationDetail" hidden aria-live="polite"><section><h3>Tanggung jawab</h3><ul id="applicationTasks"></ul></section><section><h3>Kualifikasi</h3><ul id="applicationRequirements"></ul></section><p class="application-detail-empty" id="applicationDetailEmpty" hidden>Rincian tanggung jawab dan kualifikasi posisi ini belum tersedia.</p><a class="text-link" id="applicationJobLink" href="karir.html#lowongan">Lihat halaman lowongan ↗</a></div><hr><h3>Sebelum memulai</h3><ul class="apply-checklist"><li>Foto profil terbaru (JPG/PNG, maks. 2 MB)</li><li>CV terbaru dalam format PDF (maks. 5 MB)</li><li>Alamat lengkap sesuai KTP</li><li>Gaji terakhir dan ekspektasi gaji</li><li>Satu tautan media sosial (LinkedIn, Instagram, dll.)</li><li>Portofolio/sertifikat <span class="optional">(opsional)</span></li></ul><a href="karir.html#lowongan" class="text-link">← Kembali ke lowongan</a></div><p class="application-demo">Pratinjau formulir. Data pribadi, foto, dan dokumen hanya diproses di browser, tidak dikirim atau disimpan.</p></aside><div><form id="applicationForm" class="application-form" novalidate>
+          <!-- Kemajuan pengisian: langkah ditandai selesai saat semua data wajibnya valid (assets/js/script.js). -->
+          <div class="apply-progress">
+            <div class="apply-progress__head">
+              <p class="apply-progress__title">Kelengkapan lamaran</p>
+              <p class="apply-progress__count"><span id="applyProgressText">0% lengkap</span><span class="apply-progress__steps" id="applyProgressSteps"> · 0 dari 5 langkah</span></p>
+            </div>
+            <div class="apply-progress__bar" aria-hidden="true"><span id="applyProgressBar"></span></div>
+            <ol class="apply-steps" role="list">
+              <li><a href="#stepPersonal" data-step="stepPersonal"><span class="apply-steps__no">1</span><span class="apply-steps__label">Data diri</span></a></li>
+              <li><a href="#stepAddress" data-step="stepAddress"><span class="apply-steps__no">2</span><span class="apply-steps__label">Alamat</span></a></li>
+              <li><a href="#stepCareer" data-step="stepCareer"><span class="apply-steps__no">3</span><span class="apply-steps__label">Karier &amp; gaji</span></a></li>
+              <li><a href="#stepDocs" data-step="stepDocs"><span class="apply-steps__no">4</span><span class="apply-steps__label">Dokumen</span></a></li>
+              <li><a href="#stepSocial" data-step="stepSocial"><span class="apply-steps__no">5</span><span class="apply-steps__label">Media sosial</span></a></li>
+            </ol>
+          </div>
+
+          <fieldset id="stepPersonal">
+            <legend><span>01</span> Data diri</legend>
+            <p class="fieldset-note">Kolom bertanda <span class="req">*</span> wajib diisi.</p>
+            <div class="photo-field" id="photoField">
+              <div class="photo-field__preview" aria-hidden="true">
+                <img id="photoPreview" alt="" hidden />
+                <svg class="icon" id="photoPlaceholder"><use href="#i-user" /></svg>
+              </div>
+              <div class="photo-field__body">
+                <p class="field-label" id="photoLabel">Foto profil <span class="req">*</span></p>
+                <p class="field-hint" id="photoHelp">Foto terbaru dengan wajah terlihat jelas. JPG, PNG, atau WebP, maksimal 2 MB.</p>
+                <div class="photo-field__actions">
+                  <label class="upload-btn" for="photoFile"><svg class="icon" aria-hidden="true"><use href="#i-camera" /></svg><span id="photoButtonText">Unggah foto</span></label>
+                  <input class="visually-hidden" id="photoFile" name="photo" type="file" accept="image/jpeg,image/png,image/webp" aria-labelledby="photoLabel" aria-describedby="photoHelp photoError" />
+                  <button type="button" class="upload-remove" id="photoRemove" hidden>Hapus foto</button>
+                </div>
+                <p class="field-error" id="photoError" role="alert"></p>
+              </div>
+            </div>
+            <div class="application-fields">
+              <label class="field-wide"><span class="field-label">Posisi yang dilamar <span class="req">*</span></span><select id="applicationPosition" name="position" required><option value="">Pilih posisi</option><option value="operator-excavator">Operator Excavator</option><option value="hse-officer">HSE Officer</option><option value="logistics-coordinator">Koordinator Logistik</option><option value="foreman-produksi">Foreman Produksi Coal Getting</option><option value="mekanik-alat-berat">Mekanik Alat Berat</option></select></label>
+              <label class="field-wide"><span class="field-label">Nama lengkap <span class="req">*</span></span><input name="fullName" autocomplete="name" required maxlength="100" placeholder="Nama sesuai KTP" /></label>
+              <label><span class="field-label">Email <span class="req">*</span></span><input type="email" name="email" autocomplete="email" required maxlength="150" placeholder="nama@email.com" /></label>
+              <label><span class="field-label">Nomor telepon / WhatsApp <span class="req">*</span></span><input type="tel" name="phone" autocomplete="tel" required pattern="[+0-9() .\-]{8,20}" maxlength="20" placeholder="08xx xxxx xxxx" title="Masukkan 8–20 karakter berupa nomor telepon." /></label>
+            </div>
+          </fieldset>
+
+          <fieldset id="stepAddress">
+            <legend><span>02</span> Alamat</legend>
+            <div class="application-fields">
+              <label class="field-wide"><span class="field-label">Alamat sesuai KTP <span class="req">*</span></span><textarea name="ktpAddress" rows="3" required minlength="10" maxlength="300" autocomplete="street-address" placeholder="Nama jalan, nomor rumah, RT/RW, kelurahan, kecamatan, kabupaten/kota, provinsi"></textarea><span class="field-hint">Tulis lengkap seperti tercantum pada KTP.</span></label>
+              <label class="field-wide"><span class="field-label">Kota domisili saat ini <span class="req">*</span></span><input name="city" autocomplete="address-level2" required maxlength="100" placeholder="Contoh: Samarinda" /></label>
+            </div>
+          </fieldset>
+
+          <fieldset id="stepCareer">
+            <legend><span>03</span> Karier &amp; gaji</legend>
+            <div class="application-fields">
+              <label><span class="field-label">Pendidikan terakhir <span class="req">*</span></span><select name="education" required><option value="">Pilih pendidikan</option><option>SMA / SMK</option><option>Diploma</option><option>S1 / D4</option><option>S2</option><option>S3</option></select></label>
+              <label><span class="field-label">Pengalaman kerja <span class="req">*</span></span><select name="experience" required><option value="">Pilih pengalaman</option><option>Belum berpengalaman</option><option>Kurang dari 1 tahun</option><option>1–2 tahun</option><option>3–5 tahun</option><option>Lebih dari 5 tahun</option></select></label>
+              <div class="salary-field">
+                <label for="lastSalary" class="field-label">Gaji terakhir <span class="req" id="lastSalaryReq">*</span></label>
+                <div class="input-affix"><span class="input-affix__text" aria-hidden="true">Rp</span><input id="lastSalary" name="lastSalary" inputmode="numeric" autocomplete="off" required maxlength="15" placeholder="0" data-money aria-describedby="lastSalaryHelp" /><span class="input-affix__text input-affix__text--end" aria-hidden="true">/bulan</span></div>
+                <label class="check-inline"><input type="checkbox" id="noLastSalary" /> Belum pernah bekerja</label>
+                <span class="field-hint" id="lastSalaryHelp">Gaji pokok per bulan pada pekerjaan terakhir.</span>
+              </div>
+              <div class="salary-field">
+                <label for="expectedSalary" class="field-label">Ekspektasi gaji <span class="req">*</span></label>
+                <div class="input-affix"><span class="input-affix__text" aria-hidden="true">Rp</span><input id="expectedSalary" name="expectedSalary" inputmode="numeric" autocomplete="off" required maxlength="15" placeholder="0" data-money aria-describedby="expectedSalaryHelp" /><span class="input-affix__text input-affix__text--end" aria-hidden="true">/bulan</span></div>
+                <span class="field-hint" id="expectedSalaryHelp">Gaji kotor (<em>gross</em>) per bulan yang Anda harapkan.</span>
+              </div>
+              <label class="field-wide"><span class="field-label">Ceritakan tentang diri Anda <span class="optional">(opsional)</span></span><textarea name="introduction" rows="4" maxlength="1500" placeholder="Keahlian, pengalaman relevan, atau alasan Anda tertarik bergabung." data-count="introCount"></textarea><span class="field-hint field-hint--end" id="introCount">0/1500</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset id="stepDocs">
+            <legend><span>04</span> Dokumen</legend>
+            <p class="field-label" id="cvLabel">Curriculum vitae (CV) <span class="req">*</span></p>
+            <div class="cv-dropzone" id="cvDropzone">
+              <span class="cv-upload-icon" aria-hidden="true"><svg class="icon"><use href="#i-upload" /></svg></span>
+              <label for="cvFile"><span class="cv-dropzone__action">Pilih CV dari perangkat</span> atau tarik berkas ke sini</label>
+              <p id="cvHelp">PDF, maksimal 5 MB.</p>
+              <input class="visually-hidden" id="cvFile" type="file" accept=".pdf,application/pdf" aria-labelledby="cvLabel" aria-describedby="cvHelp cvError" />
+            </div>
+            <p id="cvError" class="field-error" role="alert"></p>
+            <ul class="file-list" id="cvList" role="list"></ul>
+
+            <p class="field-label docs-label" id="docsLabel">Portofolio / sertifikat <span class="optional">(opsional)</span></p>
+            <div class="cv-dropzone cv-dropzone--compact" id="docsDropzone">
+              <span class="cv-upload-icon" aria-hidden="true"><svg class="icon"><use href="#i-file" /></svg></span>
+              <label for="docsFile"><span class="cv-dropzone__action">Tambah berkas</span> atau tarik ke sini</label>
+              <p id="docsHelp">PDF, JPG, atau PNG. Maksimal 5 berkas, masing-masing 5 MB.</p>
+              <input class="visually-hidden" id="docsFile" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-labelledby="docsLabel" aria-describedby="docsHelp docsError" />
+            </div>
+            <p id="docsError" class="field-error" role="alert"></p>
+            <ul class="file-list" id="docsList" role="list"></ul>
+          </fieldset>
+
+          <fieldset id="stepSocial">
+            <legend><span>05</span> Media sosial</legend>
+            <p class="fieldset-note">Tautan profil membantu tim rekrutmen mengenal Anda. Awalan https:// ditambahkan otomatis bila belum ada.</p>
+            <div class="application-fields">
+              <label class="field-wide"><span class="field-label">Tautan media sosial <span class="req">*</span></span><span class="input-affix"><span class="input-affix__icon" aria-hidden="true"><svg class="icon"><use href="#i-link" /></svg></span><input type="url" name="social" required maxlength="200" placeholder="linkedin.com/in/nama-anda" data-url aria-describedby="socialHelp" /></span><span class="field-hint" id="socialHelp">Satu tautan profil, misalnya LinkedIn atau Instagram.</span></label>
+            </div>
+          </fieldset>
+
+          <div class="application-submit">
+            <label class="application-consent"><input type="checkbox" name="consent" required /><span>Saya menyatakan data yang diisi benar dan memahami bahwa ini adalah simulasi lamaran, bukan pengiriman ke tim rekrutmen.</span></label>
+            <button type="submit" class="btn btn-primary">Selesaikan simulasi lamaran<svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></button>
+            <p>Data, foto, dan dokumen tidak disimpan setelah halaman ditutup.</p>
+          </div>
+        </form><section class="application-success" id="applicationSuccess" hidden tabindex="-1" aria-labelledby="successTitle"><span class="success-icon" aria-hidden="true">✓</span><p class="section-kicker">Simulasi selesai</p><h2 id="successTitle">Profil Anda sudah lengkap.</h2><p id="applicationSummary"></p><p>Ini adalah konfirmasi simulasi. Data dan CV Anda belum dikirim ke BMA.</p><a class="btn btn-primary" href="karir.html#lowongan">Kembali ke halaman Karir</a><button type="button" id="editApplication" class="text-link">Tinjau kembali formulir</button></section><noscript><p class="demo-note">Aktifkan JavaScript untuk mencoba simulasi formulir ini. Tidak ada data yang dikirim.</p></noscript></div></div></main>
     <footer class="footer">
       <div class="container footer-top">
         <div class="footer-about">
@@ -175,6 +289,6 @@
         <span>Pratinjau situs · Berita dan lowongan merupakan materi contoh</span>
       </div>
     </footer>
-    <script src="../assets/js/script.js" defer></script>
+    <script src="../assets/js/script.js?v=lamar-20261029" defer></script>
   </body>
 </html>

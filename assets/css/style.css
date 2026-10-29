@@ -1446,64 +1446,6 @@ button:disabled {
   font-size: 12px;
   margin: 8px 0 18px;
 }
-.cv-dropzone input {
-  max-width: 100%;
-  font-size: 12px;
-}
-.cv-dropzone input::file-selector-button {
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  padding: 9px 14px;
-  background: white;
-  cursor: pointer;
-  margin-right: 10px;
-}
-.cv-error {
-  font-size: 12px;
-  color: #b42318;
-  margin-top: 12px;
-}
-.cv-selected {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 15px;
-  margin-top: 16px;
-  border: 1px solid #dce5df;
-  border-radius: 8px;
-  background: #f7fbf8;
-}
-.cv-file-icon {
-  font-size: 10px;
-  font-weight: 700;
-  color: #40684d;
-  padding: 10px 6px;
-  border: 1px solid #ccded1;
-  border-radius: 4px;
-}
-.cv-selected > div {
-  flex: 1;
-  min-width: 0;
-}
-.cv-selected strong {
-  display: block;
-  font-size: 12px;
-  overflow-wrap: anywhere;
-}
-.cv-selected small {
-  display: block;
-  font-size: 10px;
-  color: #737e76;
-  margin-top: 6px;
-}
-.cv-selected button {
-  border: 0;
-  background: transparent;
-  color: var(--accent-text);
-  cursor: pointer;
-  font-size: 12px;
-  padding: 8px;
-}
 .application-submit {
   border-top: 1px solid var(--line);
   padding-top: 26px;

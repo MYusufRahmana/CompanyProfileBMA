@@ -806,41 +806,212 @@ document.addEventListener('DOMContentLoaded', () => {
   const requested = new URLSearchParams(location.search).get('posisi');
   if (jobs.some(job => job[0] === requested)) position.value = requested;
   position.addEventListener('change', syncPosition); syncPosition();
-  const input = document.querySelector('#cvFile');
-  const error = document.querySelector('#cvError');
-  const selected = document.querySelector('#cvSelected');
-  const zone = document.querySelector('#cvDropzone');
-  let cv = null;
-  const choose = file => {
-    cv = null; selected.hidden = true; error.textContent = ''; input.setCustomValidity('');
-    if (!file) return;
-    let message = '';
-    if (!/\.pdf$/i.test(file.name) || (file.type && file.type !== 'application/pdf')) message = 'Gunakan berkas CV berformat PDF.';
-    else if (file.size === 0) message = 'Berkas kosong. Pilih CV yang berisi dokumen.';
-    else if (file.size > 5 * 1024 * 1024) message = 'Ukuran CV melebihi 5 MB. Pilih berkas yang lebih kecil.';
-    if (message) {input.value = ''; error.textContent = message; input.setCustomValidity(message); return;}
-    cv = file; selected.hidden = false;
-    document.querySelector('#cvName').textContent = file.name;
-    document.querySelector('#cvSize').textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB · Siap untuk simulasi';
+  const $ = (selector) => document.querySelector(selector);
+  const MB = 1024 * 1024;
+  const sizeLabel = (bytes) => (bytes < MB ? Math.max(1, Math.round(bytes / 1024)) + ' KB' : (bytes / MB).toFixed(2) + ' MB');
+  const extOf = (name) => (name.split('.').pop() || '').toUpperCase().slice(0, 4);
+  // Satu baris berkas terpilih dengan tombol hapus.
+  const fileRow = (file, onRemove) => {
+    const li = document.createElement('li');
+    li.className = 'file-list__item';
+    const badge = document.createElement('span');
+    badge.className = 'file-list__type';
+    badge.textContent = extOf(file.name);
+    const info = document.createElement('div');
+    const name = document.createElement('strong');
+    name.textContent = file.name;
+    const meta = document.createElement('small');
+    meta.textContent = sizeLabel(file.size) + ' · Siap untuk simulasi';
+    info.append(name, meta);
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'upload-remove';
+    remove.textContent = 'Hapus';
+    remove.setAttribute('aria-label', 'Hapus ' + file.name);
+    remove.addEventListener('click', onRemove);
+    li.append(badge, info, remove);
+    return li;
   };
-  input.addEventListener('change', () => choose(input.files[0]));
-  document.querySelector('#cvRemove').addEventListener('click', () => {input.value = ''; choose(null); input.focus();});
-  ['dragenter', 'dragover'].forEach(type => zone.addEventListener(type, event => {event.preventDefault(); zone.classList.add('dragover');}));
-  ['dragleave', 'drop'].forEach(type => zone.addEventListener(type, event => {event.preventDefault(); zone.classList.remove('dragover');}));
-  zone.addEventListener('drop', event => {
-    const files = event.dataTransfer.files;
-    if (files.length !== 1) {error.textContent = 'Pilih satu berkas CV saja.'; return;}
-    input.files = files; choose(files[0]);
+  // Seret & letakkan berkas pada dropzone.
+  const dropzone = (zone, onFiles) => {
+    ['dragenter', 'dragover'].forEach(type => zone.addEventListener(type, event => {event.preventDefault(); zone.classList.add('dragover');}));
+    ['dragleave', 'drop'].forEach(type => zone.addEventListener(type, event => {event.preventDefault(); zone.classList.remove('dragover');}));
+    zone.addEventListener('drop', event => onFiles([...event.dataTransfer.files]));
+  };
+
+  // --- Foto profil (wajib): JPG/PNG/WebP, maks. 2 MB, dengan pratinjau.
+  const photoInput = $('#photoFile');
+  const photoError = $('#photoError');
+  const photoPreview = $('#photoPreview');
+  let photo = null;
+  let photoUrl = '';
+  const setPhoto = (file) => {
+    photoError.textContent = '';
+    if (photoUrl) URL.revokeObjectURL(photoUrl);
+    photo = null; photoUrl = '';
+    photoPreview.hidden = true; photoPreview.removeAttribute('src');
+    $('#photoPlaceholder').style.display = '';
+    $('#photoRemove').hidden = true;
+    $('#photoButtonText').textContent = 'Unggah foto';
+    $('#photoField').classList.remove('has-photo', 'is-invalid');
+    if (!file) { refresh(); return; }
+    let message = '';
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) message = 'Gunakan foto berformat JPG, PNG, atau WebP.';
+    else if (file.size > 2 * MB) message = 'Ukuran foto melebihi 2 MB. Pilih foto yang lebih kecil.';
+    if (message) { photoInput.value = ''; photoError.textContent = message; $('#photoField').classList.add('is-invalid'); refresh(); return; }
+    photo = file;
+    photoUrl = URL.createObjectURL(file);
+    photoPreview.src = photoUrl; photoPreview.hidden = false;
+    $('#photoPlaceholder').style.display = 'none';
+    $('#photoRemove').hidden = false;
+    $('#photoButtonText').textContent = 'Ganti foto';
+    $('#photoField').classList.add('has-photo');
+    refresh();
+  };
+  photoInput.addEventListener('change', () => setPhoto(photoInput.files[0]));
+  $('#photoRemove').addEventListener('click', () => { photoInput.value = ''; setPhoto(null); photoInput.focus(); });
+
+  // --- CV (wajib): satu PDF, maks. 5 MB.
+  const cvInput = $('#cvFile');
+  const cvError = $('#cvError');
+  let cv = null;
+  const setCv = (file) => {
+    cv = null; cvError.textContent = '';
+    $('#cvDropzone').classList.remove('is-invalid');
+    $('#cvList').replaceChildren();
+    if (file) {
+      let message = '';
+      if (!/\.pdf$/i.test(file.name) || (file.type && file.type !== 'application/pdf')) message = 'Gunakan berkas CV berformat PDF.';
+      else if (file.size === 0) message = 'Berkas kosong. Pilih CV yang berisi dokumen.';
+      else if (file.size > 5 * MB) message = 'Ukuran CV melebihi 5 MB. Pilih berkas yang lebih kecil.';
+      if (message) { cvInput.value = ''; cvError.textContent = message; $('#cvDropzone').classList.add('is-invalid'); }
+      else {
+        cv = file;
+        $('#cvList').append(fileRow(file, () => { cvInput.value = ''; setCv(null); cvInput.focus(); }));
+      }
+    }
+    $('#cvDropzone').hidden = Boolean(cv);
+    refresh();
+  };
+  cvInput.addEventListener('change', () => setCv(cvInput.files[0]));
+  dropzone($('#cvDropzone'), files => {
+    if (files.length !== 1) { cvError.textContent = 'Pilih satu berkas CV saja.'; return; }
+    setCv(files[0]);
   });
-  const success = document.querySelector('#applicationSuccess');
+
+  // --- Portofolio / sertifikat (opsional): PDF/JPG/PNG, maks. 5 berkas @5 MB.
+  const docsInput = $('#docsFile');
+  const docsError = $('#docsError');
+  let docs = [];
+  const renderDocs = () => {
+    $('#docsList').replaceChildren(...docs.map((file, index) => fileRow(file, () => {
+      docs.splice(index, 1); renderDocs(); docsInput.focus();
+    })));
+    $('#docsDropzone').hidden = docs.length >= 5;
+  };
+  const addDocs = (files) => {
+    docsError.textContent = '';
+    const rejected = [];
+    files.forEach(file => {
+      const okType = /\.(pdf|jpe?g|png)$/i.test(file.name);
+      if (!okType) rejected.push(file.name + ' (format tidak didukung)');
+      else if (file.size > 5 * MB) rejected.push(file.name + ' (lebih dari 5 MB)');
+      else if (docs.length >= 5) rejected.push(file.name + ' (melebihi 5 berkas)');
+      else if (!docs.some(doc => doc.name === file.name && doc.size === file.size)) docs.push(file);
+    });
+    if (rejected.length) docsError.textContent = 'Tidak ditambahkan: ' + rejected.join(', ') + '.';
+    docsInput.value = '';
+    renderDocs();
+  };
+  docsInput.addEventListener('change', () => addDocs([...docsInput.files]));
+  dropzone($('#docsDropzone'), addDocs);
+
+  // --- Gaji: hanya angka, diformat dengan pemisah ribuan (8.500.000).
+  form.querySelectorAll('[data-money]').forEach(field => {
+    field.addEventListener('input', () => {
+      const digits = field.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 12);
+      field.value = digits ? Number(digits).toLocaleString('id-ID') : '';
+    });
+  });
+  const noLastSalary = $('#noLastSalary');
+  const lastSalary = $('#lastSalary');
+  noLastSalary.addEventListener('change', () => {
+    lastSalary.disabled = noLastSalary.checked;
+    lastSalary.required = !noLastSalary.checked;
+    if (noLastSalary.checked) lastSalary.value = '';
+    $('#lastSalaryReq').hidden = noLastSalary.checked;
+    refresh();
+  });
+
+  // --- Tautan media sosial: tambahkan https:// bila belum ada.
+  form.querySelectorAll('[data-url]').forEach(field => {
+    field.addEventListener('blur', () => {
+      const value = field.value.trim();
+      if (value && !/^https?:\/\//i.test(value)) field.value = 'https://' + value;
+      refresh();
+    });
+  });
+
+  // --- Penghitung karakter.
+  form.querySelectorAll('[data-count]').forEach(field => {
+    const out = document.getElementById(field.dataset.count);
+    field.addEventListener('input', () => { out.textContent = field.value.length + '/' + field.maxLength; });
+  });
+
+  // --- Kemajuan: tiap langkah selesai bila semua kolom wajibnya valid.
+  const extraValid = { stepPersonal: () => Boolean(photo), stepDocs: () => Boolean(cv) };
+  const steps = [...form.querySelectorAll('[data-step]')];
+  function refresh() {
+    let done = 0;
+    steps.forEach(link => {
+      const id = link.dataset.step;
+      const fields = [...document.getElementById(id).querySelectorAll('input, select, textarea')].filter(el => el.required && !el.disabled);
+      const complete = fields.every(el => el.checkValidity()) && (extraValid[id] ? extraValid[id]() : true);
+      link.classList.toggle('is-done', complete);
+      link.setAttribute('aria-label', link.textContent.replace(/^\d/, '').trim() + (complete ? ' (lengkap)' : ' (belum lengkap)'));
+      if (complete) done += 1;
+    });
+    const percent = Math.round((done / steps.length) * 100);
+    $('#applyProgressBar').style.width = percent + '%';
+    $('#applyProgressText').textContent = percent + '% lengkap';
+    $('#applyProgressSteps').textContent = ' · ' + done + ' dari ' + steps.length + ' langkah';
+  }
+  form.addEventListener('input', refresh);
+  form.addEventListener('change', refresh);
+  refresh();
+
+  // --- Kirim (simulasi): periksa foto & CV lebih dulu, lalu kolom lainnya.
+  const success = $('#applicationSuccess');
   form.addEventListener('submit', event => {
     event.preventDefault();
-    if (!cv || !form.reportValidity()) return;
+    if (!photo) {
+      photoError.textContent = 'Unggah foto profil Anda.';
+      $('#photoField').classList.add('is-invalid');
+      $('#photoField').scrollIntoView({ block: 'center' });
+      photoInput.focus();
+      return;
+    }
+    const firstInvalid = [...form.elements].find(el => el.willValidate && !el.checkValidity() && el.closest('fieldset, .application-submit'));
+    const cvMissing = !cv;
+    if (firstInvalid && (!cvMissing || firstInvalid.compareDocumentPosition(cvInput) & Node.DOCUMENT_POSITION_FOLLOWING)) {
+      firstInvalid.reportValidity();
+      firstInvalid.focus();
+      return;
+    }
+    if (cvMissing) {
+      cvError.textContent = 'Unggah CV dalam format PDF.';
+      $('#cvDropzone').classList.add('is-invalid');
+      $('#cvDropzone').scrollIntoView({ block: 'center' });
+      cvInput.focus();
+      return;
+    }
+    if (!form.reportValidity()) return;
     const job = jobs.find(job => job[0] === position.value);
-    document.querySelector('#applicationSummary').textContent = form.elements.fullName.value.trim() + ', formulir Anda untuk posisi ' + job[1] + ' telah lolos validasi di browser.';
+    const attachments = docs.length ? 'foto, CV, dan ' + docs.length + ' berkas pendukung' : 'foto dan CV';
+    $('#applicationSummary').textContent = form.elements.fullName.value.trim() + ', formulir Anda untuk posisi ' + job[1] + ' beserta ' + attachments + ' telah lolos validasi di browser.';
     form.hidden = true; success.hidden = false; success.focus(); success.scrollIntoView({block:'start'});
   });
-  document.querySelector('#editApplication').addEventListener('click', () => {success.hidden = true; form.hidden = false; form.elements.fullName.focus();});
+  $('#editApplication').addEventListener('click', () => {success.hidden = true; form.hidden = false; form.elements.fullName.focus();});
 });
 
 // Navigasi layanan: tandai layanan yang sedang dibaca.
