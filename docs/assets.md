@@ -17,6 +17,18 @@ Foto asli BMA, dikonversi ke WebP:
 
 - `hero-{1,2,3}-*` — foto profil beranda dan banner halaman dalam.
 
+## Penyesuaian foto layanan (30 Oktober 2026)
+
+Pemetaan aktif menggantikan pemetaan pada 29 Oktober untuk tiga layanan berikut:
+
+| Layanan | Aset aktif di assets/images/company/ |
+| --- | --- |
+| Coal Getting | hero-3-bma-unit-03-{800,1460}.webp — foto excavator kuning yang sebelumnya dipakai Jasa Bongkar Muat |
+| Pengupasan Lapisan Penutup dan Penyiapan Lahan | service-coal-getting-foto7-{800,1600}.webp — foto excavator Hitachi merah yang sebelumnya dipakai Coal Getting |
+| Jasa Bongkar Muat | service-bongkar-muat-kelanis-{800,1440}.webp — suntingan AI foto udara Kelanis |
+
+Sumber Kelanis: _source/photos/kelanis-original.jpeg, salinan dari D:/AssetFoto/kelanis.jpeg. Master suntingan: _source/generated-photos/kelanis-enhanced-v1.png. Suntingan memperbaiki kejernihan, warna, dan pencahayaan dengan mempertahankan tata letak lokasi. WebP 4:3 kualitas 90. Sumber dan aset sebelumnya tetap disimpan.
+
 ## Foto Layanan (29 Oktober 2026)
 
 Empat foto yang dipasok pengguna disunting dengan AI untuk memperbaiki kejernihan, kabut, pencahayaan, dan pembingkaian. Cap waktu, koordinat, serta tulisan aplikasi kamera dihapus. Urutan pemakaian mengikuti urutan lampiran pengguna, bukan nomor nama berkas.
